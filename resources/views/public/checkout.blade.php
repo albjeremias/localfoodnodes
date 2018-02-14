@@ -123,6 +123,8 @@
                     $form.submit();
                 }
             }, 500));
+
+            $('[data-toggle="tooltip"]').tooltip();
         });
     </script>
 @endsection

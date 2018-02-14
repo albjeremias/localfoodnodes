@@ -105,8 +105,8 @@ class OrderDateItemLink extends \App\BaseModel
         $price = $this->getItem()->variant ?  $this->getItem()->variant['price'] : $this->getItem()->product['price'];
 
         if ($this->getItem()->product['production_type'] === 'csa') {
-            $csaPrice = $price / $this->getItem()->getProduct()->deliveryLinks()->count();
-            return round($this->quantity * $csaPrice);
+            $csaPrice = $price;
+            return round($this->quantity * $price);
         } else if (\UnitsHelper::isStandardUnit($this->getItem()->product['price_unit'])) {
             // Sold by weight
             if ($this->getItem()->variant) {
@@ -148,7 +148,12 @@ class OrderDateItemLink extends \App\BaseModel
             $prefix = '<span class="approx">&asymp;</span>';
         }
 
-        return $prefix . ' ' . $this->getPrice() . ' ' . $this->getUnit();
+        $csa = '';
+        if ($this->getItem()->product['production_type'] === 'csa') {
+            $csa = ' <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Price is for the entire CSA"></i>';
+        }
+
+        return $prefix . ' ' . $this->getPrice() . ' ' . $this->getUnit() . $csa;
     }
 
     /**

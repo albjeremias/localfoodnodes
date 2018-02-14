@@ -185,7 +185,7 @@ class OrderItem extends \App\BaseModel
     public function getProduct()
     {
         $product = Product::find($this->product_id);
-        $producer = $product ? $product->toArray() : $this->product;
+        $product = $product ? $product->toArray() : $this->product;
 
         return $product;
     }
