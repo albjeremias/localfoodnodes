@@ -409,7 +409,7 @@ class Node extends BaseModel implements EventOwnerInterface
      */
     private function getNextDelivery($product = null)
     {
-        $firstDate = $this->delivery_startdate;
+        $firstDate = $this->getFirstDeliveryDate();
 
         $firstProductionDate = null;
         if ($product && $product->production_type === 'occasional') {
@@ -426,16 +426,45 @@ class Node extends BaseModel implements EventOwnerInterface
     }
 
     /**
+     * Recursive function that finds the first delivery with regard to current date or start date and product deadline.
+     *
+     * @param Product $product
+     * @param DateTime $currentDate used in loop
+     * @return DateTime
+     */
+    private function getFirstDeliveryDate()
+    {
+        $today = new \DateTime(date('Y-m-d'));
+        $firstDeliveryDate = $this->delivery_startdate->modify('this ' . $this->delivery_weekday); // Make sure it's the correct weekday
+
+        // If first date is in the future just return it.
+        if ($today < $firstDeliveryDate) {
+            return $firstDeliveryDate;
+        }
+
+        // If the first date is in the past, calculate the closest date based on the first date and the delivery interval
+        while ($today >= $firstDeliveryDate) {
+            $deliveryInterval = $this->getDeliveryIntervalFormat($firstDeliveryDate);
+            $firstDeliveryDate = new \DateTime(date('Y-m-d', strtotime($deliveryInterval)));
+        }
+
+        return $firstDeliveryDate;
+    }
+
+    /**
      * Get delivery interval.
+     * Current date needed for looping to work (moving date forward).
+     *
+     * Different format depending on interval?!?!?!?!
      *
      * @return string
      */
-    private function getDeliveryIntervalFormat() {
+    private function getDeliveryIntervalFormat($currentDate) {
         if ($this->hasWeeklyDeliveries()) {
-            $deliveryInterval = 'next ' . $this->delivery_weekday;
+            $deliveryInterval = $this->delivery_interval . ' ' . $currentDate->format('Y-m-d');
         } else {
             $weekOfMonth = $this->weekOfMonth($this->delivery_startdate);
-            $deliveryInterval = $weekOfMonth . ' ' . $this->delivery_weekday . ' of';
+            $deliveryInterval = $weekOfMonth . ' ' . $this->delivery_weekday . ' of ' . $currentDate->format('Y-m');
         }
 
         return $deliveryInterval;
@@ -570,15 +599,15 @@ class Node extends BaseModel implements EventOwnerInterface
     }
 
     /**
-     * Return start date object.
+     * Return start date object. Add weekday so startdate is always the correct weekday
      *
      * @param string $value
      * @return Date
      */
     public function getDeliveryStartdateAttribute($value)
     {
-        if (strtotime($value) <= 0) {
-            $value = date('Y-m-d');
+        if (!$value) {
+            $value = date('Y-m-d', strtotime($this->delivery_interval));
         }
 
         return $value ? new DateTime($value) : new DateTime(date('Y-m-d', time()));

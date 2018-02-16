@@ -4,7 +4,7 @@ return [
     // Upper Case
     'January' => 'January',
     'February' => 'February',
-    'March' => 'Mach',
+    'March' => 'March',
     'April' => 'April',
     'May' => 'May',
     'June' => 'June',
