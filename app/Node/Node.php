@@ -438,14 +438,19 @@ class Node extends BaseModel implements EventOwnerInterface
         $firstDeliveryDate = $this->delivery_startdate->modify('this ' . $this->delivery_weekday); // Make sure it's the correct weekday
 
         // If first date is in the future just return it.
-        if ($today < $firstDeliveryDate) {
+        if ($today <= $firstDeliveryDate) {
             return $firstDeliveryDate;
         }
 
         // If the first date is in the past, calculate the closest date based on the first date and the delivery interval
         while ($today >= $firstDeliveryDate) {
-            $deliveryInterval = $this->getDeliveryIntervalFormat($firstDeliveryDate);
-            $firstDeliveryDate = new \DateTime(date('Y-m-d', strtotime($deliveryInterval)));
+            if ($this->delivery_interval === '+1 month') {
+                $deliveryInterval = $this->getDeliveryIntervalFormat() . 'next month';
+            } else {
+                $deliveryInterval = $this->getDeliveryIntervalFormat($firstDeliveryDate) . ' ' . $currentDate->format('Y-m-d');
+            }
+
+            $firstDeliveryDate->modify($deliveryInterval);
         }
 
         return $firstDeliveryDate;
@@ -455,16 +460,14 @@ class Node extends BaseModel implements EventOwnerInterface
      * Get delivery interval.
      * Current date needed for looping to work (moving date forward).
      *
-     * Different format depending on interval?!?!?!?!
-     *
      * @return string
      */
-    private function getDeliveryIntervalFormat($currentDate) {
+    private function getDeliveryIntervalFormat() {
         if ($this->hasWeeklyDeliveries()) {
-            $deliveryInterval = $this->delivery_interval . ' ' . $currentDate->format('Y-m-d');
+            $deliveryInterval = $this->delivery_interval;
         } else {
             $weekOfMonth = $this->weekOfMonth($this->delivery_startdate);
-            $deliveryInterval = $weekOfMonth . ' ' . $this->delivery_weekday . ' of ' . $currentDate->format('Y-m');
+            $deliveryInterval = $weekOfMonth . ' ' . $this->delivery_weekday . ' of';
         }
 
         return $deliveryInterval;
