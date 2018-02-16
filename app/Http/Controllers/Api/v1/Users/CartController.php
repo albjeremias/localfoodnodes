@@ -94,19 +94,35 @@ class CartController extends \App\Http\Controllers\Controller
 
         if ($cartDateItemLink->getItem()->product['production_type'] === 'csa') {
             // CSA is all or nothing, update all dates
-            $return = $user->cartItems($product->id)->map(function($cartItem) use ($product, $variant, $node, $quantity) {          // Loop all cart items
+            $cartDateItemLinks = $user->cartItems($product->id)->map(function($cartItem) use ($product, $variant, $node, $quantity) {          // Loop all cart items
                 return $cartItem->cartDateItemLinks()->map(function($cartDateItemLink) use ($product, $variant, $node, $quantity) { // Loop cartDateItemLinks
                     return $this->validateAndUpdateCartDateItemLink($cartDateItemLink, $product, $variant, $node, $quantity);       // Update
                 });
-            })->flatten()->first();
-        } else {
-            $return = $this->validateAndUpdateCartDateItemLink($cartDateItemLink, $product, $variant, $node, $quantity);
-        }
+            });
 
-        if ($return->errors) {
-            return response($return->cartDateItemLink, 403);
+            // Since all items are updated, return all items
+            $errors = false;
+            $cartDateItemLinks = $cartDateItemLinks->map(function($cartDateItemLink) use ($errors) {
+                if ($cartDateItemLink->errors) {
+                    $errors = $cartDateItemLinks->errors;
+                }
+
+                return $cartDateItemLink->data;
+            });
+
+            if ($errors) {
+                return response($cartDateItemLinks->data, 403);
+            } else {
+                return response($cartDateItemLinks->data, 200);
+            }
         } else {
-            return response($return->cartDateItemLink, 200);
+            $cartDateItemLink = $this->validateAndUpdateCartDateItemLink($cartDateItemLink, $product, $variant, $node, $quantity);
+
+            if ($return->errors) {
+                return response($cartDateItemLink->data, 403);
+            } else {
+                return response($cartDateItemLink->data, 200);
+            }
         }
     }
 
