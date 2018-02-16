@@ -447,7 +447,7 @@ class Node extends BaseModel implements EventOwnerInterface
             if ($this->delivery_interval === '+1 month') {
                 $deliveryInterval = $this->getDeliveryIntervalFormat() . 'next month';
             } else {
-                $deliveryInterval = $this->getDeliveryIntervalFormat($firstDeliveryDate) . ' ' . $currentDate->format('Y-m-d');
+                $deliveryInterval = $this->getDeliveryIntervalFormat() . ' ' . $firstDeliveryDate->format('Y-m-d');
             }
 
             $firstDeliveryDate->modify($deliveryInterval);

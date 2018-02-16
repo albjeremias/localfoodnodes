@@ -5,20 +5,18 @@
 * Install Composer
 * Install Laravel Homestead
 
+### Setup dev environment
+* Follow the Homestead documentation to configure the vagrant box.
+* Add dev.localfoodnodes.org to your hosts file.
+
 #### Project
 * Clone git repo
-* Run `composer install` in project root directory
+* Run `composer install` in project root directory or from inside vagrant
+* Create cache folders named sessions, views and cache under storage/framework.
+* Configure your .env (ask David)
 
-### Setup dev environment
-* Follow the Homestead documentation
-
-### Elasticsearch
-* Make sure the docker-machine is running.
-* SSH to docker-machine with `docker-machine ssh` and run `sudo sysctl -w vm.max_map_count=262144` to increase value.
-* Run `docker-compose up -d` to start elasticsearch container
-
-### Build assets
-We're using elixir, just run `gulp watch` in terminal.
+### Building assets
+We're using elixir, just run `npm run watch` in terminal. Before deploying run `npm run production` instead.
 
 #### Problem with storage write permission
 * php artisan cache:clear
