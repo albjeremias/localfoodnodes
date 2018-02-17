@@ -165,7 +165,7 @@ trait CartLogic
 
         return (object) [
             'errors' => $errors->isEmpty() ? false : $errors,
-            'cartDateItemLink' => $cartDateItemLink,
+            'data' => $cartDateItemLink,
         ];
     }
 
