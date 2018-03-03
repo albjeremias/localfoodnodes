@@ -169,7 +169,12 @@ class OrderDateItemLink extends \App\BaseModel
         }
 
         $product = $this->getItem()->getProduct();
-        $productDeadline = $product->getDeadlineDate();
+
+        $productDeadline = new \DateTime();
+        if ($product['deadline']) {
+            $productDeadline->modify('+' . $product['deadline'] . ' days');
+        }
+
         $orderDeliveryDate = $this->getDate()->date;
         $interval = $productDeadline->diff($orderDeliveryDate);
 

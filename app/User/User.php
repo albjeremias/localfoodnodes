@@ -5,12 +5,19 @@ namespace App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Collection;
 use App\Mail\ResetPassword as ResetPasswordNotification;
+
+use Stripe\Stripe;
+use Stripe\Charge;
+
 use Mail;
 use App\Traits\Excludable;
+use App\User\UserMembershipPayment;
 
 class User extends \App\User\BaseUser
 {
     use Excludable;
+
+    protected $with = ['membershipPaymentsRelationship'];
 
     protected $appends = ['location'];
 
@@ -395,6 +402,53 @@ class User extends \App\User\BaseUser
         }
 
         return false;
+    }
+
+    /**
+     * Process payments.
+     */
+    public function processMembershipPayment($token, $amount)
+    {
+        try {
+            Stripe::setApiKey(config('payment.stripe.live.secret_key')); // Use .env
+
+            if (!is_numeric($amount)) {
+                throw new \Exception(trans('admin/messages.user_membership_amount_not_numeric'));
+            }
+
+            // If user pays less than 3SEK (stripe limit)
+            if ($amount < 3) {
+                UserMembershipPayment::create([
+                    'user_id' => $this->id,
+                    'amount' => $amount * 100
+                ]);
+
+                \App\Helpers\SlackHelper::message('notification', $this->name . ' (' . $this->email . ')' . ' payed ' . $amount . 'SEK to become a member.');
+                return ['error' => false, 'message' => $amount];
+            } else {
+                $amount = ((int) $amount) * 100;
+                $charge = Charge::create(array(
+                    'amount' => $amount,
+                    'currency' => 'sek',
+                    'source' => $token,
+                    'description' => $this->name
+                ));
+
+                if ($charge['status'] === 'succeeded') {
+                    UserMembershipPayment::create([
+                        'user_id' => $this->id,
+                        'amount' => $amount
+                    ]);
+
+                    \App\Helpers\SlackHelper::message('notification', $this->name . ' (' . $this->email . ')' . ' payed ' . $amount . 'SEK to become a member.');
+                    return ['error' => false, 'message' => $amount];
+                } else {
+                    return ['error' => true, 'message' => $charge['status']];
+                }
+            }
+        } catch (\Exception $e) {
+            return ['error' => true, 'message' => $e->getMessage()];
+        }
     }
 
     /**

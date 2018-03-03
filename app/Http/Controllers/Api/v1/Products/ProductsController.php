@@ -26,7 +26,11 @@ class ProductsController extends \App\Http\Controllers\Controller
             $productIds = $linkQuery->get()->pluck('product_id')->unique();
         }
 
-        return Product::with(['productVariantsRelationship', 'imageRelationship'])->where('is_hidden', 0)->whereIn('id', $productIds)->get();
+        return Product::with([
+            'producerRelationship',
+            'productVariantsRelationship',
+            'imageRelationship'
+        ])->where('is_hidden', 0)->whereIn('id', $productIds)->get();
     }
 
     public function product(Request $request, $productId)
@@ -36,8 +40,9 @@ class ProductsController extends \App\Http\Controllers\Controller
 
     public function dates(Request $request, $productId)
     {
-        $product = Product::where('is_hidden', 0)->where('id', $productId)->first();
+        $product = Product::where('id', $productId)->first();
         $nodeId = $request->input('node_id');
+
         $variant = null;
 
         if ($request->has('variant_id')) {

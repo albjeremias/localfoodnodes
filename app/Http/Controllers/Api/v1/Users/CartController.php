@@ -41,7 +41,7 @@ class CartController extends \App\Http\Controllers\Controller
 
         // Abort and display errors
         if (!$errors->isEmpty()) {
-            return $errors; // Status code here?
+            return response(['error' => 'add_to_cart_error', 'message' => $errors->all()], 400);
         }
 
         // Load additional data
@@ -56,14 +56,11 @@ class CartController extends \App\Http\Controllers\Controller
         ];
 
         // Add item to cart
-        $messages = $this->add($data, $user, $producer, $product, $variant, $node);
-        $messages->add('added_to_cart', trans('public/product.added_to_cart'));
-
-        return $messages;
+        return CartDateItemLink::where('user_id', $user->id)->get();
     }
 
-        /**
-     * Update cart item quantity action.
+    /**
+     * Update cart item quantity action. Always return all cart items with response.
      *
      * @param Request $request
      * @param int $cartItemId
@@ -73,17 +70,12 @@ class CartController extends \App\Http\Controllers\Controller
         $cartDateItemLinkId = $request->input('cartDateItemLinkId');
         $quantity = $request->input('quantity');
 
-        // if (!$quantity) {
-        //     return $this->removeItem($request, $cartDateItemLinkId);
-        // }
-
         $user = Auth::guard('api')->user();
         $cartDateItemLink = $user->cartDateItemLink($cartDateItemLinkId);
 
+
         if (!$cartDateItemLink) {
-            // CART ITEM DOESNT EXIST
-            // $request->session()->flash('message', [trans('public/checkout.cart_item_update_failed')]);
-            // return redirect()->back();
+            return response($cartDateItemLinks, 400);
         }
 
         $cartItem = $cartDateItemLink->getItem();
@@ -92,13 +84,13 @@ class CartController extends \App\Http\Controllers\Controller
         $variant = $product->variants()->where('id', $cartItem->variant['id'])->first();
         $node = Node::find($cartItem->node['id']);
 
+        // CSA is all or nothing, update all dates and return all dates too.
         if ($cartDateItemLink->getItem()->product['production_type'] === 'csa') {
-            // CSA is all or nothing, update all dates
-            $cartDateItemLinks = $user->cartItems($product->id)->map(function($cartItem) use ($product, $variant, $node, $quantity) {          // Loop all cart items
-                return $cartItem->cartDateItemLinks()->map(function($cartDateItemLink) use ($product, $variant, $node, $quantity) { // Loop cartDateItemLinks
-                    return $this->validateAndUpdateCartDateItemLink($cartDateItemLink, $product, $variant, $node, $quantity);       // Update
+            $cartDateItemLinks = $user->cartItems($product->id)->map(function($cartItem) use ($product, $variant, $node, $quantity) {       // Loop all cart items
+                return $cartItem->cartDateItemLinks()->map(function($cartDateItemLink) use ($product, $variant, $node, $quantity) {         // Loop cartDateItemLinks
+                    return $this->validateAndUpdateCartDateItemLink($cartDateItemLink, $product, $variant, $node, $quantity);               // Update
                 });
-            });
+            })->flatten();
 
             // Since all items are updated, return all items
             $errors = false;
@@ -110,19 +102,15 @@ class CartController extends \App\Http\Controllers\Controller
                 return $cartDateItemLink->data;
             });
 
-            if ($errors) {
-                return response($cartDateItemLinks->data, 403);
-            } else {
-                return response($cartDateItemLinks->data, 200);
-            }
-        } else {
+            // Return the items, errors are implicit with the status code
+            return $errors ? response($cartDateItemLinks, 400) : response($cartDateItemLinks, 200);
+        }
+
+        // For everything that's not CSA just update the the single cartDateItemLink.
+        if ($cartDateItemLink->getItem()->product['production_type'] !== 'csa') {
             $cartDateItemLink = $this->validateAndUpdateCartDateItemLink($cartDateItemLink, $product, $variant, $node, $quantity);
 
-            if ($return->errors) {
-                return response($cartDateItemLink->data, 403);
-            } else {
-                return response($cartDateItemLink->data, 200);
-            }
+            return $return->errors ? response($cartDateItemLink->data, 400) : response($cartDateItemLink->data, 200);
         }
     }
 
@@ -134,10 +122,6 @@ class CartController extends \App\Http\Controllers\Controller
         $user = Auth::guard('api')->user();
 
         $cartDateItemLink = $user->cartDateItemLink($cartDateItemLinkId);
-
-        if (!$cartDateItemLink) {
-            // Return error message!
-        }
 
         if (isset($cartDateItemLink->getItem()->product['production_type']) && $cartDateItemLink->getItem()->product['production_type'] === 'csa') {
             // CSA is all or nothing, remove everything

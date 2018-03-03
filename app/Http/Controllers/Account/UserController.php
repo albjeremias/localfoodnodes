@@ -11,13 +11,9 @@ use Illuminate\Database\QueryException;
 
 use Mail;
 
-use Stripe\Stripe;
-use Stripe\Charge;
-
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\User\User;
-use App\User\UserMembershipPayment;
 use App\User\UserNodeLink;
 use App\Image\Image;
 use App\Node\Node;
@@ -26,8 +22,6 @@ use App\Order\Order;
 use App\Event\EventUserLink;
 
 use App\Helpers\GoogleMapsHelper;
-
-use \Exception;
 
 class UserController extends Controller
 {
@@ -484,59 +478,27 @@ class UserController extends Controller
     public function membershipCallback(Request $request)
     {
         $user = Auth::user();
-        $errors = new MessageBag();
 
-        Stripe::setApiKey(config('payment.stripe.live.secret_key'));
+        $token = $request->input('stripeToken');
+        $amount = $request->input('amount');
 
-        try {
-            $token = $request->input('stripeToken');
-            $amount = $request->input('amount');
+        $status = $user->processMembershipPayment($token, $amount);
 
-            if (!is_numeric($amount)) {
-                throw new Exception(trans('admin/messages.user_membership_amount_not_numeric'));
-            }
-
-            // If user pays less than 3SEK (stripe limit)
-            if ($amount < 3) {
-                UserMembershipPayment::create([
-                    'user_id' => $user->id,
-                    'amount' => $amount * 100
-                ]);
-
-                \App\Helpers\SlackHelper::message('notification', $user->name . ' (' . $user->email . ')' . ' payed ' . $request->input('amount') . 'SEK to become a member.');
-
-                $request->session()->flash('membership_modal_no_charge', true);
-                return redirect('/account/user/membership');
-            }
-
-            $amount = ((int) $amount) * 100;
-
-            $charge = Charge::create(array(
-                'amount' => $amount,
-                'currency' => 'sek',
-                'source' => $token,
-                'description' => $user->name
-            ));
-
-            if ($charge['status'] === 'succeeded') {
-                UserMembershipPayment::create([
-                    'user_id' => $user->id,
-                    'amount' => $amount
-                ]);
-
-                $request->session()->flash('membership_modal_thanks', true);
-                $request->session()->flash('message', [trans('admin/messages.user_membership_success')]);
-
-                \App\Helpers\SlackHelper::message('notification', $user->name . ' (' . $user->email . ')' . ' payed ' . $request->input('amount') . 'SEK to become a member.');
-            }
-        } catch(Exception $e) {
-            $errors->add('payment', $e->getMessage());
-
+        if ($status['error']) {
             $request->session()->flash('message', [
                 trans('admin/messages.user_membership_error', [
-                    'errors' => implode($errors->all(), '')
+                    'errors' => $status['message']
                 ])
             ]);
+
+            return redirect('/account/user/membership');
+        }
+
+        if ($status['message'] < 3) {
+            $request->session()->flash('membership_modal_no_charge', true);
+        } else {
+            $request->session()->flash('membership_modal_thanks', true);
+            $request->session()->flash('message', [trans('admin/messages.user_membership_success')]);
         }
 
         return redirect('/account/user/membership');

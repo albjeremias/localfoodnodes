@@ -72,11 +72,19 @@ class Product extends \App\BaseModel
     }
 
     /**
-     * Get productions.
+     * Define product relationship with producer.
+     */
+    public function producerRelationship()
+    {
+        return $this->hasOne('App\Producer\Producer', 'id', 'producer_id');
+    }
+
+    /**
+     * Get producer.
      */
     public function producer()
     {
-        return $this->belongsTo('App\Producer\Producer')->first();
+        return $this->producerRelationship()->first();
     }
 
     /**
@@ -92,7 +100,7 @@ class Product extends \App\BaseModel
      */
     public function productions()
     {
-        return $this->productionsRelationship->sortBy('date');
+        return $this->productionsRelationship()->orderBy('date');
     }
 
     /**
@@ -492,22 +500,6 @@ class Product extends \App\BaseModel
             return true;
         } else {
             return $errors->implode(' ');
-        }
-    }
-
-    /**
-     * Get the date that for the product deadline. After this dates products no longer bookable.
-     *
-     * @return DateTime
-     */
-    public function getDeadlineDate()
-    {
-        $dateTime = new \DateTime();
-
-        if (!$this->deadline) {
-            return $dateTime;
-        } else {
-            return $dateTime->modify('+' . $this->deadline . ' days');
         }
     }
 
