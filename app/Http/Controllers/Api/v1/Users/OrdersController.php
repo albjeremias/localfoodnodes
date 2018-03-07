@@ -16,18 +16,7 @@ class OrdersController extends \App\Http\Controllers\Controller
         $user = Auth::guard('api')->user();
         $orderDateItemLinks = $user->orderDateItemLinks();
 
-        $orderDateItemLinks = $orderDateItemLinks->map(function($orderDateItemLink) {
-            $orderDate = $orderDateItemLink->getDate();
-            $orderItem = $orderDateItemLink->getItem();
-
-            $orderDateItemLinkArray = $orderDateItemLink->toArray();
-            $orderDateItemLinkArray['date'] = $orderDate->toArray();
-            $orderDateItemLinkArray['item'] = $orderItem->toArray();
-
-            return $orderDateItemLinkArray;
-        });
-
-        return $orderDateItemLinks;
+        return $this->loadRelatedOrderData($orderDateItemLinks);
     }
 
     /**
@@ -54,5 +43,39 @@ class OrdersController extends \App\Http\Controllers\Controller
             $request->session()->flash('error', $errors->all());
             return response()->json(['error' => true], 400);
         }
+    }
+
+    /**
+     * Delete order item action.
+     */
+    public function deleteOrder(Request $request, $orderDateItemLinkId)
+    {
+        $user = Auth::guard('api')->user();
+
+        $orderDateItemLink = $user->orderDateItemLink($orderDateItemLinkId);
+
+        if ($orderDateItemLink) {
+            $orderDateItemLink->delete();
+        }
+
+        $orderDateItemLinks = $user->orderDateItemLinks();
+        return $this->loadRelatedOrderData($orderDateItemLinks);
+    }
+
+    /**
+     * Helper
+     */
+    private function loadRelatedOrderData($orderDateItemLinks)
+    {
+        return $orderDateItemLinks->map(function($orderDateItemLink) {
+            $orderDate = $orderDateItemLink->getDate();
+            $orderItem = $orderDateItemLink->getItem();
+
+            $orderDateItemLinkArray = $orderDateItemLink->toArray();
+            $orderDateItemLinkArray['date'] = $orderDate->toArray();
+            $orderDateItemLinkArray['item'] = $orderItem->toArray();
+
+            return $orderDateItemLinkArray;
+        });
     }
 }

@@ -45,15 +45,23 @@ class CartController extends \App\Http\Controllers\Controller
         }
 
         // Load additional data
-        $user = Auth::user();
-        $variant = $product->variants()->where('id', $request->input('variant_id'))->first();
-        $producer = Producer::where('id', $product->producer_id)->first();
-        $node = Node::find($request->input('node_id'));
         $data = [
             'delivery_dates' => $request->input('delivery_dates'),
             'quantity' => $request->input('quantity'),
             'message' => $request->input('message'),
         ];
+
+        $user = Auth::user();
+        $variant = $product->variants()->where('id', $request->input('variant_id'))->first();
+        $producer = Producer::where('id', $product->producer_id)->first();
+        $node = Node::find($request->input('node_id'));
+
+        $errors = $this->add($data, $user, $producer, $product, $variant, $node);
+
+        // Abort and display errors
+        if (!$errors->isEmpty()) {
+            return response(['error' => 'add_to_cart_error', 'message' => $errors->all()], 400);
+        }
 
         // Add item to cart
         return CartDateItemLink::where('user_id', $user->id)->get();

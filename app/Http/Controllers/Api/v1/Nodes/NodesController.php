@@ -4,13 +4,20 @@ namespace App\Http\Controllers\Api\v1\Nodes;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+
 use App\Node\Node;
 
 class NodesController extends \App\Http\Controllers\Controller
 {
     public function nodes(Request $request)
     {
-        return Node::with(['imageRelationship'])->get();
+        if (!Cache::has('nodes')) {
+            $nodes = Node::with(['imageRelationship'])->get();
+            Cache::put('nodes', $nodes, 5);
+        }
+
+        return Cache::get('nodes');
     }
 
     public function count(Request $request)

@@ -344,7 +344,8 @@ class Producer extends BaseModel implements EventOwnerInterface
      */
     public function events(\DateTime $date = null, $ignoreHidden = true)
     {
-        $events = $this->hasMany('App\Event\Event', 'owner_id')->where('owner_type', 'producer')->get();
+        $endOfToday = date('Y-m-d 23:59:59');
+        $events = $this->hasMany('App\Event\Event', 'owner_id')->where('owner_type', 'producer')->where('end_datetime', '>=', $endOfToday)->get();
 
         if ($ignoreHidden) {
             $events = $events->where('is_hidden', 0);
