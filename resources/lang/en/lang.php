@@ -1,8 +1,9 @@
 <?php
 
 return [
+    'da' => 'Dansk',
     'sv' => 'Svenska',
     'en' => 'English',
-    'es' => 'Spanish',
-    'nl' => 'Dutch',
+    'es' => 'Español',
+    'nl' => 'Nederlands',
 ];

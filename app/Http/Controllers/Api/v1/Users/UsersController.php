@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1\Users;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -10,7 +11,7 @@ use Mail;
 
 use App\User\User;
 
-class UsersController extends \App\Http\Controllers\Controller
+class UsersController extends BaseController
 {
     public function users(Request $request)
     {

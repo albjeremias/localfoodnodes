@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Api\v1\Economy;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Cache;
 use App\Admin\Economy\Transaction;
 use App\Admin\Economy\Parsers\Swedbank;
 
-class EconomyController extends \App\Http\Controllers\Controller
+class EconomyController extends BaseController
 {
     private $incomeCategories = [
         ["id" => 0, "label" => "External events", "type_label" => "Income - External events"],
@@ -36,31 +38,37 @@ class EconomyController extends \App\Http\Controllers\Controller
      */
     public function transactions(Request $request)
     {
-        $transactions = Transaction::orderByDesc('date')->get();
+        if (!Cache::has('transactions')) {
+            $transactions = Transaction::orderByDesc('date')->get();
 
-        $totalIncome = 0;
-        $totalCost = 0;
+            $totalIncome = 0;
+            $totalCost = 0;
 
-        $transactions->each(function($transaction) use (&$totalIncome, &$totalCost) {
-            if ($this->incomeCategories->contains('id', $transaction->category)) {
-                $totalIncome += (int) $transaction->amount;
-            } else if ($this->costCategories->contains('id', $transaction->category)) {
-                $totalCost += (int) -$transaction->amount;
-            }
-        });
+            $transactions->each(function($transaction) use (&$totalIncome, &$totalCost) {
+                if ($this->incomeCategories->contains('id', $transaction->category)) {
+                    $totalIncome += (int) $transaction->amount;
+                } else if ($this->costCategories->contains('id', $transaction->category)) {
+                    $totalCost += (int) -$transaction->amount;
+                }
+            });
 
-        return [
-            'transactions' => $transactions,
-            'categories' => [
-                'all' => $this->incomeCategories->concat($this->costCategories),
-                'income' => $this->incomeCategories->pluck('id'),
-                'cost' => $this->costCategories->pluck('id'),
-            ],
-            'total' => [
-                'income' => $totalIncome,
-                'cost' => $totalCost
-            ]
-        ];
+            $data = [
+                'transactions' => $transactions,
+                'categories' => [
+                    'all' => $this->incomeCategories->concat($this->costCategories),
+                    'income' => $this->incomeCategories->pluck('id'),
+                    'cost' => $this->costCategories->pluck('id'),
+                ],
+                'total' => [
+                    'income' => $totalIncome,
+                    'cost' => $totalCost
+                ]
+            ];
+
+            Cache::put('transactions', $data, 60);
+        }
+
+        return Cache::get('transactions');
     }
 
     /**
@@ -83,6 +91,7 @@ class EconomyController extends \App\Http\Controllers\Controller
     public function uploadTransactionsFile(Request $request)
     {
         if ($request->has('file')) {
+            Cache::forget('transactions');
             $swedbankParser = new Swedbank($request->file('file'));
 
             $swedbankParser->parse(function($validTransaction) {
@@ -112,6 +121,8 @@ class EconomyController extends \App\Http\Controllers\Controller
             $transaction = Transaction::find($request->input('id'));
             $transaction->category = $request->input('category');
             $transaction->save();
+
+            Cache::forget('transactions');
 
             return $transaction;
         } catch(\Exception $e) {

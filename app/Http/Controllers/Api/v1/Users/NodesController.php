@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Api\v1\Users;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
 
-class NodesController extends \App\Http\Controllers\Controller
+class NodesController extends BaseController
 {
     public function nodes(Request $request)
     {

@@ -1,12 +1,12 @@
 {
-    "/js/admin.js": "/js/admin.js?id=2e262f7fac0e51b3ad2f",
-    "/css/public.css": "/css/public.css?id=9a439960095f3e64f5b2",
-    "/css/account.css": "/css/account.css?id=9c36d750fec4890a8957",
-    "/css/admin.css": "/css/admin.css?id=7dbb9443e215accece84",
-    "/js/transactions.js": "/js/transactions.js?id=32456741842c7a35bccb",
-    "/js/economy-in-out.js": "/js/economy-in-out.js?id=8c6f4a22c7eeacbdc101",
-    "/js/economy-circulation.js": "/js/economy-circulation.js?id=da2fc0d56fed55ad8fdc",
-    "/js/statistics.js": "/js/statistics.js?id=15b9a795dcbe84ecfb6c",
-    "/js/producer-node-map.js": "/js/producer-node-map.js?id=ed64d5257be20091abe8",
-    "/js/node-map.js": "/js/node-map.js?id=2f0d540bdf050f75029c"
+    "/js/admin.js": "/js/admin.js?id=b344013e99f35da0b03a",
+    "/css/public.css": "/css/public.css?id=b3ce73352a187e77a29a",
+    "/css/account.css": "/css/account.css?id=3d745f924c5f1bce118b",
+    "/css/admin.css": "/css/admin.css?id=8dee00b314d18b500be9",
+    "/js/transactions.js": "/js/transactions.js?id=774cdd9364e64258342f",
+    "/js/economy-in-out.js": "/js/economy-in-out.js?id=0c51a1221be55c615e98",
+    "/js/economy-circulation.js": "/js/economy-circulation.js?id=33e5a98324dabc9ea8fc",
+    "/js/statistics.js": "/js/statistics.js?id=1efe49d2ba7757eb7383",
+    "/js/producer-node-map.js": "/js/producer-node-map.js?id=f7d2c503eb1cae4594ca",
+    "/js/node-map.js": "/js/node-map.js?id=6d24ce753869462e2973"
 }

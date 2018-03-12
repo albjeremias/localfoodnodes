@@ -88,6 +88,7 @@ class Controller extends BaseController
             $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
         }
 
+        // Default app setting
         else {
             $lang = config('app.locale');
         }

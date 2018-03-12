@@ -42,6 +42,7 @@ class AuthController extends Controller
     {
         $urls = [
             '/login',
+            '/logout',
             '/password/reset',
         ];
 

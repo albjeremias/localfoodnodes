@@ -81,6 +81,7 @@ return [
 
     // Array with all the available locales
     'locales' => [
+        'da' => 'Dansk',
         'en' => 'English',
         'sv' => 'Svenska',
         'es' => 'Español',

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1\Users;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\MessageBag;
@@ -13,7 +14,7 @@ use App\Node\Node;
 use App\Cart\CartDateItemLink;
 use \App\Traits\CartLogic;
 
-class CartController extends \App\Http\Controllers\Controller
+class CartController extends BaseController
 {
     use CartLogic;
 

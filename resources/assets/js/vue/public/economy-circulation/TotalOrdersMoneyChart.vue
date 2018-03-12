@@ -6,14 +6,14 @@
                 <div class="metric col-6">
                     <i class="fa fa-shopping-cart"></i>
                     <div class="metric-inner">
-                        <div class="value">{{ data.orders }}</div>
+                        <div class="value">{{ data.count }}</div>
                         <div class="label">{{ this.trans.orders }}</div>
                     </div>
                 </div>
                 <div class="metric col-6">
                     <i class="fa fa-refresh"></i>
                     <div class="metric-inner">
-                        <div class="value">{{ parseInt(data.sum).toLocaleString('sv') }}</div>
+                        <div class="value">{{ parseInt(data.circulation).toLocaleString('sv') }}</div>
                         <div class="label">{{ this.trans.money_circulated }}</div>
                     </div>
                 </div>
@@ -35,7 +35,8 @@
         data: function() {
             return {
                 data: {
-                    orders: null
+                    circulation: null,
+                    count: null
                 },
                 loading: true,
                 trans: {}
@@ -43,30 +44,21 @@
         },
         mounted() {
             this.trans = JSON.parse(this.translations);
-            axios.get('/api-proxy', {
-                params: {
-                    url: '/api/v1/orders',
-                }
-            })
+            axios.get('/ajax/economy/order-circulation')
             .then(response => {
-                this.loading = false;
-                this.data = this.formatData(response.data);
+                this.data.circulation = response.data;
+                this.loading = this.isLoadingComplete();
+            });
+
+            axios.get('/ajax/economy/order-count')
+            .then(response => {
+                this.data.count = response.data;
+                this.loading = this.isLoadingComplete();
             });
         },
         methods: {
-            formatData(orders) {
-                orders = _.values(orders); // Convert to array
-                let totalSum = _.sumBy(orders, order => {
-                    let price = parseInt(order.order_item_relationship[0].product.price);
-                    let quantity = parseInt(order.quantity);
-
-                    return price * quantity;
-                });
-
-                return {
-                    orders: orders.length,
-                    sum: totalSum,
-                };
+            isLoadingComplete() {
+                return (this.data.count && this.data.circulation) ? false : true;
             },
         }
     }

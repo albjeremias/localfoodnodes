@@ -17,7 +17,7 @@ export function fetchContent(dispatch, params) {
     }
 
     return request
-    .get('/map/content')
+    .get('/ajax/map/content')
     .query(query)
     .end((error, response) => {
         if (error) console.error(error);

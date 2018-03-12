@@ -17,7 +17,6 @@ let visibleLatLng = [];
 class NodeMapContainer extends Component {
     constructor(props) {
         super(props);
-        // this.debouncedSearch = _.debounce(this.debouncedSearch, 300).bind(this);
         this.debouncedSearch = this.debouncedSearch.bind(this);
         this.getNodePreview = this.getNodePreview.bind(this);
         this.onSelect = this.onSelect.bind(this);
@@ -67,6 +66,7 @@ class NodeMapContainer extends Component {
         tileLayer.addTo(map);
 
         map.on('zoomend dragend', function(event) {
+            console.log('zoomend dragend');
             let bounds = map.getBounds();
             that.createMarkersOnEvent(bounds);
         });
@@ -80,13 +80,23 @@ class NodeMapContainer extends Component {
         });
 
         // First load
+        console.log('first load');
         this.createMarkersOnEvent(map.getBounds());
     }
 
     createMarkersOnEvent(bounds) {
         const { dispatch } = this.props;
         visibleLatLng = []; // Reset
-        actions.fetchContent(dispatch, this.getSanitizedBoundsObject(bounds));
+
+        // No need to double fetch content when map is created
+        if (this.state.action !== 'mapCreated') {
+            actions.fetchContent(dispatch, this.getSanitizedBoundsObject(bounds));
+        }
+
+        this.setState({
+            action: null,
+            position: {}
+        });
     }
 
     createMarkers() {
@@ -141,11 +151,6 @@ class NodeMapContainer extends Component {
 
         let bounds = new L.LatLngBounds(visibleLatLng);
         map.fitBounds(bounds);
-
-        this.setState({
-            action: null,
-            position: {}
-        });
     }
 
     getSanitizedBoundsObject(bounds) {
@@ -189,16 +194,16 @@ class NodeMapContainer extends Component {
     getRekoPreview(reko) {
         return (
             <div className='map-preview'>
-            <a href={reko.link} target='_blank' className='header'>
-                <h3>{reko.name}</h3>
-            </a>
-            <div className='body-text'>
-                <p><a href={reko.link} target='_blank'>{trans.link_to_fb} {reko.name}</a></p>
-                <p className='reko-fb-info'>
-                    <img src='/css/leaflet/images/reko-icon.png' />
-                    <span>{trans.grey_map_marker_info}</span>
-                </p>
-            </div>
+                <a href={reko.link} target='_blank' className='header'>
+                    <h3>{reko.name}</h3>
+                </a>
+                <div className='body-text'>
+                    <p><a href={reko.link} target='_blank'>{trans.link_to_fb} {reko.name}</a></p>
+                    <p className='reko-fb-info'>
+                        <img src='/css/leaflet/images/reko-icon.png' />
+                        <span>{trans.grey_map_marker_info}</span>
+                    </p>
+                </div>
             </div>
         );
     }
@@ -231,6 +236,7 @@ class NodeMapContainer extends Component {
                 lng: place.lon
             }
         });
+        console.log('onSelect');
         actions.fetchContent(dispatch, this.getSanitizedBoundsObject(place.boundingbox));
     }
 

@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Api\v1\Users;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
 
 use \App\Traits\OrderLogic;
 
-class OrdersController extends \App\Http\Controllers\Controller
+class OrdersController extends BaseController
 {
     use OrderLogic;
 

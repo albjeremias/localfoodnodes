@@ -334,7 +334,7 @@ class Node extends BaseModel implements EventOwnerInterface
     }
 
     /**
-     * Load relationsship and other data form map ajax responses.
+     * Load relationship and other data form map ajax responses.
      */
     public function loadMapData()
     {

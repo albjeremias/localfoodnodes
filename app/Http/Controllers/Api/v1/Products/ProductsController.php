@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Api\v1\Products;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
 use App\Product\Product;
 use App\Product\ProductNodeDeliveryLink;
 
-class ProductsController extends \App\Http\Controllers\Controller
+class ProductsController extends BaseController
 {
     public function products(Request $request)
     {
