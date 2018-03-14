@@ -9,6 +9,7 @@ return [
     'login_to_order' => 'Log in om product te bestellen',
     'nav_to_node' => 'Om dit product te bestellen, kunt u navigeren naar de pagina van n van de onderstaande knooppunten waaraan dit product geleverd wordt.',
     'no_bookable_dates' => 'Er zijn geen beschikbare data',
+    'not_available' => 'Niet beschikbaar',
     'message_producer' => 'Bericht aan producent',
     'message_producer_placeholder' => 'Voeg extra informatie toe aan uw bestelling',
     'order' => 'Bestel',

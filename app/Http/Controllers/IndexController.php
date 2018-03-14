@@ -37,10 +37,16 @@ class IndexController extends Controller
             return $user->isMember(true);
         })->count();
 
+        // SELECT count(ump.user_id) AS count FROM user_membership_payments AS ump;
+
         $allPayments = UserMembershipPayment::get();
         $totalMembershipPayments = $allPayments->map(function($payment) {
             return ($payment->amount > 2) ? $payment->amount : null;
         })->filter()->sum();
+
+        // SELECT sum(ump.amount) FROM users AS u
+        // LEFT JOIN user_membership_payments AS ump ON u.id = ump.user_id
+        // WHERE ump.id IS NOT NULL;
 
         $totalPayingMembers = $allPayments->unique('user_id')->count();
         $averageMembershipPayments = $members === 0 ? 0 : $totalMembershipPayments / $totalPayingMembers;
@@ -67,7 +73,7 @@ class IndexController extends Controller
             return redirect('/');
         }
 
-        $producers = ProducerNodeLink::where('node_id', $nodeId)->get()->map->getProducer();
+        $producer = $node->producerLinks()->map->getProducer();
         $products = $node->products();
 
         $productFilter = new ProductFilter($products, $request);

@@ -11,6 +11,7 @@ return [
     'message_producer_placeholder' => 'Agregue información adicional a tu pedido',
     'nav_to_node' => 'Para reservar este producto, vaya a su página en uno de los nodos a los que se entrega',
     'no_bookable_dates' => 'No hay fechas de reserva disponibles',
+    'not_available' => 'No disponible',
     'message_producer' => 'Mensaje al productor',
     'message_producer_placeholder' => 'Agregue información adicional a tu pedido',
     'order' => 'Pedido',

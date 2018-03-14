@@ -14,6 +14,8 @@ class Event extends BaseModel
 {
     protected $appends = ['location'];
 
+    protected $with = ['permalinkRelationship'];
+
     /**
      * Validation rules.
      *
@@ -182,11 +184,19 @@ class Event extends BaseModel
     }
 
     /**
-     *Get permalink.
+     * Get permalink.
+     */
+    public function permalinkRelationship()
+    {
+        return $this->hasOne('App\Permalink', 'entity_id')->where('entity_type', 'event')->orderBy('id');
+    }
+
+    /**
+     * Get permalink.
      */
     public function permalink()
     {
-        return $this->hasOne('App\Permalink', 'entity_id')->where('entity_type', 'event')->first();
+        return $this->permalinkRelationship()->first();
     }
 
     /**
@@ -216,16 +226,6 @@ class Event extends BaseModel
     public function image($imageId)
     {
         return $this->images()->where('id', $imageId)->first();
-    }
-
-    /**
-     * Load relationsship and other data form map ajax responses.
-     */
-    public function loadMapData()
-    {
-        $this->permalink = $this->permalink();
-
-        return $this;
     }
 
     public function uniqueKey()

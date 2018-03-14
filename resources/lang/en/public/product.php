@@ -9,6 +9,7 @@ return [
     'login_to_order' => 'Login to order product',
     'nav_to_node' => 'In order to book this product you can navigate to its page on one of the following nodes where it is delivered to',
     'no_bookable_dates' => 'There are no bookable dates',
+    'not_available' => 'Not available',
     'message_producer' => 'Message to producer',
     'message_producer_placeholder' => 'Add extra information to your order',
     'order' => 'Order',

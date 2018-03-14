@@ -112,7 +112,9 @@ function userLocationFallback(dispatch) {
         .then((response) => response.body)
     })
     .then((data) => dispatch(receiveUserLocation(data)))
-    .catch((err) => console.error('error', err));
+    .catch((err) => {
+        return null;
+    });
 }
 
 function getUserIp() {

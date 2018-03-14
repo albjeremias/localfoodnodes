@@ -31,14 +31,16 @@ class NodeMapContainer extends Component {
     componentDidMount() {
         const { dispatch } = this.props;
         actions.fetchUserLocation(dispatch);
+        this.createMap();
     }
 
     componentDidUpdate(prevProps, prevState) {
         const { dispatch } = this.props;
 
-        // User location needed before fetching nodes
         if (this.props.userLocation !== prevProps.userLocation) {
-            this.createMap();
+            // map.panTo(new L.LatLng(this.props.userLocation.lat, this.props.userLocation.lon));
+            map.setView([this.props.userLocation.lat, this.props.userLocation.lon], 10);
+            actions.fetchContent(dispatch, this.getSanitizedBoundsObject(map.getBounds()));
         }
 
         if (this.props.nodes !== prevProps.nodes) {
@@ -50,8 +52,9 @@ class NodeMapContainer extends Component {
         let that = this;
 
         map = L.map(this.refs.map, {
-            center: [this.props.userLocation.lat, this.props.userLocation.lon],
+            center: [56, 13],
             zoom: 8,
+            maxZoom: 15,
             scrollWheelZoom: false,
         });
 
@@ -66,21 +69,15 @@ class NodeMapContainer extends Component {
         tileLayer.addTo(map);
 
         map.on('zoomend dragend', function(event) {
-            console.log('zoomend dragend');
             let bounds = map.getBounds();
             that.createMarkersOnEvent(bounds);
         });
 
         this.setState({
             action: 'mapCreated',
-            position: {
-                lat: this.props.userLocation.lat,
-                lng: this.props.userLocation.lon
-            }
         });
 
         // First load
-        console.log('first load');
         this.createMarkersOnEvent(map.getBounds());
     }
 
@@ -93,10 +90,7 @@ class NodeMapContainer extends Component {
             actions.fetchContent(dispatch, this.getSanitizedBoundsObject(bounds));
         }
 
-        this.setState({
-            action: null,
-            position: {}
-        });
+        this.setState({action: null, position: {}}); // Reset
     }
 
     createMarkers() {
@@ -176,7 +170,7 @@ class NodeMapContainer extends Component {
     getNodePreview(node) {
         return (
             <div className='map-preview'>
-                <a href={node.permalink.url} className='header'>
+                <a href={node.permalink_relationship.url} className='header'>
                     <h3>{node.name}</h3>
                     <div className='meta'>
                         <div><i className='fa fa-home' />{node.address} {node.zip} {node.city}</div>
@@ -185,7 +179,7 @@ class NodeMapContainer extends Component {
                 </a>
                 <div className='body-text'>
                     <p>{trans.welcome_to} {node.name}</p>
-                    <a href={node.permalink.url} className='btn btn-success'>{trans.visit_node} <i className='fa fa-caret-right' style={{float: 'right'}}/></a>
+                    <a href={node.permalink_relationship.url} className='btn btn-success'>{trans.visit_node} <i className='fa fa-caret-right' style={{float: 'right'}}/></a>
                 </div>
             </div>
         );
@@ -236,7 +230,7 @@ class NodeMapContainer extends Component {
                 lng: place.lon
             }
         });
-        console.log('onSelect');
+
         actions.fetchContent(dispatch, this.getSanitizedBoundsObject(place.boundingbox));
     }
 
@@ -246,7 +240,7 @@ class NodeMapContainer extends Component {
     }
 
     render() {
-        let loader = (this.props.fetching || !this.props.userLocation) ? this.getMapLoader() : null;
+        let loader = (this.props.fetching) ? this.getMapLoader() : null;
 
         let searchResults = null;
         if (this.props.searchResults) {

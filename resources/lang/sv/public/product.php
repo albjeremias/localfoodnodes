@@ -11,6 +11,7 @@ return [
     'message_producer_placeholder' => 'Add extra information to your order',
     'nav_to_node' => 'För att boka denna produkt, navigera till dess sida på en av de noder den leveras till',
     'no_bookable_dates' => 'Det finns inga tillgängliga bokningsdatum',
+    'not_available' => 'Inte tillgänglig',
     'message_producer' => 'Meddelande till producenten',
     'message_producer_placeholder' => 'Lägg till extra information till din bokning',
     'order' => 'Bokning',

@@ -11,6 +11,7 @@ return [
     'message_producer_placeholder' => 'Tilføj extra information til din ordre',
     'nav_to_node' => 'For at bestille dette produkt, skal du gå til et af de udvekslingsteder det leveres til',
     'no_bookable_dates' => 'Der findes ingen tilgængelige datoer',
+    'not_available' => 'Ikke tilgængelig',
     'message_producer' => 'Besked til producenten',
     'message_producer_placeholder' => 'Extra information til din bestilling',
     'order' => 'Køb',

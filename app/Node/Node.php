@@ -15,6 +15,8 @@ class Node extends BaseModel implements EventOwnerInterface
 {
     protected $appends = ['location'];
 
+    protected $with = ['permalinkRelationship'];
+
     /**
      * Validation rules.
      *
@@ -198,11 +200,19 @@ class Node extends BaseModel implements EventOwnerInterface
     }
 
     /**
+     * Define relationship with permalink.
+     */
+    public function permalinkRelationship()
+    {
+        return $this->hasOne('App\Permalink', 'entity_id')->where('entity_type', 'node')->orderBy('id');
+    }
+
+    /**
      * Get permalink.
      */
     public function permalink()
     {
-        return $this->hasOne('App\Permalink', 'entity_id')->where('entity_type', 'node')->first();
+        return $this->permalinkRelationship()->first();
     }
 
     /**
@@ -336,15 +346,12 @@ class Node extends BaseModel implements EventOwnerInterface
     /**
      * Load relationship and other data form map ajax responses.
      */
-    public function loadMapData()
-    {
-        $this->producerLinks = $this->producerLinks();
-        $this->userLinks = $this->userLinks();
-        $this->permalink = $this->permalink();
-        $this->averageProducerDistance = $this->getAverageProducerDistance();
+    // public function loadMapData()
+    // {
+    //     $this->permalink = $this->permalink();
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     /**
      * Get all delivery dates where there are products.

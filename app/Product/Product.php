@@ -6,7 +6,7 @@ use Illuminate\Support\Collection;
 
 class Product extends \App\BaseModel
 {
-    protected $appends = ['productionType'];
+    protected $appends = ['productionType', 'infoRaw'];
 
     /**
      * Validation rules.
@@ -100,7 +100,7 @@ class Product extends \App\BaseModel
      */
     public function productions()
     {
-        return $this->productionsRelationship()->orderBy('date');
+        return $this->productionsRelationship()->orderBy('date')->get();
     }
 
     /**
@@ -507,7 +507,8 @@ class Product extends \App\BaseModel
      * Is product in stock.
      *
      * @param int $nodeId
-     * @return boolean
+     * @param DateTime $date
+     * @return int
      */
     public function isInStock($nodeId, \DateTime $date = null)
     {
@@ -515,10 +516,10 @@ class Product extends \App\BaseModel
             $deliveryLink = $this->deliveryLink($nodeId, $date->format('Y-m-d'));
 
             if (!$deliveryLink) {
-                return false;
+                return 0;
             }
 
-            return (bool) $deliveryLink->getAvailableQuantity();
+            return $deliveryLink->getAvailableQuantity();
         } else {
             $dates = null;
 
@@ -530,7 +531,7 @@ class Product extends \App\BaseModel
             $deliveryLinks = $this->deliveryLinks($nodeId, $dates);
 
             if ($deliveryLinks->count() === 0) {
-                return false;
+                return 0;
             }
 
             $hasQuantity = (bool) $deliveryLinks->map(function($deliveryLink) {
@@ -539,6 +540,48 @@ class Product extends \App\BaseModel
 
             return $hasQuantity;
         }
+    }
+
+    /**
+     * Is product available.
+     *
+     * @param int $nodeId
+     * @param DateTime $date
+     * @return bool
+     */
+    public function isAvailable($nodeId, \DateTime $date = null)
+    {
+        if ($date) {
+            $deliveryLink = $this->deliveryLink($nodeId, $date->format('Y-m-d'));
+
+            return !$deliveryLink ? false : true;
+        } else {
+            $dates = null;
+
+            if ($date) {
+                $dates = new Collection();
+                $dates->push($date);
+            }
+
+            $deliveryLinks = $this->deliveryLinks($nodeId, $dates);
+
+            return $deliveryLinks->count() === 0 ? false : true;
+        }
+    }
+
+    /**
+     * Get info text without html tags.
+     *
+     * @return string
+     */
+    public function getInfoRawAttribute()
+    {
+        $infoRaw = str_replace('</p>', "\n", $this->info);
+        $infoRaw = preg_replace('/\<br(\s*)?\/?\>/i', "\n", $infoRaw);
+        $infoRaw = strip_tags($infoRaw);
+        $infoRaw = html_entity_decode($infoRaw);
+
+        return $infoRaw;
     }
 
     /**

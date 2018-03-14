@@ -128,15 +128,19 @@
                                                         $totalProduction = 0;
                                                     @endphp
 
-                                                    @foreach ($product->productions()->sortBy('date')->all() as $production)
+                                                    @foreach ($product->productions() as $production)
                                                         <tr>
                                                             <td>{{ $production->date->format('Y-m-d') }}</td>
                                                             <td class="text-right">{{ $production->quantity }}</td>
                                                             <td class="text-right">
-                                                                @if ($orderQuantity > $production->quantity)
-                                                                    {{ $production->quantity }}
+                                                                @if ($orderQuantity > 0)
+                                                                    @if ($orderQuantity > $production->quantity)
+                                                                        {{ $production->quantity }}
+                                                                    @else
+                                                                        {{ $orderQuantity }}
+                                                                    @endif
                                                                 @else
-                                                                    {{ $orderQuantity }}
+                                                                    0
                                                                 @endif
                                                             </td>
                                                             <td>

@@ -30,6 +30,11 @@ class AjaxController extends BaseController
         return $api->request($method, $url, $request->all());
     }
 
+    /**
+     * Endpoint for fetching order count.
+     *
+     * @return int
+     */
     public function orderCount()
     {
         if (!Cache::has('orderCount')) {
@@ -40,6 +45,11 @@ class AjaxController extends BaseController
         return Cache::get('orderCount');
     }
 
+    /**
+     * Endpoint for fetching total order circulation.
+     *
+     * @return int
+     */
     public function orderCirculation()
     {
         if (!Cache::has('orderCirculation')) {
@@ -100,16 +110,12 @@ class AjaxController extends BaseController
      */
     private function getNodes(Request $request, $mapHelper)
     {
-        $nodes = null;
-
         if ($request->has('bounds')) {
             $bounds = $request->input('bounds');
             $nodes = $mapHelper->getNodesByBounds($bounds);
+        } else {
+            $nodes = Node::all();
         }
-
-        $nodes = $nodes->each(function($node) {
-            return $node->loadMapData();
-        });
 
         return $nodes;
     }

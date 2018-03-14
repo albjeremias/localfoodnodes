@@ -88,6 +88,8 @@ class ProductProductionController extends Controller
         ->where('order_items.product_id', $product->id)
         ->value('order_quantity');
 
+        $orderQuantity = $orderQuantity ?: 0;
+
         if ($request->old('prodution_type')) {
             $product->production_type = $request->old('production_type');
         }

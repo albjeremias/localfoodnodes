@@ -17,7 +17,9 @@
                             {{ $product->name }}
                         </div>
                         <div class="price">
-                            @if (!$product->isInStock($node->id))
+                            @if (!$product->isAvailable($node->id))
+                            <span class="text-danger">{{ trans('public/product.not_available') }}</span>
+                            @elseif (!$product->isInStock($node->id))
                                <span class="text-danger">{{ trans('public/product.sold_out') }}</span>
                             @elseif ($product->variants()->count() > 0)
                                 {{ trans('public/node.from') }} {{ $product->smallestVariant()->getPriceWithUnit() }}
