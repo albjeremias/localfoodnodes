@@ -15,7 +15,7 @@ class Node extends BaseModel implements EventOwnerInterface
 {
     protected $appends = ['location'];
 
-    protected $with = ['permalinkRelationship'];
+    protected $with = ['permalinkRelationship', 'imageRelationship'];
 
     /**
      * Validation rules.

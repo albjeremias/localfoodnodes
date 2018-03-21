@@ -416,19 +416,20 @@ class User extends \App\User\BaseUser
                 throw new \Exception(trans('admin/messages.user_membership_amount_not_numeric'));
             }
 
+            $adjustedAmount = (int) $amount * 100;
+
             // If user pays less than 3SEK (stripe limit)
             if ($amount < 3) {
                 UserMembershipPayment::create([
                     'user_id' => $this->id,
-                    'amount' => $amount * 100
+                    'amount' => $adjustedAmount
                 ]);
 
                 \App\Helpers\SlackHelper::message('notification', $this->name . ' (' . $this->email . ')' . ' payed ' . $amount . 'SEK to become a member.');
                 return ['error' => false, 'message' => $amount];
             } else {
-                $amount = ((int) $amount) * 100;
                 $charge = Charge::create(array(
-                    'amount' => $amount,
+                    'amount' => $adjustedAmount,
                     'currency' => 'sek',
                     'source' => $token,
                     'description' => $this->name
@@ -437,7 +438,7 @@ class User extends \App\User\BaseUser
                 if ($charge['status'] === 'succeeded') {
                     UserMembershipPayment::create([
                         'user_id' => $this->id,
-                        'amount' => $amount
+                        'amount' => $adjustedAmount
                     ]);
 
                     \App\Helpers\SlackHelper::message('notification', $this->name . ' (' . $this->email . ')' . ' payed ' . $amount . 'SEK to become a member.');

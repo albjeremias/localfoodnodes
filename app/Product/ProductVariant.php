@@ -73,7 +73,7 @@ class ProductVariant extends BaseModel
      */
     public function getPackageAmountUnit()
     {
-        if ($this->getProduct()->package_unt) {
+        if ($this->getProduct()->package_unit) {
             return '(' . $this->package_amount . ' ' . trans_choice('units.' . $this->getProduct()->package_unit, $this->package_amount) . ')';
         }
     }

@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\DB;
 class DistanceHelper
 {
     /**
-     * Get average producer distance description]
+     * Get average producer distance description.
+     *
      * @param  [type] $nodes [description]
      * @return [type]        [description]
      */
