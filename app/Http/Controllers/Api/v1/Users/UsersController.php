@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Mail;
 
 use App\User\User;
+use App\User\PushToken;
 
 class UsersController extends BaseController
 {
@@ -125,5 +126,21 @@ class UsersController extends BaseController
         }
 
         return User::find($user->id); // Reload user
+    }
+
+    public function pushToken(Request $request)
+    {
+        $user = Auth::user();
+        $token = $request->input('token');
+
+        $pushToken = PushToken::where('token', $token)->first();
+        if (!$pushToken) {
+            $pushToken = new PushToken();
+            $pushToken->fill([
+                'user_id' => $user->id,
+                'token' => $token,
+            ]);
+            $pushToken->save();
+        }
     }
 }

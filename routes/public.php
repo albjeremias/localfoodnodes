@@ -3,6 +3,9 @@
 // Settings
 Route::get('/settings/locale/{locale}', 'SettingsController@changeLocale');
 
+// REMOVE
+Route::get('/app/notification', 'Account\UserController@testNotification');
+
 // Index
 Route::get('/', 'IndexController@index');
 Route::get('/api-proxy', 'AjaxController@apiProxy');
@@ -15,8 +18,6 @@ Route::get('/ajax/economy/order-circulation', 'AjaxController@orderCirculation')
 // Account create
 Route::get('/account/user/create/{type?}', 'Account\UserController@create');
 Route::post('/account/user/insert', 'Account\UserController@insert');
-Route::get('/account/user/migrate', 'Account\UserController@migrateEditAccount');
-Route::post('/account/user/migrate-update', 'Account\UserController@migrateUpdateAccount');
 Route::get('/account/user/activate/token/{token}', 'Account\UserController@activateToken'); // Activate account even if user is not logged in
 
 // Cart - needs auth since cart only works for logged in users
@@ -36,6 +37,7 @@ Route::get('/economy', 'PageController@economy');
 Route::get('/economy/transactions', 'PageController@transactions');
 Route::get('/team', 'PageController@team');
 Route::get('/statistics', 'PageController@statistics');
+Route::get('/gdpr', 'PageController@gdpr');
 
 // Landing page catcher
 Route::get('/landing-page/{segments}', function() {

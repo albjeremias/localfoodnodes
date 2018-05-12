@@ -27,7 +27,7 @@ class UserMembershipPayment extends BaseModel
     ];
 
     /**
-     * Get date one year forward from donation date.
+     * Get date one year forward from payment date.
      *
      * @return Date
      */

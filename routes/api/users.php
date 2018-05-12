@@ -7,6 +7,8 @@ Route::group(['middleware' => 'auth:api', 'prefix' => '/users'], function () {
     Route::put('/', 'Api\v1\Users\UsersController@update')->middleware(['scope:users-modify']);
     Route::post('/', 'Api\v1\Users\UsersController@create')->middleware(['scope:users-create']);
     Route::get('/nodes', 'Api\v1\Users\NodesController@nodes')->middleware(['scopes:users-nodes-read']);
+    Route::post('/nodes/{nodeId}', 'Api\v1\Users\NodesController@followNode')->middleware(['scopes:users-nodes-modify']);
+    Route::delete('/nodes/{nodeId}', 'Api\v1\Users\NodesController@unfollowNode')->middleware(['scopes:users-nodes-modify']);    Route::post('/push-token', 'Api\v1\Users\UsersController@pushToken')->middleware(['scope:users-modify']);
 
     // Orders
     Route::get('/orders', 'Api\v1\Users\OrdersController@orders')->middleware(['scopes:users-orders-read']);

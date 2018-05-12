@@ -8,6 +8,8 @@ class Product extends \App\BaseModel
 {
     protected $appends = ['productionType', 'infoRaw'];
 
+    // private $variants;
+
     /**
      * Validation rules.
      *
@@ -211,7 +213,7 @@ class Product extends \App\BaseModel
      */
     public function variantsAsString()
     {
-        return $this->variants()->pluck('name')->implode(', ');
+        return $this->productVariants()->pluck('name')->implode(', ');
     }
 
     /**
@@ -221,7 +223,7 @@ class Product extends \App\BaseModel
      */
     public function variantCount()
     {
-        return $this->variants->count();
+        return $this->productVariants()->count();
     }
 
     /**
@@ -428,9 +430,10 @@ class Product extends \App\BaseModel
     }
 
     /**
-     * [getProductionQuantity description]
-     * @param  [type] $date [description]
-     * @return [type]       [description]
+     * Get production quantity
+     * @param DateTime $date
+     * @param int $cartQuantity
+     * @return int
      */
     public function getProductionQuantity(\DateTime $date = null, $cartQuantity = null)
     {
@@ -570,14 +573,29 @@ class Product extends \App\BaseModel
     }
 
     /**
+     * Set available quantity directly on product object.
+     *
+     * Used by API. Might not be the best solution...
+     *
+     * @param int $value
+     * @return void
+     */
+    public function setAvailableQuantity($value)
+    {
+        $this->attributes['available_quantity'] = (int) $value;
+    }
+
+    /**
      * Get info text without html tags.
      *
      * @return string
      */
     public function getInfoRawAttribute()
     {
-        $infoRaw = str_replace('</p>', "\n", $this->info);
+        $infoRaw = strip_tags($this->info, '<p>');
+        $infoRaw = str_replace('<p></p>', '', $infoRaw);
         $infoRaw = preg_replace('/\<br(\s*)?\/?\>/i', "\n", $infoRaw);
+        $infoRaw = preg_replace('/(?:(?:\r\n|\r|\n)\s*){2}/s', "\n\n", $infoRaw);
         $infoRaw = strip_tags($infoRaw);
         $infoRaw = html_entity_decode($infoRaw);
 

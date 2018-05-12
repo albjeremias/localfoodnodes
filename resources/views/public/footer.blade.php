@@ -38,6 +38,7 @@
             <span>Org.nr: 769633-6598</span>
             <span><a href="https://www.facebook.com/localfoodnodes">Facebook</a></span>
             <span><a href="https://github.com/localfoodnodes">Github</a></span>
+            <span><a href="/gdpr">GDPR</a></span>
         </div>
     </div>
 </div>

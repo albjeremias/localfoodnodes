@@ -108,7 +108,9 @@ trait CartLogic
             $deliveryLink = $product->deliveryLink($node->id, $cartDate->date('Y-m-d'));
             $availableQuantity = $deliveryLink ? $deliveryLink->getAvailableQuantity($variant, $cartQuantity) : 0;
 
-            if ($availableQuantity < $quantity) {
+            if ($availableQuantity === 0) {
+                $errors->add('no_quantity_available', trans('public/product.no_quantity_available'));
+            } else if ($availableQuantity < $quantity) {
                 if ($product->productionType === 'csa') {
                     $errors->add('quantity_changed_no_date', trans('public/product.quantity_changed_no_date'));
                 } else {

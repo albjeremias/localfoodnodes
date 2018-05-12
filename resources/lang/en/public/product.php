@@ -28,4 +28,6 @@ return [
     'required_fields_missing' => 'Required fields are missing.',
     'quantity_changed' => 'The requested quantity for date :date exceeded availability and has been changed.',
     'quantity_changed_no_date' => 'The requested quantity exceeded availability and has been changed.',
+    'no_quantity_available' => 'This product is not available',
+
 ];

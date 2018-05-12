@@ -5,6 +5,7 @@
     "license": "MIT",
     "type": "project",
     "require": {
+        "alymosul/exponent-server-sdk-php": "v1.0",
         "barryvdh/laravel-debugbar": "^3.1",
         "barryvdh/laravel-cors": "^0.10",
         "guzzlehttp/guzzle": "^6.0",

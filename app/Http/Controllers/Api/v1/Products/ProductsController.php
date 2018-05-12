@@ -27,11 +27,34 @@ class ProductsController extends BaseController
             $productIds = $linkQuery->get()->pluck('product_id')->unique();
         }
 
-        return Product::with([
+        $products = Product::with([
             'producerRelationship',
             'productVariantsRelationship',
             'imageRelationship'
         ])->where('is_hidden', 0)->whereIn('id', $productIds)->get();
+
+        // Load quantity for date
+        if ($nodeId && $date) {
+            $products = $products->map(function($product) use ($nodeId, $date) {
+                // Loop products
+                $productNodeDeliveryLink = $product->deliveryLink($nodeId, $date);
+                if ($product->variantCount() > 0) {
+
+                    $variants = $product->variants()->map(function($variant) use ($productNodeDeliveryLink) {
+                        $variant->available_quantity = $productNodeDeliveryLink->getAvailableQuantity($variant);
+                        return $variant;
+                    });
+
+                    $product->setRelation('product_variants_relationship', $variants);
+                } else {
+                    $product->setAvailableQuantity($productNodeDeliveryLink->getAvailableQuantity());
+                }
+
+                return $product;
+            });
+        }
+
+        return $products;
     }
 
     public function product(Request $request, $productId)

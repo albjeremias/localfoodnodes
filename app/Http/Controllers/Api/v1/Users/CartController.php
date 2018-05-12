@@ -61,7 +61,7 @@ class CartController extends BaseController
 
         // Abort and display errors
         if (!$errors->isEmpty()) {
-            return response(['error' => 'add_to_cart_error', 'message' => $errors->all()], 400);
+            return response(['error' => $errors->keys()[0], 'message' => $errors->all()], 400);
         }
 
         // Add item to cart

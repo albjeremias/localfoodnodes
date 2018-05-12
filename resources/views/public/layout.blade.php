@@ -68,8 +68,10 @@
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
             })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
+            ga('set', 'anonymizeIp', true);
             ga('create', 'UA-90169652-1', 'auto');
             ga('send', 'pageview');
+
         </script>
         <script src="https://embed.small.chat/T0Z3AQJK1G5Q08NBRS.js"></script>
     </body>

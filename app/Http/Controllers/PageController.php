@@ -72,4 +72,9 @@ class PageController extends Controller
     {
         return view('public.pages.statistics');
     }
+
+    public function gdpr()
+    {
+        return view('public.pages.gdpr');
+    }
 }

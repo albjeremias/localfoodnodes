@@ -17,7 +17,6 @@ use App\Product\Product;
 use App\Product\ProductNodeDeliveryLink;
 use App\Product\ProductProduction;
 use App\Event\Event;
-use App\Donation;
 
 use App\Product\ProductFilter;
 

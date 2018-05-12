@@ -700,4 +700,22 @@ class User extends \App\User\BaseUser
             'phone' => $this->phone,
         ];
     }
+
+    /**
+     * Define user relationship with push token.
+     */
+    public function pushTokenRelationship()
+    {
+        return $this->hasOne('App\User\PushToken');
+    }
+
+    /**
+     * Get push token.
+     */
+    public function getPushToken()
+    {
+        $pushToken = $this->pushTokenRelationship;
+
+        return $pushToken->token;
+    }
 }
