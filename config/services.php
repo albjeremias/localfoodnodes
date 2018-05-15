@@ -27,7 +27,7 @@ return [
 
     'google' => [
         'maps' => [
-            'geocoding' => 'AIzaSyDEbbhR7zpRJpUX7Eby1s2LikRRoGOtBXQ',
+            'geocoding' => 'AIzaSyDteI8gwI05tSR1T6QwunS83FvsTgced7c',
             'javascript' => 'AIzaSyAvOkjjArNAXV3Y-MvrLLS6s_V4yTixnsA',
             'embed' => 'AIzaSyAnJrRwv_3rDvc6XUD137g7l-FfX-SqU78'
         ]
