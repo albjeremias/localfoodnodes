@@ -32,6 +32,7 @@ return [
     'fee' => 'Avgift',
     'gdpr' => 'Villkor och GDPR policy',
     'gdpr_checkbox' => 'Jag accepterar villkoren och godkänner att Local Food Nodes lagrar mina personuppgifter.',
+    'gdpr_consent' => 'Godkänn vår GDPR policy',
     'gdpr_consent_date' => 'Du godkände <a href="/gdpr">vår GDPR policy</a> den :date',
     'item_total' => 'Produkt total',
     'language' => 'Språk',

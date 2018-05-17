@@ -4,11 +4,12 @@ return [
     'header' => 'GDPR',
     'subheader' => 'General Data Protection Regulation - Vi skyddar dina personuppgifter',
     'content' => '
+        <h2>GDPR Policy</h2>
         <p>Det är viktigt för oss  att du känner dig trygg med hur vi hanterar dina personuppgifter. Därför är vi öppna med hur vi samlar in, behandlar och delar med oss av den information som vi sparar om dig. Vi säljer aldrig dina personuppgifter till andra företag.</p>
         <p>Personuppgifter är all information som kan användas för att identifiera en enskild person. Exempel på detta kan vara grundläggande uppgifter om dig som namn och kontaktuppgifter, men även din köphistorik.</p>
-        <p>Vi ser till att dina personuppgifter alltid är skyddade hos oss. På den här sidan beskriver vi hur och varför vi sparar dina personuppgifter, samt vilka rättigheter du har.</p>
+        <p>Vi ser till att dina personuppgifter alltid är skyddade hos oss. På den här sidan beskriver vi hur och varför vi sparar dina personuppgifter, samt vilka rättigheter du har. Dina uppgifter lagras tills du tar bort dem.</p>
 
-        <h3>Detta sparar vi om dig</h3>
+        <h2>Detta sparar vi om dig</h2>
         <p>De uppgifter som du har möjlighet att spara till ditt användarkonto är följande:</p>
 
         <b>Email</b>
@@ -26,7 +27,7 @@ return [
 
         <p>Du kan när som helst ändra eller ta bort alla dina uppgifter. För att ta bort namn, email och lösenord behöver du avsluta ditt konto.</p>
 
-        <h3>Leverantörer och externa tjänster</h3>
+        <h2>Leverantörer och externa tjänster</h2>
         <b>Webfaction</b>
         <p>Vår webserver och databas hostas av webfaction.com.</p>
 
@@ -45,13 +46,7 @@ return [
         <b>Stripe</b>
         <p>Kortbetalningar görs genom Stripe.</p>
 
-        <h3>Lagring</h3>
-        <p>Dina uppgifter lagras tills du tar bort dem.</p>
-
-        <h3>Uppgifterna skyddas</h3>
-        <p>Uppgifterna lagras bara på webbservern bakom lösenordskyddade tjänster. Vi använder starka lösenord alla våra tjänster. Vi uppdaterar regelbundet kodbasen för att täta eventuella säkerhetsluckor. Ditt lösenord är krypterat i databasen.</p>
-
-        <h3>Ansvarig för hanteringen av personuppgifterna</h3>
+        <h2>Dataskyddsombud</h2>
         Local Food Nodes<br>
         David Ajnered<br>
         info@localfoodnodes.org

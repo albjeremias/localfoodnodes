@@ -32,6 +32,7 @@ return [
     'fee' => 'Fee',
     'gdpr' => 'Terms and GDPR policy',
     'gdpr_checkbox' => 'I accept the terms and consent to my peronsal information being stored by Local Food Nodes.',
+    'gdpr_consent' => 'Approve our GDPR policy',
     'gdpr_consent_date' => 'You agreed to our <a href="/gdpr">GDPR policy</a> on :date',
     'item_total' => 'Item total',
     'language' => 'Language',
