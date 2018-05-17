@@ -14,6 +14,8 @@ Route::group(['prefix' => '/user'], function () {
     Route::get('/pickups', 'Account\UserController@pickups');
     Route::get('/orders/producer/{producerId}', 'Account\UserController@producerOrders');
     Route::get('/orders/product/{productId}', 'Account\UserController@productOrders');
+    Route::get('/gdpr/delete/confirm', 'Account\UserController@gdprDeleteConfirm');
+    Route::get('/gdpr', 'Account\UserController@gdpr');
 
     // Route::get('/orders', 'Account\UserController@orders');
     Route::get('/order/{orderItemId}', 'Account\UserController@order');

@@ -191,6 +191,16 @@ class User extends \App\User\BaseUser
     }
 
     /**
+     * Define relationship with Gdpr Consent.
+     *
+     * @return Collection
+     */
+    public function gdprConsent()
+    {
+        return $this->hasOne('App\User\GdprConsent')->first();
+    }
+
+    /**
      * Cart dates.
      *
      * @param array $dates Filter on dates.

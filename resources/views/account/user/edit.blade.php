@@ -62,6 +62,10 @@
                                 @endforeach
                             </select>
                          </div>
+
+                         <p>
+                            {!! trans('admin/user.gdpr_consent_date', ['date' => $user->gdprConsent()->created_at]) !!}
+                         </p>
                     </div>
                 </div>
 

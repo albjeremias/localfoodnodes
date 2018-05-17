@@ -154,6 +154,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
+
         return view('account.user.index', [
             'breadcrumbs' => [
                 $user->name => '',
@@ -285,6 +286,28 @@ class UserController extends Controller
                 trans('admin/user-nav.delete') => ''
             ]
         ]);
+    }
+
+    /**
+     * Confirm delete action.
+     */
+    public function gdpr(Request $request)
+    {
+        $user = Auth::user();
+        GdprConsent::create(['user_id' => $user->id, 'name' => $user->name]);
+
+        return redirect('/account/user');
+    }
+
+
+    /**
+     * Confirm delete action.
+     */
+    public function gdprDeleteConfirm(Request $request)
+    {
+        $user = Auth::user();
+
+        return view('account.user.gdpr-confirm-delete');
     }
 
     /**

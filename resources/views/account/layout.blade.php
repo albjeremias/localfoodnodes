@@ -18,9 +18,11 @@
     </head>
     <body class="admin {{ $viewName }} logged-in">
         <div class="page">
-            @include('account.user-nav')
-            @include('account.user-nav-mobile')
-            <div class="content">
+            @if (!isset($hideMenu))
+                @include('account.user-nav')
+                @include('account.user-nav-mobile')
+            @endif
+            <div class="content {{ isset($hideMenu) ? 'no-menu' : '' }}">
                 <div class="container-fluid">
                     @include('shared.errors')
                     @yield('content')

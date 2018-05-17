@@ -6,9 +6,10 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Response;
 
 use View;
-use Illuminate\Support\Facades\Auth;
 use App\User\User;
 
 class Controller extends BaseController
@@ -20,20 +21,33 @@ class Controller extends BaseController
      */
     public function __construct()
     {
-        // Add user object to all views
-        $this->middleware(function ($request, $next) {
-            $user = Auth::user() ?: new User();
-            View::share('user', $user);
-
-            return $next($request);
-        });
-
         // Add body class based on view
         $this->middleware(function ($request, $next) {
             view()->composer('*', function($view) {
                 $view_name = str_replace('.', '-', $view->getName());
                 view()->share('viewName', $view_name);
             });
+
+            return $next($request);
+        });
+
+        // Check GDPR consent
+        $this->middleware(function ($request, $next) {
+            $user = Auth::user();
+
+            $validRoutes = ['logout', 'account/user/delete', 'account/user/gdpr/delete/confirm', 'account/user/gdpr'];
+            $isValidRoute = in_array($request->path(), $validRoutes);
+            if (!$isValidRoute && ($user && !$user->gdprConsent())) {
+                return new Response(view('account.user.gdpr-consent'));
+            }
+
+            return $next($request);
+        });
+
+        // Add user object to all views
+        $this->middleware(function ($request, $next) {
+            $user = Auth::user() ?: new User();
+            View::share('user', $user);
 
             return $next($request);
         });
