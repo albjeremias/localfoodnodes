@@ -65,7 +65,7 @@ return [
     'site_lang' => 'Idioma',
     'status' => 'Estado',
     'submit_payment' => 'Hacer el pago',
-    'term_link_pre' => 'Al crear la cuenta acceptas estas condiciones',
+    'term_link' => 'Al crear la cuenta acceptas estas condiciones',
     'terms_of_use' => 'Condiciones',
     'total' => 'La suma',
     'view_all_orders' => 'Todos los pedidos',

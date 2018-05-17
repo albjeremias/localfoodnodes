@@ -25,7 +25,7 @@
                                 </label>
                                 <input type="password" name="password" class="form-control" id="password" placeholder="{{ trans('admin/user.choose_password') }}">
                             </div>
-                            <p>{{ trans('admin/user.term_link_pre') }} <a href="#" data-toggle="modal" data-target="#terms-modal">{{ trans('admin/user.terms_of_use') }}</a>.</p>
+                            <p>{{ trans('admin/user.term_link') }} <a href="#" data-toggle="modal" data-target="#terms-modal">{{ trans('admin/user.terms_of_use') }}</a>.</p>
 
                             <button type="submit" class="btn btn-success">{{ trans('admin/user.recreate_account') }}</button>
                         </div>

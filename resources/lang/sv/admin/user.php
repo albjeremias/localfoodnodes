@@ -65,7 +65,7 @@ return [
     'site_lang' => 'Språk',
     'status' => 'Status',
     'submit_payment' => 'Skicka betalning',
-    'term_link_pre' => 'Genom att skapa ett konto godtar du följande',
+    'term_link' => 'Genom att skapa ett konto godtar du följande',
     'terms_of_use' => 'villkor',
     'total' => 'Summa',
     'view_all_orders' => 'Alla beställningar',

@@ -14,6 +14,7 @@ use Mail;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\User\User;
+use App\User\GdprConsent;
 use App\User\UserNodeLink;
 use App\Image\Image;
 use App\Node\Node;
@@ -196,6 +197,11 @@ class UserController extends Controller
         $user = new User();
 
         $errors = $user->validate($data);
+
+        if (!isset($data['gdpr'])) {
+            $errors->add('gdpr', trans('validation.required'));
+        }
+
         if ($errors->isEmpty()) {
             $userData = $user->sanitize($data);
             $userData['password'] = \Hash::make($userData['password']);
@@ -205,6 +211,8 @@ class UserController extends Controller
             // Default location Röstånga
             $user->setLocation('56.002490 13.293257');
             $user->save();
+
+            GdprConsent::create(['user_id' => $user->id, 'name' => $user->name]);
 
             \App\Helpers\SlackHelper::message('notification', $user->name . ' (' . $user->email . ')' . ' signed up as a user.');
 

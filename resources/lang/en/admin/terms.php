@@ -2,16 +2,68 @@
 
 return [
     // USER
-    'user' => '<p>Smashing you came here. Signing up and using Local Food Nodes is incredible simple. Just create an account.</p>
-    <p>By signing up, and becoming a supporting member you at the same time become a part of co-creating the local food supply. Now how about that!?
-    But first, we have a few simple terms you need to read, understand and accept to be able to enter and go totally local.</p>
+    'user' => '
+        <p>Smashing you came here. Signing up and using Local Food Nodes is incredible simple. Just create an account.</p>
+        <p>By signing up, and becoming a supporting member you at the same time become a part of co-creating the local food supply. Now how about that!?
+        But first, we have a few simple terms you need to read, understand and accept to be able to enter and go totally local.</p>
 
-    <b>General</b>
-    <p>Signing up an account is free, but to be able to send your food orders you need to become a supporting member. (read more about membership here)</p>
-    <p>All product you order is ordered directly from the producers. This also means you pay straight to the producers, always.</p>
-    <p>Local Food Nodes is never a selling part, and all producers have all the responsibility themselves for all their own products. How it is produced, what it contains and how its is packed and delivered. Do you have questions about products, prices, deliveries, quality, always handle this directly with the producer it concerns.</p>
-    <p>As a consumer you can order from who ever you like, how often as you like.</p>
-    <p>You can join as few or as many nodes as you like.</p>',
+        <h2>General</h2>
+        <p>Signing up an account is free, but to be able to place an order you need to become a supporting member. <a href="/membership">Read more about membership here</a></p>
+        <p>The products you order are directly from the producers. This also means you pay straight to the producers, always.</p>
+        <p>
+            Local Food Nodes is never a selling part which means that the producers have all the responsibility for their products.
+            How it is produced, what it contains and how it\'s packed and delivered.
+            If you have questions about products, prices, deliveries, quality you need to contact the producer it concerns.
+        </p>
+        <p>You can join as many nodes as you like and you can order from who ever you like, how often as you like, as long as you are able to pick up the ordered products from the delivery location on the delivery time.</p>
+
+        <h2>GDPR</h2>
+        <p>It\'s important for us that you feel safe with us handling your personal information, that\'s why we are transparent with what information we collect and how we use it. We never sell your information to third parts.</p>
+        <p>Personal information is all the information that can be used to identify a person, like name, email, IP address and orders.</p>
+        <p>We always makes sure your information is safe with us. On this page we describe what information we save and why. Your information is stored until you change or delete them or delete your account.</p>
+
+        <h3>This is what we know about you</h3>
+        <p>This is the information connected to your user account:</p>
+
+        <b>Email</b>
+        <p>Necessary to create an account on localfoodnodes.org. It\'s used a unique identifier for your account, for order confirmations, and communication from your nodes and producers as well as from us. We don\'t send markering emails.</p>
+        <b>Password</b>
+        <p>Necessary to create an account on localfoodnodes.org. Your password is stored encrypted in our database.</p>
+        <b>Name</b>
+        <p>We ask for your name to help make the producers and node admins work a bit easier so they can identidy you when you place and order, but you are free to use an alias if you like</p>
+        <b>Phone number</b>
+        <p>Optional. Phone numbers have been requested by producers and node admins as a way to get in contact with you before a delivery, or if there\'s a problem with your product.</p>
+        <b>Street name, zip and city</b>
+        <p>Optional. Your address is used by our maps to show delivery locations near you.</p>
+        <b>Photo</b>
+        <p>Optional. Make your profile more personal so producers and node admins know who you are. This is not implemented at the moment.</p>
+
+        <p>You can change information or delete your account whenever you like directly from the site.</p>
+
+        <h3>External services</h3>
+        <b>Webfaction</b>
+        <p>We run our web servers and databases on webfaction.com.</p>
+
+        <b>Google Analytics</b>
+        <p>We use Google Analytics to get som statistics about page views and what devices are used. It\'s used by us to improve localfoodnodes.org and your experience of the site. We do not collect your IP address.</p>
+
+        <b>Sentry</b>
+        <p>Sentry collects error logs from the site, so when something crashes we get an email. It\'s possible that personal information is included in the error. We are only interested in solving the bugs. An error is stored for 30 days.</p>
+
+        <b>Amazon S3</b>
+        <p>Uploaded images are stored on S3 to relieve our web server. They are stored there until you delete them form the site or delete your account.</p>
+
+        <b>MailChimp</b>
+        <p>On some occations we have to communicate with you about updated policies or other important issues. We send our emails with MailChimp. You can unsubscribe from these emails by clicking the link at the bottom of the email, but we might have to re-add you so you get the important information you need. We will look over this routine in the future. We never send marketing emails.</p>
+
+        <b>Stripe</b>
+        <p>Payments are processed by <a href="http://stripe.com" target="_blank">Stripe</a> and they collect your name and card information.</p>
+
+        <h3>Data Protection Representative</h3>
+        Local Food Nodes<br>
+        David Ajnered<br>
+        info@localfoodnodes.org
+    ',
 
     // PRODUCER
     'producer' => '<p>Whoop, we salute you great food producer, saviours of the world.

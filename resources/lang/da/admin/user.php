@@ -65,7 +65,7 @@ return [
     'site_lang' => 'Sprog',
     'status' => 'Status',
     'submit_payment' => 'Send betaling',
-    'term_link_pre' => 'Ved at oprette en konto indvilliger du i',
+    'term_link' => 'Ved at oprette en konto indvilliger du i',
     'terms_of_use' => 'vilkårene',
     'total' => 'I alt',
     'view_all_orders' => 'Alle ordrer',

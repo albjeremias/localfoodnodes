@@ -65,7 +65,7 @@ return [
     'site_lang' => 'Taal website',
     'status' => 'Status',
     'submit_payment' => 'Betaling insturen',
-    'term_link_pre' => 'Door een account aan te maken ga je akkoord met de',
+    'term_link' => 'Door een account aan te maken ga je akkoord met de',
     'terms_of_use' => 'gebruiksvoorwaarden',
     'total' => 'Totaal',
     'view_all_orders' => 'Bekijk alle bestellingen',

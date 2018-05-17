@@ -4,7 +4,7 @@ return [
     'header' => 'GDPR',
     'subheader' => 'General Data Protection Regulation - Vi skyddar dina personuppgifter',
     'content' => '
-        <p>Det är viktigt för oss  att du känner dig trygg med hur vi hanterar dina personuppgifter. Därför är vi öppna med hur vi samlar in, behandlar och delar med oss av den information som vi sparar om dig hos oss. Vi säljer aldrig dina personuppgifter till andra företag.</p>
+        <p>Det är viktigt för oss  att du känner dig trygg med hur vi hanterar dina personuppgifter. Därför är vi öppna med hur vi samlar in, behandlar och delar med oss av den information som vi sparar om dig. Vi säljer aldrig dina personuppgifter till andra företag.</p>
         <p>Personuppgifter är all information som kan användas för att identifiera en enskild person. Exempel på detta kan vara grundläggande uppgifter om dig som namn och kontaktuppgifter, men även din köphistorik.</p>
         <p>Vi ser till att dina personuppgifter alltid är skyddade hos oss. På den här sidan beskriver vi hur och varför vi sparar dina personuppgifter, samt vilka rättigheter du har.</p>
 
