@@ -1,0 +1,16 @@
+variables:
+  TARGET_DIR: /mnt/persist/www/sites/$CI_PROJECT_NAME
+
+deploy_staging:
+  stage: deploy
+  tags:
+    - staging
+  script:
+    - composer install
+    - npm install
+    - npm run build
+    - mkdir -pv $TARGET_DIR
+    - rsync -avzr --delete --exclude .git/ --exclude-from './.rsyncignore' ./ $TARGET_DIR
+    - sudo chmod 777 -R $TARGET_DIR/storage
+  only:
+    - master

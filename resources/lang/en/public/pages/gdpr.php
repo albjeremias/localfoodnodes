@@ -5,7 +5,7 @@ return [
     'subheader' => 'General Data Protection Regulation - We protect your information',
     'content' => '
         <h2>GDPR Policy</h2>
-        <p>It\'s important for us that you feel safe with us handling your personal information, that\'s why we are transparent with what information we collect and how we use it. We never sell your information to third parts.</p>
+        <p>It\'s important for us that you feel safe with us handling your personal information, that\'s why we are transparent with what information we collect and how we use it. We never sell your information to third parties.</p>
         <p>Personal information is all the information that can be used to identify a person, like name, email, IP address and orders.</p>
         <p>We always makes sure your information is safe with us. On this page we describe what information we save and why. Your information is stored until you change or delete them or delete your account.</p>
 
