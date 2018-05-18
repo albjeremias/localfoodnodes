@@ -10,21 +10,24 @@
         </button>
 
         <div class="navbar-collapse collapse" id="main-navbar">
-            <ul class="navbar-nav ml-auto">
-                <!-- Visible links on mobile -->
-                <li class="nav-item d-xs-block d-md-none">
-                    <a class="nav-link" href="/find-out-more">{{ trans('public/nav.find_out_more') }}</a>
-                </li>
-                <li class="nav-item d-xs-block d-md-none">
-                    <a class="nav-link" href="/economy">{{ trans('public/nav.economy') }}</a>
-                </li>
-                <li class="nav-item d-xs-block d-md-none">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item d-sm-none d-md-block">
                     <a class="nav-link" href="/membership">{{ trans('public/nav.membership') }}</a>
                 </li>
-                <li class="nav-item d-xs-block d-md-none">
+                <li class="nav-item d-sm-none d-md-block">
+                    <a class="nav-link" href="/find-out-more">{{ trans('public/nav.find_out_more') }}</a>
+                </li>
+                <li class="nav-item d-sm-none d-md-block">
+                    <a class="nav-link" href="/economy">{{ trans('public/nav.economy') }}</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <!-- Visible links on mobile -->
+                <li class="nav-item d-sm-block d-md-none">
                     <a class="nav-link" href="/login">{{ trans('public/nav.login') }}</a>
                 </li>
-                <li class="nav-item d-xs-block d-md-none">
+                <li class="nav-item d-sm-block d-md-none">
                     <a class="nav-link" href="/account/user/create">{{ trans('public/nav.create') }}</a>
                 </li>
 
