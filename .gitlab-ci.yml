@@ -4,7 +4,7 @@ variables:
 deploy_staging:
   stage: deploy
   tags:
-    - gitlab-org
+    - staging
   before_script:
     - apt-get update -qq && apt-get install -y -qq sshpass
   script:
