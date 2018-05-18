@@ -4,7 +4,7 @@ return [
     'create' => 'Skapa konto',
     'economy' => 'Vår ekonomi',
     'facebook' => 'Logga in med Facebook',
-    'find_out_more' => 'Vad är Local Food Nodes',
+    'find_out_more' => 'Om oss',
     'forgot' => 'Glömt lösenord?',
     'language' => 'Språk',
     'local_food_nodes' => 'Local Food Nodes',

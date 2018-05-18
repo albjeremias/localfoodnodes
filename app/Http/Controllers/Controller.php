@@ -80,8 +80,13 @@ class Controller extends BaseController
     {
         $request = \Request();
 
+        // If lang value is present in request store it
+        if ($request->has('lang') && array_key_exists($request->get('lang'), config('app.locales'))) {
+            $lang = $request->get('lang');
+        }
+
         // Use users chosen language
-        if (Auth::check() && Auth::user()->active) {
+        else if (Auth::check() && Auth::user()->active) {
             $user = Auth::user();
             $lang = $user->language;
         }
@@ -89,12 +94,6 @@ class Controller extends BaseController
         // Use session if set
         else if (\Session::get('locale')) {
             $lang = \Session::get('locale');
-        }
-
-        // If lang value is present in request store it
-        else if ($request->has('lang') && array_key_exists($request->get('lang'), config('app.locales'))) {
-            \Session::put('locale', $request->get('lang'));
-            $lang = $request->get('lang');
         }
 
         // Use browser language setting
