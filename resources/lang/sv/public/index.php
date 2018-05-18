@@ -29,7 +29,6 @@ return [
     'find_out_more' => 'Läs mer om Local Food Nodes',
     'header' => 'Local Food Nodes',
     'find_node_near_you' => 'Hitta utlämningsplats',
-    'food_producer' => 'Är du matproducent?',
     'grey_map_marker_info' => 'Grå ikoner är utlämningsplatser där beställningar görs genom Facebook.',
     'go_local' => 'Hitta utlämningsplats',
     'link_to_fb' => 'Facebookgruppen för',
@@ -63,4 +62,16 @@ return [
     'friday' => 'Fredagars',
     'saturday' => 'Lördagars',
     'sunday' => 'Söndagar',
+
+
+    'food_producer' => 'Är du matproducent?',
+	'food_producer_paragraph' => 'Lägg upp dina produkter och koppla dem mot utlämningsplatser i din närhet. Leverans och betalning sker direkt till kund på utlämningen. All förtjänst går obruten till dig så att du kan utvecklas och fortsätta med det du gör. Ingen annan än du ska tjäna pengar på att du producerar bra mat!',
+    'create_and_shop' => 'Skapa konto och börja handla lokalt',
+    'create_and_shop_paragraph' => 'Du kan enkelt skapa ett konto helt gratis. Kolla runt på siten, hitta utlämningsplatser när dig och lägg god, lokal mat i din digitala shoppingvagn. Innan du kan boka din mat behöver du bli stödmedlem, sedan kommer producenten med dina varor till utlämningsplatsen.',
+    'not_found_local' => 'Hittade du ingen utlämningsplats nära dig',
+    'not_found_local_paragraph' => 'En utlämningsplats kan startas och drivas av en förening, ett kooperativ, annan organisation eller av en enskild person. Allt som behövs är en adress.',
+    'read_more' => 'Läs mer',
+    'how_it_works_intro' => 'Vare sig du är producent eller konsument, Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem',
+    'create_place' => 'Skapa plats',
+
 ];

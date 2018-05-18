@@ -50,7 +50,7 @@ class IndexController extends Controller
         $totalPayingMembers = $allPayments->unique('user_id')->count();
         $averageMembershipPayments = $members === 0 ? 0 : $totalMembershipPayments / $totalPayingMembers;
 
-        return view('public.index', [
+        return view(env('VIEW_PATCH') . 'public.index', [
             'metrics' => $metrics,
             'members' => $members,
             'averageMembership' => round($averageMembershipPayments)
