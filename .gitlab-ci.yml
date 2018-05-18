@@ -7,6 +7,9 @@ deploy_staging:
   stage: deploy
   tags:
     - staging
+  before_script:
+    - nvm use 9
+    - node -v
   script:
     - composer install
     - npm install
@@ -17,5 +20,6 @@ deploy_staging:
     - export SSHPASS=$USER_PASS
     - sshpass -e rsync -avzr $CI_PROJECT_DIR $SERVER_USER@staging.localfoodnodes.org:/var/www/html
     - sudo chmod 777 -R $TARGET_DIR/storage
+    # - artisan migrate
   only:
     - master
