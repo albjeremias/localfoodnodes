@@ -1,13 +1,12 @@
 variables:
   TARGET_DIR: /var/www/html
 
+# Server need composer, npm and sshpass
+
 deploy_staging:
   stage: deploy
   tags:
     - staging
-  before_script:
-    - apt-get update -qq && apt-get install -y -qq sshpass
-    - sudo apt-get install -y -qq npm
   script:
     - composer install
     - npm install
