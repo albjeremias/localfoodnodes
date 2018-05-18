@@ -6,7 +6,9 @@ deploy_staging:
   tags:
     - staging
   before_script:
-    - apt-get update -qq && apt-get install -y -qq sshpass
+    - apt-get update -qq
+    - apt-get install -y -qq sshpass
+    - apt-get install npm
   script:
     - composer install
     - npm install
