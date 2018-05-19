@@ -31,6 +31,6 @@ deploy_staging:
     - sudo mkdir -p $TARGET_DIR/$CI_PROJECT_NAME
     - sudo rsync -azr $CI_PROJECT_DIR $TARGET_DIR # IGNORE FILE node_modules (in react folders too)
     - sudo chmod 777 -R $TARGET_DIR/$CI_PROJECT_NAME/storage
-    - $CI_PROJECT_NAME/artisan migrate --force
+    - $TARGET_DIR/$CI_PROJECT_NAME/artisan migrate --force
   only:
     - master
