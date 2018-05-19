@@ -1,5 +1,5 @@
 variables:
-  TARGET_DIR: /var/www/html
+  TARGET_DIR: /var/www
 
 # Server need composer, npm and sshpass
 
@@ -8,6 +8,8 @@ deploy_staging:
   tags:
     - staging
   script:
+    # - rm composer-lock.json
+    # - rm package-lock.json
     - composer install
     - npm install
     - npm run production
