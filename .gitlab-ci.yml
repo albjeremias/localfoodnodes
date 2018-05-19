@@ -26,9 +26,9 @@ deploy_staging:
     # Build Laravel
     # - rm composer-lock.json
     - composer install
-    - mkdir -p $TARGET_DIR
+    - mkdir -p $TARGET_DIR/$CI_PROJECT_NAME
     - rsync -avzr $CI_PROJECT_DIR $TARGET_DIR
-    - chmod 777 -R $TARGET_DIR/storage
+    - chmod 777 -R $TARGET_DIR/$CI_PROJECT_NAME/storage
     - artisan migrate
   only:
     - master
