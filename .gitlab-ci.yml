@@ -11,11 +11,8 @@ deploy_staging:
     - composer install
     - npm install
     - npm run production
-    - mkdir -pv $TARGET_DIR
-    # - rsync -avzr --delete --exclude .git/ --exclude-from './.rsyncignore' ./ $TARGET_DIR
-    - sshpass -V
-    - export SSHPASS=$USER_PASS
-    - sshpass -e rsync -avzr $CI_PROJECT_DIR $SERVER_USER@staging.localfoodnodes.org:/var/www/html
+    - mkdir -p $TARGET_DIR
+    - rsync -avzr $CI_PROJECT_DIR $TARGET_DIR
     - sudo chmod 777 -R $TARGET_DIR/storage
     # - artisan migrate
   only:
