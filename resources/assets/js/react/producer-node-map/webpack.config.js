@@ -17,13 +17,6 @@ module.exports = {
       }
     }),
     new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: false,
-      compress: {
-        screw_ie8: true,
-        warnings: false
-      }
-    }),
     new webpack.optimize.AggressiveMergingPlugin()
   ],
   devtool: process.env.NODE_ENV === 'production' ? false : "eval",
