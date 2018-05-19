@@ -34,4 +34,35 @@ deploy_staging:
   after_script:
     - $TARGET_DIR/$CI_PROJECT_NAME/artisan up
   only:
-    - master
+    - staging
+
+deploy_live:
+  stage: deploy
+  tags:
+    - live
+  before_script:
+    - $TARGET_DIR/$CI_PROJECT_NAME/artisan down
+  script:
+    # Build Vue components
+    - npm install --silent
+    - npm run production --silent
+
+    # Build React components
+    - npm install --prefix resources/assets/js/react/node-map --silent
+    - npm run build --prefix resources/assets/js/react/node-map --silent
+    - npm install --prefix resources/assets/js/react/producer-node-map --silent
+    - npm run build --prefix resources/assets/js/react/producer-node-map --silent
+
+    # Build Laravel and setup environment
+    - composer install
+    - sudo mkdir -p $TARGET_DIR/$CI_PROJECT_NAME
+    - sudo rsync -azr --delete --exclude .git/ --exclude-from .rsyncignore $CI_PROJECT_DIR $TARGET_DIR
+    - sudo chmod 777 -R $TARGET_DIR/$CI_PROJECT_NAME/storage
+    - cp ~/.env $TARGET_DIR/$CI_PROJECT_NAME
+    - cp ~/oauth-private.key $TARGET_DIR/$CI_PROJECT_NAME/storage
+    - cp ~/oauth-public.key $TARGET_DIR/$CI_PROJECT_NAME/storage
+    - $TARGET_DIR/$CI_PROJECT_NAME/artisan migrate --force
+  after_script:
+    - $TARGET_DIR/$CI_PROJECT_NAME/artisan up
+  only:
+    - live
