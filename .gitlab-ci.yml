@@ -12,24 +12,20 @@ deploy_staging:
   script:
 
     # Build Vue components
-    # - rm package-lock.json
     - npm install --silent
     - npm run production --silent
 
     # Build React components
-    # - rm resources/assets/js/react/node-map/package-lock.json
     - npm install --prefix resources/assets/js/react/node-map --silent
     - npm run build --prefix resources/assets/js/react/node-map --silent
-
-    # - rm resources/assets/js/react/producer-node-map/package-lock.json
     - npm install --prefix resources/assets/js/react/producer-node-map --silent
     - npm run build --prefix resources/assets/js/react/producer-node-map --silent
 
     # Build Laravel
-    # - rm composer-lock.json
     - composer install
     - sudo mkdir -p $TARGET_DIR/$CI_PROJECT_NAME
-    - sudo rsync -azr $CI_PROJECT_DIR $TARGET_DIR # IGNORE FILE node_modules (in react folders too)
+    # - sudo rsync -azr $CI_PROJECT_DIR $TARGET_DIR # IGNORE FILE node_modules (in react folders too)
+    - sudo rsync -azr --delete --exclude .git/ --exclude-from .rsyncignore $CI_PROJECT_DIR $TARGET_DIR
     - sudo chmod 777 -R $TARGET_DIR/$CI_PROJECT_NAME/storage
     - $TARGET_DIR/$CI_PROJECT_NAME/artisan migrate --force
   only:
