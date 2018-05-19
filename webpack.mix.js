@@ -1,5 +1,8 @@
 let mix = require('laravel-mix');
 mix.disableSuccessNotifications();
+mix.options({
+    uglify: false,
+});
 
 // Styles
 mix.sass('resources/assets/sass/public.sass', 'public/css').version();
@@ -13,6 +16,3 @@ mix.js('resources/assets/js/vue/public/economy-circulation/economy-circulation.j
 mix.js('resources/assets/js/vue/public/transactions/transactions.js', 'public/js').version();
 mix.js('resources/assets/js/vue/public/statistics/statistics.js', 'public/js').version();
 
-// React
-mix.js('resources/assets/js/react/dist/node-map.js', 'public/js').version();
-mix.js('resources/assets/js/react/dist/producer-node-map.js', 'public/js').version();

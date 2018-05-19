@@ -8,14 +8,22 @@ deploy_staging:
   tags:
     - staging
   script:
-    # - rm composer-lock.json
-    # - rm package-lock.json
-    - composer install
+
+    # Build Vue components
+    - rm package-lock.json
     - npm install
     - npm run production
+
+    # Build React components
+    - npm run build --prefix resources/assets/js/react/node-map
+    - npm run build --prefix resources/assets/js/react/producer-node-map
+
+    # Build Laravel
+    - rm composer-lock.json
+    - composer install
     - sudo mkdir -p $TARGET_DIR
     - sudo rsync -avzr $CI_PROJECT_DIR $TARGET_DIR
     - sudo chmod 777 -R $TARGET_DIR/storage
-    # - artisan migrate
+    - artisan migrate
   only:
     - master
