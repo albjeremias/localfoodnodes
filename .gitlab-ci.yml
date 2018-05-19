@@ -13,8 +13,8 @@ deploy_staging:
     - composer install
     - npm install
     - npm run production
-    - mkdir -p $TARGET_DIR
-    - rsync -avzr $CI_PROJECT_DIR $TARGET_DIR
+    - sudo mkdir -p $TARGET_DIR
+    - sudo rsync -avzr $CI_PROJECT_DIR $TARGET_DIR
     - sudo chmod 777 -R $TARGET_DIR/storage
     # - artisan migrate
   only:
