@@ -9,8 +9,6 @@ deploy_staging:
   stage: deploy
   tags:
     - staging
-  before_script:
-    # - $TARGET_DIR/$CI_PROJECT_NAME/artisan down
   script:
     # Build Vue components
     - npm install --silent
@@ -31,8 +29,6 @@ deploy_staging:
     - cp ~/oauth-private.key $TARGET_DIR/$CI_PROJECT_NAME/storage
     - cp ~/oauth-public.key $TARGET_DIR/$CI_PROJECT_NAME/storage
     - $TARGET_DIR/$CI_PROJECT_NAME/artisan migrate --force
-  after_script:
-    # - $TARGET_DIR/$CI_PROJECT_NAME/artisan up
   only:
     - staging
 
@@ -40,8 +36,6 @@ deploy_live:
   stage: deploy
   tags:
     - live
-  before_script:
-    # - $TARGET_DIR/$CI_PROJECT_NAME/artisan down
   script:
     # Build Vue components
     - npm install --silent
@@ -62,7 +56,5 @@ deploy_live:
     - cp ~/oauth-private.key $TARGET_DIR/$CI_PROJECT_NAME/storage
     - cp ~/oauth-public.key $TARGET_DIR/$CI_PROJECT_NAME/storage
     - $TARGET_DIR/$CI_PROJECT_NAME/artisan migrate --force
-  after_script:
-    # - $TARGET_DIR/$CI_PROJECT_NAME/artisan up
   only:
     - live
