@@ -1,7 +1,8 @@
 variables:
   TARGET_DIR: /var/www
 
-# Server need composer, npm and sshpass
+# Server need composer and node installed
+# The user gitlab-runner needs to be in sudoers file
 
 deploy_staging:
   stage: deploy
@@ -27,7 +28,7 @@ deploy_staging:
     # - rm composer-lock.json
     - composer install
     - sudo mkdir -p $TARGET_DIR/$CI_PROJECT_NAME
-    - rsync -avzr $CI_PROJECT_DIR $TARGET_DIR
+    - sudo rsync -avzr $CI_PROJECT_DIR $TARGET_DIR
     - sudo chmod 777 -R $TARGET_DIR/$CI_PROJECT_NAME/storage
     - artisan migrate
   only:
