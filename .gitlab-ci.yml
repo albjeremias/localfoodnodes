@@ -15,7 +15,9 @@ deploy_staging:
     - npm run production
 
     # Build React components
+    - npm install --prefix resources/assets/js/react/node-map
     - npm run build --prefix resources/assets/js/react/node-map
+    - npm install --prefix resources/assets/js/react/producer-node-map
     - npm run build --prefix resources/assets/js/react/producer-node-map
 
     # Build Laravel
