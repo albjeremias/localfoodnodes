@@ -3,6 +3,7 @@ variables:
 
 # Server need composer and node installed
 # The user gitlab-runner needs to be in sudoers file
+# .env need to be added manually
 
 deploy_staging:
   stage: deploy
@@ -12,8 +13,8 @@ deploy_staging:
 
     # Build Vue components
     # - rm package-lock.json
-    - npm install
-    - npm run production
+    - npm install --silent
+    - npm run production --silent
 
     # Build React components
     # - rm resources/assets/js/react/node-map/package-lock.json
@@ -30,6 +31,6 @@ deploy_staging:
     - sudo mkdir -p $TARGET_DIR/$CI_PROJECT_NAME
     - sudo rsync -azr $CI_PROJECT_DIR $TARGET_DIR # IGNORE FILE node_modules (in react folders too)
     - sudo chmod 777 -R $TARGET_DIR/$CI_PROJECT_NAME/storage
-    - $TARGET_DIR/artisan migrate --force
+    - $CI_PROJECT_NAME/artisan migrate --force
   only:
     - master
