@@ -7,9 +7,6 @@ deploy_staging:
   stage: deploy
   tags:
     - staging
-  before_script:
-    - nvm use 9
-    - node -v
   script:
     - composer install
     - npm install
