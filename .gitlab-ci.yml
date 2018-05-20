@@ -4,6 +4,7 @@ variables:
 # Server need composer and node installed
 # The user gitlab-runner needs to be in sudoers file
 # .env and oauth keys need to be added manually to /home/gitlab-runner
+# Create the database
 
 deploy_staging:
   stage: deploy
