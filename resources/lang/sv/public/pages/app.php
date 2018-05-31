@@ -2,8 +2,7 @@
 
 return [
     'title' => 'App',
-    'content_top' => '
-        <h3>Nästa fas i en spännande resa</h3>
+    'content_bottom' => '
         <h4>2015 Förstudie blev startskottet</h4>
         <p>Projektet tog sin praktiska start sensommaren 2015, efter att flera år ha legat och marinerats som en tanke. Startskottet gick iom den vinnovafinansierade förstudie “Småskalig konsumentstödd matproduktion” som Albin Ponnert projektledde, i Hela Sverige ska levas regi, på temat CSA och handel med lokal mat, helt utan mellanhänder.</p>
 
@@ -15,8 +14,13 @@ return [
 
         <h4>2018 Local Food App</h4>
         <p>Nu i juni 2018 går vi in i nästa fas av projektet iom att vi släpper mobilappen Local Food App, ett verktyg som ytterligare skall förenkla handel med lokalproducerad mat, utan mellanhänder. Vi hoppas och tror appen kommer riva ytterligare hinder på vägen att göra maten mer lokal igen.</p>
+
+        <div class="text-center mt-5 mb-5">
+            <a href="/membership" class="btn btn-success">Bli medlem i din lokala matrörelse</a>
+        </div>
     ',
-    'content_bottom' => '
+    'content_top' => '
+        <h3>Nästa fas i en spännande resa</h3>
         <p>Local Food App funkar som ett smidigt konsumentvektyg för att enkelt hitta lokalorganiserade utlämningsplatser för lokal mat, samt  smidigt boka tillgängliga produkter till givna utlämningsdatum. Följande funktioner finns i appens första version.</p>
         <ul class="list">
             <li>Skapa konto</li>
@@ -38,9 +42,5 @@ return [
             <li>Dela annonser på sociala medier</li>
             <li>Fler relevanta notifikationer</li>
         </ul>
-
-        <div class="text-center mt-5 mb-5">
-            <a href="/membership" class="btn btn-success">Bli medlem i din lokala matrörelse</a>
-        </div>
     ',
 ];
