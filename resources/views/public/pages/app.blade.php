@@ -12,12 +12,12 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body body-text">
-                        {!! trans('public/pages/app.content') !!}
+                        {!! trans('public/pages/app.content_top') !!}
                         <div class="text-center mb-5">
                             <img src="/images/app-map.png" style="height: 400px; width: auto;" />
                             <img src="/images/app-orders.png" style="height: 400px; width: auto;" />
                         </div>
-                        {!! trans('public/pages/app.content') !!}
+                        {!! trans('public/pages/app.content_bottom') !!}
                     </div>
                 </div>
             </div>
