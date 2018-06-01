@@ -22,7 +22,7 @@ class OrdersController extends BaseController
     {
         if (!Cache::has('orders')) {
             $orderDateItemLinks = OrderDateItemLink::with(['orderItemRelationship', 'orderDateRelationship'])->get();
-            $orders = $orderDateItemsLinks->map(function($orderDateItemLink) {
+            $orders = $orderDateItemLinks->map(function($orderDateItemLink) {
                 // Exclude user details here
                 $item = $orderDateItemLink->getItem();
                 $date = $orderDateItemLink->getDate();

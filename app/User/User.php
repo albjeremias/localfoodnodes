@@ -371,7 +371,7 @@ class User extends \App\User\BaseUser
      */
     public function membershipPayments()
     {
-        return $this->membershipPaymentsRelationship;
+        return $this->membershipPaymentsRelationship->sortByDesc('created_at');
     }
 
     /**
@@ -389,7 +389,7 @@ class User extends \App\User\BaseUser
             ]);
         }
 
-        return $this->membershipPaymentsRelationship->sortBy('created_at')->last();
+        return $this->membershipPayments()->first();
     }
 
     /**

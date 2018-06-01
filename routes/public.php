@@ -42,6 +42,7 @@ Route::get('/economy/transactions', 'PageController@transactions');
 Route::get('/team', 'PageController@team');
 Route::get('/statistics', 'PageController@statistics');
 Route::get('/gdpr', 'PageController@gdpr');
+Route::get('/app', 'PageController@app');
 
 // Landing page catcher
 Route::get('/landing-page/{segments}', function() {

@@ -77,4 +77,9 @@ class PageController extends Controller
     {
         return view('public.pages.gdpr');
     }
+
+    public function app()
+    {
+        return view('public.pages.app');
+    }
 }
