@@ -22,7 +22,7 @@ return [
     'income' => 'In',
     'money_circulated' => 'Lokal pengacirkulation (SEK)',
     'orders' => 'Bokningar',
-    'read_more_economy' => 'Lär mer om vår ekonomi',
+    'read_more_economy' => 'Läs mer om vår ekonomi',
     'ref' => 'Referens',
     'title' => 'Ekonomi',
     'total' => 'totalt',

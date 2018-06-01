@@ -1,0 +1,60 @@
+.card-simple-container {
+  height: 316px;
+  cursor: pointer;
+  position: relative;
+  @extend .image
+}
+
+.card-simple-overlay {
+  height: 128px;
+  width: 100%;
+  background-color: rgba(0,0,0,0.38);
+  position: absolute;
+  bottom: 0;
+
+  h3 {
+    padding: 0.79em 0.67em;
+  }
+}
+
+.product {
+  height: 386px;
+  border-radius: 2px;
+  background-color: #FFFFFF;
+  @extend .box-shadow;
+
+  .product-img {
+    height: 176px;
+    position: relative;
+
+    .product-items-quantity {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+    }
+
+    .product-items-type {
+      position: absolute;
+      bottom: 8px;
+      left: 15px;
+      width: 99px;
+    }
+
+    .product-items-share {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      color: white;
+    }
+  }
+}
+
+.card-node-container {
+  background-color: white;
+  height: 376px;
+  @extend .box-shadow;
+
+  .node-image {
+    height: 176px;
+  }
+}

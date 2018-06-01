@@ -1,0 +1,26 @@
+#filter-info {
+
+  .filter {
+    padding: 1rem 1.5rem;
+    min-height: 281px;
+    @extend .box-shadow;
+    background-color: #fff;
+  }
+
+  .info {
+    padding: 1rem 1.5rem;
+    min-height: 281px;
+    @extend .box-shadow;
+    background-color: #fff;
+  }
+}
+
+.node-background {
+  position: absolute;
+  height: 336px;
+  width: 100%;
+}
+
+.node-info {
+  padding-top: 110px;
+}

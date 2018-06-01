@@ -73,5 +73,22 @@ return [
     'read_more' => 'Läs mer',
     'how_it_works_intro' => 'Vare sig du är producent eller konsument, Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem',
     'create_place' => 'Skapa plats',
+    'found_your_local' => 'Hitta din lokala utlämningsplats',
+    'index_seach' => 'Sök på platser, orter och städer',
 
+	'transparency_short' => 'Local Food Nodes har 100% financiell transparens. Här under ser ni alla årets inkomster och kostnader summerade. Gå till vår finansida för mer...',
+	'read_more_economy' => 'Läs mer om vår ekonomi',
+
+	'be_part_of' => 'Bli en del av LOCAL FOOD NODES du också!',
+	'accept_terms' => 'Genom att skapa ett konto godtar du följande',
+	'terms' => 'vilkor.',
+
+	'your_name' => 'Ditt namn',
+	'your_email' => 'Din e-post',
+	'create_pw'  => 'Skapa lösenord',
+
+	'longing_for_local' => 'Längtan att göra maten lokal igen',
+	'more_vision' => 'Läs mer om vår vision',
+
+	'co_fund_paragraph_short' => 'Genom att bli medlem medfinansierar du satsningar på att göra maten mer lokal igen. Tillsammans skapar vi ekonomiska förutsättningar för att stötta nya former av lokal'
 ];

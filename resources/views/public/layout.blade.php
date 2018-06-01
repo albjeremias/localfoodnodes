@@ -23,7 +23,7 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,700" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
         {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">--}}
-        <link rel="stylesheet" href="/css/font-awesome.min.css">
+        {{--<link rel="stylesheet" href="/css/font-awesome.min.css">--}}
         <link rel="stylesheet" href="{{ mix('css/public.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('css/jquery.fancybox.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/slick.css') }}"/>

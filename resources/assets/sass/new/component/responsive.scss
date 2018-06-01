@@ -1,0 +1,88 @@
+@media (min-width: 1600px) {
+  .normal-primary {
+    background: linear-gradient(90deg, $main-primary 43%, rgba(9, 9, 121, 0) 60%) !important;
+  }
+
+  .normal-accent {
+    background: linear-gradient(90deg, $main-accent 43%, rgba(9, 9, 121, 0) 60%) !important;
+  }
+
+  .inverted-primary {
+    background: linear-gradient(90deg, rgba(2,0,36,0) 39%, $main-primary 52%) !important;
+  }
+
+  .inverted-accent {
+    background: linear-gradient(90deg, rgba(2,0,36,0) 39%, $main-accent 52%) !important;
+  }
+}
+
+// -------------------------------------
+// LESS THEN XL
+// -------------------------------------
+
+@media (max-width: 1199px) {
+  #cover .input-group {
+    width: 54%;
+  }
+}
+
+// -------------------------------------
+// LESS THEN LG
+// -------------------------------------
+
+@media (max-width: 991px) {
+  .card-simple-container {
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+
+  .card-simple-overlay {
+    height: 60px;
+  }
+
+  section.medium-gradient p {
+    width: 100%;
+  }
+
+  .icon-circle {
+    bottom: 20px;
+  }
+
+  .normal-primary {
+    background: linear-gradient(90deg, $main-primary 47%, rgba(9, 9, 121, 0) 75%) !important;
+  }
+
+  .normal-accent {
+    background: linear-gradient(90deg, $main-accent 47%, rgba(9, 9, 121, 0) 75%) !important;
+  }
+
+  .inverted-primary {
+    background: linear-gradient(90deg, rgba(2,0,36,0) 39%, $main-primary 52%) !important;
+  }
+
+  .inverted-accent {
+    background: linear-gradient(90deg, rgba(2,0,36,0) 39%, $main-accent 52%) !important;
+  }
+}
+
+// -------------------------------------
+// LESS THEN MD
+// -------------------------------------
+
+@media (max-width: 767px) {
+  section.medium-gradient p {
+    width: 50%;
+  }
+
+  section.medium-gradient h2 {
+    width: 50%;
+  }
+
+  .inverted-accent p {
+    width: 100% !important;
+  }
+
+  .inverted-accent h2 {
+    width: 100% !important;
+  }
+}

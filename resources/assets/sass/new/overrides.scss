@@ -25,6 +25,23 @@ $grid-gutter-width: 15.78px;
 //
 $primary:       $main-accent;
 $secondary:     $main-primary;
+$light:         $dark-12;
+$info:          transparent;
+$success:       $secondary-green;
+$danger:        $raspberry;
+$warning:       $secondary-red;
+$dark:          $black-38;
+
+
+// Compontentes
+$line-height-lg:              1.5;
+
+$input-btn-padding-y-lg:      1.032rem;
+$input-btn-padding-x-lg:      1rem;
+$input-btn-line-height-lg:    $line-height-lg;
+
+// TABLE
+$table-hover-bg:  $accent-light-12;
 
 // Buttons
 //
@@ -35,25 +52,102 @@ $btn-font-weight:             600;
 $btn-line-height:             18px;
 $input-btn-padding-y:         .5rem;
 
+// -lg
+$btn-border-radius-lg: 48px;
+$font-size-lg: 0.875rem;
+$btn-line-height-lg : 18px;
+$btn-padding-y-lg: $input-btn-padding-y-lg;
+$btn-padding-x-lg: 1.56rem;
+
 // Fonts
 //
 // Font, line-height, and color for body text, headings, and more.
 
-$font-size-base:              0.9375rem; // Assumes the browser default, typically `16px` 0.9375 '15px'    0.875 '14px
+$font-size-base:              1rem; // Assumes the browser default, typically `16px` 0.9375 '15px'    0.875 '14px
 $input-btn-padding-x:         1.462rem;
 
-$h1-font-size:                $font-size-base * 2.5;
-$h2-font-size:                $font-size-base * 2;
-$h3-font-size:                $font-size-base * 1.75;
-$h4-font-size:                $font-size-base * 1.5;
+$small-font-size:             87%;
+
+// HEADER 1-6
+$h1-font-size:                $font-size-base * 3;
+$h2-font-size:                $font-size-base * 2.27;
+$h3-font-size:                $font-size-base * 1.6;
+$h4-font-size:                $font-size-base * 1.6;
 $h5-font-size:                2.125rem;
 $h6-font-size:                $font-size-base;
 
-$headings-line-height:        1.17647;
+$headings-font-family:        $font-header;
+$headings-line-height:        1.21;
+$headings-font-weight:        400;
+
 
 $line-height-base:            1.6;
 
 $font-weight-base:            500;
 
-$headings-font-weight:        400;
-$headings-font-family:        $font-header;
+// NAVBAR
+$navbar-light-color: #fff;
+$navbar-nav-link-padding-x: 1rem;
+
+// INPUTS
+$input-group-addon-bg: #fff;
+$input-border-color: #fff;
+$input-border-radius: 2px;
+
+$input-box-shadow: 0 2px 4px 0 rgba(0,0,0,0.54);
+
+$input-btn-line-height: 1.8666;
+
+$custom-select-height: 100%;
+
+$input-padding-x: 0.719rem;
+$input-padding-y: $input-padding-x;
+// -lg
+
+
+
+$input-padding-y-lg: $input-btn-padding-y-lg;
+$input-padding-x-lg: $input-btn-padding-x-lg;
+$input-line-height-lg: $input-btn-line-height-lg;
+
+
+// BADGE
+$badge-border-radius:  20px;
+$badge-font-size:      13px;
+$badge-font-weight:   500;
+$badge-padding-y:     .9em;
+$badge-padding-x:     1.425em;
+
+.form-control {
+  font-weight: 500;
+  font-family: $font-header;
+}
+
+.badge {
+  margin-right: 5px;
+  margin-bottom: 7px;
+}
+
+.btn-info {
+  color: $dark-54 !important;
+}
+
+.btn-dark {
+  border: none !important;
+}
+
+.badge-success {
+  color: #fff !important;
+}
+
+.badge-danger {
+  color: #BF360C !important;
+}
+
+.badge-pill {
+  text-align: center;
+}
+
+.btn {
+  text-transform: uppercase !important;
+}

@@ -1,5 +1,9 @@
 <?php
 
+// PLACEHOLDER
+Route::view('/search', 'new.public.search');
+
+
 // Settings
 Route::get('/settings/locale/{locale}', 'SettingsController@changeLocale');
 
