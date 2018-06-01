@@ -21,6 +21,7 @@ return [
     ',
     'content_top' => '
         <h3>Nästa fas i en spännande resa</h3>
+        <p><b><i>Vi håller på att slutföra arbetet med Local Food App. Snart kommer den finnas att ladda ned till både iOS och Andriod.</i></b></p>
         <p>Local Food App funkar som ett smidigt konsumentvektyg för att enkelt hitta lokalorganiserade utlämningsplatser för lokal mat, samt  smidigt boka tillgängliga produkter till givna utlämningsdatum. Följande funktioner finns i appens första version.</p>
         <ul class="list">
             <li>Skapa konto</li>

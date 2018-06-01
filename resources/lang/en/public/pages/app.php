@@ -23,7 +23,8 @@ return [
     ',
     'content_top' => '
         <h3>Next phase in the local food journey</h3>
-        <p>We are currently completing the work with Local Food App. Soon it will be loading to both iOS and Android. Local Food App serves as an easy-to-use consumer tool to find local food delivery venues, as well as easily order available products for any given delivery date. The following features are in the app\'s first version.</p>
+        <p><b><i>We are currently completing the work with Local Food App. Soon it will be available for both iOS and Andriod.</i></b></p>
+        <p>Local Food App serves as a consumer tool to easily find local food delivery locations, and you can easily order available products for upcoming delivery dates. The following features are in the app\'s first version.</p>
 
         <ul class="list">
             <li>Create Account</li>

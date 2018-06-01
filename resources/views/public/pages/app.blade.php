@@ -1,7 +1,7 @@
 @extends('public.layout-page', [
     'header' => trans('public/pages/app.header'),
     'subHeader' => trans('public/pages/app.sub_header'),
-    'image' => '/images/app-header.jpg'
+    'image' => '/images/shutterstock_326785574.jpg'
 ])
 
 @section('title', trans('public/pages/app.title'))
