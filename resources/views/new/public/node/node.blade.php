@@ -1,4 +1,11 @@
-@extends('new.public.layout')
+@extends('new.public.layout',
+[
+    'bread_type'     => 'Sökresultat',
+    'bread_result'   => $node->name,
+    'sub_nav'        => ['Produkter', 'Kalender', 'Producenter', 'Bilder'],
+    'sub_nav_active' => 0,
+]
+)
 
 @section('title', $node->name)
 

@@ -22,8 +22,6 @@
     <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
-    {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">--}}
-    {{--<link rel="stylesheet" href="/css/font-awesome.min.css">--}}
     <link rel="stylesheet" href="{{ mix('css/public.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/jquery.fancybox.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/slick.css') }}"/>
@@ -31,8 +29,7 @@
 <body class="public {{ $viewName }} {{ Auth::check() && Auth::user()->active ? 'logged-in' : '' }}">
 <div id="fb-root"></div>
 <div class="page">
-    @include('account.user-nav')
-    @include('new.public.nav')
+    @include('new.layouts.nav.base')
     @include('account.user-nav-mobile')
     <div class="content">
         @include('shared.errors')

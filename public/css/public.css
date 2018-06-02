@@ -44,6 +44,17 @@ h4 {
   line-height: 2.13rem !important;
 }
 
+a {
+  font-size: 0.933rem !important;
+  font-weight: 600;
+  line-height: 1.2rem;
+}
+
+.bg-color-trans {
+  -webkit-transition: background-color 0.3s !important;
+  transition: background-color 0.3s !important;
+}
+
 .bg-main-primary {
   background-color: #bf360c;
 }
@@ -62,6 +73,10 @@ h4 {
 
 .bg-black-38 {
   background-color: rgba(0, 0, 0, 0.38);
+}
+
+.bg-black-54 {
+  background-color: rgba(0, 0, 0, 0.54);
 }
 
 .bg-shell {
@@ -124,9 +139,13 @@ h4 {
   color: rgba(0, 0, 0, 0.38) !important;
 }
 
-.nm,
+.nm {
+  margin-top: 162.5px;
+}
+
+.nms,
 #simple-page {
-  margin-top: 160px;
+  margin-top: 113px;
 }
 
 .pt-6 {
@@ -138,10 +157,15 @@ h4 {
 }
 
 .icon,
+.icon-38,
 .icon-small {
   color: #757575;
   font-size: 1.6em !important;
   line-height: 24px !important;
+}
+
+.icon-38 {
+  color: rgba(0, 0, 0, 0.38) !important;
 }
 
 .icon-small {
@@ -223,6 +247,23 @@ section.medium-gradient,
   color: black;
   text-align: center;
   padding: 1rem;
+}
+
+.sub-nav-active {
+  border-bottom: #ff9800 2px solid;
+  padding-bottom: 15px;
+}
+
+.nav-breadcrumb {
+  margin-left: 102px;
+}
+
+.sub-nav {
+  margin-left: 80px;
+}
+
+#nav-container.bg-main-primary .main-nav a {
+  color: black;
 }
 
 .btn {

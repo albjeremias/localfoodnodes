@@ -1,6 +1,7 @@
-@if (!Auth::check() || (Auth::user() && Auth::user()->active !== true))
+{{--@if (!Auth::check() || (Auth::user() && Auth::user()->active !== true))--}}
+@if (!env('DEV_AUTH'))
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-md">
+    <nav class="navbar fixed-top navbar-light navbar-expand-md bg-color-trans">
         <a class="navbar-brand" href="/">
             <img class="nav-logo" src="/images/nav-logo.png">
         </a>

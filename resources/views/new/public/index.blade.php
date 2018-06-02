@@ -1,4 +1,8 @@
-@extends('new.public.layout')
+@extends('new.public.layout',
+[
+    'transparent_nav' => true,
+    'public_nav'      => true,
+])
 
 @section('title', trans('public/index.title'))
 
@@ -191,5 +195,26 @@
     <section class="bg-accent-light-24">
         @include('new.components.register')
     </section>
+
+    <script>
+        $( document ).ready(function() {
+            scrollYPoint = 20; // Att what pixel the navbar shall transform.
+
+            // Makes sure the navbar is in the right state if
+            // the visitor refreshes the page while scrolled down.
+            if (window.scrollY >= scrollYPoint) {
+                $('#nav-container').addClass('bg-black-54');
+            }
+
+            // Handles the navbar state when scrolling.
+            window.onscroll = function () {
+                if (window.scrollY <= scrollYPoint) {
+                    $('#nav-container').removeClass('bg-black-54');
+                } else {
+                    $('#nav-container').addClass('bg-black-54');
+                }
+            };
+        });
+    </script>
 
 @endsection

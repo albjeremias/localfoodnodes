@@ -1,4 +1,9 @@
-@extends('new.public.layout')
+@extends('new.public.layout',
+[
+    'public_nav'   => true,
+    'bread_type'   => 'Index',
+    'bread_result' => 'Medlemskap'
+])
 
 @section('content')
 
