@@ -30,7 +30,7 @@
 <div id="fb-root"></div>
 <div class="page">
     @include('new.layouts.nav.base')
-    @include('account.user-nav-mobile')
+{{--    @include('account.user-nav-mobile')--}}
     <div class="content">
         @include('shared.errors')
         @yield('content')
