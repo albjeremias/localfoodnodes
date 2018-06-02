@@ -28,6 +28,21 @@ section.big {
   position: relative;
 }
 
+.white-box.little-min {
+    height: 281px;
+    position: relative;
+}
+
+.white-box.medium-min {
+  height: 447px;
+  position: relative;
+}
+
+.white-box.big-min {
+  height: 744px;
+  position: relative;
+}
+
 section.medium-gradient {
   @extend .medium-min, .image;
   position: relative;

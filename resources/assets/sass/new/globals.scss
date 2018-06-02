@@ -10,7 +10,8 @@ p,
 a,
 small,
 input,
-button {
+button,
+li {
   font-family: $font-header !important;
 }
 
@@ -54,6 +55,12 @@ a {
   font-size: 0.933rem !important;
   font-weight: 600 !important;
   line-height: 1.2rem !important;
+}
+
+.list-p li {
+  font-size: 1rem;
+  line-height: 1.6rem;
+  font-weight: 500;
 }
 
 // -------------------------
@@ -203,9 +210,19 @@ a {
   color: $black-38 !important;
 }
 
+.icon-green {
+  @extend .icon;
+  color: $secondary-green !important;
+}
+
 .icon-small {
   @extend .icon;
   font-size: 1rem !important;
+}
+
+.icon-big {
+  @extend .icon;
+  font-size: 4.1rem !important;
 }
 
 .arrow {
@@ -282,10 +299,15 @@ td {
 
 .white-box {
   background-color: white;
-  color: black;
-  text-align: center;
   padding: 1rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
   @extend .box-shadow;
+
+  .bottom-link {
+    position: absolute;
+    bottom: 1rem;
+  }
 }
 
 
@@ -324,4 +346,8 @@ td {
 .login-quote {
   position: absolute;
   bottom: 223px;
+}
+
+.node-list li {
+  margin-bottom: 1.66rem;
 }

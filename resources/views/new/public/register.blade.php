@@ -41,7 +41,7 @@
 
                         <p class="text-center mt-4 black-54">Eller skapa ett konto</p>
 
-                        <form class="">
+                        <form action="/account/user/insert" method="post">
 
                             <div class="form-group pt-3">
                                 <label for="email-input">EMAILADRESS</label>

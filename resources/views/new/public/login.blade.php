@@ -41,7 +41,7 @@
 
                         <p class="text-center mt-4 black-54">Eller skriv in dina uppgifter</p>
 
-                        <form class="">
+                        <form action="/authenticate" method="post">
 
                             <div class="form-group">
                                 <label for="email-input">EMAILADRESS</label>

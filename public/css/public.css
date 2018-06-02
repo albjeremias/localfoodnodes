@@ -12,7 +12,8 @@ p,
 a,
 small,
 input,
-button {
+button,
+li {
   font-family: "Montserrat" !important;
 }
 
@@ -52,6 +53,12 @@ a {
   font-size: 0.933rem !important;
   font-weight: 600 !important;
   line-height: 1.2rem !important;
+}
+
+.list-p li {
+  font-size: 1rem;
+  line-height: 1.6rem;
+  font-weight: 500;
 }
 
 .bg-color-trans {
@@ -166,7 +173,9 @@ a {
 
 .icon,
 .icon-38,
-.icon-small {
+.icon-green,
+.icon-small,
+.icon-big {
   color: #757575;
   font-size: 1.6em !important;
   line-height: 24px !important;
@@ -176,8 +185,16 @@ a {
   color: rgba(0, 0, 0, 0.38) !important;
 }
 
+.icon-green {
+  color: #8bc34a !important;
+}
+
 .icon-small {
   font-size: 1rem !important;
+}
+
+.icon-big {
+  font-size: 4.1rem !important;
 }
 
 .arrow {
@@ -256,9 +273,14 @@ section.medium-gradient,
 
 .white-box {
   background-color: white;
-  color: black;
-  text-align: center;
   padding: 1rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.white-box .bottom-link {
+  position: absolute;
+  bottom: 1rem;
 }
 
 .sub-nav-active {
@@ -293,6 +315,10 @@ section.medium-gradient,
 .login-quote {
   position: absolute;
   bottom: 223px;
+}
+
+.node-list li {
+  margin-bottom: 1.66rem;
 }
 
 .btn {
@@ -14351,6 +14377,23 @@ section.medium {
 
 section.big {
   height: 595px;
+  position: relative;
+}
+
+.white-box.little-min {
+  height: 281px;
+  position: relative;
+}
+
+.white-box.medium-min,
+section.white-box.medium-gradient,
+.white-box#simple-page {
+  height: 447px;
+  position: relative;
+}
+
+.white-box.big-min {
+  height: 744px;
   position: relative;
 }
 

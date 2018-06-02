@@ -35,6 +35,9 @@ class UserController extends Controller
     {
         parent::__construct();
 
+	    if (env('DEV_AUTH')) {
+		    Auth::login(User::find(1));
+	    }
         /**
          * Check if requested producer account exist, or if user has permission.
          */
@@ -155,7 +158,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        return view('account.user.index', [
+        return view('new.account.user.index', [
             'breadcrumbs' => [
                 $user->name => '',
                 trans('admin/user-nav.dashboard') => ''
