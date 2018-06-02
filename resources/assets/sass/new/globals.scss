@@ -22,6 +22,9 @@ section {
   position: relative;
 }
 
+button {
+  font-weight: 600 !important;
+}
 
 // -------------------------
 // FONTS
@@ -49,8 +52,8 @@ h4 {
 
 a {
   font-size: 0.933rem !important;
-  font-weight: 600;
-  line-height: 1.2rem;
+  font-weight: 600 !important;
+  line-height: 1.2rem !important;
 }
 
 // -------------------------
@@ -107,6 +110,10 @@ a {
 
 .bg-img-party-red {
   background-image: $img-party-red !important;
+}
+
+.bg-img-party-cut {
+  background-image: $party-cut !important;
 }
 
 .bg-img-carrots {
@@ -250,7 +257,11 @@ td {
 }
 
 .bb {
-  border: $dark-87 1px solid;
+  border: $dark-87 1px solid !important;
+}
+
+.bb-38 {
+  border: $dark-38 1px solid !important;
 }
 
 .image {
@@ -293,4 +304,24 @@ td {
 
 #nav-container.bg-main-primary .main-nav a {
   color: black;
+}
+
+.login-image {
+  height: 1036px;
+}
+
+.login {
+
+  .btn-facebook {
+    border-radius: 2px;
+  }
+}
+
+.login-logo {
+  width: 40px;
+}
+
+.login-quote {
+  position: absolute;
+  bottom: 223px;
 }

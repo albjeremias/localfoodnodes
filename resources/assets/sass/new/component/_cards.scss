@@ -52,6 +52,7 @@
 .card-node-container {
   background-color: white;
   height: 376px;
+  max-width: 344px;
   @extend .box-shadow;
 
   .node-image {

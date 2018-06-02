@@ -24,6 +24,10 @@ section {
   position: relative;
 }
 
+button {
+  font-weight: 600 !important;
+}
+
 h1 {
   font-weight: 500 !important;
   line-height: 3.2rem !important;
@@ -46,8 +50,8 @@ h4 {
 
 a {
   font-size: 0.933rem !important;
-  font-weight: 600;
-  line-height: 1.2rem;
+  font-weight: 600 !important;
+  line-height: 1.2rem !important;
 }
 
 .bg-color-trans {
@@ -93,6 +97,10 @@ a {
 
 .bg-img-party-red {
   background-image: url("/images/party-red.png") !important;
+}
+
+.bg-img-party-cut {
+  background-image: url("/images/party-cut-483x1036.png") !important;
 }
 
 .bg-img-carrots {
@@ -221,7 +229,11 @@ td {
 }
 
 .bb {
-  border: #212121 1px solid;
+  border: #212121 1px solid !important;
+}
+
+.bb-38 {
+  border: #9e9e9e 1px solid !important;
 }
 
 .image,
@@ -264,6 +276,23 @@ section.medium-gradient,
 
 #nav-container.bg-main-primary .main-nav a {
   color: black;
+}
+
+.login-image {
+  height: 1036px;
+}
+
+.login .btn-facebook {
+  border-radius: 2px;
+}
+
+.login-logo {
+  width: 40px;
+}
+
+.login-quote {
+  position: absolute;
+  bottom: 223px;
 }
 
 .btn {
@@ -333,6 +362,7 @@ section.medium-gradient,
   --danger: #efcec4;
   --light: #e0e0e0;
   --dark: rgba(0, 0, 0, 0.38);
+  --facebook: #4A67AD;
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
@@ -2765,6 +2795,21 @@ pre code {
   background-color: rgba(221, 221, 221, 0.8264);
 }
 
+.table-facebook,
+.table-facebook > th,
+.table-facebook > td {
+  background-color: #ccd4e8;
+}
+
+.table-hover .table-facebook:hover {
+  background-color: #bac5e0;
+}
+
+.table-hover .table-facebook:hover > td,
+.table-hover .table-facebook:hover > th {
+  background-color: #bac5e0;
+}
+
 .table-active,
 .table-active > th,
 .table-active > td {
@@ -2973,7 +3018,7 @@ select.form-control:focus::-ms-value {
 .col-form-label-lg {
   padding-top: calc(1.032rem + 1px);
   padding-bottom: calc(1.032rem + 1px);
-  font-size: 0.875rem;
+  font-size: 0.933rem;
   line-height: 1.5;
 }
 
@@ -3041,7 +3086,7 @@ select.form-control-sm:not([size]):not([multiple]),
 .input-group-lg > .input-group-prepend > .btn,
 .input-group-lg > .input-group-append > .btn {
   padding: 1.032rem 1rem;
-  font-size: 0.875rem;
+  font-size: 0.933rem;
   line-height: 1.5;
   border-radius: 0.3rem;
 }
@@ -3052,7 +3097,7 @@ select.form-control-lg:not([size]):not([multiple]),
 .input-group-lg > .input-group-append > select.input-group-text:not([size]):not([multiple]),
 .input-group-lg > .input-group-prepend > select.btn:not([size]):not([multiple]),
 .input-group-lg > .input-group-append > select.btn:not([size]):not([multiple]) {
-  height: calc(3.3765rem + 2px);
+  height: calc(3.4635rem + 2px);
 }
 
 .form-group {
@@ -3843,6 +3888,46 @@ fieldset:disabled a.btn {
           box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.5);
 }
 
+.btn-facebook {
+  color: #fff;
+  background-color: #4A67AD;
+  border-color: #4A67AD;
+}
+
+.btn-facebook:hover {
+  color: #fff;
+  background-color: #3f5792;
+  border-color: #3b5289;
+}
+
+.btn-facebook:focus,
+.btn-facebook.focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(74, 103, 173, 0.5);
+          box-shadow: 0 0 0 0.2rem rgba(74, 103, 173, 0.5);
+}
+
+.btn-facebook.disabled,
+.btn-facebook:disabled {
+  color: #fff;
+  background-color: #4A67AD;
+  border-color: #4A67AD;
+}
+
+.btn-facebook:not(:disabled):not(.disabled):active,
+.btn-facebook:not(:disabled):not(.disabled).active,
+.show > .btn-facebook.dropdown-toggle {
+  color: #fff;
+  background-color: #3b5289;
+  border-color: #374c80;
+}
+
+.btn-facebook:not(:disabled):not(.disabled):active:focus,
+.btn-facebook:not(:disabled):not(.disabled).active:focus,
+.show > .btn-facebook.dropdown-toggle:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(74, 103, 173, 0.5);
+          box-shadow: 0 0 0 0.2rem rgba(74, 103, 173, 0.5);
+}
+
 .btn-outline-primary {
   color: #ff9800;
   background-color: transparent;
@@ -4163,6 +4248,46 @@ fieldset:disabled a.btn {
           box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.5);
 }
 
+.btn-outline-facebook {
+  color: #4A67AD;
+  background-color: transparent;
+  background-image: none;
+  border-color: #4A67AD;
+}
+
+.btn-outline-facebook:hover {
+  color: #fff;
+  background-color: #4A67AD;
+  border-color: #4A67AD;
+}
+
+.btn-outline-facebook:focus,
+.btn-outline-facebook.focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(74, 103, 173, 0.5);
+          box-shadow: 0 0 0 0.2rem rgba(74, 103, 173, 0.5);
+}
+
+.btn-outline-facebook.disabled,
+.btn-outline-facebook:disabled {
+  color: #4A67AD;
+  background-color: transparent;
+}
+
+.btn-outline-facebook:not(:disabled):not(.disabled):active,
+.btn-outline-facebook:not(:disabled):not(.disabled).active,
+.show > .btn-outline-facebook.dropdown-toggle {
+  color: #fff;
+  background-color: #4A67AD;
+  border-color: #4A67AD;
+}
+
+.btn-outline-facebook:not(:disabled):not(.disabled):active:focus,
+.btn-outline-facebook:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-facebook.dropdown-toggle:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(74, 103, 173, 0.5);
+          box-shadow: 0 0 0 0.2rem rgba(74, 103, 173, 0.5);
+}
+
 .btn-link {
   font-weight: 400;
   color: #ff9800;
@@ -4193,7 +4318,7 @@ fieldset:disabled a.btn {
 .btn-lg,
 .btn-group-lg > .btn {
   padding: 1.032rem 1.56rem;
-  font-size: 0.875rem;
+  font-size: 0.933rem;
   line-height: 18px;
   border-radius: 48px;
 }
@@ -4203,7 +4328,7 @@ fieldset:disabled a.btn {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   line-height: 1.5;
-  border-radius: 0.2rem;
+  border-radius: 2px;
 }
 
 .btn-block {
@@ -4943,7 +5068,7 @@ input[type="button"].btn-block {
 }
 
 .custom-select-lg {
-  height: calc(3.3765rem + 2px);
+  height: calc(3.4635rem + 2px);
   padding-top: 0.375rem;
   padding-bottom: 0.375rem;
   font-size: 125%;
@@ -5258,10 +5383,10 @@ input[type="button"].btn-block {
 
 .navbar-brand {
   display: inline-block;
-  padding-top: 0.6rem;
-  padding-bottom: 0.6rem;
+  padding-top: 0.5536rem;
+  padding-bottom: 0.5536rem;
   margin-right: 1rem;
-  font-size: 0.875rem;
+  font-size: 0.933rem;
   line-height: inherit;
   white-space: nowrap;
 }
@@ -5313,7 +5438,7 @@ input[type="button"].btn-block {
 
 .navbar-toggler {
   padding: 0.25rem 0.75rem;
-  font-size: 0.875rem;
+  font-size: 0.933rem;
   line-height: 1;
   background-color: transparent;
   border: 1px solid transparent;
@@ -6106,7 +6231,7 @@ input[type="button"].btn-block {
 
 .pagination-lg .page-link {
   padding: 0.75rem 1.5rem;
-  font-size: 0.875rem;
+  font-size: 0.933rem;
   line-height: 1.5;
 }
 
@@ -6257,6 +6382,18 @@ input[type="button"].btn-block {
   color: #fff;
   text-decoration: none;
   background-color: rgba(0, 0, 0, 0.38);
+}
+
+.badge-facebook {
+  color: #fff;
+  background-color: #4A67AD;
+}
+
+.badge-facebook[href]:hover,
+.badge-facebook[href]:focus {
+  color: #fff;
+  text-decoration: none;
+  background-color: #3b5289;
 }
 
 .jumbotron {
@@ -6416,6 +6553,20 @@ input[type="button"].btn-block {
 
 .alert-dark .alert-link {
   color: rgba(0, 0, 0, 0.6776);
+}
+
+.alert-facebook {
+  color: #26365a;
+  background-color: #dbe1ef;
+  border-color: #ccd4e8;
+}
+
+.alert-facebook hr {
+  border-top-color: #bac5e0;
+}
+
+.alert-facebook .alert-link {
+  color: #172036;
 }
 
 @-webkit-keyframes progress-bar-stripes {
@@ -6717,6 +6868,23 @@ input[type="button"].btn-block {
   color: #fff;
   background-color: rgba(0, 0, 0, 0.6776);
   border-color: rgba(0, 0, 0, 0.6776);
+}
+
+.list-group-item-facebook {
+  color: #26365a;
+  background-color: #ccd4e8;
+}
+
+.list-group-item-facebook.list-group-item-action:hover,
+.list-group-item-facebook.list-group-item-action:focus {
+  color: #26365a;
+  background-color: #bac5e0;
+}
+
+.list-group-item-facebook.list-group-item-action.active {
+  color: #fff;
+  background-color: #26365a;
+  border-color: #26365a;
 }
 
 .close {
@@ -7612,6 +7780,17 @@ button.bg-dark:focus {
   background-color: rgba(0, 0, 0, 0.38) !important;
 }
 
+.bg-facebook {
+  background-color: #4A67AD !important;
+}
+
+a.bg-facebook:hover,
+a.bg-facebook:focus,
+button.bg-facebook:hover,
+button.bg-facebook:focus {
+  background-color: #3b5289 !important;
+}
+
 .bg-white {
   background-color: #fff !important;
 }
@@ -7690,6 +7869,10 @@ button.bg-dark:focus {
 
 .border-dark {
   border-color: rgba(0, 0, 0, 0.38) !important;
+}
+
+.border-facebook {
+  border-color: #4A67AD !important;
 }
 
 .border-white {
@@ -10944,6 +11127,15 @@ a.text-light:focus {
 a.text-dark:hover,
 a.text-dark:focus {
   color: rgba(0, 0, 0, 0.38) !important;
+}
+
+.text-facebook {
+  color: #4A67AD !important;
+}
+
+a.text-facebook:hover,
+a.text-facebook:focus {
+  color: #3b5289 !important;
 }
 
 .text-body {
@@ -14263,6 +14455,7 @@ section.medium-gradient .inverted-accent {
 .card-node-container {
   background-color: white;
   height: 376px;
+  max-width: 344px;
 }
 
 .card-node-container .node-image {

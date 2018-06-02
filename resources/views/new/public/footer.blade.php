@@ -1,3 +1,4 @@
+@if(!isset($no_nav))
 <section class="container-fluid footer">
     <div class="container text-center pt-5 d-flex justify-content-center">
         <a href="mailto:info@localfoodnodes.org">info@localfoodnodes.org</a>
@@ -17,4 +18,4 @@
         <img src="/images/nav-logo-dark.png">
     </div>
 </section>
-
+@endif

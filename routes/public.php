@@ -2,6 +2,8 @@
 
 // PLACEHOLDER
 Route::view('/search', 'new.public.search');
+Route::view('/login', 'new.public.login');
+Route::view('/register', 'new.public.register');
 
 
 // Settings

@@ -1,6 +1,6 @@
 {{--@if (Auth::user() && Auth::user()->active)--}}
 
-
+@if(!isset($no_nav))
     <div id="nav-container" class="{{ !isset($transparent_nav) ? 'bg-main-primary' : 'bg-color-trans' }} fixed-top">
 
         <nav class="navbar navbar-light navbar-expand-md">
@@ -106,5 +106,7 @@
             </div>
         @endif
     </div>
+@endif
+
 
 

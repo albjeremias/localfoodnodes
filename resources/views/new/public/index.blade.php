@@ -70,29 +70,29 @@
         @include('new.components.arrow', ['dark' => false])
     </section>
 
-    <section class="bg-accent-light-12 container-fluid py-5">
+    {{-- MAP --}}
+    <section class="bg-accent-light-12 py-5">
+        <div class="container">
+            <div class="map-site-info p-3">
+                <div class="row">
+                    <div class="col">
+                        <h4 class="m-0">1129</h4>
+                        <small>Användare</small>
+                    </div>
 
-        <div class="offset-lg-1 map-site-info p-3">
-            <div class="row">
-                <div class="col">
-                    <h4 class="m-0">1129</h4>
-                    <small>Användare</small>
-                </div>
+                    <div class="col px-5">
+                        <h4 class="m-0">41</h4>
+                        <small>Noder</small>
+                    </div>
 
-                <div class="col">
-                    <h4 class="m-0">41</h4>
-                    <small>Noder</small>
-                </div>
-
-                <div class="col">
-                    <h4 class="m-0">110</h4>
-                    <small>Producenter</small>
+                    <div class="col">
+                        <h4 class="m-0">110</h4>
+                        <small>Producenter</small>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row justify-content-center">
-            <div class="col-10 col-sm-7 col-md-6 col-lg-5 col-xl-4">
+            <div class="row justify-content-center">
                 @include('new.components.cards.node',
                 [
                     'name'      => 'Dalby Saluhall',
@@ -106,6 +106,7 @@
         </div>
     </section>
 
+    {{-- GRADIENTS --}}
     @include('new.components.sections.medium-gradient', [
         'image'     => 'basket',
         'heading'   => 'public/index.create_and_shop',
@@ -192,12 +193,13 @@
         </div>
     </section>
 
+    {{-- REGISTER --}}
     <section class="bg-accent-light-24">
         @include('new.components.register')
     </section>
 
     <script>
-        $( document ).ready(function() {
+        $(document).ready(function () {
             scrollYPoint = 20; // Att what pixel the navbar shall transform.
 
             // Makes sure the navbar is in the right state if
