@@ -1,6 +1,6 @@
 @extends('new.account.layout',
 [
-    'title' => 'Min Panel',
+    'nav_title' => 'Min Panel',
     'sub_nav' => ['dashboard', 'mina noder', 'utlämningar', 'evenemang', 'min profil'],
     'sub_nav_active' => 0
 ])

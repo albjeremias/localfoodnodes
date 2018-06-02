@@ -32,7 +32,7 @@
                     </li>
 
                     <!-- Fast login hidden on mobile -->
-                    @if (Auth::user())
+                    @if (Auth::user() && !isset($transparent_nav))
                         <li class="d-none d-md-block">
                             <a href="#" class="nav-link text-capitalize px-0">
                                 {{ Auth::user()->name }}
@@ -94,11 +94,11 @@
         @endif
 
         {{-- EXTEND NAVBAR TO SHOW PAGE TITLE --}}
-        @if(isset($title))
+        @if(isset($nav_title))
             <div class="bg-main-primary wc d-none d-sm-block nav-breadcrumb mb-4">
                 <ul class="row list-inline mb-0 align-items-center">
                     <li class="list-inline-item mr-4">
-                        <h3 class="mb-0">{{ $title }}</h3>
+                        <h3 class="mb-0">{{ $nav_title }}</h3>
                     </li>
                 </ul>
             </div>
