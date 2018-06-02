@@ -124,7 +124,8 @@ h4 {
   color: rgba(0, 0, 0, 0.38) !important;
 }
 
-.nm {
+.nm,
+#simple-page {
   margin-top: 160px;
 }
 
@@ -186,6 +187,7 @@ td {
 
 .box-shadow,
 .map-site-info,
+.white-box,
 .product,
 .card-node-container,
 #filter-info .filter,
@@ -200,7 +202,8 @@ td {
 
 .image,
 section.medium-gradient,
-.card-simple-container {
+.card-simple-container,
+#simple-page {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -213,6 +216,13 @@ section.medium-gradient,
 .map-site-info {
   background-color: white;
   position: absolute;
+}
+
+.white-box {
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding: 1rem;
 }
 
 .btn {
@@ -14085,7 +14095,8 @@ section.little-min {
 }
 
 section.medium-min,
-section.medium-gradient {
+section.medium-gradient,
+section#simple-page {
   min-height: 530px;
   position: relative;
 }

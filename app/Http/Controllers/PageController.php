@@ -47,7 +47,7 @@ class PageController extends Controller
         $totalPayingMembers = $allPayments->unique('user_id')->count();
         $averageMembershipPayments = $members === 0 ? 0 : $totalMembershipPayments / $totalPayingMembers;
 
-        return view('public.pages.membership', [
+        return view('new.public.pages.membership', [
             'members' => $members,
             'averageMembership' => round($averageMembershipPayments)
         ]);
