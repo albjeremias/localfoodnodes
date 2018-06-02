@@ -1,5 +1,7 @@
 @extends('new.layouts.simple-page', [
     'header' => 'Framtidens matförsörjning',
+    'sub_header' => 'Välj själv hur mycket du vill vara med och betala',
+    'title'      => 'Medlemskap',
     'bg' => 'bg-accent-light-24'
 ])
 
@@ -7,11 +9,10 @@
 
 @section('page-content')
 
-    <div class="container my-5">
+    <div class="container pb-5">
         <div class="row">
             <div class="col-16 col-md-8">
-                <h4>Välj själv hur mycket du vill vara med och betala</h4>
-                <p class="mt-5">
+                <p class="">
                     Genom att bli medlem medfinansierar du satsningar på att göra maten mer lokal igen. Tillsammans
                     skapar
                     vi ekonomiska förutsättningar för att stötta nya former av lokal organisering och en mer lokal
@@ -22,7 +23,7 @@
                 </p>
             </div>
 
-            <div class="col-16 col-md-6 offset-md-2 mt-5">
+            <div class="col-16 col-md-6 offset-md-2">
                 <div class="text-center">
                     <div class="mb-5">
                         @include('new.components.statistics.supporting-members')
@@ -33,7 +34,7 @@
         </div>
     </div>
 
-    <div class="bg-shell">
+    <div class="bg-accent-light-12">
         @include('new.components.register')
     </div>
 @endsection

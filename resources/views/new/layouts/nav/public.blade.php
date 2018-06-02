@@ -9,5 +9,5 @@
 </li>
 
 <li class="nav-item d-sm-none d-md-block">
-    <a class="nav-link" href="/economy">{{ trans('public/nav.find_out_more') }}</a>
+    <a class="nav-link" href="/find-out-more">{{ trans('public/nav.find_out_more') }}</a>
 </li>

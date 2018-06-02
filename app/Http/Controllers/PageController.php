@@ -29,7 +29,7 @@ class PageController extends Controller
 
     public function findOutMore()
     {
-        return view('public.pages.find-out-more');
+        return view('new.public.pages.find-out-more');
     }
 
     public function membership()
@@ -55,7 +55,7 @@ class PageController extends Controller
 
     public function economy()
     {
-        return view('public.pages.economy');
+        return view('new.public.pages.economy');
     }
 
     public function transactions()
