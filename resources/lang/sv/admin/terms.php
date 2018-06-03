@@ -1,8 +1,8 @@
 <?php
 
 return [
-    // USER
-    'user' => '<p>Härligt att du hittat till Local Food Nodes. Att  använda sajten är otroligt enkelt. Du skapar bara ett användarkonto, eller loggar bara in via Facebook, om du hellre vill det.</p>
+	// USER
+	'user'     => '<p>Härligt att du hittat till Local Food Nodes. Att  använda sajten är otroligt enkelt. Du skapar bara ett användarkonto, eller loggar bara in via Facebook, om du hellre vill det.</p>
 
     <p>Genom att registrera dig och bli en stödjande medlem (som krävs för att kunna boka) blir du samtidigt en del av att medskapa vår lokala matförsörjning.</p>
 
@@ -19,8 +19,8 @@ return [
 
     <p>Du kan gå med så få eller så många noder som du vill.</p>',
 
-    // PRODUCER
-    'producer' => '<p>Härligt, och varmt välkommen du lokala matproducent till Local Food Nodes. Innan du skapa ditt producentkonto måste först du läsa igenom och godkänna dessa användarvillkor. Se till att du förstår dem fullt ut, sen är det bara att köra, och du det är gratis.</p>
+	// PRODUCER
+	'producer' => '<p>Härligt, och varmt välkommen du lokala matproducent till Local Food Nodes. Innan du skapa ditt producentkonto måste först du läsa igenom och godkänna dessa användarvillkor. Se till att du förstår dem fullt ut, sen är det bara att köra, och du det är gratis.</p>
 
     <b>Allmänt</b>
     <p>Det är alltid gratis att använda Local Food Nodes för dig som producent.
@@ -56,8 +56,67 @@ return [
     <p>Det är mitt ansvar som producent att jag följer nationella lagar när det gäller försäljning, deklaration och skatter när det gäller min försäljning.</p>
     <p>Det är mitt ansvar att veta vilka juridiska villkor jag måste följa för försäljning av mina produkter.</p>',
 
-    // NODE
-    'node' => '<p>Great! You want to start a Local Food Node. But first, read these simple terms of running av node, and make sure you fully understand them. Then hit agree, and you are good to go.</p>
+	'new_producer_intro' => '
+	<h2>Härligt, och varmt välkommen</h2>
+		 <p>du lokala matproducent till Local Food Nodes.</p> 
+		 <small>Innan du skapa ditt producentkonto måste först du läsa igenom och godkänna dessa användarvillkor. Se till att du förstår dem fullt ut, sen är det bara att köra, och du det är gratis.</small>',
+
+	'new_producer' => '
+	    <p>Allmänt</p>
+	    <p><small>
+		    Det är alltid gratis att använda Local Food Nodes för dig som producent.
+		    Du ska aldrig betala någon form av avgift till någon för att vara med vid något leveranstillfälle, ej heller betala avgift för att få sälja någon av din produkter. Om detta avkrävs av dig vid något tillfälle, för att kunna sälja, kontakta oss omgående.
+	    </small></p>
+	
+	    <p>Produkter</p>
+	    <p><small>
+	    Nodadministratör och/eller Local Food Nodes är aldrig en säljande part.
+	    Jag som producent och bara jag är alltid den säljande parten av min produkt
+	    </small></p>
+	
+	    <p><small>
+	    Jag som producent har det fulla ansvaret för min produkt.
+	    Detta betyder att jag har det fulla ansvaret för produkten, hela vägen från hur den produceras, vad den innehåller och att den är korrekt deklarerad och uppmärkt.
+	    </small></p>
+	
+	    <p><small>
+	    Det är jag som producent som har det fulla ansvaret för att min produkt transporteras och levereras på ett säkert och enligt lag gällande sätt innan det överlämnas till konsumenten.
+	    </small></p>
+	
+	    <p><small>
+	    Det är mitt ansvar som producent att kunna de lagar och regler som gäller runt min produkt, vad som krävs runt produktion, distribution och för att få sälja den direkt till slutkonsumenter
+	    </small></p>
+	
+	    <p>Leverans</p>
+	    <p><small>
+	    Min produkt får aldrig levereras via en mellanhand innan den lämnas ut till slutkonsumenter.
+	    Om detta ändå blir nödvändigt, kan du göra en överenskommelse med kunden om att du lämnar produkten på ett säkert sätt så att hen kan hämta den senare.
+	    Detta gäller endast för produkter som inte har lagstadgade krav på bibehållen kylkedja.
+	    </small></p>',
+
+	'new_producer_2' => '
+		<p><small>
+	    Jag får bara ta med och leverera produkter som har förbokats inför ett utlämningstillfälle.
+	    </small></p>
+	
+	    <p><small>
+	    Generellt får jag som producent inte sälja några ytterligare produkter som inte har förbeställts inför ett leveranstillfälle.
+	    Men… om leveransplatsen har ett marknadstillstånd som tillåter ytterligare försäljning direkt på plats, kan du sälja ytterligare produkter som inte har förbokats. Kolla in med nodadministratören om så är fallet.
+	    </small></p>
+	
+	    <p><small>
+	    Jag som producent har det fulla ansvaret för att administrera mina beställningar för mina produkter och att se till så att jag dyker upp och att de förbeställda produkterna levereras till rätt personer vid rätt tillfälle.
+	    </small></p>
+	
+	    <p>Betalningar</p>
+	    <p><small>Det är mitt ansvar som producent att känna till vilka betalningssätt som är tillåtna för försäljning av just min produkt</small></p>
+	    <p><small>Det är mitt ansvar som producent för att se till att mina produkter betalas på det sätt som passar mitt bästa.</small></p>
+	    <p><small>Det är mitt ansvar som producent att se till att jag behåller behövliga kvitton och att alla mina transaktioner redovisas.</small></p>
+	    <p><small>Det är mitt ansvar som producent att jag följer nationella lagar när det gäller försäljning, deklaration och skatter när det gäller min försäljning.</small></p>
+	    <p><small>Det är mitt ansvar att veta vilka juridiska villkor jag måste följa för försäljning av mina produkter.</small></p>',
+
+	// NODE
+	'node'         => '<p>Great! You want to start a Local Food Node. But first, read these simple terms of running av node, and make sure you fully understand them. Then hit agree, and you are good to go.</p>
 
     <b>Location Permits</b>
     <p>I understand that I have to have all legal permits required for the physical spot I have chosen for the local food node.</p>

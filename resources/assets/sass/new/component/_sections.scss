@@ -43,6 +43,13 @@ section.big {
   position: relative;
 }
 
+form .img-upload {
+  min-height: 233px;
+  position: relative;
+
+  @extend .image;
+}
+
 section.medium-gradient {
   @extend .medium-min, .image;
   position: relative;

@@ -138,12 +138,17 @@ a {
   color: white;
 }
 
-.rc {
+.rc,
+.terms_intro h2 {
   color: #bf360c;
 }
 
 .rh2 h2 {
   color: #bf360c;
+}
+
+.black-12 {
+  color: rgba(0, 0, 0, 0.12) !important;
 }
 
 .black-54 {
@@ -154,13 +159,19 @@ a {
   color: rgba(0, 0, 0, 0.38) !important;
 }
 
+.black-87,
+.terms_intro p,
+.terms_intro small {
+  color: rgba(0, 0, 0, 0.87) !important;
+}
+
 .nm {
   margin-top: 161px;
 }
 
 .nms,
 #simple-page {
-  margin-top: 123.5px;
+  margin-top: 122.09px;
 }
 
 .pt-6 {
@@ -254,6 +265,7 @@ td {
 }
 
 .image,
+form .img-upload,
 section.medium-gradient,
 .card-simple-container,
 #simple-page {
@@ -321,6 +333,41 @@ section.medium-gradient,
   margin-bottom: 1.66rem;
 }
 
+.producer-create-progress {
+  position: absolute;
+  border-bottom: rgba(0, 0, 0, 0.12) 1px solid;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  height: 1px;
+}
+
+.number-circle {
+  height: 22px;
+  width: 22px;
+  text-align: center;
+}
+
+.terms_text small {
+  color: rgba(0, 0, 0, 0.54) !important;
+}
+
+select.form-control-sm,
+.input-group-sm > select.form-control,
+.input-group-sm > .input-group-prepend > select.input-group-text,
+.input-group-sm > .input-group-append > select.input-group-text,
+.input-group-sm > .input-group-prepend > select.btn,
+.input-group-sm > .input-group-append > select.btn {
+  font-size: 0.86rem !important;
+  background-color: white !important;
+  height: 36px !important;
+  color: rgba(0, 0, 0, 0.38) !important;
+}
+
+option:checked {
+  color: black !important;
+}
+
 .btn {
   font-size: 0.875rem !important;
 }
@@ -357,6 +404,21 @@ section.medium-gradient,
 
 .btn {
   text-transform: uppercase !important;
+}
+
+.form-control-sm,
+.input-group-sm > .form-control,
+.input-group-sm > .input-group-prepend > .input-group-text,
+.input-group-sm > .input-group-append > .input-group-text,
+.input-group-sm > .input-group-prepend > .btn,
+.input-group-sm > .input-group-append > .btn {
+  width: 100% !important;
+  display: block !important;
+  padding-top: .5rem !important;
+  padding-bottom: .5rem !important;
+  border-radius: 2px !important;
+  border: 1px solid rgba(0, 0, 0, 0.38) !important;
+  margin-bottom: 1rem;
 }
 
 /*!
@@ -7929,7 +7991,8 @@ button.bg-facebook:focus {
   border-bottom-left-radius: 0.25rem !important;
 }
 
-.rounded-circle {
+.rounded-circle,
+.number-circle {
   border-radius: 50% !important;
 }
 
@@ -14394,6 +14457,11 @@ section.white-box.medium-gradient,
 
 .white-box.big-min {
   height: 744px;
+  position: relative;
+}
+
+form .img-upload {
+  min-height: 233px;
   position: relative;
 }
 
