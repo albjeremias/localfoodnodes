@@ -18,7 +18,7 @@ li {
 }
 
 small {
-  color: #757575 !important;
+  color: #757575;
 }
 
 section {
@@ -6370,7 +6370,7 @@ input[type="button"].btn-block {
 
 .badge {
   display: inline-block;
-  padding: 0.9em 1.425em;
+  padding: 0.644rem 1.425rem;
   font-size: 13px;
   font-weight: 500;
   line-height: 1;

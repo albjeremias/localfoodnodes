@@ -52,9 +52,9 @@
                                 <a href="#" class="badge badge-info bc bb">Markera alla</a>
                                 @foreach ($tags as $label => $tag)
                                     @if ($tag['active'])
-                                        <a href="{{ $tag['url'] }}" class="badge badge-danger">{{ $label }}</a>
+                                        <a href="{{ $tag['url'] }}" class="badge badge-danger"><small class="rc">{{ $label }}</small></a>
                                     @else
-                                        <a href="{{ $tag['url'] }}" class="badge badge-danger">{{ $label }}</a>
+                                        <a href="{{ $tag['url'] }}" class="badge badge-light"><small class="black-87">{{ $label }}</small></a>
                                     @endif
                                 @endforeach
                             </div>

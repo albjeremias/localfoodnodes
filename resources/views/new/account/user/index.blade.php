@@ -10,7 +10,7 @@
 @section('content')
 
     <div class="bg-shell">
-        <div class="container nm pt-2">
+        <div class="container nm py-5">
             <div class="row">
                 <div class="col-11">
                     <div class="row">
