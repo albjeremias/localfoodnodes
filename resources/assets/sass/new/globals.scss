@@ -289,6 +289,11 @@ td {
   border: $dark-38 1px solid !important;
 }
 
+.bby {
+  border-top: 1px solid $black-12 !important;
+  border-bottom: 1px solid $black-12 !important;
+}
+
 .image {
   background-position: center;
   background-repeat: no-repeat;
@@ -399,4 +404,11 @@ select.form-control-sm {
 
 option:checked {
   color: black !important;
+}
+
+.bottom-left-link {
+  position: absolute;
+  bottom: 1rem;
+  text-transform: uppercase;
+  color: $main-primary;
 }

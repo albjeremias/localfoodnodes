@@ -77,41 +77,7 @@
                     <div class="row">
                         <div class="col-16">
                             <div class="white-box big-min">
-                                <h4>Noder jag följer</h4>
-
-                                <ul class="list-unstyled node-list mt-4">
-                                    <li>
-                                        <div class="row no-gutters">
-                                            <div class="col-2">
-                                                <i class="fa fa-asterisk icon-green" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="col">Bygdens Saluhall Dalby</div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row no-gutters">
-                                            <div class="col-2">
-                                                <i class="fa fa-asterisk icon-green" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="col">Möllan</div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row no-gutters">
-                                            <div class="col-2">
-                                            </div>
-                                            <div class="col">Lindängelund</div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row no-gutters">
-                                            <div class="col-2">
-                                                <i class="fa fa-asterisk icon-green" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="col">Studio - Food Node</div>
-                                        </div>
-                                    </li>
-                                </ul>
+                                @include('new.components.nodes-following')
                             </div>
                         </div>
 

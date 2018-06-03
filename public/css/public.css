@@ -166,7 +166,7 @@ a {
 }
 
 .nm {
-  margin-top: 161px;
+  margin-top: 137.09px;
 }
 
 .nms,
@@ -262,6 +262,11 @@ td {
 
 .bb-38 {
   border: #9e9e9e 1px solid !important;
+}
+
+.bby {
+  border-top: 1px solid rgba(0, 0, 0, 0.12) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
 }
 
 .image,
@@ -368,6 +373,13 @@ option:checked {
   color: black !important;
 }
 
+.bottom-left-link {
+  position: absolute;
+  bottom: 1rem;
+  text-transform: uppercase;
+  color: #bf360c;
+}
+
 .btn {
   font-size: 0.875rem !important;
 }
@@ -419,6 +431,13 @@ option:checked {
   border-radius: 2px !important;
   border: 1px solid rgba(0, 0, 0, 0.38) !important;
   margin-bottom: 1rem;
+}
+
+.badge-pill {
+  width: 117px !important;
+  line-height: 24px !important;
+  padding-bottom: 0.47rem !important;
+  padding-top: 0.47rem !important;
 }
 
 /*!
@@ -14440,6 +14459,16 @@ section.medium {
 
 section.big {
   height: 595px;
+  position: relative;
+}
+
+.node-lg {
+  min-height: 288px;
+  position: relative;
+}
+
+.white-box.tiny-min {
+  height: 144px;
   position: relative;
 }
 

@@ -28,6 +28,16 @@ section.big {
   position: relative;
 }
 
+.node-lg {
+  min-height: 288px;
+  position: relative;
+}
+
+.white-box.tiny-min {
+  height: 144px;
+  position: relative;
+}
+
 .white-box.little-min {
     height: 281px;
     position: relative;
@@ -93,5 +103,6 @@ section.medium-gradient {
     background: linear-gradient(90deg, rgba(2,0,36,0) 39%, $main-accent 60%);
   }
 }
+
 
 
