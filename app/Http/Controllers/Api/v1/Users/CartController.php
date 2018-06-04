@@ -82,7 +82,6 @@ class CartController extends BaseController
         $user = Auth::guard('api')->user();
         $cartDateItemLink = $user->cartDateItemLink($cartDateItemLinkId);
 
-
         if (!$cartDateItemLink) {
             return response($cartDateItemLinks, 400);
         }
@@ -116,10 +115,10 @@ class CartController extends BaseController
         }
 
         // For everything that's not CSA just update the the single cartDateItemLink.
-        if ($cartDateItemLink->getItem()->product['production_type'] !== 'csa') {
+        else {
             $cartDateItemLink = $this->validateAndUpdateCartDateItemLink($cartDateItemLink, $product, $variant, $node, $quantity);
 
-            return $return->errors ? response($cartDateItemLink->data, 400) : response($cartDateItemLink->data, 200);
+            return $cartDateItemLink->errors ? response($cartDateItemLink->data, 400) : response($cartDateItemLink->data, 200);
         }
     }
 

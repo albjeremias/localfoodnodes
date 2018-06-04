@@ -119,10 +119,7 @@ class UsersController extends BaseController
         $status = $user->processMembershipPayment($token, $amount);
 
         if ($status['error']) {
-            return response([
-                'success' => 'user_membership_error',
-                'message' => trans('admin/messages.user_membership_error', ['errors' => $status['message']])
-            ], 400);
+            return response('invalid_amount', 400);
         }
 
         return User::find($user->id); // Reload user
