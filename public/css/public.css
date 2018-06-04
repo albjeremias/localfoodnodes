@@ -13,7 +13,8 @@ a,
 small,
 input,
 button,
-li {
+li,
+th {
   font-family: "Montserrat" !important;
 }
 
@@ -53,6 +54,17 @@ a {
   font-size: 0.933rem !important;
   font-weight: 600 !important;
   line-height: 1.2rem !important;
+}
+
+table th {
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+}
+
+td {
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 20px;
 }
 
 .list-p li {
@@ -227,22 +239,11 @@ a {
 .table th {
   border-top: none !important;
   border-bottom: none !important;
-  padding-left: 40px !important;
-}
-
-.table td {
-  padding-left: 40px !important;
 }
 
 thead {
   -webkit-box-shadow: 0px 15px 10px -15px #111;
           box-shadow: 0px 15px 10px -15px #111;
-}
-
-td {
-  font-size: 13px;
-  font-weight: normal;
-  line-height: 20px;
 }
 
 .box-shadow,
