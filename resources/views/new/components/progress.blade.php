@@ -1,4 +1,4 @@
-<div class="box-shadow py-3 mb-1">
+<div class="box-shadow py-3 mb-1 d-none d-md-block">
     <div class="container py-2">
         <ul class="d-flex px-0 my-auto">
             @foreach($steps as $step)

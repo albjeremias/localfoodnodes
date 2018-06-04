@@ -12,9 +12,9 @@
     <div class="bg-shell">
         <div class="container nm py-5">
             <div class="row">
-                <div class="col-11">
+                <div class="col-md-10 col-lg-11">
                     <div class="row">
-                        <div class="col-9">
+                        <div class="col-lg-9">
                             <div class="white-box little-min">
                                 <h4>Profil-information</h4>
                                 <ul class="list-unstyled list-p">
@@ -23,17 +23,17 @@
                                 </ul>
 
                                 <div class="row mt-4">
-                                    <div class="col-4">
+                                    <div class="col-md-4">
                                         <h3 class="m-0">1129</h3>
                                         <small>Följda noder</small>
                                     </div>
 
-                                    <div class="col-4">
+                                    <div class="col-md-4">
                                         <h3 class="m-0">41</h3>
                                         <small>Producenter</small>
                                     </div>
 
-                                    <div class="col">
+                                    <div class="col pl-md-5">
                                         <h3 class="m-0">13.5 km</h3>
                                         <small>Snittavstånd till producent</small>
                                     </div>
@@ -43,7 +43,7 @@
                             </div>
                         </div>
 
-                        <div class="col-7">
+                        <div class="col-lg-7">
                             <div class="white-box little-min">
                                 <h4>Ännu inte medlem?</h4>
                                 <p class="black-54">Läs mer och bli medlem</p>
@@ -73,16 +73,16 @@
                     </div>
                 </div>
 
-                <div class="col-5">
+                <div class="col-md-6 col-lg-5">
                     <div class="row">
                         <div class="col-16">
-                            <div class="white-box big-min">
+                            <div class="white-box big-min height-rmd-auto">
                                 @include('new.components.nodes-following')
                             </div>
                         </div>
 
                         <div class="col-16">
-                            <div class="white-box medium-min">
+                            <div class="white-box medium-min height-rmd-auto">
                                 <h4>Evenemang</h4>
 
                                 <ul class="list-unstyled node-list mt-4">

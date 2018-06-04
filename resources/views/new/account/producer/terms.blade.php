@@ -13,7 +13,7 @@
 <div class="bg-accent-light-24">
     <div class="container py-5">
         <div class="row pb-5 terms_intro">
-            <div class="col-8">
+            <div class="col-xl-8">
                 {!! trans('admin/terms.new_producer_intro')  !!}
             </div>
         </div>
@@ -21,10 +21,10 @@
 </div>
 <div class="container">
     <div class="row my-5 terms_text">
-        <div class="col-8">
+        <div class="col-md-8">
             {!! trans('admin/terms.new_producer')  !!}
         </div>
-        <div class="col-8">
+        <div class="col-md-8">
             {!! trans('admin/terms.new_producer_2')  !!}
         </div>
 

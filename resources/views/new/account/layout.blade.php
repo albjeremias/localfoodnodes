@@ -20,7 +20,7 @@
 <div class="page">
     @if (!isset($hideMenu))
         @include('new.layouts.nav.base')
-        @include('account.user-nav-mobile')
+{{--        @include('account.user-nav-mobile')--}}
     @endif
     <div class="content {{ isset($hideMenu) ? 'no-menu' : '' }}">
         @include('shared.errors')

@@ -24,7 +24,7 @@
                             <a class="btn btn-primary" href="#">GÅ MED I NOD</a>
                         </li>
 
-                        <li class="list-inline-item mr-4">
+                        <li class="list-inline-item mr-4 d-block d-md-inline-block mt-2 mt-md-0">
                             <i class="fa fa-home" aria-hidden="true"></i>
                             {{ $node->address }}, {{ $node->zip }} {{ $node->city }}
                         </li>
@@ -122,12 +122,12 @@
         </div>
 
         <!-- PRODUCTS -->
-        <section>
+        <section class="mb-5">
             @if ($products->count() > 0)
                 <div class="container">
                     <div class="row">
                         @foreach ($products as $product)
-                            <div class="col-16 col-sm-8 col-xl-4 mb-3">
+                            <div class="col-16 col-sm-8 col-lg-4 mb-3">
                                 @include('new.components.cards.product')
                             </div>
                         @endforeach

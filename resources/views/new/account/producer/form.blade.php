@@ -16,41 +16,41 @@
 
 
     <div class="row mt-4">
-        <div class="col-9">
+        <div class="col-md-9">
 
             <h4>Producentinfo</h4>
 
             <div class="form-row mt-4">
 
-                <div class="form-group col-8">
+                <div class="form-group col-md-8">
                     <label for="inputEmail4">Gård/Företagsnamn</label>
                     <input type="email" class="form-control-sm" id="1" placeholder="Namn">
                 </div>
 
 
-                <div class="form-group col-8">
+                <div class="form-group col-md-8">
                     <label for="inputPassword4">Email</label>
                     <input type="password" class="form-control-sm" id="2" placeholder="Email">
                 </div>
 
 
-                <div class="form-group col-8">
+                <div class="form-group col-md-8">
                     <label for="inputEmail4">Adress</label>
                     <input type="email" class="form-control-sm" id="3" placeholder="Adress">
                 </div>
 
 
-                <div class="form-group col-4">
+                <div class="form-group col-8 col-md-4">
                     <label for="inputPassword4">Postnummer</label>
                     <input type="password" class="form-control-sm" id="4" placeholder="Postnummer">
                 </div>
 
-                <div class="form-group col-4">
+                <div class="form-group col-8 col-md-4">
                     <label for="inputPassword4">Stad</label>
                     <input type="password" class="form-control-sm" id="5" placeholder="Stad">
                 </div>
 
-                <div class="form-group col-16">
+                <div class="form-group col-md-16">
                     <label for="inputPassword4">Beskriv din gård/ditt företag</label>
                     <textarea name="info" class="form-control wysiwyg" id="6"
                               placeholder="{{ trans('admin/producer.info') }}"
@@ -58,7 +58,7 @@
                 </div>
 
 
-                <div class="form-group col-7">
+                <div class="form-group col-md-7">
 
                     <h4>Betalningsinformation</h4>
 
@@ -81,7 +81,7 @@
             </div>
         </div>
 
-        <div class="col-6 offset-1">
+        <div class="col-md-6 offset-md-1">
             <h4>Bilder</h4>
 
             <p>Ladda upp bilder (frivilligt)</p>

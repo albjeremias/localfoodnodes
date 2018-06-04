@@ -14740,5 +14740,13 @@ section.medium-gradient .inverted-accent {
   .inverted-accent h2 {
     width: 100% !important;
   }
+
+  html {
+    font-size: 13px !important;
+  }
+
+  .height-rmd-auto {
+    height: auto !important;
+  }
 }
 
