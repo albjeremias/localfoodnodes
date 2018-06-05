@@ -14604,7 +14604,7 @@ section.medium-gradient .inverted-accent {
 }
 
 .footer {
-  height: 194px;
+  min-height: 194px;
   background-color: #982b09;
 }
 
