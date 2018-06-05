@@ -11,7 +11,7 @@
 
     <div class="container login">
         <div class="row">
-            <div class="col-6 bg-img-party-cut login-image image p-5">
+            <div class="d-none d-md-block col-md-6 bg-img-party-cut login-image image p-5">
                 <a href="/">
                     <img class="login-logo" src="/images/nav-logo-dark.png">
                 </a>
@@ -23,7 +23,7 @@
                         till utlämningensplatsen...”</p>
                 </div>
             </div>
-            <div class="col-8 offset-1">
+            <div class="col-md-8 offset-md-1">
                 <div class="row mt-5">
                     <div class="col-16 text-right mb-5">
                         <small>Har du redan ett konto?</small>
