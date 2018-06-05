@@ -21,9 +21,7 @@
 // -------------------------------------
 
 @media (max-width: 1199px) {
-  #cover .input-group {
-    width: 54%;
-  }
+
 }
 
 // -------------------------------------
@@ -31,17 +29,17 @@
 // -------------------------------------
 
 @media (max-width: 991px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
   .card-simple-container {
     margin-bottom: 15px;
     margin-top: 15px;
   }
 
   .card-simple-overlay {
-    height: 60px;
-  }
-
-  section.medium-gradient p {
-    width: 100%;
+    height: 80px;
   }
 
   .icon-circle {
@@ -49,11 +47,11 @@
   }
 
   .normal-primary {
-    background: linear-gradient(90deg, $main-primary 47%, rgba(9, 9, 121, 0) 75%) !important;
+    background: linear-gradient(90deg, $main-primary 55%, rgba(9, 9, 121, 0) 82%) !important;
   }
 
   .normal-accent {
-    background: linear-gradient(90deg, $main-accent 47%, rgba(9, 9, 121, 0) 75%) !important;
+    background: linear-gradient(90deg, $main-accent 55%, rgba(9, 9, 121, 0) 82%) !important;
   }
 
   .inverted-primary {
@@ -77,12 +75,41 @@
 // -------------------------------------
 
 @media (max-width: 767px) {
-  section.medium-gradient p {
-    width: 50%;
+
+  html {
+    font-size: 13px !important;
+  }
+
+  .height-rmd-auto {
+    height: auto !important;
+  }
+}
+
+
+// -------------------------------------
+// LESS THEN SM
+// -------------------------------------
+
+@media (max-width: 575px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .medium-gradient {
+    background-image: none !important;
+    min-height: 350px !important;
+
+    .gradient {
+      background: none !important;
+    }
+  }
+
+  .section.medium-gradient p {
+    width: 100% !important;
   }
 
   section.medium-gradient h2 {
-    width: 50%;
+    width: 100% !important;
   }
 
   .inverted-accent p {
@@ -93,12 +120,8 @@
     width: 100% !important;
   }
 
-  html {
-    font-size: 13px !important;
-  }
-
-  .height-rmd-auto {
-    height: auto !important;
+  .button-main {
+    display: none !important;
   }
 }
 
@@ -113,3 +136,23 @@
     background-color: white !important;
   }
 }
+
+// -------------------------------------
+// MORE THEN SM
+// -------------------------------------
+
+@media (min-width: 576px) {
+
+  .inverted-accent p {
+    width: 100% !important;
+  }
+
+  .inverted-accent h2 {
+    width: 100% !important;
+  }
+
+  #cover .input-group {
+    width: 52%;
+  }
+}
+

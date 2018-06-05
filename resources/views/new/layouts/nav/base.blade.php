@@ -1,7 +1,7 @@
 {{--@if (Auth::user() && Auth::user()->active)--}}
 
 @if(!isset($no_nav))
-    <div id="nav-container" class="{{ !isset($transparent_nav) ? 'bg-main-primary' : 'bg-color-trans' }} fixed-top">
+    <div id="nav-container" class="{{ !isset($transparent_nav) ? 'bg-main-primary' : 'bg-color-trans' }} fixed-top d-none d-md-block">
 
         <nav class="navbar navbar-light navbar-expand-md">
             <a class="navbar-brand" href="/">

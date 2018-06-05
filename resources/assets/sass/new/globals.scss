@@ -204,18 +204,6 @@ td {
 }
 
 // -------------------------
-// PADDINGS
-// -------------------------
-
-.pt-6 {
-  padding-top: 4rem !important;
-}
-
-.pb-6 {
-  padding-bottom: 4rem !important;
-}
-
-// -------------------------
 // ICONS
 // -------------------------
 
@@ -253,10 +241,6 @@ td {
   border: #fff 1px solid;
   width: 45px;
   height: 45px;
-  position: absolute;
-  bottom: 33px;
-  left: 0;
-  right: 0;
   text-align: center;
   color: #fff;
 }
@@ -268,11 +252,6 @@ td {
 .table th {
   border-top: none !important;
   border-bottom: none !important;
-  //padding-left: 40px !important;
-}
-
-.table td {
-  //padding-left: 40px !important;
 }
 
 thead {
@@ -417,4 +396,9 @@ option:checked {
   bottom: 1rem;
   text-transform: uppercase;
   color: $main-primary;
+}
+
+.arrow-absolute {
+  position: absolute;
+  bottom: 17px;
 }

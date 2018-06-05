@@ -186,14 +186,6 @@ td {
   margin-top: 122.09px;
 }
 
-.pt-6 {
-  padding-top: 4rem !important;
-}
-
-.pb-6 {
-  padding-bottom: 4rem !important;
-}
-
 .icon,
 .icon-38,
 .icon-green,
@@ -228,10 +220,6 @@ td {
   border: #fff 1px solid;
   width: 45px;
   height: 45px;
-  position: absolute;
-  bottom: 33px;
-  left: 0;
-  right: 0;
   text-align: center;
   color: #fff;
 }
@@ -379,6 +367,11 @@ option:checked {
   bottom: 1rem;
   text-transform: uppercase;
   color: #bf360c;
+}
+
+.arrow-absolute {
+  position: absolute;
+  bottom: 17px;
 }
 
 .btn {
@@ -14500,10 +14493,6 @@ section.medium-gradient {
   z-index: 0;
 }
 
-section.medium-gradient p {
-  width: 72.9%;
-}
-
 section.medium-gradient .gradient,
 section.medium-gradient .gradient .gradient-accent,
 section.medium-gradient .gradient .gradient-primary {
@@ -14556,10 +14545,6 @@ section.medium-gradient .inverted-accent {
   background-color: rgba(0, 0, 0, 0.38);
   position: absolute;
   bottom: 0;
-}
-
-.card-simple-overlay h3 {
-  padding: 0.79em 0.67em;
 }
 
 .product {
@@ -14615,7 +14600,7 @@ section.medium-gradient .inverted-accent {
 }
 
 #cover .input-group {
-  width: 43%;
+  width: 90%;
 }
 
 .footer {
@@ -14679,24 +14664,18 @@ section.medium-gradient .inverted-accent {
   }
 }
 
-@media (max-width: 1199px) {
-  #cover .input-group {
-    width: 54%;
-  }
-}
-
 @media (max-width: 991px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
   .card-simple-container {
     margin-bottom: 15px;
     margin-top: 15px;
   }
 
   .card-simple-overlay {
-    height: 60px;
-  }
-
-  section.medium-gradient p {
-    width: 100%;
+    height: 80px;
   }
 
   .icon-circle {
@@ -14704,13 +14683,13 @@ section.medium-gradient .inverted-accent {
   }
 
   .normal-primary {
-    background: -webkit-gradient(linear, left top, right top, color-stop(47%, #bf360c), color-stop(75%, rgba(9, 9, 121, 0))) !important;
-    background: linear-gradient(90deg, #bf360c 47%, rgba(9, 9, 121, 0) 75%) !important;
+    background: -webkit-gradient(linear, left top, right top, color-stop(55%, #bf360c), color-stop(82%, rgba(9, 9, 121, 0))) !important;
+    background: linear-gradient(90deg, #bf360c 55%, rgba(9, 9, 121, 0) 82%) !important;
   }
 
   .normal-accent {
-    background: -webkit-gradient(linear, left top, right top, color-stop(47%, #ff9800), color-stop(75%, rgba(9, 9, 121, 0))) !important;
-    background: linear-gradient(90deg, #ff9800 47%, rgba(9, 9, 121, 0) 75%) !important;
+    background: -webkit-gradient(linear, left top, right top, color-stop(55%, #ff9800), color-stop(82%, rgba(9, 9, 121, 0))) !important;
+    background: linear-gradient(90deg, #ff9800 55%, rgba(9, 9, 121, 0) 82%) !important;
   }
 
   .inverted-primary {
@@ -14734,12 +14713,37 @@ section.medium-gradient .inverted-accent {
 }
 
 @media (max-width: 767px) {
-  section.medium-gradient p {
-    width: 50%;
+  html {
+    font-size: 13px !important;
+  }
+
+  .height-rmd-auto {
+    height: auto !important;
+  }
+}
+
+@media (max-width: 575px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .medium-gradient {
+    background-image: none !important;
+    min-height: 350px !important;
+  }
+
+  .medium-gradient .gradient,
+  section.medium-gradient .gradient .gradient-accent,
+  section.medium-gradient .gradient .gradient-primary {
+    background: none !important;
+  }
+
+  .section.medium-gradient p {
+    width: 100% !important;
   }
 
   section.medium-gradient h2 {
-    width: 50%;
+    width: 100% !important;
   }
 
   .inverted-accent p {
@@ -14750,18 +14754,28 @@ section.medium-gradient .inverted-accent {
     width: 100% !important;
   }
 
-  html {
-    font-size: 13px !important;
-  }
-
-  .height-rmd-auto {
-    height: auto !important;
+  .button-main {
+    display: none !important;
   }
 }
 
 @media (min-width: 1199px) {
   .bg-xl-white {
     background-color: white !important;
+  }
+}
+
+@media (min-width: 576px) {
+  .inverted-accent p {
+    width: 100% !important;
+  }
+
+  .inverted-accent h2 {
+    width: 100% !important;
+  }
+
+  #cover .input-group {
+    width: 52%;
   }
 }
 

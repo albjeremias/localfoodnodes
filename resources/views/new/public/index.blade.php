@@ -12,7 +12,7 @@
         <div class="container h-100">
             <div class="row h-100">
 
-                <div class="col-sm-12 offset-sm-2 col-md-16 offset-md-0 my-auto">
+                <div class="m-auto">
 
                     <h3>LOCAL FOOD NODES</h3>
                     <h1 class="text-uppercase my-3">{{ trans('public/index.co_create') }}</h1>
@@ -33,11 +33,11 @@
                 </div>
             </div>
         </div>
-        @include('new.components.arrow', ['dark' => false])
+        @include('new.components.arrow', ['dark' => false, 'classes' => ''])
     </section>
 
-    <section class="medium-min bg-main-primary pt-6 pb-6 pb-lg-0">
-        <div class="container">
+    <section class="bg-main-primary pt-5">
+        <div class="container pt-5">
             <div class="row wc">
                 <div class="col-lg-4 col-sm-16 text-center text-lg-left">
                     <h2 class="mt-3">{{ trans('public/pages/find-out-more.header_2') }}</h2>
@@ -67,13 +67,13 @@
                 </div>
             </div>
         </div>
-        @include('new.components.arrow', ['dark' => false])
+        @include('new.components.arrow', ['dark' => false, 'classes' => 'pb-3 pt-2 pt-lg-5 pb-lg-2'])
     </section>
 
     {{-- MAP --}}
     <section class="bg-accent-light-12 py-5">
         <div class="container">
-            <div class="map-site-info p-3">
+            <div class="map-site-info p-3 d-none d-xl-block">
                 <div class="row">
                     <div class="col">
                         <h4 class="m-0">1129</h4>
@@ -108,63 +108,69 @@
 
     {{-- GRADIENTS --}}
     @include('new.components.sections.medium-gradient', [
-        'image'     => 'basket',
-        'heading'   => 'public/index.create_and_shop',
-        'paragraph' => 'public/index.create_and_shop_paragraph',
+        'image'          => 'basket',
+        'heading'        => 'public/index.create_and_shop',
+        'paragraph'      => 'public/index.create_and_shop_paragraph',
         'button_text'    => 'public/create-account.user_header',
-        'inverted'  => false,
-        'global'     => 'rh2',
-        'button'    => 'secondary',
-        'color'     => 'accent'
+        'inverted'       => false,
+        'global'         => 'rh2',
+        'button'         => 'secondary',
+        'color'          => 'accent',
+        'sm_bg'          => 'bg-main-accent',
+        'button_swap'    => false
     ])
 
     @include('new.components.sections.medium-gradient', [
-        'image'     => 'party',
-        'heading'   => 'public/index.not_found_local',
-        'paragraph' => 'public/index.not_found_local_paragraph',
+        'image'          => 'party',
+        'heading'        => 'public/index.not_found_local',
+        'paragraph'      => 'public/index.not_found_local_paragraph',
         'button_text'    => 'public/index.create_place',
-        'inverted'  => true,
-        'global'     => 'wh2',
-        'button'    => 'secondary',
-        'color'     => 'accent'
+        'inverted'       => true,
+        'global'         => 'wh2',
+        'button'         => 'secondary',
+        'color'          => 'accent',
+        'sm_bg'          => 'bg-main-primary',
+        'button_swap'    => 'primary'
     ])
 
     @include('new.components.sections.medium-gradient', [
-        'image'     => 'carrots',
-        'heading'   => 'public/index.food_producer',
-        'paragraph' => 'public/index.food_producer_paragraph',
+        'image'          => 'carrots',
+        'heading'        => 'public/index.food_producer',
+        'paragraph'      => 'public/index.food_producer_paragraph',
         'button_text'    => 'admin/user-nav.create_producer',
-        'inverted'  => false,
-        'global'     => 'wh2 wp',
-        'button'    => 'primary',
-        'color'     => 'primary'
+        'inverted'       => false,
+        'global'         => 'wh2 wp',
+        'button'         => 'primary',
+        'color'          => 'primary',
+        'sm_bg'          => 'bg-main-accent',
+        'button_swap'    => 'secondary'
     ])
 
     {{-- MEMBERSHIP --}}
-    <section class="bg-accent-light-12 text-center py-5">
+    <section class="bg-accent-light-12 text-center pt-5 pb-3">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 offset-lg-3">
-                    <h4 class="pb-5">{{ trans('public/pages/membership.title') }}</h4>
+                    <h4 class="pb-4">{{ trans('public/pages/membership.title') }}</h4>
                     <h2 class="text-uppercase">{{ trans('public/index.co_fund_heading') }}</h2>
-                    <P>{{ trans('public/index.co_fund_subheading') }}</P>
+                    <P class="mb-0">{{ trans('public/index.co_fund_subheading') }}</P>
 
-                    <div class="row py-4">
+                    <div class="row py-5">
                         <div class="col-md-8">
                             @include('new.components.statistics.supporting-members')
                         </div>
 
-                        <div class="col-md-8">
+                        <div class="col-md-8 mt-4 mt-md-0">
                             @include('new.components.statistics.average-fee')
                         </div>
                     </div>
-                    <p>{{ trans('public/index.co_fund_paragraph_short') }}</p>
+                    <p class="w-75 text-center mx-auto">{{ trans('public/index.co_fund_paragraph_short') }}</p>
 
-                    <p class="rc text-uppercase mb-5">{{ trans('public/index.co_fund_read_more') }}</p>
+                    <p class="rc text-uppercase mt-4">{{ trans('public/index.co_fund_read_more') }}</p>
                 </div>
             </div>
         </div>
-        @include('new.components.arrow', ['dark' => true])
+        @include('new.components.arrow', ['dark' => true, 'classes' => 'pb-3 pt-2'])
     </section>
 
     {{-- ECONOMY --}}
@@ -175,7 +181,7 @@
             <p>{{ trans('public/index.transparency_short') }}</p>
             <span class="rc text-uppercase">{{ trans('public/economy.read_more_economy') }}</span>
         </div>
-        @include('new.components.arrow', ['dark' => true])
+        @include('new.components.arrow', ['dark' => true, 'classes' => 'pb-3 pt-2'])
     </section>
 
     <section class="medium text-center bg-img-party-red image wc">

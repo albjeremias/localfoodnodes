@@ -28,7 +28,7 @@
                     </select>
                 </div>
 
-                <div class="col mt-4 mt-lg-0">
+                <div class="col-lg-4 col-xl mt-4 mt-lg-0">
                     <button type="submit" class="btn-lg btn-secondary text-uppercase">{{ trans('public/index.create_user') }}</button>
                 </div>
             </form>
