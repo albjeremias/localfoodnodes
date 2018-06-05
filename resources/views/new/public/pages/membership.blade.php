@@ -23,9 +23,9 @@
                 </p>
             </div>
 
-            <div class="col-16 col-md-6 offset-md-2">
+            <div class="col-16 offset-0 col-md-6 offset-md-2 offset-lg-1 offset-xl-0">
                 <div class="text-center">
-                    <div class="mb-5">
+                    <div class="my-5 mt-lg-0">
                         @include('new.components.statistics.supporting-members')
                     </div>
                     @include('new.components.statistics.average-fee')
