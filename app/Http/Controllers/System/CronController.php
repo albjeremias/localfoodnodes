@@ -8,8 +8,9 @@ use Illuminate\Routing\Controller as BaseController;
 class NotificationController extends BaseController
 {
     /**
-     * There are new products to order.
-     * Optional
+     * New products.
+     * Run: every hour.
+     *
      *
      * @param Request $request
      * @return void
@@ -21,7 +22,8 @@ class NotificationController extends BaseController
 
     /**
      * Next scheduled pickup date.
-     * Optional
+     * Run: three days before
+     *
      *
      * @param Request $request
      * @return void
@@ -32,7 +34,8 @@ class NotificationController extends BaseController
     }
 
     /**
-     * Pickup of ordered products. First notification is send 1 day before pickup, the second 1 hour before pickup.
+     * Pickup of ordered products.
+     * Run: First notification 1 day before pickup, the second 1 hour before pickup.
      *
      * @param Request $request
      * @return void
@@ -44,6 +47,7 @@ class NotificationController extends BaseController
 
     /**
      * Producer has a new order.
+     * Run: Every hours
      *
      * @param Request $request
      * @return void

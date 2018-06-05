@@ -20,6 +20,7 @@ use App\Product\ProductNodeDeliveryLink;
 use App\Product\ProductTag;
 use App\Product\ProductFilter;
 use App\Image\Image;
+use \App\Notification;
 
 class ProductController extends Controller
 {
@@ -171,6 +172,19 @@ class ProductController extends Controller
             $product = $this->saveProduct($request, $producer, $product);
             $this->createTags($request, $product);
             $this->uploadImage($request, $product);
+
+            // Notification::create([
+            //     'notification_creator_id' => $user->id,
+            //     'notification_creator_type' => 'user',
+            //     'notification_entity_type' => 'product',
+            //     'notification_entity_id' => $product->id,
+            //     'title' => 'notification_new_product',
+            //     'message' => 'notification_new_product_message',
+            //     'message_variables' => [
+            //         'product_name' => $product->name,
+            //         'producer_name' => $producer->name,
+            //     ]
+            // ]);
 
             $request->session()->flash('message', [trans('admin/messages.product_updated')]);
         }

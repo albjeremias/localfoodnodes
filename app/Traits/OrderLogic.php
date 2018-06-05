@@ -35,7 +35,7 @@ trait OrderLogic
         // Set filter on order date to avoid loading order items from previous bookings
         $orderDates->each->setOrderFilter($orderRefs);
 
-        \Mail::to($user->email)->send(new \App\Mail\CustomerOrder($orderDates));
+        \Mail::to($user->email)->send(new \App\Mail\CustomerOrder($orderDates, $user));
     }
 
     /**

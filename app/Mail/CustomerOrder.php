@@ -12,15 +12,17 @@ class CustomerOrder extends Mailable
     use Queueable, SerializesModels;
 
     public $orderDates;
+    public $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($orderDates)
+    public function __construct($orderDates, $user)
     {
         $this->orderDates = $orderDates;
+        $this->user = $user;
     }
 
     /**
