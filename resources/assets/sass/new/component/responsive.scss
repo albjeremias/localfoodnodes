@@ -63,6 +63,13 @@
   .inverted-accent {
     background: linear-gradient(90deg, rgba(2,0,36,0) 39%, $main-accent 52%) !important;
   }
+
+  .node-lg {
+
+    .image {
+      height: 200px;
+    }
+  }
 }
 
 // -------------------------------------
@@ -92,5 +99,17 @@
 
   .height-rmd-auto {
     height: auto !important;
+  }
+}
+
+
+
+// -------------------------------------
+// MORE THEN XL
+// -------------------------------------
+
+@media (min-width: 1199px) {
+  .bg-xl-white {
+    background-color: white !important;
   }
 }

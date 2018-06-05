@@ -14722,6 +14722,15 @@ section.medium-gradient .inverted-accent {
     background: -webkit-gradient(linear, left top, right top, color-stop(39%, rgba(2, 0, 36, 0)), color-stop(52%, #ff9800)) !important;
     background: linear-gradient(90deg, rgba(2, 0, 36, 0) 39%, #ff9800 52%) !important;
   }
+
+  .node-lg .image,
+  .node-lg form .img-upload,
+  form .node-lg .img-upload,
+  .node-lg section.medium-gradient,
+  .node-lg .card-simple-container,
+  .node-lg #simple-page {
+    height: 200px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -14747,6 +14756,12 @@ section.medium-gradient .inverted-accent {
 
   .height-rmd-auto {
     height: auto !important;
+  }
+}
+
+@media (min-width: 1199px) {
+  .bg-xl-white {
+    background-color: white !important;
   }
 }
 
