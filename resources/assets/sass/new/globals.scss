@@ -111,6 +111,10 @@ td {
   background-color: $black-54;
 }
 
+.bg-black-87 {
+  background-color: $black-87 !important;
+}
+
 .bg-shell {
   background-color: $bg-1;
 }
@@ -208,9 +212,13 @@ td {
 // -------------------------
 
 .icon {
-  color: $dark-54;
   font-size: 1.6em !important;
   line-height: 24px !important;
+}
+
+.icon-54 {
+  @extend .icon;
+  color: $black-54 !important;
 }
 
 .icon-38 {
@@ -221,6 +229,11 @@ td {
 .icon-green {
   @extend .icon;
   color: $secondary-green !important;
+}
+
+.icon-white {
+  @extend .icon;
+  color: white !important;
 }
 
 .icon-small {
@@ -279,6 +292,19 @@ thead {
   border-bottom: 1px solid $black-12 !important;
 }
 
+.bbx {
+  border-left: 1px solid $black-12 !important;
+  border-right: 1px solid $black-12 !important;
+}
+
+.bbl {
+  border-left: 2.5px solid $black-12 !important;
+}
+
+.bbr {
+  border-right: 2.5px solid $black-12 !important;
+}
+
 .image {
   background-position: center;
   background-repeat: no-repeat;
@@ -310,7 +336,10 @@ thead {
 
 .sub-nav-active {
   border-bottom: $main-accent 2px solid;
-  padding-bottom: 15px;
+  //padding-bottom: 15px;
+  a {
+    color: $main-accent !important;
+  }
 }
 
 .nav-breadcrumb {

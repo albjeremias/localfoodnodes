@@ -2,7 +2,7 @@
 [
     'bread_type'     => 'Sökresultat',
     'bread_result'   => $node->name,
-    'sub_nav'        => ['Produkter', 'Kalender', 'Producenter', 'Bilder'],
+    'sub_nav'        => 'node',
     'sub_nav_active' => 0,
 ]
 )

@@ -102,6 +102,10 @@ td {
   background-color: rgba(0, 0, 0, 0.54);
 }
 
+.bg-black-87 {
+  background-color: rgba(0, 0, 0, 0.87) !important;
+}
+
 .bg-shell {
   background-color: #fafafa;
 }
@@ -187,13 +191,18 @@ td {
 }
 
 .icon,
+.icon-54,
 .icon-38,
 .icon-green,
+.icon-white,
 .icon-small,
 .icon-big {
-  color: #757575;
   font-size: 1.6em !important;
   line-height: 24px !important;
+}
+
+.icon-54 {
+  color: rgba(0, 0, 0, 0.54) !important;
 }
 
 .icon-38 {
@@ -202,6 +211,10 @@ td {
 
 .icon-green {
   color: #8bc34a !important;
+}
+
+.icon-white {
+  color: white !important;
 }
 
 .icon-small {
@@ -258,6 +271,19 @@ thead {
   border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
 }
 
+.bbx {
+  border-left: 1px solid rgba(0, 0, 0, 0.12) !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.12) !important;
+}
+
+.bbl {
+  border-left: 2.5px solid rgba(0, 0, 0, 0.12) !important;
+}
+
+.bbr {
+  border-right: 2.5px solid rgba(0, 0, 0, 0.12) !important;
+}
+
 .image,
 form .img-upload,
 section.medium-gradient,
@@ -291,7 +317,10 @@ section.medium-gradient,
 
 .sub-nav-active {
   border-bottom: #ff9800 2px solid;
-  padding-bottom: 15px;
+}
+
+.sub-nav-active a {
+  color: #ff9800 !important;
 }
 
 .nav-breadcrumb {
@@ -5862,7 +5891,7 @@ input[type="button"].btn-block {
 
 .navbar-light .navbar-toggler {
   color: #fff;
-  border-color: rgba(0, 0, 0, 0.1);
+  border-color: transparent;
 }
 
 .navbar-light .navbar-toggler-icon {
@@ -14665,6 +14694,32 @@ section.medium-gradient .inverted-accent {
 }
 
 @media (max-width: 991px) {
+  .sub-nav {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+    margin-left: 0;
+  }
+
+  .navbar-toggler {
+    z-index: 1;
+  }
+
+  .nav-logo {
+    z-index: 10;
+    position: relative;
+  }
+
+  .nms,
+  #simple-page {
+    margin-top: 59px;
+  }
+
+  .nm {
+    margin-top: 59px;
+  }
+
   h1 {
     font-size: 2.5rem;
   }
@@ -14720,6 +14775,11 @@ section.medium-gradient .inverted-accent {
   .height-rmd-auto {
     height: auto !important;
   }
+
+  .sub-nav {
+    position: relative;
+    top: 0;
+  }
 }
 
 @media (max-width: 575px) {
@@ -14762,6 +14822,20 @@ section.medium-gradient .inverted-accent {
 @media (min-width: 1199px) {
   .bg-xl-white {
     background-color: white !important;
+  }
+
+  .sub-nav li {
+    width: auto !important;
+  }
+
+  .sub-nav .sub-nav-active {
+    padding-bottom: 0px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .sub-nav li {
+    width: auto !important;
   }
 }
 

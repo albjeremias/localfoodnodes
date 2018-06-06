@@ -1,9 +1,9 @@
-<li class="nav-item d-sm-none d-md-block">
+<li class="nav-item">
     <a class="nav-link black-54" href="/account/user">min panel</a>
 </li>
-<li class="nav-item d-sm-none d-md-block">
-    <a class="nav-link black-54" href="/membership">utforska</a>
+<li class="nav-item">
+    <a class="nav-link black-54" href="/search">utforska</a>
 </li>
-<li class="nav-item d-sm-none d-md-block">
-    <a class="nav-link black-54" href="/economy">administration</a>
+<li class="nav-item">
+    <a class="nav-link black-54" href="/account/user">administration</a>
 </li>
