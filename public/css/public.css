@@ -14768,6 +14768,10 @@ section.medium-gradient .inverted-accent {
 }
 
 @media (max-width: 767px) {
+  .navbar-brand > img {
+    height: 20px !important;
+  }
+
   html {
     font-size: 13px !important;
   }
@@ -14782,7 +14786,11 @@ section.medium-gradient .inverted-accent {
   }
 
   .nm {
-    margin-top: 113px;
+    margin-top: 101px;
+  }
+
+  .sub-nav-active {
+    border-bottom: #ff9800 4px solid !important;
   }
 }
 

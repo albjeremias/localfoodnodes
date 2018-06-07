@@ -103,6 +103,10 @@
 
 @media (max-width: 767px) {
 
+  .navbar-brand > img {
+    height: 20px !important;
+  }
+
   html {
     font-size: 13px !important;
   }
@@ -118,6 +122,10 @@
 
   .nm {
     margin-top: $mobile-nav-margin;
+  }
+
+  .sub-nav-active {
+    border-bottom: #ff9800 4px solid !important;
   }
 }
 
