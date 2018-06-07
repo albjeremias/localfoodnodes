@@ -5,13 +5,12 @@
     'sub_nav_active' => 0
 ])
 
-@section('title', join(array_keys($breadcrumbs), ' - '))
+@section('title', 'Dashboard')
 
 @section('content')
-
     <div class="bg-shell">
-        <div class="container nm py-5">
-            <div class="row">
+        <div class="container nm">
+            <div class="row pt-2">
                 <div class="col-md-10 col-lg-11">
                     <div class="row">
                         <div class="col-lg-9">

@@ -48,16 +48,12 @@
     position: relative;
   }
 
-  .sub-nav-active {
-    //padding-bottom: 25px !important;
-  }
-
   .nms {
     margin-top: $mobile-nav-margin-s;
   }
 
   .nm {
-    margin-top: $mobile-nav-margin-s;
+    margin-top: $tablet-nav-margin;
   }
 
   h1 {
@@ -120,8 +116,8 @@
     top: 0;
   }
 
-  .sub-nav-active {
-    //padding-bottom: 13px !important;
+  .nm {
+    margin-top: $mobile-nav-margin;
   }
 }
 
@@ -183,7 +179,7 @@
     }
 
     .sub-nav-active {
-      padding-bottom: 0px !important;
+      //padding-bottom: 0px !important;
     }
   }
 }

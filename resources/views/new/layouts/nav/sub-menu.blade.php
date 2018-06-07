@@ -1,70 +1,44 @@
 {{-- EXTEND NAVBAR TO SHOW ACCOUNT NAVBAR --}}
-@if(isset($sub_nav) && $sub_nav == 'account')
+
+@php
+    $node_navbar = [
+        ['name' => 'Produkter',   'link' => '/node/' . (isset($node_slug) ? $node_slug : ''), 'icon' => 'shopping-basket'],
+        ['name' => 'Kalender',    'link' => '#', 'icon' => 'calendar'],
+        ['name' => 'Producenter', 'link' => '#', 'icon' => 'user-circle-o'],
+        ['name' => 'Bilder',      'link' => '#', 'icon' => 'picture-o'],
+    ];
+
+    $account_navbar = [
+        ['name' => 'Dashboard',   'link' => '/account/user',  'icon' => 'shopping-basket'],
+        ['name' => 'Mina Noder',  'link' => '/account/nodes', 'icon' => 'map-marker'],
+        ['name' => 'Utlämningar', 'link' => '#',              'icon' => 'home'],
+        ['name' => 'Evenemang',   'link' => '#',              'icon' => 'calendar'],
+        ['name' => 'Min Profil',  'link' => '#',              'icon' => 'user'],
+    ];
+
+    if (isset($sub_nav)) :
+        switch ($sub_nav) :
+            case 'account':
+                $active_navbar = $account_navbar;
+                break;
+            case 'node' :
+                $active_navbar = $node_navbar;
+                break;
+        endswitch;
+    endif;
+@endphp
+
+@if (isset($sub_nav))
     <div class="bg-main-primary wc text-uppercase sub-nav text-center text-lg-left">
         <ul class="list-inline mt-2 d-flex d-md-block mb-0">
-
-            <li class="list-inline-item flex-row w-25 {{ $sub_nav_active == 0 ? 'sub-nav-active' : '' }} pb-3 pb-lg-2">
-                <a class="px-md-3 wc" href="/account/user">
-                    <span class="d-none d-md-inline">Dashboard</span>
-                    <i class="fa fa-th-large d-md-none icon w-100"aria-hidden="true"></i>
-                </a>
-            </li>
-
-            <li class="list-inline-item flex-row w-25 {{ $sub_nav_active == 1 ? 'sub-nav-active' : '' }} pb-3 pb-lg-2">
-                <a class="px-md-3 wc" href="/account/nodes">
-                    <span class="d-none d-md-inline">Mina noder</span>
-                    <i class="fa fa-map-marker d-md-none icon w-100" aria-hidden="true"></i>
-                </a>
-            </li>
-
-            <li class="list-inline-item flex-row w-25 {{ $sub_nav_active == 2 ? 'sub-nav-active' : '' }} pb-3 pb-lg-2">
-                <a class="px-md-3 wc" href="#">
-                    <span class="d-none d-md-inline">Utlämningar</span>
-                    <i class="fa fa-home d-md-none icon w-100" aria-hidden="true"></i>
-                </a>
-            </li>
-
-            <li class="list-inline-item flex-row w-25 {{ $sub_nav_active == 3 ? 'sub-nav-active' : '' }} pb-3 pb-lg-2">
-                <a class="px-md-3 wc" href="#">
-                    <span class="d-none d-md-inline">Evenemang</span>
-                    <i class="fa fa-calendar d-md-none icon w-100" aria-hidden="true"></i>
-                </a>
-            </li>
-
-            <li class="list-inline-item flex-row w-25 {{ $sub_nav_active == 4 ? 'sub-nav-active' : '' }} pb-3 pb-lg-2">
-                <a class="px-md-3 wc" href="#">
-                    <span class="d-none d-md-inline">Min profil</span>
-                    <i class="fa fa-user d-md-none icon w-100" aria-hidden="true"></i>
-                </a>
-            </li>
-        </ul>
-    </div>
-@endif
-
-
-{{-- EXTEND NAVBAR TO SHOW NODE NAVBAR --}}
-@if(isset($sub_nav) && $sub_nav == 'node')
-    <div class="bg-main-primary wc text-uppercase sub-nav text-center text-lg-left">
-        <ul class="list-inline mt-2">
-            <li class="list-inline-item">
-                <a class="{{ $sub_nav_active == 0 ? 'sub-nav-active' : 'wc' }} px-3"
-                   href="#">Produkter</a>
-            </li>
-
-            <li class="list-inline-item">
-                <a class="{{ $sub_nav_active == 1 ? 'sub-nav-active' : 'wc' }} px-3"
-                   href="#">Kalender</a>
-            </li>
-
-            <li class="list-inline-item">
-                <a class="{{ $sub_nav_active == 2 ? 'sub-nav-active' : 'wc' }} px-3"
-                   href="#">Producenter</a>
-            </li>
-
-            <li class="list-inline-item">
-                <a class="{{ $sub_nav_active == 3 ? 'sub-nav-active' : 'wc' }} px-3"
-                   href="#">Bilder</a>
-            </li>
+            @foreach($active_navbar as $nav_item)
+                <li class="list-inline-item flex-row w-25 {{ $sub_nav_active == $loop->index ? 'sub-nav-active' : '' }} pb-4 pb-lg-3">
+                    <a class="px-md-3 wc" href="{{ $nav_item['link'] }}">
+                        <span class="d-none d-md-inline">{{ $nav_item['name'] }}</span>
+                        <i class="fa fa-{{ $nav_item['icon'] }} d-md-none icon w-100" aria-hidden="true"></i>
+                    </a>
+                </li>
+            @endforeach
         </ul>
     </div>
 @endif

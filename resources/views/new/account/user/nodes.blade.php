@@ -10,7 +10,7 @@ $viewName = 'my-nodes';
 $user = Auth::user();
 ?>
 
-@section('title', 'Mina noder'))
+@section('title', 'Mina noder')
 
 @section('content')
     <div class="bg-shell bg-xl-white">

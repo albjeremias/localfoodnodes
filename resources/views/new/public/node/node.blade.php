@@ -4,6 +4,7 @@
     'bread_result'   => $node->name,
     'sub_nav'        => 'node',
     'sub_nav_active' => 0,
+    'node_slug'      => 'bygdens-saluhall-billinge',
 ]
 )
 
@@ -161,4 +162,5 @@
             $('#added-to-cart-modal').modal('show');
         </script>
     @endif
+@endsection
 @endsection

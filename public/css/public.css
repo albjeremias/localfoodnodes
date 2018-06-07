@@ -182,12 +182,12 @@ td {
 }
 
 .nm {
-  margin-top: 137.09px;
+  margin-top: 156px;
 }
 
 .nms,
 #simple-page {
-  margin-top: 122.09px;
+  margin-top: 115px;
 }
 
 .icon,
@@ -14713,11 +14713,11 @@ section.medium-gradient .inverted-accent {
 
   .nms,
   #simple-page {
-    margin-top: 59px;
+    margin-top: 64px;
   }
 
   .nm {
-    margin-top: 59px;
+    margin-top: 72px;
   }
 
   h1 {
@@ -14780,6 +14780,10 @@ section.medium-gradient .inverted-accent {
     position: relative;
     top: 0;
   }
+
+  .nm {
+    margin-top: 113px;
+  }
 }
 
 @media (max-width: 575px) {
@@ -14826,10 +14830,6 @@ section.medium-gradient .inverted-accent {
 
   .sub-nav li {
     width: auto !important;
-  }
-
-  .sub-nav .sub-nav-active {
-    padding-bottom: 0px !important;
   }
 }
 

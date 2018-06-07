@@ -4,7 +4,7 @@
     <div id="nav-container"
          class="{{ !isset($transparent_nav) ? 'bg-main-primary' : 'bg-color-trans' }} fixed-top">
 
-        <nav class="navbar navbar-light navbar-expand-lg text-center text-lg-left mb-lg-0">
+        <nav class="navbar navbar-light navbar-expand-lg text-center text-lg-left mb-lg-0 pb-0">
             <a class="navbar-brand" href="/">
                 <img class="nav-logo" src="/images/nav-logo.png">
             </a>
@@ -23,7 +23,7 @@
 
                 </ul>
 
-                <ul class="navbar-nav ml-auto mb-5 mb-lg-5 mt-3 mt-lg-0">
+                <ul class="navbar-nav ml-auto mb-5 mb-lg-0 mt-3 mt-lg-0">
                     <!-- Visible links on mobile -->
                     <li class="nav-item d-lg-none">
                         <a class="nav-link" href="/login">{{ trans('public/nav.login') }}</a>
