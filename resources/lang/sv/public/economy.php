@@ -24,7 +24,6 @@ return [
     'orders' => 'Bokningar',
     'read_more_economy' => 'Läs mer om vår ekonomi',
     'ref' => 'Referens',
-    'title' => 'Ekonomi',
     'total' => 'totalt',
     'uncategorized' => 'Okategoriserat',
     'view_all_transactions' => 'Visa alla transaktioner',
@@ -45,4 +44,29 @@ return [
 
         <p>For a longer analysis read this article that we posted through our medium channel (coming soon).</p>
     ',
+
+	// ---------------------------
+	//	NEW AND/OR USED
+	// ---------------------------
+    'title' => 'Ekonomi',
+	'header' => 'Total transparens',
+	'sub_header' => 'Underrubrik underrubrik',
+
+	'body' =>
+		'<p>
+            Local Food Nodes har 100% financiell transparens. Här under ser ni alla årets inkomster och
+            kostnader summerade. Gå till vår finanssida för mer detaljerade finanser och förklaring kring varför
+            vi tror på transparens.
+        </p>
+        <p>
+            Local Food Nodes har 100% financiell transparens. Här under ser ni alla årets inkomster och
+            kostnader summerade. Gå till vår finanssida för mer detaljerade finanser och förklaring kring varför
+            vi tror på transparens.
+        </p>
+
+        <p>
+            Local Food Nodes har 100% financiell transparens. Här under ser ni alla årets inkomster och
+            kostnader summerade. Gå till vår finanssida för mer detaljerade finanser och förklaring kring varför
+            vi tror på transparens.
+        </p>'
 ];

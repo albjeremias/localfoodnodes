@@ -8,7 +8,7 @@
 
     <div class="node-content p-3">
         <span class="float-right">
-            <i class="fa fa-users icon-small" aria-hidden="true"></i>
+            <i class="fa fa-users icon-38 icon-small" aria-hidden="true"></i>
             <small>{{ $producers }}</small>
         </span>
 
@@ -21,6 +21,6 @@
 
         <hr>
         <a class="rc" href="{{ $link }}">BESÖK NOD</a>
-        <i class="product-items-share fa fa-share icon float-right" aria-hidden="true"></i>
+        <i class="product-items-share fa fa-share icon-38 float-right" aria-hidden="true"></i>
     </div>
 </div>

@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'title' => 'Medlemskap',
     'header' => 'Medfinansiera framtidens mat!',
     'sub_header' => 'Bli medlem och medskapa nya matsystem',
     'body' => '
@@ -27,7 +26,17 @@ På samma sätt ser vi det som nödvändigt att en gemensam digital plattform, u
 
     <p>Vi håller också på att skapa en styrandestruktur för den ekonomiska föreningen och plattformen där vi som utvecklare, nodadministratörer, producenter och kunder tillsammans kommer att arbeta fram vad vi ska utveckla vidare samt hur pengarna ska spenderas. Mer om detta kommer snart.</p>',
 
-    //numbers
-    'avg_fee' => 'Genomsnittlig medlemsavgift',
+
+
+	// ---------------------------
+	//	NEW AND/OR USED
+	// ---------------------------
+    'title' => 'Medlemskap',
+	'header' => 'Framtidens matförsörjning',
+	'sub_header' => 'Välj själv hur mycket du vill vara med och betala',
+	'body' => 'Genom att bli medlem medfinansierar du satsningar på att göra maten mer lokal igen. Tillsammans skapar vi ekonomiska förutsättningar för att stötta nya former av lokal organisering och en mer lokal matmarknad. Med våra gemensamma insatser kan vi tillsammans staka ut riktingen för framtidens matförsörjning och skapa oss gemensamma resurser för bättre möjlighet till påverkan.',
+
     'supporting' => 'Antal stöttande medlemmar',
-];
+    'avg_fee' => 'Genomsnittlig medlemsavgift',
+
+	];

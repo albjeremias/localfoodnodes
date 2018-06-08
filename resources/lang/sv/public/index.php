@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'co_create' => 'Tillsammans gör vi maten lokal',
     'co_create_info' => '
         <div class="row">
             <div class="col-12">
@@ -49,10 +48,7 @@ return [
     ',
 
     //co-funding part
-    'co_fund_heading' => 'Framtidens matförsörjning',
-    'co_fund_subheading' => 'Välj själv hur mycket du vill vara med och betala',
     'co_fund_paragraph' => 'Genom att bli medlem medfinansierar du satsningar på att göra maten mer lokal igen. Tillsammans skapar vi ekonomiska förutsättningar för att stötta nya former av lokal organisering och en mer lokal matmarknad. Med våra gemensamma insatser kan vi tillsammans staka ut riktingen för framtidens matförsörjning och skapa oss gemensamma resurser för bättre möjlighet till påverkan.',
-    'co_fund_read_more' => 'Läs mer om medlemskap',
 
 
     'monday' => 'Måndagar',
@@ -64,19 +60,7 @@ return [
     'sunday' => 'Söndagar',
 
 
-    'food_producer' => 'Är du matproducent?',
-	'food_producer_paragraph' => 'Lägg upp dina produkter och koppla dem mot utlämningsplatser i din närhet. Leverans och betalning sker direkt till kund på utlämningen. All förtjänst går obruten till dig så att du kan utvecklas och fortsätta med det du gör. Ingen annan än du ska tjäna pengar på att du producerar bra mat!',
-    'create_and_shop' => 'Skapa konto och börja handla lokalt',
-    'create_and_shop_paragraph' => 'Du kan enkelt skapa ett konto helt gratis. Kolla runt på siten, hitta utlämningsplatser när dig och lägg god, lokal mat i din digitala shoppingvagn. Innan du kan boka din mat behöver du bli stödmedlem, sedan kommer producenten med dina varor till utlämningsplatsen.',
-    'not_found_local' => 'Hittade du ingen utlämningsplats nära dig',
-    'not_found_local_paragraph' => 'En utlämningsplats kan startas och drivas av en förening, ett kooperativ, annan organisation eller av en enskild person. Allt som behövs är en adress.',
-    'read_more' => 'Läs mer',
-    'how_it_works_intro' => 'Vare sig du är producent eller konsument, Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem',
-    'create_place' => 'Skapa plats',
-    'found_your_local' => 'Hitta din lokala utlämningsplats',
-    'index_seach' => 'Sök på platser, orter och städer',
 
-	'transparency_short' => 'Local Food Nodes har 100% financiell transparens. Här under ser ni alla årets inkomster och kostnader summerade. Gå till vår finansida för mer...',
 	'read_more_economy' => 'Läs mer om vår ekonomi',
 
 	'be_part_of' => 'Bli en del av LOCAL FOOD NODES du också!',
@@ -87,8 +71,45 @@ return [
 	'your_email' => 'Din e-post',
 	'create_pw'  => 'Skapa lösenord',
 
-	'longing_for_local' => 'Längtan att göra maten lokal igen',
-	'more_vision' => 'Läs mer om vår vision',
 
-	'co_fund_paragraph_short' => 'Genom att bli medlem medfinansierar du satsningar på att göra maten mer lokal igen. Tillsammans skapar vi ekonomiska förutsättningar för att stötta nya former av lokal'
+
+	// ---------------------------
+	//	NEW AND/OR USED
+	// ---------------------------
+    'co_create' => 'Tillsammans gör vi maten lokal',
+    'found_your_local' => 'Hitta din lokala utlämningsplats',
+    'index_seach' => 'Sök på platser, orter och städer',
+	'find_out_more' => 'Så funkar det',
+    'how_it_works_intro' => 'Vare sig du är producent eller konsument, Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem',
+    'read_more' => 'Läs mer',
+    'create_and_shop' => 'Skapa konto och börja handla lokalt',
+    'not_found_local' => 'Hittade du ingen utlämningsplats nära dig',
+    'food_producer' => 'Är du matproducent?',
+    'create_and_shop_paragraph' => 'Du kan enkelt skapa ett konto helt gratis. Kolla runt på siten, hitta utlämningsplatser när dig och lägg god, lokal mat i din digitala shoppingvagn. Innan du kan boka din mat behöver du bli stödmedlem, sedan kommer producenten med dina varor till utlämningsplatsen.',
+	'create-account' => 'Skapa konto',
+    'not_found_local_paragraph' => 'En utlämningsplats kan startas och drivas av en förening, ett kooperativ, annan organisation eller av en enskild person. Allt som behövs är en adress.',
+    'create_place' => 'Skapa plats',
+    'food_producer_paragraph' => 'Lägg upp dina produkter och koppla dem mot utlämningsplatser i din närhet. Leverans och betalning sker direkt till kund på utlämningen. All förtjänst går obruten till dig så att du kan utvecklas och fortsätta med det du gör. Ingen annan än du ska tjäna pengar på att du producerar bra mat!',
+	'create_producer' => 'Skapa producent',
+
+    'map_users' => 'Användare',
+	'map_nodes' => 'Noder',
+	'map_producers' => 'Producenter',
+
+	'membership' => 'Medlemskap',
+    'co_fund_heading' => 'Framtidens matförsörjning',
+    'co_fund_subheading' => 'Välj själv hur mycket du vill vara med och betala',
+    'co_fund_paragraph_short' => 'Genom att bli medlem medfinansierar du satsningar på att göra maten mer lokal igen. Tillsammans skapar vi ekonomiska förutsättningar för att stötta nya former av lokal',
+    'co_fund_read_more' => 'Läs mer om medlemskap',
+
+	'economy' => 'Ekonomi',
+    'transparency_short' => 'Local Food Nodes har 100% financiell transparens. Här under ser ni alla årets inkomster och kostnader summerade. Gå till vår finansida för mer...',
+    'read_more_economy' => 'Läs mer om vår ekonomi',
+
+    'longing_for_local' => 'Längtan att göra maten lokal igen',
+    'more_vision' => 'Läs mer om vår vision',
+
+
+
+
 ];

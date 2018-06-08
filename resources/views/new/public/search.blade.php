@@ -1,7 +1,7 @@
 <?php $viewName = 'search' ?>
 @extends('new.public.layout')
 
-@section('title', trans('public/index.title'))
+@section('title', trans('public/pages/explore.title'))
 
 @section('content')
 
@@ -24,10 +24,42 @@
     <div class="container my-3">
 
         <span class="h3">"Skåne"</span>
-        <i class="fa fa-sort-amount-desc icon my-auto float-right" aria-hidden="true"></i>
+        <i class="fa fa-sort-amount-desc icon-38 my-auto float-right" aria-hidden="true"></i>
 
         <div class="my-4">
-            @include('new.components.table')
+
+
+            @php
+                $items = [
+                    [
+                        'type' => 'map-marker',
+                        'name' => 'Bygdens Saluhall Dalby',
+                        'distance_from_you' => '100 km',
+                        'address' => 'Pumpavägen 1, 24750, Dalby',
+                        'open' => 'Onsdagar, 18:30',
+                    ],
+                    [
+                        'type' => 'home',
+                        'name' => 'Möllan',
+                        'distance_from_you' => '8 km',
+                        'address' => 'Möllevångstorget, 21,424, Malmö',
+                        'open' => 'Onsdagar, 18:30',
+                    ],
+                    [
+                    	'type' => 'facebook-square',
+                        'name' => 'Lindängelund',
+                        'distance_from_you' => '9 km',
+                        'address' => 'Gånglåtsvägen, 171, 215 78',
+                        'open' => 'Tisdagar, 14:30',
+                    ],
+                ]
+            @endphp
+
+            @include('new.components.table',
+                [
+                    'items' => $items
+                ]
+            )
         </div>
     </div>
 @endsection

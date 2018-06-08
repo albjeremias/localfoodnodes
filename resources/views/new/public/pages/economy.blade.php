@@ -1,33 +1,18 @@
 @extends('new.layouts.simple-page', [
-    'header'     => 'Total transparens',
-    'sub_header' => 'Underrubrik underrubrik',
-    'title'      => 'Ekonomi',
+    'header'     => trans('public/economy.header'),
+    'sub_header' => trans('public/economy.sub_header'),
+    'title'      => trans('public/economy.title'),
     'bg'         => 'bg-accent-light-24'
 ])
 
-@section('title', 'Ekonomi')
+@section('title', trans('public/economy.title'))
 
 @section('page-content')
 
     <div class="container pb-5">
         <div class="row">
             <div class="col-16 col-md-8">
-                <p>
-                    Local Food Nodes har 100% financiell transparens. Här under ser ni alla årets inkomster och
-                    kostnader summerade. Gå till vår finanssida för mer detaljerade finanser och förklaring kring varför
-                    vi tror på transparens.
-                </p>
-                <p>
-                    Local Food Nodes har 100% financiell transparens. Här under ser ni alla årets inkomster och
-                    kostnader summerade. Gå till vår finanssida för mer detaljerade finanser och förklaring kring varför
-                    vi tror på transparens.
-                </p>
-
-                <p>
-                    Local Food Nodes har 100% financiell transparens. Här under ser ni alla årets inkomster och
-                    kostnader summerade. Gå till vår finanssida för mer detaljerade finanser och förklaring kring varför
-                    vi tror på transparens.
-                </p>
+                {{ trans('public/economy.body') }}
             </div>
 
             <div class="col-16 col-md-6 offset-md-2">

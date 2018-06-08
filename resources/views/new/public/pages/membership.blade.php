@@ -1,7 +1,7 @@
 @extends('new.layouts.simple-page', [
-    'header' => 'Framtidens matförsörjning',
-    'sub_header' => 'Välj själv hur mycket du vill vara med och betala',
-    'title'      => 'Medlemskap',
+    'header' => trans('public/pages/membership.header'),
+    'sub_header' => trans('public/pages/membership.sub_header'),
+    'title'      => trans('public/pages/membership.title'),
     'bg' => 'bg-accent-light-24'
 ])
 
@@ -12,14 +12,8 @@
     <div class="container pb-5">
         <div class="row">
             <div class="col-16 col-md-8">
-                <p class="">
-                    Genom att bli medlem medfinansierar du satsningar på att göra maten mer lokal igen. Tillsammans
-                    skapar
-                    vi ekonomiska förutsättningar för att stötta nya former av lokal organisering och en mer lokal
-                    matmarknad.
-                    Med våra gemensamma insatser kan vi tillsammans staka ut riktingen för framtidens matförsörjning och
-                    skapa
-                    oss gemensamma resurser för bättre möjlighet till påverkan.
+                <p>
+                    {{ trans('public/pages/membership.body') }}
                 </p>
             </div>
 

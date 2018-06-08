@@ -1,35 +1,27 @@
 <table class="table table-hover">
     <thead border="0">
     <tr>
-        <th scope="col" class="text-center pl-0">Typ</th>
-        <th scope="col">Namn</th>
-        <th scope="col">Avstånd från dig</th>
-        <th scope="col">Adress</th>
-        <th scope="col">Öppentid</th>
+        @foreach($items[0] as $item => $value)
+            <th
+                scope="col"
+                class="{{ $loop->index == 0 ? 'text-center pl-0' : '' }}">
+                {{ trans('public/pages/explore.' . $item) }}
+            </th>
+        @endforeach
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td class="text-center pl-0"><i class="fa fa-home icon" aria-hidden="true"></i></td>
-        <td>Bygdens Saluhall Dalby</td>
-        <td>100 m</td>
-        <td>Pumpvägen 1, 24750, Dalby</td>
-        <td>Onsdagar 18:30</td>
-    </tr>
 
-    <tr>
-        <td class="text-center pl-0"><i class="fa fa-map-marker icon" aria-hidden="true"></i></td>
-        <td>Möllan</td>
-        <td>8 km</td>
-        <td>Möllevångstorget, 21424, Malmö</td>
-        <td>Söndagar 12:00</td>
-    </tr>
-    <tr>
-        <td class="text-center pl-0"><i class="fa fa-facebook-square icon" aria-hidden="true"></i></td>
-        <td>Lindängelund</td>
-        <td>9 km</td>
-        <td>Gånglåtsvägen 171, 215 78</td>
-        <td>Tisdag 14:30</td>
-    </tr>
+    @foreach($items as $item)
+        <tr>
+            @foreach($item as $key => $value)
+                @if($loop->index == 0)
+                    <td class="text-center pl-0"><i class="fa fa-{{ $item[$key] }} icon-38" aria-hidden="true"></i></td>
+                @else
+                    <td>{{ $item[$key] }}</td>
+                @endif
+            @endforeach
+        </tr>
+    @endforeach
     </tbody>
 </table>

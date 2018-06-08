@@ -40,7 +40,7 @@
         <div class="container pt-5">
             <div class="row wc">
                 <div class="col-lg-4 col-sm-16 text-center text-lg-left">
-                    <h2 class="mt-3">{{ trans('public/pages/find-out-more.header_2') }}</h2>
+                    <h2 class="mt-3">{{ trans('public/index.find_out_more') }}</h2>
                     <p>{{ trans('public/index.how_it_works_intro') }}</p>
                     <a class="btn btn-primary mt-lg-4" href="#">{{ trans('public/index.read_more') }}</a>
                 </div>
@@ -77,17 +77,17 @@
                 <div class="row">
                     <div class="col">
                         <h4 class="m-0">1129</h4>
-                        <small>Användare</small>
+                        <small>{{ trans('public/index.map_users') }}</small>
                     </div>
 
                     <div class="col px-5">
                         <h4 class="m-0">41</h4>
-                        <small>Noder</small>
+                        <small>{{ trans('public/index.map_nodes') }}</small>
                     </div>
 
                     <div class="col">
                         <h4 class="m-0">110</h4>
-                        <small>Producenter</small>
+                        <small>{{ trans('public/index.map_producers') }}</small>
                     </div>
                 </div>
             </div>
@@ -111,7 +111,7 @@
         'image'          => 'basket',
         'heading'        => 'public/index.create_and_shop',
         'paragraph'      => 'public/index.create_and_shop_paragraph',
-        'button_text'    => 'public/create-account.user_header',
+        'button_text'    => 'public/index.create-account',
         'inverted'       => false,
         'global'         => 'rh2',
         'button'         => 'secondary',
@@ -137,7 +137,7 @@
         'image'          => 'carrots',
         'heading'        => 'public/index.food_producer',
         'paragraph'      => 'public/index.food_producer_paragraph',
-        'button_text'    => 'admin/user-nav.create_producer',
+        'button_text'    => 'public/index.create_producer',
         'inverted'       => false,
         'global'         => 'wh2 wp',
         'button'         => 'primary',
@@ -151,7 +151,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 offset-lg-3">
-                    <h4 class="pb-4">{{ trans('public/pages/membership.title') }}</h4>
+                    <h4 class="pb-4">{{ trans('public/index.membership') }}</h4>
                     <h2 class="text-uppercase">{{ trans('public/index.co_fund_heading') }}</h2>
                     <P class="mb-0">{{ trans('public/index.co_fund_subheading') }}</P>
 
@@ -176,10 +176,10 @@
     {{-- ECONOMY --}}
     <section class="medium bg-accent-light-24 text-center">
         <div class="container">
-            <h4 class="py-5">{{ trans('public/economy.economy') }}</h4>
+            <h4 class="py-5">{{ trans('public/index.economy') }}</h4>
             <metrics translations="{{ json_encode(trans('public/economy')) }}"></metrics>
             <p>{{ trans('public/index.transparency_short') }}</p>
-            <span class="rc text-uppercase">{{ trans('public/economy.read_more_economy') }}</span>
+            <span class="rc text-uppercase">{{ trans('public/index.read_more_economy') }}</span>
         </div>
         @include('new.components.arrow', ['dark' => true, 'classes' => 'pb-3 pt-2'])
     </section>

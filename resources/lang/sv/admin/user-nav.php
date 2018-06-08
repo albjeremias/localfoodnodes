@@ -47,4 +47,11 @@ return [
     'products' => 'Produkter',
     'users' => 'Användare',
     'variants' => 'Varianter',
+
+	// ---------------------------
+	//	NEW AND/OR USED
+	// ---------------------------
+    'my_panel' => 'Min Panel',
+    'explore' => 'Utforska',
+    'admin' => 'Administration'
 ];
