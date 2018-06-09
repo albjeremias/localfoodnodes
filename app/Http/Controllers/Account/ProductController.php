@@ -173,19 +173,6 @@ class ProductController extends Controller
             $this->createTags($request, $product);
             $this->uploadImage($request, $product);
 
-            // Notification::create([
-            //     'notification_creator_id' => $user->id,
-            //     'notification_creator_type' => 'user',
-            //     'notification_entity_type' => 'product',
-            //     'notification_entity_id' => $product->id,
-            //     'title' => 'notification_new_product',
-            //     'message' => 'notification_new_product_message',
-            //     'message_variables' => [
-            //         'product_name' => $product->name,
-            //         'producer_name' => $producer->name,
-            //     ]
-            // ]);
-
             $request->session()->flash('message', [trans('admin/messages.product_updated')]);
         }
 
@@ -418,11 +405,13 @@ class ProductController extends Controller
      */
     public function setPackageUnit(Request $request, $producerId, $productId)
     {
-        $user = Auth::user();
-        $producer = $user->producerAdminLink($producerId)->getProducer();;
-        $product = $producer->product($productId);
-        $product->package_unit = $request->input('package_unit');
-        $product->save();
+        if ($request->input('package_unit') !== 'null') {
+            $user = Auth::user();
+            $producer = $user->producerAdminLink($producerId)->getProducer();
+            $product = $producer->product($productId);
+            $product->package_unit = $request->input('package_unit');
+            $product->save();
+        }
 
         return redirect()->back();
     }

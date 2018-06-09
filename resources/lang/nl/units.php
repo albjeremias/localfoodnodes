@@ -23,6 +23,7 @@ return [
     'floz' => 'fl oz',
     'pint' => 'pt',
     'gallon' => 'gal',
+    'pound' => 'pound',
 
     // Product price unit
     'product' => 'p.st.',

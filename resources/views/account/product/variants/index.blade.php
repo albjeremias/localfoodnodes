@@ -76,7 +76,7 @@
                                 @include('account.field-error', ['field' => 'package_unit'])
                             </label>
                             <select class="form-control" name="package_unit" id="package-unit">
-                                <option>{{ trans('admin/product.select_unit_product_content') }}</option>
+                                <option value="null">{{ trans('admin/product.select_unit_product_content') }}</option>
                                 @foreach (UnitsHelper::getVariantUnits() as $key => $label)
                                     <option value="{{ $key }}" {{ $product->package_unit === $key ? 'selected' : '' }}>{{ $label }}</option>
                                 @endforeach
