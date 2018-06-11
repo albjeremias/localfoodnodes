@@ -1,10 +1,10 @@
 @extends('new.account.layout',
 [
-    'bread_type'   => 'Admin',
-    'bread_result' => 'Skapa Producent'
+    'bread_type'   => trans('public/nav.admin'),
+    'bread_result' => trans('public/nav.create_producer')
 ])
 
-@section('title', join(array_keys($breadcrumbs), ' - '))
+@section('title', trans('public/register.title_producer'))
 
 @section('content')
 

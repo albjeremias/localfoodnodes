@@ -12,12 +12,12 @@
     <div class="container pb-5">
         <div class="row">
             <div class="col-16 col-md-8">
-                {{ trans('public/economy.body') }}
+                {!! trans('public/economy.body') !!}
             </div>
 
             <div class="col-16 col-md-6 offset-md-2">
                 <div class="my-5 mt-md-0">
-                    <h3>INTÄKTER 2017</h3>
+                    <h3>{{ trans('public/economy.income_year') }}</h3>
                 </div>
             </div>
         </div>

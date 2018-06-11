@@ -68,5 +68,7 @@ return [
             Local Food Nodes har 100% financiell transparens. Här under ser ni alla årets inkomster och
             kostnader summerade. Gå till vår finanssida för mer detaljerade finanser och förklaring kring varför
             vi tror på transparens.
-        </p>'
+        </p>',
+
+	'income_year' => 'INTÄKTER 2017'
 ];

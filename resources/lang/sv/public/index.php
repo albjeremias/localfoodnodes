@@ -13,7 +13,6 @@ return [
     'create_node_info' => '
         Vill du stärka den lokala maten i ditt närområde? Vem som helst kan skapa en utlämningsplats var som helst och göra den sökbar på kartan för båda producenter och konsumenter.
     ',
-    'create_user' => 'Skapa konto',
     'create_user_header' => 'Handla lokalt',
     'create_user_info' => '
         Skapa ett användarkonto enkelt och gratis. Hitta lokala utlämningsplatser som passar dig och börja botanisera bland tillgänglig mat. Bli stöttande medlem och förboka sedan mat direkt från dina lokala producenter och hämta upp den på givna tider och platser.
@@ -65,17 +64,21 @@ return [
 
 	'be_part_of' => 'Bli en del av LOCAL FOOD NODES du också!',
 	'accept_terms' => 'Genom att skapa ett konto godtar du följande',
-	'terms' => 'vilkor.',
 
-	'your_name' => 'Ditt namn',
-	'your_email' => 'Din e-post',
-	'create_pw'  => 'Skapa lösenord',
 
 
 
 	// ---------------------------
 	//	NEW AND/OR USED
 	// ---------------------------
+    'your_name' => 'Ditt namn',
+    'your_email' => 'Din e-post',
+    'create_pw'  => 'Skapa lösenord',
+    'create_user' => 'Skapa konto',
+    'terms' => 'vilkor.',
+
+
+
     'co_create' => 'Tillsammans gör vi maten lokal',
     'found_your_local' => 'Hitta din lokala utlämningsplats',
     'index_seach' => 'Sök på platser, orter och städer',

@@ -56,8 +56,52 @@ return [
     <p>Det är mitt ansvar som producent att jag följer nationella lagar när det gäller försäljning, deklaration och skatter när det gäller min försäljning.</p>
     <p>Det är mitt ansvar att veta vilka juridiska villkor jag måste följa för försäljning av mina produkter.</p>',
 
+
+
+
+	// NODE
+	'node'         => '<p>Great! You want to start a Local Food Node. But first, read these simple terms of running av node, and make sure you fully understand them. Then hit agree, and you are good to go.</p>
+
+    <b>Location Permits</b>
+    <p>I understand that I have to have all legal permits required for the physical spot I have chosen for the local food node.</p>
+
+    <p>When starting a node it is my responsibility as node admin to find out if any legal permits are needed for the physical location and acquiring those if needed.</p>
+
+    <p>If a physical location is used on the site as a node without required permits, it is I in the role of the node admin that has the sole legal responsibility for this.</p>
+
+    <p>The platform, Local Food Nodes, takes no legal responsibility for any physical location used as a node on the site or any legal responsibility to require or validate permits that might be needed for physical locations connected to the nodes on the site.</p>
+
+    <b>Deliveries</b>
+    <p>The Platform, Local Food Nodes, does not sell any goods.</p>
+
+    <p>You, in the role of the node admin, does not sell any goods.</p>
+
+    <p>You, in the role of the node admin, do not have any responsibility for the products being delivered at the node that you administrate.</p>
+
+    <p>All food must be delivered straight from the producers to the consumers.</p>
+
+    <p>During deliveries at the nodes, producers may only deliver the pre-booked goods and can not sell additional products unless permission i acquired for direct sales at that location.</p>
+
+    <b>Financial terms</b>
+    <p>Its free for all producer to join your node.</p>
+
+    <p>You may never charge any producer for their participation on the platform or for handing out their products at any delivery occasion.</p>
+
+    <p>You may never take a cut of what is sold or delivered on the node.</p>
+
+    <b>Violations of these terms may exclude you from being a node admin, and in worst case have your node removed.</b>',
+
+
+
+
+
+	// ---------------------------
+	//	NEW AND/OR USED
+	// ---------------------------
+
+	// ----------PRODUCER---------
 	'new_producer_intro' => '
-	<h2>Härligt, och varmt välkommen</h2>
+		<h2>Härligt, och varmt välkommen</h2>
 		 <p>du lokala matproducent till Local Food Nodes.</p> 
 		 <small>Innan du skapa ditt producentkonto måste först du läsa igenom och godkänna dessa användarvillkor. Se till att du förstår dem fullt ut, sen är det bara att köra, och du det är gratis.</small>',
 
@@ -115,35 +159,8 @@ return [
 	    <p><small>Det är mitt ansvar som producent att jag följer nationella lagar när det gäller försäljning, deklaration och skatter när det gäller min försäljning.</small></p>
 	    <p><small>Det är mitt ansvar att veta vilka juridiska villkor jag måste följa för försäljning av mina produkter.</small></p>',
 
-	// NODE
-	'node'         => '<p>Great! You want to start a Local Food Node. But first, read these simple terms of running av node, and make sure you fully understand them. Then hit agree, and you are good to go.</p>
 
-    <b>Location Permits</b>
-    <p>I understand that I have to have all legal permits required for the physical spot I have chosen for the local food node.</p>
+	'cancel' => 'Avbryt',
+	'accept' => 'Godkänn villkor'
 
-    <p>When starting a node it is my responsibility as node admin to find out if any legal permits are needed for the physical location and acquiring those if needed.</p>
-
-    <p>If a physical location is used on the site as a node without required permits, it is I in the role of the node admin that has the sole legal responsibility for this.</p>
-
-    <p>The platform, Local Food Nodes, takes no legal responsibility for any physical location used as a node on the site or any legal responsibility to require or validate permits that might be needed for physical locations connected to the nodes on the site.</p>
-
-    <b>Deliveries</b>
-    <p>The Platform, Local Food Nodes, does not sell any goods.</p>
-
-    <p>You, in the role of the node admin, does not sell any goods.</p>
-
-    <p>You, in the role of the node admin, do not have any responsibility for the products being delivered at the node that you administrate.</p>
-
-    <p>All food must be delivered straight from the producers to the consumers.</p>
-
-    <p>During deliveries at the nodes, producers may only deliver the pre-booked goods and can not sell additional products unless permission i acquired for direct sales at that location.</p>
-
-    <b>Financial terms</b>
-    <p>Its free for all producer to join your node.</p>
-
-    <p>You may never charge any producer for their participation on the platform or for handing out their products at any delivery occasion.</p>
-
-    <p>You may never take a cut of what is sold or delivered on the node.</p>
-
-    <b>Violations of these terms may exclude you from being a node admin, and in worst case have your node removed.</b>'
 ];

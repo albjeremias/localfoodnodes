@@ -20,4 +20,9 @@ return [
 	'lang_swe'     => 'SV',
     'login' => 'Logga in',
     'create' => 'Skapa konto',
+
+	'search_result' => 'Sökresultat',
+	'admin' => 'Admin',
+	'create_producer' => 'Skapa Producent',
+
 ];

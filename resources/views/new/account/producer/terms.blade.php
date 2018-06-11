@@ -3,10 +3,10 @@
     'active' => 0,
     'steps'  =>
         [
-            'Läs igenom alla villkoren',
-            'Skapa konto',
-            'Anslut till noder',
-            'Skapa produkter'
+            trans('public/register.step_1'),
+            trans('public/register.step_2'),
+            trans('public/register.step_3'),
+            trans('public/register.step_4')
         ]
 ])
 
@@ -29,8 +29,8 @@
         </div>
 
         <div class="col text-right my-5">
-            <a class="rc text-uppercase mr-4" href="#">{{ trans('admin/producer.cancel') }}</a>
-            <a class="btn btn-secondary" href="/account/producer/create?terms=approved">GODKÄNN VILLKOR</a>
+            <a class="rc text-uppercase mr-4" href="#">{{ trans('admin/terms.cancel') }}</a>
+            <a class="btn btn-secondary" href="/account/producer/create?terms=approved">{{ trans('admin/terms.accept') }}</a>
         </div>
     </div>
 </div>
