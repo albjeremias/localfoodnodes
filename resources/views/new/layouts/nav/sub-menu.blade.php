@@ -2,18 +2,18 @@
 
 @php
     $node_navbar = [
-        ['name' => 'Produkter',   'link' => '/node/' . (isset($node_slug) ? $node_slug : ''), 'icon' => 'shopping-basket'],
-        ['name' => 'Kalender',    'link' => '#', 'icon' => 'calendar'],
-        ['name' => 'Producenter', 'link' => '#', 'icon' => 'user-circle-o'],
-        ['name' => 'Bilder',      'link' => '#', 'icon' => 'picture-o'],
+        ['name' => trans('public/nav.products'),  'link' => '/node/' . (isset($node_slug) ? $node_slug : ''), 'icon' => 'shopping-basket'],
+        ['name' => trans('public/nav.calendar'),  'link' => '#', 'icon' => 'calendar'],
+        ['name' => trans('public/nav.producers'), 'link' => '#', 'icon' => 'user-circle-o'],
+        ['name' => trans('public/nav.images'),    'link' => '#', 'icon' => 'picture-o'],
     ];
 
     $account_navbar = [
-        ['name' => 'Dashboard',   'link' => '/account/user',  'icon' => 'th-large'],
-        ['name' => 'Mina Noder',  'link' => '/account/nodes', 'icon' => 'map-marker'],
-        ['name' => 'Utlämningar', 'link' => '#',              'icon' => 'home'],
-        ['name' => 'Evenemang',   'link' => '#',              'icon' => 'calendar'],
-        ['name' => 'Min Profil',  'link' => '#',              'icon' => 'user'],
+        ['name' => trans('public/nav.dashboard'),  'link' => '/account/user',  'icon' => 'th-large'],
+        ['name' => trans('public/nav.my_nodes'),   'link' => '/account/nodes', 'icon' => 'map-marker'],
+        ['name' => trans('public/nav.pick_ups'),   'link' => '#',              'icon' => 'home'],
+        ['name' => trans('public/nav.events'),     'link' => '#',              'icon' => 'calendar'],
+        ['name' => trans('public/nav.my_profile'), 'link' => '#',              'icon' => 'user'],
     ];
 
     if (isset($sub_nav)) :
@@ -42,3 +42,4 @@
         </ul>
     </div>
 @endif
+

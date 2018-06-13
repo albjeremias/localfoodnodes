@@ -20,7 +20,7 @@
         </p>
 
         <hr>
-        <a class="rc" href="{{ $link }}">BESÖK NOD</a>
+        <a class="rc text-uppercase" href="{{ $link }}">{{ trans('admin/user.visit_node') }}</a>
         <i class="product-items-share fa fa-share icon-38 float-right" aria-hidden="true"></i>
     </div>
 </div>

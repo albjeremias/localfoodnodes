@@ -25,4 +25,15 @@ return [
 	'admin' => 'Admin',
 	'create_producer' => 'Skapa Producent',
 
+	'products' => 'Produkter',
+    'calendar' => 'Kalender',
+    'producers' => 'Producenter',
+    'images' => 'Bilder',
+
+    'dashboard' => 'Dashboard',
+    'my_nodes' => 'Mina Noder',
+    'pick_ups' => 'Utlämningar',
+    'events' => 'Evenemang',
+    'my_profile' => 'Min Profil'
+
 ];

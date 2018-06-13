@@ -1,6 +1,6 @@
 @extends('new.account.layout',
 [
-    'nav_title' => 'Min Panel',
+    'nav_title' => trans('admin/user.nav_title'),
     'sub_nav' => 'account',
     'sub_nav_active' => 1
 ])
@@ -26,16 +26,16 @@ $user = Auth::user();
                     <div class="row">
                         <div class="col-sm-8">
                             <div class="white-box tiny-min">
-                                <h4>Ännu inte medlem?</h4>
-                                <p>Läs mer och bli medlem</p>
-                                <a class="bottom-left-link" href="#">Bli medlem</a>
+                                <h4>{{ trans('admin/user.still_not_member') }}</h4>
+                                <p>{{ trans('admin/user.membership_unpaid_link') }}</p>
+                                <a class="bottom-left-link" href="#">{{ trans('admin/user.membership') }}</a>
                             </div>
                         </div>
                         <div class="col-sm-8">
                             <div class="white-box tiny-min">
-                                <h4>Ännu inte medlem?</h4>
-                                <p>Läs mer och bli medlem</p>
-                                <a class="bottom-left-link" href="#">Bli medlem</a>
+                                <h4>{{ trans('admin/user.still_not_member') }}</h4>
+                                <p>{{ trans('admin/user.membership_unpaid_link') }}</p>
+                                <a class="bottom-left-link" href="#">{{ trans('admin/user.membership') }}</a>
                             </div>
                         </div>
 
@@ -48,7 +48,7 @@ $user = Auth::user();
                                         data-toggle="dropdown"
                                         aria-haspopup="true"
                                         aria-expanded="false">
-                                    sortera efter nod
+                                    {{ trans('admin/user.sort_by_node') }}
                                 </button>
                                 <div class="dropdown-menu">
                                     <a href="#" class="dropdown-item">PLACEHOLDER</a>

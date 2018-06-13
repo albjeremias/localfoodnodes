@@ -1,4 +1,4 @@
-<h4>Noder jag följer</h4>
+<h4>{{ trans('admin/user.nodes_i_follow') }}</h4>
 
 <ul class="list-unstyled node-list mt-4">
     <li>

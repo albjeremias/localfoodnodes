@@ -5,7 +5,7 @@
     'no_nav' => true,
 ])
 
-@section('title', trans('public/index.title'))
+@section('title', trans('public/register.title_register'))
 
 @section('content')
 
@@ -17,61 +17,59 @@
                 </a>
 
                 <div class="login-quote wc pr-5">
-                    <p><a>JOHANNA ANDERSSON, DALBY</a></p>
+                    <p><a class="text-uppercase">{{ trans('public/login.quote_name') }}</a></p>
 
-                    <p>– “Innan du kan boka din mat behöver du bli stödmedlem, sedan kommer producenten med dina varor
-                        till utlämningensplatsen...”</p>
+                    <p>– “{{ trans('public/login.quote') }}”</p>
                 </div>
             </div>
             <div class="col-md-8 offset-md-1">
                 <div class="row mt-5">
                     <div class="col-16 text-right mb-5">
-                        <small>Har du redan ett konto?</small>
-                        <a class="ml-3 btn btn-info bb">LOGGA IN</a>
+                        <small>{{ trans('public/register.have_account') }}</small>
+                        <a class="ml-3 btn btn-info bb">{{ trans('public/register.login') }}</a>
                     </div>
 
                     <div class="col-16 mt-5">
-                        <h3>Kom igång helt gratis</h3>
-                        <p class="black-54">Logga in med Facebook eller skapa ett konto hos oss.</p>
+                        <h3>{{ trans('public/register.start_free') }}</h3>
+                        <p class="black-54">{{ trans('public/register.login_fb_or_create') }}</p>
 
                         <a href="" class="btn btn-facebook w-100 mt-5">
                             <i class="fa fa-facebook-official mr-2 icon wc" aria-hidden="true"></i>
-                            LOGGA IN MED FACEBOOK
+                            {{ trans('public/register.login_fb') }}
                         </a>
 
-                        <p class="text-center mt-4 black-54">Eller skapa ett konto</p>
+                        <p class="text-center mt-4 black-54">{{ trans('public/register.or_create_account') }}</p>
 
                         <form action="/account/user/insert" method="post">
 
                             <div class="form-group pt-3">
-                                <label for="email-input">EMAILADRESS</label>
+                                <label for="email-input">{{ trans('public/register.email') }}</label>
                                 <input type="email" id="email-input" class="form-control bb-38"
                                        placeholder="johanna@email.com">
                             </div>
 
                             <div class="form-group pt-3">
-                                <label for="name-input">NAMN</label>
+                                <label for="name-input">{{ trans('public/register.name') }}</label>
                                 <input type="text" id="name-input" class="form-control bb-38"
                                        placeholder="Johanna Andersson">
                             </div>
 
                             <div class="form-group pt-3">
-                                <label for="pw-input">LÖSENORD</label>
+                                <label for="pw-input">{{ trans('public/register.pw') }}</label>
                                 <input type="password" id="pw-input" class="form-control bb-38"
-                                       placeholder="5+ tecken">
+                                       placeholder="5+ {{ trans('public/register.characters') }}">
                             </div>
 
                             <div class="d-flex justify-content-center pt-3">
-                                <button type="submit" class="box-shadow btn-lg btn-primary text-uppercase">Skapa konto
+                                <button type="submit" class="box-shadow btn-lg btn-primary text-uppercase">
+                                    {{ trans('public/register.create_account') }}
                                 </button>
                             </div>
 
                             <div class="w-100 text-center mt-4">
-                                <small class="text-center">Genom att klicka på "Skapa konto" godkänner jag Local Food
-                                    Nodes Terms of Service och Privacy Policy.
+                                <small class="text-center">{{ trans('public/register.accept_terms') }}
                                 </small>
                             </div>
-
 
                         </form>
                     </div>

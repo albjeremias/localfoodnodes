@@ -5,7 +5,7 @@
     'no_nav' => true,
 ])
 
-@section('title', trans('public/index.title'))
+@section('title', trans('public/login.title'))
 
 @section('content')
 
@@ -17,49 +17,48 @@
                 </a>
 
                 <div class="login-quote wc pr-5">
-                    <p><a>JOHANNA ANDERSSON, DALBY</a></p>
+                    <p><a class="text-uppercase">{{ trans('public/login.quote_name') }}</a></p>
 
-                    <p>– “Innan du kan boka din mat behöver du bli stödmedlem, sedan kommer producenten med dina varor
-                        till utlämningensplatsen...”</p>
+                    <p>– “{{ trans('public/login.quote') }}”</p>
                 </div>
             </div>
             <div class="col-md-8 offset-md-1">
                 <div class="row mt-5">
                     <div class="col-16 text-right mb-5">
-                        <small>Har du inget konto?</small>
-                        <a class="ml-3 btn btn-info bb">SKAPA KONTO</a>
+                        <small>{{ trans('public/login.no_account') }}</small>
+                        <a class="ml-3 btn btn-info bb">{{ trans('public/login.create') }}</a>
                     </div>
 
                     <div class="col-16 mt-5">
-                        <h3>Logga in på Local Food Nodes</h3>
-                        <p class="black-54">Logga in med Facebook eller skriv in dina uppgifter.</p>
+                        <h3>{{ trans('public/login.login_lfn') }}</h3>
+                        <p class="black-54">{{ trans('public/login.login_fb_or_input') }}</p>
 
                         <a href="" class="btn btn-facebook w-100 mt-5">
-                            <i class="fa fa-facebook-official mr-2 icon wc" aria-hidden="true"></i>
-                            LOGGA IN MED FACEBOOK
+                            <i class="fa fa-facebook-official mr-2 icon wc text-uppercasex" aria-hidden="true"></i>
+                            {{ trans('public/login.login_fb') }}
                         </a>
 
-                        <p class="text-center mt-4 black-54">Eller skriv in dina uppgifter</p>
+                        <p class="text-center mt-4 black-54">{{ trans('public/login.or_input') }}</p>
 
                         <form action="/authenticate" method="post">
 
                             <div class="form-group">
-                                <label for="email-input">EMAILADRESS</label>
+                                <label class="text-uppercase" for="email-input">{{ trans('public/login.email') }}</label>
                                 <input type="email" id="email-input" class="form-control bb-38"
                                        placeholder="johanna@email.com">
                             </div>
 
                             <div class="form-group pt-3">
-                                <label for="pw-input">LÖSENORD</label>
+                                <label class="text-uppercase" for="pw-input">{{ trans('public/login.password') }}</label>
                                 <a class="float-right" href="#">
-                                    <small>Har du glömt ditt lösenord?</small>
+                                    <small>{{ trans('public/login.forgot') }}</small>
                                 </a>
                                 <input type="password" id="pw-input" class="form-control bb-38"
-                                       placeholder="Skriv in ditt lösenord">
+                                       placeholder="{{ trans('public/login.write_pw') }}">
                             </div>
 
                             <div class="d-flex justify-content-center pt-3">
-                                <button type="submit" class="box-shadow btn-lg btn-primary text-uppercase">Logga in</button>
+                                <button type="submit" class="box-shadow btn-lg btn-primary text-uppercase">{{ trans('public/login.login') }}</button>
                             </div>
 
                         </form>
