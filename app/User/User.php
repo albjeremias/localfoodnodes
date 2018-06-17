@@ -716,16 +716,34 @@ class User extends \App\User\BaseUser
      */
     public function pushTokenRelationship()
     {
-        return $this->hasOne('App\User\PushToken');
+        return $this->hasMany('App\User\PushToken');
     }
 
     /**
      * Get push token.
      */
-    public function getPushToken()
+    public function getPushTokens()
     {
-        $pushToken = $this->pushTokenRelationship;
+        $pushTokens = $this->pushTokenRelationship;
 
-        return $pushToken->token;
+        return $pushTokens->map(function($pushToken) {
+            return $pushToken->token;
+        });
+    }
+
+    /**
+     * Define user relationship with notifications.
+     */
+    public function notificationsRelationship()
+    {
+        return $this->hasMany('App\Notification');
+    }
+
+    /**
+     * Get notifications
+     */
+    public function notifications()
+    {
+        return $this->notificationsRelationship;
     }
 }

@@ -415,7 +415,7 @@ class Node extends BaseModel implements EventOwnerInterface
      *
      * @return Date
      */
-    private function getNextDelivery($product = null)
+    public function getNextDelivery($product = null)
     {
         $firstDate = $this->getFirstDeliveryDate();
 

@@ -2,7 +2,7 @@
 
 namespace App;
 
-class Notification extends BaseModel
+class NotificationEvent extends BaseModel
 {
     /**
      * Validation rules.
@@ -10,11 +10,13 @@ class Notification extends BaseModel
      * @var array
      */
     protected $validationRules = [
-        'user_id' => 'required',
+        'context' => 'required',
+        'context_id' => 'required',
+        'unique' => 'required',
         'title' => 'required',
         'message' => 'required',
         'variables' => '',
-        'viewed_at' => '',
+        'sent_at' => '',
     ];
 
     /**
@@ -23,11 +25,13 @@ class Notification extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'user_id',
+        'context',
+        'context_id',
+        'unique',
         'title',
         'message',
         'variables',
-        'viewed_at',
+        'sent_at',
     ];
 
     /**

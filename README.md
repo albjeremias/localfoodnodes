@@ -29,3 +29,27 @@ php artisan db:seed --database='phpunit'
 
 # App development
 * Start ngrok with `./ngrok http -region=eu -hostname=app.localfoodnodes.org 192.168.10.10:80`
+
+
+# Notifications
+
+Create notification "event" on "new order and new product"
+On cron, create notifications per user
+
+Hur veta när en notifikaiton är skickad?
+## New product
+    Create: when new product is created
+    Send: Direct
+    Send to: Users that follow a node
+## New order
+    Create: when order is placed
+    Send: Direct
+    Send to: User, producer, node admin
+## Upcoming pickup
+    Create: Same as order
+    Send: 12h before, 1h before
+    Send to: User with orders
+## Next date
+    Create: Dynamic
+    Send: 3 days before
+    Send to: User that follow a node

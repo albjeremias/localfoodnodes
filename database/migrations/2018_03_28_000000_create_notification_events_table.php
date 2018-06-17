@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNotificationsTable extends Migration
+class CreateNotificationEventsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,17 @@ class CreateNotificationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('notifications', function (Blueprint $table) {
+        Schema::create('notification_events', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('notification_creator_id')->required();
-            $table->string('notification_creator_type')->required();
-            $table->string('notification_entity_id')->nullable();
-            $table->string('notification_entity_type')->required();
+            $table->string('context_id')->required();
+            $table->string('context')->required();
+            $table->string('unique')->required();
             $table->string('title')->required();
             $table->string('message')->required();
-            $table->string('message_variables');
+            $table->string('variables')->nullable();
             $table->timestamps();
+            $table->dateTime('sent_at')->nullable();
+            $table->unique(['context_id', 'context', 'unique']);
         });
     }
 
@@ -33,6 +34,6 @@ class CreateNotificationsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('notifications');
+        Schema::drop('notification_events');
     }
 }

@@ -140,4 +140,23 @@ class UsersController extends BaseController
             $pushToken->save();
         }
     }
+
+    /**
+     * User notifications
+     */
+    public function notifications(Request $request)
+    {
+        $user = Auth::user();
+        // Current state of notifications
+        $notifications = $user->notifications();
+
+        // Update viewed
+        $user->notifications()->each(function($notification) {
+            $notification->viewed_at = date('Y-m-d H:i:s');
+            $notification->save();
+        });
+
+        // Return current state
+        return $notifications;
+    }
 }

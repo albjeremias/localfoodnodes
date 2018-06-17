@@ -13,7 +13,10 @@ class NodesController extends BaseController
     public function nodes(Request $request)
     {
         $user = Auth::guard('api')->user();
-        return $user->nodes();
+
+        return $user->nodes()->sortBy(function($node) {
+            return $node->name;
+        });
     }
 
     public function followNode(Request $request, $nodeId)

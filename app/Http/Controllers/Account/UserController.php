@@ -624,14 +624,20 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $expo = \ExponentPhpSDK\Expo::normalSetup();
-        $interestDetails = [$user->id, $user->getPushToken()];
-        $notification = [
-            'body' => 'Notification',
-            'data' => json_encode(array(
-                'title' => 'Notification',
-                'message' => 'This is a message'
-            ))
-        ];
-        $expo->notify($interestDetails, $notification);
+        $pushTokens = $user->getPushTokens();
+
+        foreach($pushTokens as $pushToken) {
+            $interestDetails = [$user->id, $pushToken];
+            $notification = [
+                'title' => 'Notification title',
+                'body' => 'Notification body',
+                'data' => json_encode(array(
+                    'title' => 'Notification data title',
+                    'message' => 'Notification data message'
+                )),
+                'badge' => 1,
+            ];
+            $a = $expo->notify($interestDetails, $notification);
+        }
     }
 }

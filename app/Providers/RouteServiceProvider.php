@@ -37,6 +37,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->apiRoutes();
         $this->adminRoutes();
         $this->authRoutes();
+        $this->systemRoutes();
 
         // Custom producer domains
         $this->producerDomainRoutes();
@@ -114,6 +115,24 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::group($options, function ($router) {
             require base_path('routes/auth.php');
+        });
+    }
+
+    /**
+     * Define system routes, like cron.
+     *
+     * @return void
+     */
+    protected function systemRoutes()
+    {
+        $options = [
+            'middleware' => 'web',
+            'namespace' => $this->namespace,
+            'prefix' => 'system',
+        ];
+
+        Route::group($options, function ($router) {
+            require base_path('routes/system.php');
         });
     }
 
