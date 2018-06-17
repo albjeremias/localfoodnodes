@@ -150,13 +150,21 @@ class UsersController extends BaseController
         // Current state of notifications
         $notifications = $user->notifications();
 
+        // Return current state
+        return $notifications;
+    }
+
+    /**
+     * Reset user notifications
+     */
+    public function resetNotifications(Request $request)
+    {
+        $user = Auth::user();
+
         // Update viewed
         $user->notifications()->each(function($notification) {
             $notification->viewed_at = date('Y-m-d H:i:s');
             $notification->save();
         });
-
-        // Return current state
-        return $notifications;
     }
 }
