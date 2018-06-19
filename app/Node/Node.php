@@ -360,7 +360,7 @@ class Node extends BaseModel implements EventOwnerInterface
      */
     public function getDeliveryDatesWithProducts()
     {
-        $dates = DB::table('product_node_delivery_links')->distinct()->select('date')->where('node_id', $this->id)->where('date', '>', date('Y-m-d'))->get();
+        $dates = DB::table('product_node_delivery_links')->distinct()->select('date')->where('node_id', $this->id)->where('date', '>=', date('Y-m-d'))->get();
 
         $dates = $dates->map(function($date) {
             return $date->date;

@@ -20,7 +20,7 @@ class UsersController extends BaseController
             if ($request->user()->tokenCan('users-read-emails')) {
                 return User::all();
             } else {
-                return User::exclude(['email'])->get();
+                return User::makeHidden('email')->get();
             }
         } else {
             return response(['error' => 'unauthorized', 'message' => 'Unauthorized'], 403);
