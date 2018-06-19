@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1\Users;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Collection;
 
 use \App\Traits\OrderLogic;
 
@@ -12,12 +13,42 @@ class OrdersController extends BaseController
 {
     use OrderLogic;
 
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @param [type] $orderDateItemLinkId
+     * @return void
+     */
+    public function order(Request $request, $orderDateItemLinkId)
+    {
+        $user = Auth::guard('api')->user();
+
+        if (!$orderDateItemLinkId) {
+            return null;
+        }
+
+        $orderDateItemLink = $user->orderDateItemLink($orderDateItemLinkId);
+
+        if (!$orderDateItemLink) {
+            return null;
+        }
+
+        return $this->loadRelatedOrderData($orderDateItemLink);
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
     public function orders(Request $request)
     {
         $user = Auth::guard('api')->user();
         $orderDateItemLinks = $user->orderDateItemLinks();
 
-        return $this->loadRelatedOrderData($orderDateItemLinks);
+        return $this->loadRelatedOrdersData($orderDateItemLinks);
     }
 
     /**
@@ -60,23 +91,34 @@ class OrdersController extends BaseController
         }
 
         $orderDateItemLinks = $user->orderDateItemLinks();
-        return $this->loadRelatedOrderData($orderDateItemLinks);
+        return $this->loadRelatedOrdersData($orderDateItemLinks);
     }
 
     /**
      * Helper
      */
-    private function loadRelatedOrderData($orderDateItemLinks)
+    private function loadRelatedOrdersData(Collection $orderDateItemLinks)
     {
         return $orderDateItemLinks->map(function($orderDateItemLink) {
-            $orderDate = $orderDateItemLink->getDate();
-            $orderItem = $orderDateItemLink->getItem();
-
-            $orderDateItemLinkArray = $orderDateItemLink->toArray();
-            $orderDateItemLinkArray['date'] = $orderDate->toArray();
-            $orderDateItemLinkArray['item'] = $orderItem->toArray();
-
-            return $orderDateItemLinkArray;
+            return $this->loadRelatedOrderData($orderDateItemLink);
         });
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $orderDateItemLink
+     * @return void
+     */
+    private function loadRelatedOrderData(\App\Order\OrderDateItemLink $orderDateItemLink)
+    {
+        $orderDate = $orderDateItemLink->getDate();
+        $orderItem = $orderDateItemLink->getItem();
+
+        $orderDateItemLinkArray = $orderDateItemLink->toArray();
+        $orderDateItemLinkArray['date'] = $orderDate->toArray();
+        $orderDateItemLinkArray['item'] = $orderItem->toArray();
+
+        return $orderDateItemLinkArray;
     }
 }

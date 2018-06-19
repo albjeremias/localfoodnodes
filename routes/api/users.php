@@ -13,6 +13,7 @@ Route::group(['middleware' => 'auth:api', 'prefix' => '/users'], function () {
     Route::get('/notifications/reset', 'Api\v1\Users\UsersController@resetNotifications')->middleware(['scope:users-read-self']);
 
     // Orders
+    Route::get('/order/{orderDateItemLinkId}', 'Api\v1\Users\OrdersController@order')->middleware(['scopes:users-orders-read']);
     Route::get('/orders', 'Api\v1\Users\OrdersController@orders')->middleware(['scopes:users-orders-read']);
     Route::post('/order', 'Api\v1\Users\OrdersController@createOrder')->middleware(['scopes:users-order-create']);
     Route::delete('/order/{orderDateItemLinkId}', 'Api\v1\Users\OrdersController@deleteOrder')->middleware(['scopes:users-order-delete']);
