@@ -41,8 +41,13 @@ class ProductsController extends BaseController
                 if ($product->variantCount() > 0) {
 
                     $variants = $product->variants()->map(function($variant) use ($productNodeDeliveryLink) {
-                        $variant->available_quantity = $productNodeDeliveryLink->getAvailableQuantity($variant);
-                        return $variant;
+                        if ($productNodeDeliveryLink) {
+                            $variant->available_quantity = $productNodeDeliveryLink->getAvailableQuantity($variant);
+                            return $variant;
+                        } else {
+                            $variant->available_quantity = 0;
+                            return $variant;
+                        }
                     });
 
                     $product->setRelation('product_variants_relationship', $variants);
