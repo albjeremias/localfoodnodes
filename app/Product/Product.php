@@ -573,19 +573,6 @@ class Product extends \App\BaseModel
     }
 
     /**
-     * Set available quantity directly on product object.
-     *
-     * Used by API. Might not be the best solution...
-     *
-     * @param int $value
-     * @return void
-     */
-    public function setAvailableQuantity($value)
-    {
-        $this->attributes['available_quantity'] = (int) $value;
-    }
-
-    /**
      * Get info text without html tags.
      *
      * @return string

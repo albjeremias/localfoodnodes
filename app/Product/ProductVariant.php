@@ -121,20 +121,6 @@ class ProductVariant extends BaseModel
     }
 
     /**
-     * Set available quantity directly on variant object.
-     *
-     * Used by API. Might not be the best solution...
-     *
-     * @param int $value
-     * @return void
-     */
-    public function setAvailableQuantity($value)
-    {
-        $this->attributes['available_quantity'] = (int) $value;
-    }
-
-
-    /**
      * Get info to be stored with order.
      *
      * @return array
