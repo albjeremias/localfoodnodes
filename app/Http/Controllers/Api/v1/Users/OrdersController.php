@@ -46,7 +46,10 @@ class OrdersController extends BaseController
     public function orders(Request $request)
     {
         $user = Auth::guard('api')->user();
-        $orderDateItemLinks = $user->orderDateItemLinks();
+
+        $orderDateItemLinks = $user->orderDateItemLinks()->filter(function($orderDateItemLink) {
+            return $orderDateItemLink->getDate() ? true : false;
+        })->values();
 
         return $this->loadRelatedOrdersData($orderDateItemLinks);
     }

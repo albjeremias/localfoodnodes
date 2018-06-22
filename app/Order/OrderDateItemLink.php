@@ -64,10 +64,6 @@ class OrderDateItemLink extends \App\BaseModel
      */
     public function getItem()
     {
-        // if ($this->item) {
-        //     return $this->item;
-        // }
-
         return $this->orderItemRelationship->first();
     }
 
@@ -88,10 +84,6 @@ class OrderDateItemLink extends \App\BaseModel
      */
     public function getDate()
     {
-        // if ($this->date) {
-        //     return $this->date;
-        // }
-
         return $this->orderDateRelationship->first();
     }
 
