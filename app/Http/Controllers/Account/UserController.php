@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
+use GuzzleHttp\Client;
 
 use Mail;
 
@@ -615,29 +616,22 @@ class UserController extends Controller
         });
     }
 
-    /**
-     * Send activation link.
-     *
-     * @param User $user
-     */
     public function testNotification()
     {
         $user = Auth::user();
-        $expo = \ExponentPhpSDK\Expo::normalSetup();
         $pushTokens = $user->getPushTokens();
+        $pushApiUrl = 'https://exp.host/--/api/v2/push/send';
+
+        $client = new Client();
 
         foreach($pushTokens as $pushToken) {
-            $interestDetails = [$user->id, $pushToken];
-            $notification = [
-                'title' => 'Notification title',
-                'body' => 'Notification body',
-                'data' => json_encode(array(
-                    'title' => 'Notification data title',
-                    'message' => 'Notification data message'
-                )),
-                'badge' => 1,
-            ];
-            $a = $expo->notify($interestDetails, $notification);
+            $client->request('POST', $pushApiUrl, [
+                'form_params' => [
+                    'to' => $pushToken,
+                    'title' => 'push test',
+                    'body' => 'message',
+                ]
+            ]);
         }
     }
 }

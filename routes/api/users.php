@@ -20,6 +20,7 @@ Route::group(['middleware' => 'auth:api', 'prefix' => '/users'], function () {
 
     // Membership
     Route::post('/membership', 'Api\v1\Users\UsersController@membership')->middleware(['scopes:users-modify']);
+    Route::post('/resend-activation-link', 'Api\v1\Users\UsersController@resendActivationLink')->middleware(['scopes:users-modify']);
 
     // Cart
     Route::get('/cart', 'Api\v1\Users\CartController@getCart')->middleware(['scopes:users-cart']);

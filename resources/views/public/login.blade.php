@@ -6,8 +6,8 @@
 @section('title', trans('public/login.title'))
 
 @section('page-content')
-    @if (Request::has('error'))
-        <div class="container mt-5">
+    <div class="container top-container">
+        @if (Request::has('error'))
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-6">
                     <div class="card error-message">
@@ -16,11 +16,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-    @endif
+        @endif
 
-    @if (Request::has('message'))
-        <div class="container mt-5">
+        @if (Request::has('message'))
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-6">
                     <div class="card success-message">
@@ -29,10 +27,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-    @endif
+        @endif
 
-    <div class="container top-container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 col-lg-6">
                 <div class="card login-card">

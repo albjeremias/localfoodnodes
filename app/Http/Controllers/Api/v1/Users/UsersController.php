@@ -53,7 +53,7 @@ class UsersController extends BaseController
             $user->setLocation('56.002490 13.293257');
             $user->save();
 
-            \App\Helpers\SlackHelper::message('notification', $user->name . ' (' . $user->email . ')' . ' signed up as a user.');
+            \App\Helpers\SlackHelper::message('notification', $user->name . ' (' . $user->email . ')' . ' signed up as a user (API).');
 
             $this->sendActivationLink($user);
 
@@ -64,6 +64,17 @@ class UsersController extends BaseController
                 'message' => join(' ', $errors->all())
             ], 400);
         }
+    }
+
+    /**
+     * Resend activation email.
+     *
+     * @return int
+     */
+    public function resendActivationLink()
+    {
+        $user = Auth::user();
+        $this->sendActivationLink($user);
     }
 
     /**
@@ -93,6 +104,12 @@ class UsersController extends BaseController
         });
     }
 
+    /**
+     * Update user (not implmeneted)
+     *
+     * @param Request $request
+     * @return void
+     */
     public function update(Request $request)
     {
         $user = User::find($request->input('id'));
@@ -125,6 +142,9 @@ class UsersController extends BaseController
         return User::find($user->id); // Reload user
     }
 
+    /**
+     *
+     */
     public function pushToken(Request $request)
     {
         $user = Auth::user();
