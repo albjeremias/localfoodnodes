@@ -60,8 +60,8 @@ class UsersController extends BaseController
             return $user;
         } else {
             return response([
-                'error' => 'create_user_failed',
-                'message' => join(' ', $errors->all())
+                'error' => 'error_' . $errors->keys()[0],
+                'message' => 'error_' . $errors->keys()[0]
             ], 400);
         }
     }
