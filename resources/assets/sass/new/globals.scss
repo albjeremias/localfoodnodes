@@ -305,6 +305,12 @@ thead {
   border-right: 2.5px solid $black-12 !important;
 }
 
+// HOVER
+
+.hover-wbb:hover {
+  border-bottom: white 1px solid;
+}
+
 .image {
   background-position: center;
   background-repeat: no-repeat;
@@ -334,80 +340,7 @@ thead {
   }
 }
 
-.sub-nav-active {
-  border-bottom: $main-accent 2px solid;
-  //padding-bottom: 15px;
-  a {
-    color: $main-accent !important;
-  }
-}
-
-.nav-breadcrumb {
-  margin-left: 102px;
-}
-
-.sub-nav {
-  margin-left: 80px;
-}
-
-#nav-container.bg-main-primary .main-nav a {
-  color: black;
-}
-
-.login-image {
-  height: 1036px;
-}
-
-.login {
-
-  .btn-facebook {
-    border-radius: 2px;
-  }
-}
-
-.login-logo {
-  width: 40px;
-}
-
-.login-quote {
-  position: absolute;
-  bottom: 223px;
-}
-
-.node-list li {
-  margin-bottom: 1.66rem;
-}
-
-.producer-create-progress {
-  position: absolute;
-  border-bottom: $black-12 1px solid;
-  left: 0;
-  right: 0;
-  bottom: 10px;
-  height: 1px;
-}
-
-.number-circle {
-  height: 22px;
-  width: 22px;
-  text-align: center;
-
-  @extend .rounded-circle;
-}
-
-.terms_text small {
-  color: $black-54 !important;
-}
-
-.terms_intro {
-  p, small {
-    @extend .black-87;
-  }
-
-  h2 {
-    @extend .rc;
-  }
-}
+// NEEDS CLEANING
 
 select.form-control-sm {
   font-size: 0.86rem !important;
