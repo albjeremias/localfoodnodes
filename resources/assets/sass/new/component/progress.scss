@@ -1,0 +1,16 @@
+.number-circle {
+  height: 22px;
+  width: 22px;
+  text-align: center;
+
+  @extend .rounded-circle;
+}
+
+.producer-create-progress {
+  position: absolute;
+  border-bottom: $black-12 1px solid;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  height: 1px;
+}

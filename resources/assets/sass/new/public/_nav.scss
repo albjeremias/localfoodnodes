@@ -12,3 +12,23 @@
 #cover .input-group {
   width: 90%;
 }
+
+.sub-nav-active {
+  border-bottom: $main-accent 2px solid;
+
+  a {
+    color: $main-accent !important;
+  }
+}
+
+.nav-breadcrumb {
+  margin-left: 102px;
+}
+
+.sub-nav {
+  margin-left: 80px;
+}
+
+#nav-container.bg-main-primary .main-nav a {
+  color: black;
+}

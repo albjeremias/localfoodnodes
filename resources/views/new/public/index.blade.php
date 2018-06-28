@@ -36,6 +36,7 @@
         @include('new.components.arrow', ['dark' => false, 'classes' => ''])
     </section>
 
+    {{-- HOW DOES IT WORK --}}
     <section class="bg-main-primary pt-5">
         <div class="container pt-5">
             <div class="row wc">

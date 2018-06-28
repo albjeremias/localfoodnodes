@@ -52,7 +52,7 @@
                     @else
                         <li class="d-none d-lg-block">
                             <a href="#" class="nav-link">
-                                {{ trans('public/nav.login') }}
+                                <span class="wc hover-wbb pb-2">{{ trans('public/nav.login') }}</span>
                             </a>
                         </li>
 
@@ -63,7 +63,7 @@
                         </li>
 
                         <li class="dropdown d-none d-lg-block mr-2">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                            <a href="#" class="nav-link dropdown-toggle wc" data-toggle="dropdown">
                                 {{ trans('public/nav.lang_swe') }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
