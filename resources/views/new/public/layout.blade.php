@@ -20,6 +20,7 @@
 
     <!-- CSS -->
     <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png">
+    <link rel="stylesheet" href="/css/leaflet/leaflet.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
     <link rel="stylesheet" href="{{ mix('css/public.css') }}">

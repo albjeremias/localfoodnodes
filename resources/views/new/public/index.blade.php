@@ -70,8 +70,30 @@
         @include('new.components.arrow', ['dark' => false, 'classes' => 'pb-3 pt-2 pt-lg-5 pb-lg-2'])
     </section>
 
+    <section class="bg-accent-light-12 node-map">
+        <div id="node-map-component-root" data-ip="{{ Request::ip() }}" data-user-location="{{ json_encode($user->location) }}" data-trans="{{ json_encode(trans('public/index')) }}"></div>
+        <div class="map-site-info p-3 d-none d-xl-block">
+            <div class="row">
+                <div class="col">
+                    <h4 class="m-0">{{ $metrics['userCount'] }}</h4>
+                    <small>{{ trans('public/index.map_users') }}</small>
+                </div>
+
+                <div class="col px-5">
+                    <h4 class="m-0">{{ $metrics['nodeCount'] }}</h4>
+                    <small>{{ trans('public/index.map_nodes') }}</small>
+                </div>
+
+                <div class="col">
+                    <h4 class="m-0">{{ $metrics['producerCount'] }}</h4>
+                    <small>{{ trans('public/index.map_producers') }}</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
     {{-- MAP --}}
-    <section class="bg-accent-light-12 py-5">
+    <!-- <section class="bg-accent-light-12 py-5">
         <div class="container">
             <div class="map-site-info p-3 d-none d-xl-block">
                 <div class="row">
@@ -104,7 +126,7 @@
                 ])
             </div>
         </div>
-    </section>
+    </section> -->
 
     {{-- GRADIENTS --}}
     @include('new.components.sections.medium-gradient', [
@@ -223,4 +245,7 @@
         };
     </script>
 
+    <script src="https://unpkg.com/leaflet@1.3.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>
+    <script src="/js/node-map.js"></script>
 @endsection

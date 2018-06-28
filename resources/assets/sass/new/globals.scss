@@ -317,7 +317,10 @@ thead {
 
 .map-site-info {
   background-color: white;
+  left: 50px;
   position: absolute;
+  top: 50px;
+  z-index: 999;
   @extend .box-shadow;
 }
 
