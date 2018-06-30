@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
 use App\Product\Product;
 use App\Product\ProductNodeDeliveryLink;
+use App\Product\ProductFilter;
 
 class ProductsController extends BaseController
 {
@@ -32,6 +33,9 @@ class ProductsController extends BaseController
             'productVariantsRelationship',
             'imageRelationship'
         ])->where('is_hidden', 0)->whereIn('id', $productIds)->get();
+
+        $productFilter = new ProductFilter($products, $request);
+        $products = $productFilter->filterDate($nodeId)->filterTags()->filterVisibility()->get();
 
         // Load quantity for date
         if ($nodeId && $date) {
