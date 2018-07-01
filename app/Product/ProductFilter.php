@@ -115,7 +115,7 @@ class ProductFilter
     {
         $this->products = $this->products->filter(function($product) {
             return $product->isVisible() === true;
-        });
+        })->values();
 
         return $this;
     }
