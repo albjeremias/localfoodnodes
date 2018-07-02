@@ -93,41 +93,7 @@
         </div>
     </section>
 
-    {{-- MAP --}}
-    <!-- <section class="bg-accent-light-12 py-5">
-        <div class="container">
-            <div class="map-site-info p-3 d-none d-xl-block">
-                <div class="row">
-                    <div class="col">
-                        <h4 class="m-0">1129</h4>
-                        <small>{{ trans('public/index.map_users') }}</small>
-                    </div>
 
-                    <div class="col px-5">
-                        <h4 class="m-0">41</h4>
-                        <small>{{ trans('public/index.map_nodes') }}</small>
-                    </div>
-
-                    <div class="col">
-                        <h4 class="m-0">110</h4>
-                        <small>{{ trans('public/index.map_producers') }}</small>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row justify-content-center">
-                @include('new.components.cards.node',
-                [
-                    'name'      => 'Dalby Saluhall',
-                    'address'   => 'Dalbysaluhallväg 1, 21144 Dalby',
-                    'bio'       => 'Välkommen att handla i Byggdens Saluhall Dalby',
-                    'time'      => 'Tis, 12:00',
-                    'producers' => '12',
-                    'link'      => '/node/bygdens-saluhall-billinge'
-                ])
-            </div>
-        </div>
-    </section> -->
 
     {{-- GRADIENTS --}}
     @include('new.components.sections.medium-gradient', [

@@ -240,7 +240,7 @@ class UserController extends Controller
         $user = Auth::user();
         $user->fill($request->old());
 
-        return view('account.user.edit', [
+        return view('new.account.user.edit', [
             'user' => $user,
             'breadcrumbs' => [
                 $user->name => 'user',

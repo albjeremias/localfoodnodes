@@ -175,6 +175,10 @@ td {
   color: $main-primary;
 }
 
+.red-c {
+  color: red;
+}
+
 .rh2 h2 {
   color: $main-primary;
 }
@@ -283,6 +287,10 @@ thead {
   border: $dark-87 1px solid !important;
 }
 
+.red-b {
+  border: red 1px solid !important;
+}
+
 .bb-38 {
   border: $dark-38 1px solid !important;
 }
@@ -350,6 +358,10 @@ select.form-control-sm {
   background-color: white !important;
   height: 36px !important;
   color: $black-38 !important;
+}
+
+input.placeholder-error::placeholder {
+  color: red;
 }
 
 option:checked {

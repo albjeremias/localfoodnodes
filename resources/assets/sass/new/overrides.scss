@@ -65,14 +65,14 @@ $btn-line-height:             18px;
 $input-btn-padding-y:         .5rem;
 
 // -lg
-$btn-border-radius-lg: 48px;
-$font-size-lg: 0.933rem;
-$btn-line-height-lg : 18px;
-$btn-padding-y-lg: $input-btn-padding-y-lg;
-$btn-padding-x-lg: 1.56rem;
+$btn-border-radius-lg:        48px;
+$font-size-lg:                0.933rem;
+$btn-line-height-lg :         18px;
+$btn-padding-y-lg:            $input-btn-padding-y-lg;
+$btn-padding-x-lg:            1.56rem;
 
 //-sm
-$btn-border-radius-sm:   2px;
+$btn-border-radius-sm:        2px;
 
 // Fonts
 //
@@ -97,41 +97,38 @@ $headings-font-weight:        400;
 
 
 $line-height-base:            1.6;
-
 $font-weight-base:            500;
 
 // NAVBAR
-$navbar-light-color: #fff;
-$navbar-nav-link-padding-x: 1rem;
+$navbar-light-color:          #fff;
+$navbar-nav-link-padding-x:   1rem;
 
 // INPUTS
-$input-group-addon-bg: #fff;
-$input-border-color: #fff;
-$input-border-radius: 2px;
+$input-group-addon-bg:        #fff;
+$input-border-color:          #fff;
+$input-border-radius:         2px;
 
-$input-box-shadow: 0 2px 4px 0 rgba(0,0,0,0.54);
+$input-box-shadow:            0 2px 4px 0 rgba(0,0,0,0.54);
 
-$input-btn-line-height: 1.8666;
+$input-btn-line-height:       1.8666;
 
-$custom-select-height: 100%;
+$custom-select-height:        100%;
 
-$input-padding-x: 0.719rem;
-$input-padding-y: $input-padding-x;
-// -lg
+$input-padding-x:             0.719rem;
+$input-padding-y:             $input-padding-x;
 
-
-
-$input-padding-y-lg: $input-btn-padding-y-lg;
-$input-padding-x-lg: $input-btn-padding-x-lg;
-$input-line-height-lg: $input-btn-line-height-lg;
+// LG
+$input-padding-y-lg:          $input-btn-padding-y-lg;
+$input-padding-x-lg:          $input-btn-padding-x-lg;
+$input-line-height-lg:        $input-btn-line-height-lg;
 
 
 // BADGE
-$badge-border-radius:  20px;
-$badge-font-size:      13px;
-$badge-font-weight:   500;
-$badge-padding-y:     0.644rem;
-$badge-padding-x:     1.425rem;
+$badge-border-radius:         20px;
+$badge-font-size:             13px;
+$badge-font-weight:           500;
+$badge-padding-y:             0.644rem;
+$badge-padding-x:             1.425rem;
 
 // NAV
 
@@ -177,7 +174,7 @@ $navbar-light-toggler-border-color: transparent;
   padding-top: .5rem !important;
   padding-bottom: .5rem !important;
   border-radius: 2px !important;
-  border: 1px solid $black-38 !important;
+  border: 1px solid $black-38;
   margin-bottom: 1rem;
 }
 

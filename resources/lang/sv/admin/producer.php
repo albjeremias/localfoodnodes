@@ -96,4 +96,5 @@ return [
 	//	NEW AND/OR USED
 	// ---------------------------
 
+    'save_producer' => 'Spara konto',
 ];

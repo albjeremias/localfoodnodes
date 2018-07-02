@@ -159,6 +159,10 @@ td {
   color: #bf360c;
 }
 
+.red-c {
+  color: red;
+}
+
 .rh2 h2 {
   color: #bf360c;
 }
@@ -262,6 +266,10 @@ thead {
   border: #212121 1px solid !important;
 }
 
+.red-b {
+  border: red 1px solid !important;
+}
+
 .bb-38 {
   border: #9e9e9e 1px solid !important;
 }
@@ -334,6 +342,22 @@ select.form-control-sm,
   color: rgba(0, 0, 0, 0.38) !important;
 }
 
+input.placeholder-error::-webkit-input-placeholder {
+  color: red;
+}
+
+input.placeholder-error:-ms-input-placeholder {
+  color: red;
+}
+
+input.placeholder-error::-ms-input-placeholder {
+  color: red;
+}
+
+input.placeholder-error::placeholder {
+  color: red;
+}
+
 option:checked {
   color: black !important;
 }
@@ -399,7 +423,7 @@ option:checked {
   padding-top: .5rem !important;
   padding-bottom: .5rem !important;
   border-radius: 2px !important;
-  border: 1px solid rgba(0, 0, 0, 0.38) !important;
+  border: 1px solid rgba(0, 0, 0, 0.38);
   margin-bottom: 1rem;
 }
 

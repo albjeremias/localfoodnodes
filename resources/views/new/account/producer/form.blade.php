@@ -11,71 +11,102 @@
 ])
 
 <div class="container my-5">
-
     <h2>{{ trans('public/register.account_info') }}</h2>
-
 
     <div class="row mt-4">
         <div class="col-md-9">
-
             <h4>{{ trans('public/register.producer_info') }}</h4>
 
+            {{-- Farm/Business name --}}
             <div class="form-row mt-4">
-
                 <div class="form-group col-md-8">
-                    <label for="inputEmail4">{{ trans('public/register.farm_business_name') }}</label>
-                    <input type="email" class="form-control-sm" id="1" placeholder="{{ trans('public/register.name') }}">
+                    @include('new.components.forms.input', [
+                        'label' => trans('public/register.farm_business_name'),
+                        'name'  => 'name',
+                        'type'  => 'text',
+                        'class' => 'form-control-sm',
+                        'placeholder' => trans('public/register.name')
+                    ])
                 </div>
 
-
+                {{-- Email --}}
                 <div class="form-group col-md-8">
-                    <label for="inputPassword4">{{ trans('public/register.email') }}</label>
-                    <input type="password" class="form-control-sm" id="2" placeholder="{{ trans('public/register.email') }}">
+                    @include('new.components.forms.input', [
+                        'label' => trans('public/register.email'),
+                        'name'  => 'email',
+                        'type'  => 'email',
+                        'class' => 'form-control-sm',
+                        'placeholder' => trans('public/register.email')
+                    ])
                 </div>
 
-
+                {{-- Address --}}
                 <div class="form-group col-md-8">
-                    <label for="inputEmail4">{{ trans('public/register.address') }}</label>
-                    <input type="email" class="form-control-sm" id="3" placeholder="{{ trans('public/register.address') }}">
+                    @include('new.components.forms.input', [
+                        'label' => trans('public/register.address'),
+                        'name'  => 'address',
+                        'type'  => 'email',
+                        'class' => 'form-control-sm',
+                        'placeholder' => trans('public/register.address')
+                    ])
                 </div>
 
-
+                {{-- ZIP --}}
                 <div class="form-group col-8 col-md-4">
-                    <label for="inputPassword4">{{ trans('public/register.zip_code') }}</label>
-                    <input type="password" class="form-control-sm" id="4" placeholder="{{ trans('public/register.zip_code') }}">
+                    @include('new.components.forms.input', [
+                        'label' => trans('public/register.zip_code'),
+                        'name'  => 'zip',
+                        'type'  => 'text',
+                        'class' => 'form-control-sm',
+                        'placeholder' => trans('public/register.zip_code')
+                    ])
                 </div>
 
+                {{-- City --}}
                 <div class="form-group col-8 col-md-4">
-                    <label for="inputPassword4">{{ trans('public/register.city') }}</label>
-                    <input type="password" class="form-control-sm" id="5" placeholder="{{ trans('public/register.city') }}">
+                    @include('new.components.forms.input', [
+                        'label' => trans('public/register.city'),
+                        'name'  => 'city',
+                        'type'  => 'text',
+                        'class' => 'form-control-sm',
+                        'placeholder' => trans('public/register.city')
+                    ])
                 </div>
 
+                {{-- Info --}}
                 <div class="form-group col-md-16">
-                    <label for="describe">{{ trans('public/register.describe_farm_business') }}</label>
-                    <textarea name="info" class="form-control wysiwyg" id="describe"
-                              rows="5">{{ $producer->info or '' }}</textarea>
+                    @include('new.components.forms.textarea', [
+                        'label' => trans('public/register.describe_farm_business'),
+                        'name'  => 'info',
+                        'class' => 'form-control wysiwyg',
+                        'rows'  => 5,
+                        'old'   => $producer->info
+                    ])
                 </div>
 
-
+                {{-- Currency --}}
                 <div class="form-group col-md-7">
-
                     <h4>{{ trans('public/register.payment_info') }}</h4>
 
-                    <label for="inputPassword4">{{ trans('public/register.currency_products') }}</label>
-                    <select class="bb-38 form-control-sm">
-                        <option value="">{{ trans('public/register.choose_currency') }}</option>
-                        @foreach (UnitsHelper::getCurrencies() as $currency)
-                            <option value="{{ $currency }}" {{ $currency === $producer->currency ? 'selected' : '' }}>{{ $currency }}</option>
-                        @endforeach
-                    </select>
+                    @include('new.components.forms.dropdown', [
+                        'label'       => trans('public/register.currency_products'),
+                        'name'        => 'currency',
+                        'class'       => 'bb-38 form-control-sm',
+                        'placeholder' => trans('public/register.choose_currency'),
+                        'options'     => UnitsHelper::getCurrencies(),
+                    ])
                 </div>
 
-
+                {{-- Payment Info --}}
                 <div class="form-group col-16">
-                    <label for="inputPassword4">{{ trans('public/register.payment_info_with_confirm') }}</label>
-                    <input type="password" class="form-control-sm" id="8" placeholder="{{ trans('public/register.write_here') }}">
+                    @include('new.components.forms.input', [
+                        'label' => trans('public/register.payment_info_with_confirm'),
+                        'name'  => 'payment_info',
+                        'type'  => 'text',
+                        'class' => 'form-control-sm',
+                        'placeholder' => trans('public/register.write_here')
+                    ])
                 </div>
-
             </div>
         </div>
 
@@ -89,27 +120,51 @@
 
             <h4>{{ trans('public/register.links_social_media') }}</h4>
 
+            {{-- Homepage --}}
             <div class="form-group">
-                <label for="inputEmail4">{{ trans('public/register.website') }}</label>
-                <input type="email" class="form-control-sm" id="9" placeholder="http://">
+                @include('new.components.forms.input', [
+                    'label' => trans('public/register.website'),
+                    'name'  => 'link_homepage',
+                    'type'  => 'text',
+                    'class' => 'form-control-sm',
+                    'placeholder' => 'http://'
+                ])
             </div>
 
-
+            {{-- Facebook --}}
             <div class="form-group">
-                <label for="inputPassword4">Facebook</label>
-                <input type="password" class="form-control-sm" id="10" placeholder="Facebook-{{ trans('public/register.address_small') }}">
+                @include('new.components.forms.input', [
+                    'label' => 'Facebook',
+                    'name'  => 'link_facebook',
+                    'type'  => 'text',
+                    'class' => 'form-control-sm',
+                    'placeholder' => 'Facebook-' . trans('public/register.address_small')
+                ])
             </div>
 
+            {{-- Twitter --}}
             <div class="form-group">
-                <label for="inputEmail4">Twitter</label>
-                <input type="email" class="form-control-sm" id="11" placeholder="Twitter-{{ trans('public/register.address_small') }}">
+                @include('new.components.forms.input', [
+                    'label' => 'Twitter',
+                    'name'  => 'link_twitter',
+                    'type'  => 'text',
+                    'class' => 'form-control-sm',
+                    'placeholder' => 'Twitter-' . trans('public/register.address_small')
+                ])
             </div>
 
-
+            {{-- Instagram --}}
             <div class="form-group">
-                <label for="inputPassword4">Instagram</label>
-                <input type="password" class="form-control-sm" id=12" placeholder="Instagram-{{ trans('public/register.address_small') }}">
+                @include('new.components.forms.input', [
+                    'label' => 'Instagram',
+                    'name'  => 'link_instagram',
+                    'type'  => 'text',
+                    'class' => 'form-control-sm',
+                    'placeholder' => 'Instagram-' . trans('public/register.address_small')
+                ])
             </div>
+
+            <button type="submit" class="btn btn-secondary mt-3 float-right">{{ trans('admin/producer.save_producer') }}</button>
 
         </div>
     </div>
