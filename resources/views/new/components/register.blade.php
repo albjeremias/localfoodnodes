@@ -4,28 +4,41 @@
             <h2>{{ trans('public/index.be_part_of') }}</h2>
 
             <form class="row py-3">
-
                 <div class="col-lg col-sm-8">
-                    <input type="text" class="form-control input-group"
-                           placeholder="{{ trans('public/index.your_name') }}">
+                    @include('new.components.forms.input', [
+                        'name'  => 'name',
+                        'type'  => 'text',
+                        'class' => 'form-control input-group',
+                        'placeholder' => trans('public/index.your_name')
+                    ])
                 </div>
 
                 <div class="col-lg col-sm-8  mt-3 mt-sm-0">
-                    <input type="text" class="form-control input-group"
-                           placeholder="{{ trans('public/index.your_email') }}">
+                    @include('new.components.forms.input', [
+                        'name'  => 'email',
+                        'type'  => 'email',
+                        'class' => 'form-control input-group',
+                        'placeholder' => trans('public/index.your_email')
+                    ])
                 </div>
 
                 <div class="col-lg col-sm-8 mt-3 mt-lg-0">
-                    <input type="text" class="form-control input-group" placeholder="{{ trans('public/index.create_pw') }}">
+                    @include('new.components.forms.input', [
+                        'name'  => 'password',
+                        'type'  => 'password',
+                        'class' => 'form-control input-group',
+                        'placeholder' => trans('public/index.create_pw')
+                    ])
                 </div>
 
                 <div class="col-lg col-sm-8 mt-3 mt-lg-0">
-                    <select class="custom-select text-uppercase">
-                        <option selected>{{ trans('public/nav.lang_swe') }}</option>
-                        @foreach (config('app.locales') as $key => $value)
-                            <option>{{ $key }}</option>
-                        @endforeach
-                    </select>
+                    @include('new.components.forms.dropdown', [
+                        'name'        => 'language',
+                        'class'       => 'custom-select text-uppercase',
+                        'placeholder' => trans('public/nav.lang_swe'),
+                        'options'     => config('app.locales'),
+                        'value'       => true
+                    ])
                 </div>
 
                 <div class="col-lg-4 col-xl mt-4 mt-lg-0">
@@ -36,7 +49,6 @@
             <small>
                 {{ trans('public/index.accept_terms') }} <a class="rc" href="#">{{ trans('public/index.terms') }}</a>
             </small>
-
         </div>
     </div>
 </div>

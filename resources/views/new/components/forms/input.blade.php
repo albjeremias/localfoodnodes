@@ -1,7 +1,7 @@
 {{--
     -Form Input Component-
 
-    *label       | string
+    label       | string
     *name        | string
     *type        | string
     *class       | string
@@ -10,7 +10,9 @@
     *Required
 --}}
 
-<label for="form-input-{{ $name }}" class="{{ $errors->has($name) ? 'red-c' : '' }}">{{ $label }}</label>
+@if(isset($label))
+    <label for="form-input-{{ $name }}" class="{{ $errors->has($name) ? 'red-c' : '' }}">{{ $label }}</label>
+@endif
 
 <input type="{{ $type }}"
        name="{{ $name }}"

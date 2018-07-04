@@ -8,7 +8,6 @@
             <li class="list-inline-item mr-4 float-right">
                 @include('new.layouts.nav.partials.search')
             </li>
-
         </ul>
     </div>
 @endif
