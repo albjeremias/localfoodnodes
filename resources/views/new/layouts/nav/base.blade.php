@@ -16,9 +16,9 @@
             <div class="navbar-collapse collapse" id="main-navbar">
                 <ul class="navbar-nav mr-auto main-nav mt-5 mt-lg-0">
                     @if(isset($public_nav))
-                        @include('new.layouts.nav.public')
+                        @include('new.layouts.nav.types.public')
                     @else
-                        @include('new.layouts.nav.account')
+                        @include('new.layouts.nav.types.account')
                     @endif
 
                 </ul>
@@ -77,37 +77,14 @@
             </div>
         </nav>
 
-        {{-- EXTEND NAVBAR TO SHOW BREADCRUMBS --}}
-        @if(isset($bread_type))
-            <div class="bg-main-primary wc nav-breadcrumb mb-4 d-none d-lg-block">
-                <ul class="row list-inline mb-0 align-items-center">
-                    <li class="list-inline-item mr-4">
-                        <p class="my-auto">{{ $bread_type }}</p>
-                    </li>
+        {{-- Extend navbar - Breadcrumbs --}}
+        @include('new.layouts.nav.partials.breadcrumbs')
 
-                    <li class="list-inline-item mr-4">
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>
-                    </li>
+        {{-- Extend navbar - Page title --}}
+        @include('new.layouts.nav.partials.page-title')
 
-                    <li class="list-inline-item mr-4">
-                        <h3 class="mb-0">{{ $bread_result }}</h3>
-                    </li>
-                </ul>
-            </div>
-        @endif
-
-        {{-- EXTEND NAVBAR TO SHOW PAGE TITLE --}}
-        @if(isset($nav_title))
-            <div class="bg-main-primary wc nav-breadcrumb mb-4 d-none d-lg-block">
-                <ul class="row list-inline mb-0 align-items-center">
-                    <li class="list-inline-item mr-4">
-                        <h3 class="mb-0">{{ $nav_title }}</h3>
-                    </li>
-                </ul>
-            </div>
-        @endif
-
-        @include('new.layouts.nav.sub-menu')
+        {{-- Extend navbar - Sub Menu --}}
+        @include('new.layouts.nav.sub.sub-menu')
     </div>
 @endif
 

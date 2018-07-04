@@ -28,7 +28,7 @@
     endif;
 @endphp
 
-@if (isset($sub_nav))
+@if (isset($active_navbar))
     <div class="bg-main-primary wc text-uppercase sub-nav text-center text-lg-left">
         <ul class="list-inline mt-2 d-flex d-md-block mb-0">
             @foreach($active_navbar as $nav_item)
@@ -43,3 +43,4 @@
     </div>
 @endif
 
+@include('new.layouts.nav.sub.explore')

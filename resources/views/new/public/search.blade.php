@@ -1,5 +1,9 @@
 <?php $viewName = 'search' ?>
-@extends('new.public.layout')
+@extends('new.public.layout',
+[
+    'sub_nav' => 'explore',
+]
+)
 
 @section('title', trans('public/pages/explore.title'))
 

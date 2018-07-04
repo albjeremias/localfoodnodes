@@ -22,7 +22,7 @@
 }
 
 .nav-breadcrumb {
-  margin-left: 102px;
+  margin-left: 94px;
 }
 
 .sub-nav {
@@ -31,4 +31,35 @@
 
 #nav-container.bg-main-primary .main-nav a {
   color: black;
+}
+
+.nav-search-container {
+  height: 36px;
+
+  .input-group-prepend {
+    margin-right: 0;
+  }
+
+  .fa {
+    font-size: 1.2rem;
+  }
+
+  .input-group-text, .form-control {
+    border: 0;
+    color: white;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .form-control {
+    @extend small;
+  }
+
+  .form-control::placeholder {
+    color: white;
+  }
+
+  .form-control:focus {
+    box-shadow: none;
+  }
 }
