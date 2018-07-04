@@ -185,3 +185,8 @@ $navbar-light-toggler-border-color: transparent;
   padding-top: 0.47rem !important;
 }
 
+// LEAFLET
+
+.leaflet-popup-tip-container {
+  bottom: -6px;
+}

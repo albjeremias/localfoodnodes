@@ -250,8 +250,16 @@ td {
   font-size: 4.1rem !important;
 }
 
-.arrow {
-  font-size: 2.7rem !important;
+.arrow-container {
+
+  a:hover {
+    text-decoration: none;
+    @extend .wc;
+  }
+
+  .arrow {
+    font-size: 2.7rem !important;
+  }
 }
 
 .icon-circle {
@@ -378,4 +386,10 @@ option:checked {
 .arrow-absolute {
   position: absolute;
   bottom: 17px;
+}
+
+.no-focus.form-control:focus {
+    box-shadow: none;
+    outline: 0;
+    border-color: white;
 }

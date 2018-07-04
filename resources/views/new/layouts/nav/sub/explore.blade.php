@@ -1,7 +1,7 @@
 @if(isset($sub_nav) && $sub_nav == 'explore')
 
-    <div class="bg-main-primary wc sub-nav text-center text-lg-left">
-        <ul class="d-none d-md-block list-inline mb-0">
+    <div class="bg-main-primary wc text-center text-lg-left container">
+        <ul class="d-none d-md-block list-inline mb-0 sub-nav">
             <li class="list-inline-item flex-row w-25 pt-3 pt-md-0 pb-3 pb-md-4 pb-lg-1">
                 <h3 class="px-md-3 wc">1129</h3>
                 <small class="px-3 d-block wc">Användare</small>
@@ -35,5 +35,3 @@
     </div>
 @endif
 {{--<script type="text/javascript" src="{{ URL::asset('js/rangeslider.js') }}"></script>--}}
-
-

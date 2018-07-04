@@ -11,7 +11,6 @@
     <section id="cover" class="big bg-img-tomatoes image wc text-center pt-5">
         <div class="container h-100">
             <div class="row h-100">
-
                 <div class="m-auto">
 
                     <h3>LOCAL FOOD NODES</h3>
@@ -29,11 +28,10 @@
                     <p class="mt-3">
                         <small class="wc">{{ trans('public/index.index_seach') }}</small>
                     </p>
-
                 </div>
             </div>
         </div>
-        @include('new.components.arrow', ['dark' => false, 'classes' => ''])
+        {{--@include('new.components.arrow', ['dark' => false, 'classes' => ''])--}}
     </section>
 
     {{-- HOW DOES IT WORK --}}
@@ -68,11 +66,17 @@
                 </div>
             </div>
         </div>
-        @include('new.components.arrow', ['dark' => false, 'classes' => 'pb-3 pt-2 pt-lg-5 pb-lg-2'])
+        @include('new.components.arrow', [
+            'dark' => false,
+            'classes' => 'pb-3 pt-2 py-lg-4',
+            'anchor' => 'how-it-works'
+        ])
     </section>
 
     <section class="bg-accent-light-12 node-map">
-        <div id="node-map-component-root" data-ip="{{ Request::ip() }}" data-user-location="{{ json_encode($user->location) }}" data-trans="{{ json_encode(trans('public/index')) }}"></div>
+        <div id="node-map-component-root" data-ip="{{ Request::ip() }}"
+             data-user-location="{{ json_encode($user->location) }}"
+             data-trans="{{ json_encode(trans('public/index')) }}"></div>
         <div class="map-site-info p-3 d-none d-xl-block">
             <div class="row">
                 <div class="col">
@@ -93,47 +97,50 @@
         </div>
     </section>
 
-
-
     {{-- GRADIENTS --}}
-    @include('new.components.sections.medium-gradient', [
-        'image'          => 'basket',
-        'heading'        => 'public/index.create_and_shop',
-        'paragraph'      => 'public/index.create_and_shop_paragraph',
-        'button_text'    => 'public/index.create-account',
-        'inverted'       => false,
-        'global'         => 'rh2',
-        'button'         => 'secondary',
-        'color'          => 'accent',
-        'sm_bg'          => 'bg-main-accent',
-        'button_swap'    => false
-    ])
+    <section id="how-it-works">
+        @include('new.components.sections.medium-gradient', [
+            'image'          => 'basket',
+            'heading'        => 'public/index.create_and_shop',
+            'paragraph'      => 'public/index.create_and_shop_paragraph',
+            'button_text'    => 'public/index.create-account',
+            'inverted'       => false,
+            'global'         => 'rh2',
+            'button'         => 'secondary',
+            'color'          => 'accent',
+            'sm_bg'          => 'bg-main-accent',
+            'button_swap'    => false,
+            'anchor'         => 'register'
+        ])
 
-    @include('new.components.sections.medium-gradient', [
-        'image'          => 'party',
-        'heading'        => 'public/index.not_found_local',
-        'paragraph'      => 'public/index.not_found_local_paragraph',
-        'button_text'    => 'public/index.create_place',
-        'inverted'       => true,
-        'global'         => 'wh2',
-        'button'         => 'secondary',
-        'color'          => 'accent',
-        'sm_bg'          => 'bg-main-primary',
-        'button_swap'    => 'primary'
-    ])
+        @include('new.components.sections.medium-gradient', [
+            'image'          => 'party',
+            'heading'        => 'public/index.not_found_local',
+            'paragraph'      => 'public/index.not_found_local_paragraph',
+            'button_text'    => 'public/index.create_place',
+            'inverted'       => true,
+            'global'         => 'wh2',
+            'button'         => 'secondary',
+            'color'          => 'accent',
+            'sm_bg'          => 'bg-main-primary',
+            'button_swap'    => 'primary',
+            'anchor'         => 'register'
+        ])
 
-    @include('new.components.sections.medium-gradient', [
-        'image'          => 'carrots',
-        'heading'        => 'public/index.food_producer',
-        'paragraph'      => 'public/index.food_producer_paragraph',
-        'button_text'    => 'public/index.create_producer',
-        'inverted'       => false,
-        'global'         => 'wh2 wp',
-        'button'         => 'primary',
-        'color'          => 'primary',
-        'sm_bg'          => 'bg-main-accent',
-        'button_swap'    => 'secondary'
-    ])
+        @include('new.components.sections.medium-gradient', [
+            'image'          => 'carrots',
+            'heading'        => 'public/index.food_producer',
+            'paragraph'      => 'public/index.food_producer_paragraph',
+            'button_text'    => 'public/index.create_producer',
+            'inverted'       => false,
+            'global'         => 'wh2 wp',
+            'button'         => 'primary',
+            'color'          => 'primary',
+            'sm_bg'          => 'bg-main-accent',
+            'button_swap'    => 'secondary',
+            'anchor'         => 'register'
+        ])
+    </section>
 
     {{-- MEMBERSHIP --}}
     <section class="bg-accent-light-12 text-center pt-5 pb-3">
@@ -159,7 +166,7 @@
                 </div>
             </div>
         </div>
-        @include('new.components.arrow', ['dark' => true, 'classes' => 'pb-3 pt-2'])
+        @include('new.components.arrow', ['dark' => true, 'classes' => 'pb-3 pt-2', 'anchor' => 'how-it-works'])
     </section>
 
     {{-- ECONOMY --}}
@@ -170,7 +177,7 @@
             <p>{{ trans('public/index.transparency_short') }}</p>
             <span class="rc text-uppercase">{{ trans('public/index.read_more_economy') }}</span>
         </div>
-        @include('new.components.arrow', ['dark' => true, 'classes' => 'pb-3 pt-2'])
+{{--        @include('new.components.arrow', ['dark' => true, 'classes' => 'pb-3 pt-2', 'anchor' => 'how-it-works'])--}}
     </section>
 
     <section class="medium text-center bg-img-party-red image wc">
@@ -189,7 +196,7 @@
     </section>
 
     {{-- REGISTER --}}
-    <section class="bg-accent-light-24">
+    <section id="register" class="bg-accent-light-24">
         @include('new.components.register')
     </section>
 
@@ -210,6 +217,34 @@
                 $('#nav-container').addClass('bg-black-54');
             }
         };
+
+        $(document).ready(function () {
+            $('body').scrollspy({target: '#nav-spy'})
+
+            // Add smooth scrolling on all links inside the navbar
+            $(".smooth-scroll").on('click', function (event) {
+
+                // Make sure this.hash has a value before overriding default behavior
+                if (this.hash !== "") {
+
+                    // Prevent default anchor click behavior
+                    event.preventDefault();
+
+                    // Store hash
+                    var hash = this.hash;
+
+                    // Using jQuery's animate() method to add smooth page scroll
+                    // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top - 63
+                    }, 800, function () {
+
+                        // Add hash (#) to URL when done scrolling (default click behavior)
+                        window.location.hash = hash;
+                    });
+                } // End if
+            });
+        });
     </script>
 
     <script src="https://unpkg.com/leaflet@1.3.0/dist/leaflet.js"></script>

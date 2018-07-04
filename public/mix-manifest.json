@@ -1,11 +1,10 @@
 {
     "/js/admin.js": "/js/admin.js?id=833744a44a18bf02f669",
-    "/css/public.css": "/css/public.css?id=143790de07fd004b2a4b",
+    "/css/public.css": "/css/public.css?id=740983bc7871418ebcf0",
     "/css/account.css": "/css/account.css?id=d41d8cd98f00b204e980",
     "/css/admin.css": "/css/admin.css?id=d41d8cd98f00b204e980",
     "/js/transactions.js": "/js/transactions.js?id=161d3eb7863ec7116cd7",
     "/js/economy-in-out.js": "/js/economy-in-out.js?id=a18c542b9c005139dfc4",
     "/js/economy-circulation.js": "/js/economy-circulation.js?id=3a1dbabc1d32979c8ba3",
-    "/js/statistics.js": "/js/statistics.js?id=61dc66807041da0242dd",
-    "/js/rangeslider.min.js": "/js/rangeslider.min.js?id=6f4aaf17f640e65652ea"
+    "/js/statistics.js": "/js/statistics.js?id=61dc66807041da0242dd"
 }
