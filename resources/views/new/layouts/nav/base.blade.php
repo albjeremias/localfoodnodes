@@ -4,7 +4,7 @@
     <div id="nav-container"
          class="{{ !isset($transparent_nav) ? 'bg-main-primary' : 'bg-color-trans' }} fixed-top">
 
-        <nav class="navbar navbar-light navbar-expand-lg text-center text-lg-left mb-lg-0 pb-0">
+        <nav class="navbar navbar-light navbar-expand-lg text-center text-lg-left mb-lg-0 pb-2 container">
             <a class="navbar-brand" href="/">
                 <img class="nav-logo" src="/images/nav-logo.png">
             </a>

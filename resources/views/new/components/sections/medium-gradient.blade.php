@@ -12,6 +12,6 @@
                 </div>
             </div>
         </div>
-        @include('new.components.arrow', ['dark' => false, 'absolute' => true])
+        @include('new.components.arrow', ['dark' => false, 'absolute' => true, 'anchor' => $anchor])
     </div>
 </section>

@@ -1,5 +1,18 @@
-<div class="w-100 {{ isset($classes) ? $classes : '' }}{{ isset($absolute) ? 'arrow-absolute' : '' }}">
-    <div class="mx-auto icon-circle rounded-circle {{ $dark ? 'bg-black-38 nb' : '' }}">
-        <i class="fa fa-angle-down arrow" aria-hidden="true"></i>
-    </div>
+{{--
+    -Arrow Component-
+
+    classes  | string
+    absolute | string
+    *dark    | boolean
+    absolute | boolean
+    *anchor   | string
+
+    *Required
+--}}
+
+<div class="arrow-container w-100 {{ isset($classes) ? $classes : '' }}{{ isset($absolute) ? 'arrow-absolute' : '' }}">
+    <a href="#{{ $anchor }}"
+       class="mx-auto smooth-scroll d-flex icon-circle rounded-circle {{ $dark ? 'bg-black-38 nb' : '' }}">
+        <i class="fa fa-angle-down arrow m-auto" aria-hidden="true"></i>
+    </a>
 </div>

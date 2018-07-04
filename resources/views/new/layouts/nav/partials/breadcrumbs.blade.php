@@ -1,6 +1,6 @@
 @if(isset($bread_type))
-    <div class="bg-main-primary wc nav-breadcrumb mb-4 d-none d-lg-block">
-        <ul class="list-inline mb-0 align-items-center">
+    <div class="bg-main-primary wc mb-4 d-none d-lg-block container">
+        <ul class="list-inline mb-0 align-items-center nav-breadcrumb">
             <li class="list-inline-item mr-4">
                 <p class="my-auto">{{ $bread_type }}</p>
             </li>

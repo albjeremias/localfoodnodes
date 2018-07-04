@@ -1,5 +1,9 @@
 .navbar-brand > img {
-  height: 40px;
+  height: 30px;
+}
+
+.navbar-toggler:focus {
+  outline: none;
 }
 
 .navbar-nav li {
@@ -22,11 +26,11 @@
 }
 
 .nav-breadcrumb {
-  margin-left: 94px;
+  margin-left: 72px;
 }
 
 .sub-nav {
-  margin-left: 80px;
+  margin-left: 57px;
 }
 
 #nav-container.bg-main-primary .main-nav a {

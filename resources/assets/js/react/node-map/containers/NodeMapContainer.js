@@ -179,7 +179,7 @@ class NodeMapContainer extends Component {
 
     getNodePreview(node) {
         return (
-            <div className='card-node-container my-5'>
+            <div className='card-node-container'>
                 <div className='node-image image p-3' style={{backgroundImage: 'url(/images/shutterstock_271622087.jpg)'}}>
                     <span className='btn btn-dark'>
                         <i className='fa fa-clock-o' aria-hidden='true' /> {trans[node.delivery_weekday]} {node.delivery_time}

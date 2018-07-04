@@ -48,6 +48,10 @@
     position: relative;
   }
 
+  .navbar-brand > img {
+    height: 40px;
+  }
+
   .nms {
     margin-top: $mobile-nav-margin-s;
   }

@@ -29,8 +29,8 @@
 @endphp
 
 @if (isset($active_navbar))
-    <div class="bg-main-primary wc text-uppercase sub-nav text-center text-lg-left">
-        <ul class="list-inline mt-2 d-flex d-md-block mb-0">
+    <div class="bg-main-primary wc text-uppercase text-center text-lg-left container">
+        <ul class="list-inline mt-2 d-flex d-md-block mb-0 sub-nav">
             @foreach($active_navbar as $nav_item)
                 <li class="list-inline-item flex-row w-25 {{ $sub_nav_active == $loop->index ? 'sub-nav-active' : '' }} pt-3 pt-md-0 pb-3 pb-md-4 pb-lg-3">
                     <a class="px-md-3 wc" href="{{ $nav_item['link'] }}">
