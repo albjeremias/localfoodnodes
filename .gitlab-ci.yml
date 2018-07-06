@@ -32,7 +32,7 @@ deploy_staging:
     - $TARGET_DIR/$CI_PROJECT_NAME/artisan migrate --force
     - sudo chown -R www-data $TARGET_DIR/$CI_PROJECT_NAME
     - sudo chgrp -R www-data $TARGET_DIR/$CI_PROJECT_NAME
-    - artisan migrate
+    - php artisan migrate
   only:
     - staging
 
@@ -62,6 +62,6 @@ deploy_live:
     - $TARGET_DIR/$CI_PROJECT_NAME/artisan migrate --force
     - sudo chown -R www-data $TARGET_DIR/$CI_PROJECT_NAME
     - sudo chgrp -R www-data $TARGET_DIR/$CI_PROJECT_NAME
-    - artisan migrate
+    - php artisan migrate
   only:
     - live
