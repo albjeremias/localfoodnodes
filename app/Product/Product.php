@@ -21,6 +21,7 @@ class Product extends \App\BaseModel
         'info' => 'required',
         'price_unit' => 'required',
         'price' => 'required',
+        'vat' => '',
         'package_amount' => '',
         'is_hidden' => '',
         'deadline' => 'integer',
@@ -38,6 +39,7 @@ class Product extends \App\BaseModel
         'info',
         'price_unit',
         'price',
+        'vat',
         'package_amount',
         'is_hidden',
         'deadline',
@@ -608,6 +610,7 @@ class Product extends \App\BaseModel
             'deadline' => $this->deadline,
             'payment_info' => $this->payment_info,
             'production_type' => $this->production_type,
+            'vat' => $this->vat,
         ];
     }
 }

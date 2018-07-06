@@ -33,6 +33,7 @@ return [
     'enter_content_one_product' => 'Fyll i innehållet i en produkt',
     'enter_price_one_product' => 'Fyll i priset för en produkt',
     'enter_total_csa_subscribers' => 'Fyll i totala antalet CSA-prenumeranter för denna produkt och säsong',
+    'enter_vat' => 'Ange momssats',
     'estimate_package_amount' => 'Uppskatta innehåll',
     'hg' => 'hg',
     'hide_from_store' => 'Dölj produkten i butiken',
@@ -107,6 +108,7 @@ return [
     'variant_disabled' => 'Du kan inte redigera varianter för stunden. Behöver du ändra en variant, ta bort den och skapa den igen.',
     'variant_save_first' => 'Du kan skapa fler varianter efter att du har sparat produkten.',
     'variant_name_example' => 'Exampel: Stor låda, liten låda...',
+    'vat_placeholder' => 'Till exempel 12%',
     'visibility' => 'Synlighet',
     'week' => 'Vecka',
 

@@ -27,13 +27,21 @@
                             {{ trans('admin/product.enter_price_one_product') }}
                             @include('account.field-error', ['field' => 'price'])
                         </label>
-                        <input type="number" min="0" name="price" class="form-control" id="price" placeholder="Price" value="{{ $product->price or '' }}">
+                        <input type="number" min="0" name="price" class="form-control" id="price" placeholder="{{ trans('admin/product.price') }}" value="{{ $product->price or '' }}">
                     </div>
                     @if ($product->variants()->count() > 0)
                         <div class="form-text">
                             {{ trans('admin/product.price_on_variants') }}
                         </div>
                     @endif
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="price">
+                        {{ trans('admin/product.enter_vat') }} (%)
+                        @include('account.field-error', ['field' => 'vat'])
+                    </label>
+                    <input type="number" min="0" name="vat" class="form-control" id="vat" placeholder="{{ trans('admin/product.vat_placeholder') }}" value="{{ $product->vat or '' }}">
                 </div>
 
                 <div class="form-group" id="price-unit">

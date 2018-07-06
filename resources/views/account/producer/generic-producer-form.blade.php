@@ -11,6 +11,14 @@
                     <input type="text" name="name" class="form-control" id="name" placeholder="{{ trans('admin/producer.name') }}" value="{{ $producer->name or '' }}">
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label" for="vat_identification_number">
+                        {{ trans('admin/producer.vat_identification_number') }}
+                        @include('account.field-error', ['field' => 'vat_identification_number'])
+                    </label>
+                    <input type="text" name="vat_identification_number" class="form-control" id="vat_identification_number" placeholder="{{ trans('admin/producer.vat_identification_number_placeholder') }}" value="{{ $producer->vat_identification_number or '' }}">
+                    <small class="form-text text-muted">{{ trans('admin/producer.vat_identification_number_info') }}</small>
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" for="email">
                         {{ trans('admin/producer.email') }}
                         @include('account.field-error', ['field' => 'email'])

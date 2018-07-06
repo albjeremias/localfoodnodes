@@ -92,30 +92,39 @@ class OrderDateItemLink extends \App\BaseModel
     *
     * @return int
     */
-    public function getPrice()
+    public function getPrice($inclVat = true)
     {
         $price = $this->getItem()->variant ?  $this->getItem()->variant['price'] : $this->getItem()->product['price'];
 
         if ($this->getItem()->product['production_type'] === 'csa') {
             $csaPrice = $price;
-            return round($this->quantity * $price);
+            $price = round($this->quantity * $price);
         } else if (\UnitsHelper::isStandardUnit($this->getItem()->product['price_unit'])) {
             // Sold by weight
             if ($this->getItem()->variant) {
                 $variant = $this->getItem()->variant;
                 $packageAmount = isset($variant['package_amount']) ? $variant['package_amount'] : 1;
 
-                return $price * $this->quantity * $packageAmount;
+                $price = $price * $this->quantity * $packageAmount;
             } else {
                 $product = $this->getItem()->product;
                 $packageAmount = isset($product['package_amount']) ? $product['package_amount'] : 1;
 
-                return $price * $this->quantity * $packageAmount;
+                $price = $price * $this->quantity * $packageAmount;
             }
         } else {
             // Sold by product
-            return $price * $this->quantity;
+            $price = $price * $this->quantity;
         }
+
+        if (!$inclVat) {
+            $vat = $this->getItem()->getProduct()->vat;
+            if ($vat) {
+                $price = $price - ($price * ($vat * 100));
+            }
+        }
+
+        return $price;
     }
 
     /**
@@ -133,7 +142,7 @@ class OrderDateItemLink extends \App\BaseModel
      *
      * @return string
      */
-    public function getPriceWithUnit()
+    public function getPriceWithUnit($inclVat = true)
     {
         $prefix = '';
         if (\UnitsHelper::isStandardUnit($this->getItem()->product['price_unit'])) {
@@ -145,7 +154,25 @@ class OrderDateItemLink extends \App\BaseModel
             $csa = ' <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Price is for the entire CSA"></i>';
         }
 
-        return $prefix . ' ' . $this->getPrice() . ' ' . $this->getUnit() . $csa;
+        return $prefix . ' ' . $this->getPrice($inclVat) . ' ' . $this->getUnit() . $csa;
+    }
+
+    /**
+     * Get the vat amount from the price with unit.
+     *
+     * @return string
+     */
+    public function getVatAmountWithUnit()
+    {
+        $vat = $this->getItem()->getProduct()->vat;
+        $vatAmount = $this->getPrice() * ($vat / 100);
+
+        $prefix = '';
+        if (\UnitsHelper::isStandardUnit($this->getItem()->product['price_unit'])) {
+            $prefix = '<span class="approx">&asymp;</span>';
+        }
+
+        return $prefix . ' ' . $vatAmount . ' ' . $this->getUnit();
     }
 
     /**

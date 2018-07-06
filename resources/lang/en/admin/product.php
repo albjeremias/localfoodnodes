@@ -33,6 +33,7 @@ return [
     'enter_content_one_product' => 'Enter the content of one product',
     'enter_price_one_product' => 'Enter the price for one product',
     'enter_total_csa_subscribers' => 'Enter total number of CSA subscribers for this product and season',
+    'enter_vat' => 'Enter VAT',
     'estimate_package_amount' => 'Estimate content',
     'hg' => 'hg',
     'hide_from_store' => 'Hide product from store',
@@ -107,6 +108,7 @@ return [
     'variant_disabled' => 'You cannot edit a variant at the moment. If you need to change a value, delete it and create a new one.',
     'variant_save_first' => 'You can create more variants after you have saved your product.',
     'variant_name_example' => 'Example: Large box, small box...',
+    'vat_placeholder' => 'For example 12%',
     'visibility' => 'Visibility',
     'week' => 'Week',
 

@@ -5,7 +5,7 @@ namespace App\Order;
 use \App\User\User;
 use \App\Producer\Producer;
 use \App\Product\Product;
-use \App\Variant\Variant;
+use \App\Product\ProductVariant;
 use \App\Node\Node;
 use \App\Order\OrderStatus;
 use \App\Traits\Excludable;
@@ -158,10 +158,7 @@ class OrderItem extends \App\BaseModel
      */
     public function getUser()
     {
-        $user = User::find($this->user_id);
-        $user = $user ? $user->toArray() : $this->user;
-
-        return $user;
+        return new User($this->user);
     }
 
     /**
@@ -171,10 +168,7 @@ class OrderItem extends \App\BaseModel
      */
     public function getProducer()
     {
-        $producer = Producer::find($this->producer_id);
-        $producer = $producer ? $producer->toArray() : $this->producer;
-
-        return $producer;
+        return new Producer($this->producer);
     }
 
     /**
@@ -184,10 +178,7 @@ class OrderItem extends \App\BaseModel
      */
     public function getProduct()
     {
-        $product = Product::find($this->product_id);
-        $product = $product ? $product->toArray() : $this->product;
-
-        return $product;
+        return new Product($this->product);
     }
 
     /**
@@ -197,10 +188,7 @@ class OrderItem extends \App\BaseModel
      */
     public function getVariant()
     {
-        $variant = Variant::find($this->variant_id);
-        $variant = $variant ? $variant->toArray() : $this->variant;
-
-        return $variant;
+        return new ProductVariant($this->variant);
     }
 
     /**
@@ -210,10 +198,7 @@ class OrderItem extends \App\BaseModel
      */
     public function getNode()
     {
-        $node = Node::find($this->node_id);
-        $node = $node ? $node->toArray() : $this->node;
-
-        return $producer;
+        return new Node($this->node);
     }
 
     /**
