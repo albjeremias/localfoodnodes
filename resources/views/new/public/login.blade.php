@@ -26,7 +26,7 @@
                 <div class="row mt-5">
                     <div class="col-16 text-right mb-5">
                         <small>{{ trans('public/login.no_account') }}</small>
-                        <a class="ml-3 btn btn-info bb">{{ trans('public/login.create') }}</a>
+                        <a href="/register" class="ml-3 btn btn-info bb">{{ trans('public/login.create') }}</a>
                     </div>
 
                     <div class="col-16 mt-5">
@@ -41,20 +41,30 @@
                         <p class="text-center mt-4 black-54">{{ trans('public/login.or_input') }}</p>
 
                         <form action="/authenticate" method="post">
+                            {{ csrf_field() }}
 
                             <div class="form-group">
-                                <label class="text-uppercase" for="email-input">{{ trans('public/login.email') }}</label>
-                                <input type="email" id="email-input" class="form-control bb-38"
-                                       placeholder="johanna@email.com">
+                                @include('new.components.forms.input', [
+                                    'label'       => trans('public/login.email'),
+                                    'label_cap'   => true,
+                                    'name'        => 'email',
+                                    'type'        => 'email',
+                                    'class'       => 'form-control bb-38',
+                                    'placeholder' => trans('public/login.write_pw')
+                                ])
                             </div>
 
                             <div class="form-group pt-3">
-                                <label class="text-uppercase" for="pw-input">{{ trans('public/login.password') }}</label>
-                                <a class="float-right" href="#">
-                                    <small>{{ trans('public/login.forgot') }}</small>
-                                </a>
-                                <input type="password" id="pw-input" class="form-control bb-38"
-                                       placeholder="{{ trans('public/login.write_pw') }}">
+                                @include('new.components.forms.input', [
+                                    'label'       => trans('public/login.password'),
+                                    'label_cap'   => true,
+                                    'name'        => 'password',
+                                    'type'        => 'password',
+                                    'class'       => 'form-control bb-38',
+                                    'placeholder' => trans('public/login.write_pw'),
+                                    'info_text'   => trans('public/login.forgot'),
+                                    'info_link'   => '/password/reset'
+                                ])
                             </div>
 
                             <div class="d-flex justify-content-center pt-3">

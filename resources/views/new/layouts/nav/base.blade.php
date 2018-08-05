@@ -45,19 +45,19 @@
                         </li>
 
                         <li class="d-none d-lg-block my-auto px-0">
-                            <a href="/">
+                            <a href="/logout">
                                 <i class="fa fa-sign-out icon-38" aria-hidden="true"></i>
                             </a>
                         </li>
                     @else
                         <li class="d-none d-lg-block">
-                            <a href="#" class="nav-link">
+                            <a href="/login" class="nav-link">
                                 <span class="wc hover-wbb pb-2">{{ trans('public/nav.login') }}</span>
                             </a>
                         </li>
 
                         <li class="d-none d-lg-block px-3">
-                            <a href="#" class="btn btn-primary">
+                            <a href="/register" class="btn btn-primary">
                                 {{ trans('public/nav.create') }}
                             </a>
                         </li>

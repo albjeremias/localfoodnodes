@@ -6,7 +6,7 @@
     *class       | string
     *placeholder | string
     *options     | array
-    value        | boolean
+    *value        | boolean
 
     *Required
 --}}
@@ -18,7 +18,7 @@
 <select class="{{ $class }}">
     <option>{{ $placeholder }}</option>
 
-    @if(!isset($value) && !$value)
+    @if(!$value)
         @foreach ($options as $option)
             <option value="{{ $option }}">{{ $option }}</option>
         @endforeach

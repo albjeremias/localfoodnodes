@@ -2,7 +2,7 @@
 [
     'nav_title' => trans('admin/user.nav_title'),
     'sub_nav' => 'account',
-    'sub_nav_active' => 4
+    'sub_nav_active' => 3
 ])
 
 @section('title', trans('public/nav.my_profile'))

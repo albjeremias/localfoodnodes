@@ -45,7 +45,7 @@
                     @include('new.components.forms.input', [
                         'label' => trans('public/register.address'),
                         'name'  => 'address',
-                        'type'  => 'email',
+                        'type'  => 'text',
                         'class' => 'form-control-sm',
                         'placeholder' => trans('public/register.address')
                     ])
@@ -94,6 +94,7 @@
                         'class'       => 'bb-38 form-control-sm',
                         'placeholder' => trans('public/register.choose_currency'),
                         'options'     => UnitsHelper::getCurrencies(),
+                        'value'       => false
                     ])
                 </div>
 

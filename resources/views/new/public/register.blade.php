@@ -26,7 +26,7 @@
                 <div class="row mt-5">
                     <div class="col-16 text-right mb-5">
                         <small>{{ trans('public/register.have_account') }}</small>
-                        <a class="ml-3 btn btn-info bb">{{ trans('public/register.login') }}</a>
+                        <a href="/login" class="ml-3 btn btn-info bb">{{ trans('public/register.login') }}</a>
                     </div>
 
                     <div class="col-16 mt-5">
@@ -41,23 +41,52 @@
                         <p class="text-center mt-4 black-54">{{ trans('public/register.or_create_account') }}</p>
 
                         <form action="/account/user/insert" method="post">
+                            {{ csrf_field() }}
 
                             <div class="form-group pt-3">
-                                <label for="email-input">{{ trans('public/register.email') }}</label>
-                                <input type="email" id="email-input" class="form-control bb-38"
-                                       placeholder="johanna@email.com">
+                                @include('new.components.forms.input', [
+                                    'label'       => trans('public/register.email'),
+                                    'label_cap'   => true,
+                                    'name'        => 'email',
+                                    'type'        => 'email',
+                                    'class'       => 'form-control bb-38',
+                                    'placeholder' => 'johanna@email.com'
+                                ])
                             </div>
 
                             <div class="form-group pt-3">
-                                <label for="name-input">{{ trans('public/register.name') }}</label>
-                                <input type="text" id="name-input" class="form-control bb-38"
-                                       placeholder="Johanna Andersson">
+                                @include('new.components.forms.input', [
+                                    'label'       => trans('public/register.name'),
+                                    'label_cap'   => true,
+                                    'name'        => 'name',
+                                    'type'        => 'text',
+                                    'class'       => 'form-control bb-38',
+                                    'placeholder' => 'Johanna Andersson'
+                                ])
                             </div>
 
                             <div class="form-group pt-3">
-                                <label for="pw-input">{{ trans('public/register.pw') }}</label>
-                                <input type="password" id="pw-input" class="form-control bb-38"
-                                       placeholder="5+ {{ trans('public/register.characters') }}">
+                                @include('new.components.forms.input', [
+                                    'label'       => trans('public/register.pw'),
+                                    'label_cap'   => true,
+                                    'name'        => 'password',
+                                    'type'        => 'password',
+                                    'class'       => 'form-control bb-38',
+                                    'placeholder' => '5+ ' . trans('public/register.characters')
+                                ])
+                            </div>
+
+                            <div class="form-group">
+                                <label>
+                                    @include('account.field-error', ['field' => 'gdpr'])
+                                </label>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" name="gdpr">
+                                        <small>{{ trans('admin/user.gdpr_checkbox') }}</small>
+                                    </label>
+                                </div>
                             </div>
 
                             <div class="d-flex justify-content-center pt-3">
@@ -71,11 +100,11 @@
                                 </small>
                             </div>
 
+
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 @endsection

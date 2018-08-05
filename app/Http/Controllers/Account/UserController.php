@@ -35,8 +35,6 @@ class UserController extends Controller
     {
         parent::__construct();
 
-	    Auth::login(User::find(1));
-	    
         /**
          * Check if requested producer account exist, or if user has permission.
          */
