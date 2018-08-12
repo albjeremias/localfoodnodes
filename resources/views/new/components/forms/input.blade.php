@@ -9,6 +9,7 @@
     info_text    | string
     info_link    | string
     label_cap    | boolean
+    min          | integer
 
     *Required
 --}}
@@ -25,6 +26,7 @@
 
 <input type="{{ $type }}"
        name="{{ $name }}"
+       {{ isset($min) ? 'min='.$min : '' }}
        class="{{ $class }} {{ $errors->has($name) ? 'placeholder-error red-b' : '' }}"
        id="form-input-{{ $name }}"
        placeholder="{{ $errors->has($name) ? $errors->first($name) : $placeholder }}">

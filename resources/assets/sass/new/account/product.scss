@@ -1,0 +1,11 @@
+.tag-label {
+  cursor: pointer;
+}
+
+.tag input[type=checkbox]:checked + label {
+  @extend .badge-danger;
+}
+
+.product-intro h2 {
+  color: #bf360c;
+}

@@ -4,9 +4,10 @@
     label        | string
     *name        | string
     *class       | string
-    *placeholder | string
+    placeholder  | string
     *options     | array
-    *value        | boolean
+    *value       | boolean
+    *val_key      | boolean
 
     *Required
 --}}
@@ -15,8 +16,10 @@
     <label for="form-dropwdown-{{ $name }}">{{ $label }}</label>
 @endif
 
-<select class="{{ $class }}">
-    <option>{{ $placeholder }}</option>
+<select class="{{ $class }}" name="{{ $name }}">
+    @if(isset($placeholder))
+        <option>{{ $placeholder }}</option>
+    @endif
 
     @if(!$value)
         @foreach ($options as $option)
@@ -24,7 +27,7 @@
         @endforeach
     @else
         @foreach ($options as $key => $value)
-            <option value="{{ $key }}">{{ $key }}</option>
+            <option value="{{ $key }}">{{ $val_key ? $value : $key }}</option>
         @endforeach
     @endif
 </select>

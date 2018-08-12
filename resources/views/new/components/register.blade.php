@@ -37,7 +37,8 @@
                         'class'       => 'custom-select text-uppercase',
                         'placeholder' => trans('public/nav.lang_swe'),
                         'options'     => config('app.locales'),
-                        'value'       => true
+                        'value'       => true,
+                        'val_key'     => false,
                     ])
                 </div>
 

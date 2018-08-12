@@ -15,7 +15,8 @@ small,
 input,
 button,
 li,
-th {
+th,
+b {
   font-family: "Montserrat" !important;
 }
 
@@ -263,6 +264,7 @@ thead {
 .box-shadow,
 .map-site-info,
 .white-box,
+.accent-light-box,
 .product,
 .card-node-container,
 #filter-info .filter,
@@ -301,6 +303,10 @@ thead {
   border-right: 2.5px solid rgba(0, 0, 0, 0.12) !important;
 }
 
+.no-bullets {
+  list-style: none;
+}
+
 .hover-wbb:hover {
   border-bottom: white 1px solid;
 }
@@ -337,6 +343,13 @@ section.medium-gradient,
 .white-box .bottom-link {
   position: absolute;
   bottom: 1rem;
+}
+
+.accent-light-box {
+  background-color: #ffe6c2;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 select.form-control-sm,
@@ -416,7 +429,8 @@ option:checked {
   color: #fff !important;
 }
 
-.badge-danger {
+.badge-danger,
+.tag input[type=checkbox]:checked + label {
   color: #BF360C !important;
 }
 
@@ -6471,13 +6485,16 @@ input[type="button"].btn-block {
   background-color: #ea1c0d;
 }
 
-.badge-danger {
+.badge-danger,
+.tag input[type=checkbox]:checked + label {
   color: #212529;
   background-color: #efcec4;
 }
 
 .badge-danger[href]:hover,
-.badge-danger[href]:focus {
+.tag input[type=checkbox]:checked + label[href]:hover,
+.badge-danger[href]:focus,
+.tag input[type=checkbox]:checked + label[href]:focus {
   color: #212529;
   text-decoration: none;
   background-color: #e4ad9c;
@@ -14811,6 +14828,14 @@ section.medium-gradient .inverted-accent {
 .terms_text .nav-search-container .form-control,
 .nav-search-container .terms_text .form-control {
   color: rgba(0, 0, 0, 0.54) !important;
+}
+
+.tag-label {
+  cursor: pointer;
+}
+
+.product-intro h2 {
+  color: #bf360c;
 }
 
 @media (min-width: 1600px) {

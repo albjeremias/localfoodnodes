@@ -24,6 +24,7 @@ return [
 	'search_result' => 'Sökresultat',
 	'admin' => 'Admin',
 	'create_producer' => 'Skapa Producent',
+	'create_product' => 'Skapa Produkt',
 
 	'products' => 'Produkter',
     'calendar' => 'Kalender',

@@ -12,7 +12,8 @@ small,
 input,
 button,
 li,
-th {
+th,
+b {
   font-family: $font-header !important;
 }
 
@@ -321,6 +322,10 @@ thead {
   border-right: 2.5px solid $black-12 !important;
 }
 
+.no-bullets {
+  list-style: none;
+}
+
 // HOVER
 
 .hover-wbb:hover {
@@ -357,6 +362,14 @@ thead {
     position: absolute;
     bottom: 1rem;
   }
+}
+
+.accent-light-box {
+  background-color: $accent-light-24;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  @extend .box-shadow;
 }
 
 // NEEDS CLEANING
