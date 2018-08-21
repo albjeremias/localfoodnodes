@@ -539,9 +539,19 @@ class Product extends \App\BaseModel
                 return 0;
             }
 
-            $hasQuantity = (bool) $deliveryLinks->map(function($deliveryLink) {
-                return (int) $deliveryLink->getAvailableQuantity();
-            })->sum();
+            if ($this->variants()->count() > 0) {
+                $variantQuantity = $this->variants()->map(function($variant) use ($deliveryLinks) {
+                    return (bool) $deliveryLinks->map(function($deliveryLink) use ($variant) {
+                        return (int) $deliveryLink->getAvailableQuantity($variant);
+                    })->sum();
+                });
+
+                $hasQuantity = $variantQuantity->contains(true);
+            } else {
+                $hasQuantity = (bool) $deliveryLinks->map(function($deliveryLink) {
+                    return (int) $deliveryLink->getAvailableQuantity();
+                })->sum();
+            }
 
             return $hasQuantity;
         }
