@@ -13,7 +13,7 @@
     </div>
 
     <div class="container-fluid">
-        <?php $jsonTrans = json_encode(trans('public/index')); ?>
+        <?php $jsonTrans = ''; ?>
         <div class="node-map" id="node-map-component-root" data-ip="{{ Request::ip() }}" data-trans="{{ $jsonTrans }}"></div>
     </div>
 

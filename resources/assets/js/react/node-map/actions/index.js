@@ -9,11 +9,14 @@ const rootElement = document.getElementById('node-map-component-root');
 export function fetchContent(dispatch, params) {
     dispatch(requestContent());
 
-    let query;
+    let query = {
+        lang: rootElement.dataset.lang
+    };
+
     if (params.location) {
-        query = {location: params.location};
+        query.location = params.location;
     } else if (params.bounds) {
-        query = {bounds: params.bounds};
+        query.bounds = params.bounds;
     }
 
     return request

@@ -19,7 +19,8 @@
         "predis/predis": "^1.1.1",
         "sentry/sentry-laravel": "^0.6.1",
         "stripe/stripe-php": "^5.0",
-        "webpatser/laravel-uuid": "2.*"
+        "webpatser/laravel-uuid": "2.*",
+        "localfoodnodes/laravel-translation-manager": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -29,6 +30,12 @@
         "symfony/dom-crawler": "3.1.*"
 
     },
+    "repositories":[
+        {
+            "type": "path",
+            "url": "./packages/laravel-translation-manager"
+        }
+    ],
     "autoload": {
         "classmap": [
             "database"

@@ -15,7 +15,7 @@
                         {!! trans('public/economy.economy_page') !!}
                     </div>
                     <div class="card-body" id="frontpage-metrics">
-                        <metrics translations="{{ json_encode(trans('public/economy')) }}"></metrics>
+                        <metrics translations=""></metrics>
                         <div class="text-center">
                             <a class="d-block mt-2" href="/economy/transactions">{{ trans('public/economy.view_all_transactions') }}</a>
                         </div>

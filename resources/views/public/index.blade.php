@@ -28,7 +28,7 @@
     </div>
 
     <div class="map-wrapper">
-        <div class="node-map" id="node-map-component-root" data-ip="{{ Request::ip() }}" data-user-location="{{ json_encode($user->location) }}" data-trans="{{ json_encode(trans('public/index')) }}"></div>
+        <div class="node-map" id="node-map-component-root" data-ip="{{ Request::ip() }}" data-user-location="{{ json_encode($user->location) }}" data-trans=""></div>
 
         <div class="metrics">
             <div class="metric">
@@ -106,7 +106,7 @@
             </h2>
 
             <div id="economy-circulation">
-                <economy-circulation translations="{{ json_encode(trans('public/economy')) }}"></economy-circulation>
+                <economy-circulation translations=""></economy-circulation>
             </div>
             <a href="/statistics">{{ trans('public/pages/statistics.more_link') }}</a>
         </div>
@@ -154,7 +154,7 @@
             <div class="row mb-5">
                 {!! trans('public/economy.economy_info') !!}
             </div>
-            <metrics translations="{{ json_encode(trans('public/economy')) }}"></metrics>
+            <metrics translations=""></metrics>
             <div class="text-center">
                 <a class="btn btn-success mt-5" href="/economy">{{ trans('public/economy.read_more_economy') }}</a>
                 <a class="d-block mt-2" href="/economy/transactions">{{ trans('public/economy.view_all_transactions') }}</a>

@@ -26,10 +26,10 @@
                 <ul class="navbar-nav ml-auto mb-5 mb-lg-0 mt-3 mt-lg-0">
                     <!-- Visible links on mobile -->
                     <li class="nav-item d-lg-none">
-                        <a class="nav-link" href="/login">{{ trans('public/nav.login') }}</a>
+                        <a class="nav-link" href="/login">@lang('Login')</a>
                     </li>
                     <li class="nav-item d-lg-none">
-                        <a class="nav-link" href="/account/user/create">{{ trans('public/nav.create') }}</a>
+                        <a class="nav-link" href="/account/user/create">@lang('Create')</a>
                     </li>
 
                     <!-- Fast login hidden on mobile -->
@@ -52,19 +52,19 @@
                     @else
                         <li class="d-none d-lg-block">
                             <a href="#" class="nav-link">
-                                <span class="wc hover-wbb pb-2">{{ trans('public/nav.login') }}</span>
+                                <span class="wc hover-wbb pb-2">@lang('Login')</span>
                             </a>
                         </li>
 
                         <li class="d-none d-lg-block px-3">
                             <a href="#" class="btn btn-primary">
-                                {{ trans('public/nav.create') }}
+                                @lang('Create')
                             </a>
                         </li>
 
                         <li class="dropdown d-none d-lg-block mr-2">
                             <a href="#" class="nav-link dropdown-toggle wc" data-toggle="dropdown">
-                                {{ trans('public/nav.lang_swe') }}
+                                @lang('Language')
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 @foreach (config('app.locales') as $key => $value)

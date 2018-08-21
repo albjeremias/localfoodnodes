@@ -41,10 +41,10 @@
                         <p class="text-center mt-4 black-54">{{ trans('public/login.or_input') }}</p>
 
                         <form action="/authenticate" method="post">
-
+                            {{ csrf_field() }}
                             <div class="form-group">
                                 <label class="text-uppercase" for="email-input">{{ trans('public/login.email') }}</label>
-                                <input type="email" id="email-input" class="form-control bb-38"
+                                <input type="email" name="email" id="email-input" class="form-control bb-38"
                                        placeholder="johanna@email.com">
                             </div>
 
@@ -53,7 +53,7 @@
                                 <a class="float-right" href="#">
                                     <small>{{ trans('public/login.forgot') }}</small>
                                 </a>
-                                <input type="password" id="pw-input" class="form-control bb-38"
+                                <input type="password" name="password" id="pw-input" class="form-control bb-38"
                                        placeholder="{{ trans('public/login.write_pw') }}">
                             </div>
 

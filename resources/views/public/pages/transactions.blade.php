@@ -13,7 +13,7 @@
                 <div class="card">
                     <div class="card-body body-text">
                         <div id="transactions">
-                            <transactions-list translations="{{ json_encode(trans('public/economy')) }}"></transactions-list>
+                            <transactions-list translations=""></transactions-list>
                         </div>
                     </div>
                 </div>

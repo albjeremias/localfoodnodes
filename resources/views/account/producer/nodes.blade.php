@@ -1,5 +1,5 @@
 <div id="nodes"></div> <!-- Anchor -->
-<?php $jsonTrans = json_encode(trans('admin/node')); ?>
+<?php $jsonTrans = ''; ?>
 <div id="producer-node-map-component-root" data-producer-id="{{ $producer->id }}" data-token="{{ csrf_token() }}" data-trans="{{ $jsonTrans }}">
     <div class="row">
         <div class="col-12 col-xl-8">
