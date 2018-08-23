@@ -4,7 +4,6 @@
             <div class="col-4">
                 <ul>
                     <li><a href="mailto:info@localfoodnodes.org">info@localfoodnodes.org</a></li>
-                    <li>+46 735 325945</li>
                 </ul>
                 <ul>
                     <li>Backavägen 8</li>

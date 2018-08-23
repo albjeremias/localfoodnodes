@@ -180,7 +180,15 @@
     </div>
 
     <div class="container frontpage-section">
-        <h2 class="thin mt-5 mb-5">#{{ trans('public/pages/find-out-more.quip') }}</h2>
+        <h3 class="bold mt-5 mb-5">#{{ trans('public/pages/find-out-more.quip') }}</h2>
+    </div>
+
+    <div class="container-fluid frontpage-section supported-by pt-5 pb-5">
+        <div class="containter text-center">
+            <h2 class="thin mb-5">{{ trans('public/index.supported_by') }}</h2>
+            <a href="http://www.slowfoodyouthnetwork.org/" target="_blank"><img src="/images/sfyn-logo.png"></a>
+            <a href="https://ideon.se/" target="_blank"><img src="/images/ideon-logo.png"></a>
+        </div>
     </div>
 
     <link rel="stylesheet" href="/css/leaflet/leaflet.min.css" />
