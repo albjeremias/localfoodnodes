@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'title' => 'App',
+    'title' => 'Local Food App',
+    'sub_header' => 'Finns nu att ladda ner både till iOS and Android',
     'content_bottom' => '
         <h4>2015 Förstudie blev startskottet</h4>
         <p>Projektet tog sin praktiska start sensommaren 2015, efter att flera år ha legat och marinerats som en tanke. Startskottet gick iom den vinnovafinansierade förstudie “Småskalig konsumentstödd matproduktion” som Albin Ponnert projektledde, i Hela Sverige ska levas regi, på temat CSA och handel med lokal mat, helt utan mellanhänder.</p>

@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'title' => 'App',
+    'title' => 'Local Food App',
     'header' => 'Local Food App',
-    'sub_header' => 'Coming soon to iOS and Android',
+    'sub_header' => 'Now available for both iOS and Android',
     'content_bottom' => '
         <h4>2015 STARTED AS A PRE-STUDY</h4>
         <p>The project took its start in the late summer of 2015, after several years of been an idéa how to start trade with local food. The start took place within the pre-study "Småskalig konsumentstödd matproduktion (CSA)" lead by Albin Ponnert, as project leader employed by the organization “whole Sweden shall live”, on the subject of CSA and trade of local food, without intermediaries.</p>
