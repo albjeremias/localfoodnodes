@@ -290,7 +290,7 @@ class UserController extends Controller
     }
 
     /**
-     * Confirm delete action.
+     * Approve gdpr.
      */
     public function gdpr(Request $request)
     {

@@ -22,7 +22,15 @@ class AuthenticateAccount
             throw new AuthenticationException();
         } else {
             $user = Auth::user();
-            if (!$user->active && !($request->is('account/user/activate') || $request->is('account/user/activate/*'))) {
+
+            // Urls available for non-active users
+            $urls = [
+                'account/user/activate',
+                'account/user/activate/*',
+                'account/user/gdpr',
+            ];
+
+            if (!$user->active && !(in_array($request->path(), $urls))) {
                 return redirect('/account/user/activate');
             } else {
                 return $next($request);
