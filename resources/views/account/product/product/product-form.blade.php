@@ -27,7 +27,7 @@
                             {{ trans('admin/product.enter_price_one_product') }}
                             @include('account.field-error', ['field' => 'price'])
                         </label>
-                        <input type="number" min="0" name="price" class="form-control" id="price" placeholder="{{ trans('admin/product.price') }}" value="{{ $product->price or '' }}">
+                        <input type="number" step="0.01" min="0" name="price" class="form-control" id="price" placeholder="{{ trans('admin/product.price') }}" value="{{ $product->price or '' }}">
                     </div>
                     @if ($product->variants()->count() > 0)
                         <div class="form-text">

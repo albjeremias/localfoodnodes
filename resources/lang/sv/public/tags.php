@@ -2,6 +2,7 @@
 
 return [
     'artisan_food' => 'Mathantverk',
+    'beef' => 'Nöt',
     'beer' => 'Öl',
     'beverage' => 'Dryck',
     'bread' => 'Bröd',
@@ -12,6 +13,8 @@ return [
     'fruit_berries' => 'Frukt & bär',
     'icecream' => 'Glass',
     'grain_flour' => 'Gryn & mjöl',
+    'grassfed' => 'Naturbeteskött',
+    'heritage_breed' => 'Lantras',
     'jam_marmelade' => 'Sylt & marmelad',
     'meat' => 'Kött',
     'mushroom' => 'Svamp',

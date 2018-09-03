@@ -2,6 +2,7 @@
 
 return [
     'artisan_food' => 'Artisan food',
+    'beef' => 'Beef',
     'beer' => 'Beer',
     'beverage' => 'Beverage',
     'bread' => 'Bread',
@@ -11,6 +12,8 @@ return [
     'fish' => 'Fish and seafood',
     'fruit_berries' => 'Fruit & berries',
     'grain_flour' => 'Grain & flour',
+    'grassfed' => 'Grass-fed beef',
+    'heritage_breed' => 'Heritage breed',
     'icecream' => 'Ice cream',
     'jam_marmelade' => 'Jam & marmelade',
     'meat' => 'Meat',

@@ -44,6 +44,7 @@ class ProductFilter
     public static function tags($translate = false) {
         return collect([
             'artisan_food' => trans('public/tags.artisan_food'),
+            'beef' => trans('public/tags.beef'),
             'beer' => trans('public/tags.beer'),
             'beverage' => trans('public/tags.beverage'),
             'bread' => trans('public/tags.bread'),
@@ -53,6 +54,8 @@ class ProductFilter
             'fish' => trans('public/tags.fish'),
             'fruit_berries' => trans('public/tags.fruit_berries'),
             'grain_flour' => trans('public/tags.grain_flour'),
+            'grassfed' => trans('public/tags.grassfed'),
+            'heritage_breed' => trans('public/tags.heritage_breed'),
             'honey' => trans('public/tags.honey'),
             'icecream' => trans('public/tags.icecream'),
             'jam_marmelade' => trans('public/tags.jam_marmelade'),

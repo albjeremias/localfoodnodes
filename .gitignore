@@ -12,3 +12,6 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 stats.json
+
+# Only available in 2.0
+packages
