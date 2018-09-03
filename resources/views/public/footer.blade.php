@@ -20,6 +20,7 @@
                 <ul>
                     <li><a href="/membership">{{ trans('public/nav.membership') }}</a></li>
                     <li><a href="/find-out-more">{{ trans('public/nav.find_out_more') }}</a></li>
+                    <li><a href="/team">{{ trans('public/nav.team') }}</a></li>
                     <li><a href="/economy">{{ trans('public/nav.economy') }}</a></li>
                     <li><a href="/gdpr">GDPR</a></li>
                 </ul>

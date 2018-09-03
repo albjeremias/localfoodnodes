@@ -11,4 +11,5 @@ return [
     'login' => 'Log in',
     'login_or_create' => 'Login or create account',
     'membership' => 'Become a member',
+    'team' => 'Team',
 ];
