@@ -6,11 +6,14 @@ return [
     'title' => 'Team',
     'alexanderfrodeberg_title' => 'Frontend webbutvecklare',
     'alexanderfrodeberg' => '
-
+        <p>Född och uppvuxen i Skåne, men flyttade till Karlshamn, Blekinge för att studera webbutveckling på Blekinge Tekniska Högskola.</p>
+        <p>Som fullstack-utvecklare har jag en stor verktygslåda till hjälp när jag bygger skräddasydda webbapplikationer.</p>
     ',
     'albinponnert_title' => 'Projektledare',
     'albinponnert' => '
-
+        <p>Grundare och projektledare med ett driv för samhällsutvecklingsfrågor och delaktighetsprojekt på grösrotsnivå. Utbildad dokumentärfilmare och pappa till mycket, bland annat Sveriges största analogiserade instagramprojekt #enjoysweden.</p>
+        <p>Självhushållningsambitioner med djur och odlingar som håller på att gå över styr. Hockeypappa som själv var hejare på innebandy på rätt sida avsliten hälsena.</p>
+        <p>Går ständigt och fnular på nya projekt, både på gården och på digitala. Har ett bananträdshål i sovrummet.</p>
     ',
     'davidajnered_title' => 'Backend webbutvecklare',
     'davidajnered' => '
