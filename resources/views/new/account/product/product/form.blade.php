@@ -5,7 +5,7 @@
             'label'       => trans('admin/product.product_name'),
             'name'        => 'name',
             'type'        => 'text',
-            'class'       => 'form-control-sm',
+            'class'       => 'form-control',
             'placeholder' => trans('admin/product.product_name_placeholder'),
         ])
     </div>
@@ -29,7 +29,7 @@
                 'label'       => trans('admin/product.enter_price_one_product'),
                 'name'        => 'price',
                 'type'        => 'number',
-                'class'       => 'form-control-sm',
+                'class'       => 'form-control',
                 'placeholder' => 'Price',
                 'min'         => 0
             ])
@@ -46,7 +46,7 @@
         @include('new.components.forms.dropdown', [
             'label'       => trans('admin/product.price_per'),
             'name'        => 'price_unit',
-            'class'       => 'bb-38 form-control-sm',
+            'class'       => 'bb-38 form-control',
             'options'     => UnitsHelper::getPriceUnits(),
             'value'       => true,
             'val_key'     => true,
@@ -59,7 +59,7 @@
             'label'       => trans('admin/product.estimate_package_amount'),
             'name'        => 'package_amount',
             'type'        => 'text',
-            'class'       => 'form-control-sm',
+            'class'       => 'form-control',
             'placeholder' => trans('admin/product.estimate_package_amount'),
         ])
 
@@ -132,12 +132,14 @@
         ])
     </div>
 
+    {{-- Payment Deadline --}}
     <div class="form-group">
         @include('new.components.forms.input', [
         'label'       => trans('admin/product.booking_deadline'),
         'name'        => 'deadline',
         'type'        => 'number',
-        'class'       => 'form-control-sm',
+        'class'       => 'form-control',
+        'append'      => trans('admin/product.days'),
         'placeholder' => '0',
         'min'         => 0
     ])

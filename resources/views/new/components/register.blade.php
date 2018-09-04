@@ -8,7 +8,7 @@
                     @include('new.components.forms.input', [
                         'name'  => 'name',
                         'type'  => 'text',
-                        'class' => 'form-control input-group',
+                        'class' => 'form-control-lg input-group',
                         'placeholder' => trans('public/index.your_name')
                     ])
                 </div>
@@ -17,7 +17,7 @@
                     @include('new.components.forms.input', [
                         'name'  => 'email',
                         'type'  => 'email',
-                        'class' => 'form-control input-group',
+                        'class' => 'form-control-lg input-group',
                         'placeholder' => trans('public/index.your_email')
                     ])
                 </div>
@@ -26,7 +26,7 @@
                     @include('new.components.forms.input', [
                         'name'  => 'password',
                         'type'  => 'password',
-                        'class' => 'form-control input-group',
+                        'class' => 'form-control-lg input-group',
                         'placeholder' => trans('public/index.create_pw')
                     ])
                 </div>

@@ -49,7 +49,7 @@
                                     'label_cap'   => true,
                                     'name'        => 'email',
                                     'type'        => 'email',
-                                    'class'       => 'form-control bb-38',
+                                    'class'       => 'form-control-lg w-100 bb-38',
                                     'placeholder' => trans('public/login.write_pw')
                                 ])
                             </div>
@@ -60,7 +60,7 @@
                                     'label_cap'   => true,
                                     'name'        => 'password',
                                     'type'        => 'password',
-                                    'class'       => 'form-control bb-38',
+                                    'class'       => 'form-control-lg w-100 bb-38',
                                     'placeholder' => trans('public/login.write_pw'),
                                     'info_text'   => trans('public/login.forgot'),
                                     'info_link'   => '/password/reset'

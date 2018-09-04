@@ -27,6 +27,7 @@ section {
 
 button {
   font-weight: 600 !important;
+  cursor: pointer;
 }
 
 // -------------------------
@@ -374,15 +375,12 @@ thead {
 
 // NEEDS CLEANING
 
-select.form-control-sm {
-  font-size: 0.86rem !important;
-  background-color: white !important;
-  height: 36px !important;
-  color: $black-38 !important;
-}
-
 input.placeholder-error::placeholder {
   color: red;
+}
+
+.border-radius-3 {
+  border-radius: .3rem;
 }
 
 option:checked {

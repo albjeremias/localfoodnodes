@@ -49,7 +49,7 @@
                                     'label_cap'   => true,
                                     'name'        => 'email',
                                     'type'        => 'email',
-                                    'class'       => 'form-control bb-38',
+                                    'class'       => 'form-control-lg w-100 bb-38',
                                     'placeholder' => 'johanna@email.com'
                                 ])
                             </div>
@@ -60,7 +60,7 @@
                                     'label_cap'   => true,
                                     'name'        => 'name',
                                     'type'        => 'text',
-                                    'class'       => 'form-control bb-38',
+                                    'class'       => 'form-control-lg w-100 bb-38',
                                     'placeholder' => 'Johanna Andersson'
                                 ])
                             </div>
@@ -71,7 +71,7 @@
                                     'label_cap'   => true,
                                     'name'        => 'password',
                                     'type'        => 'password',
-                                    'class'       => 'form-control bb-38',
+                                    'class'       => 'form-control-lg w-100 bb-38',
                                     'placeholder' => '5+ ' . trans('public/register.characters')
                                 ])
                             </div>

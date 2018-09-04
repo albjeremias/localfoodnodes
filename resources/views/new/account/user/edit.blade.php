@@ -11,83 +11,125 @@
     <div class="container nm pt-2">
         <form id="user-edit-form" action="/account/user/update" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
-            <div class="row">
-                <div class="col-12 col-xl-8">
-                    <div class="card">
-                        <div class="card-header">{{ trans('admin/user.edit_information') }}</div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label class="form-control-label" for="name">
-                                    {{ trans('admin/user.name') }}
-                                    @if ($errors->has('name'))
-                                        <div class="badge badge-danger">{{ $errors->first('name') }}</div>
-                                    @endif
-                                </label>
-                                <input type="text" name="name" class="form-control" id="name" placeholder="{{ trans('admin/user.name') }}" value="{{ $user->name }}">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-control-label" for="email">
-                                    {{ trans('admin/user.email') }}
-                                    @if ($errors->has('email'))
-                                        <div class="badge badge-danger">{{ $errors->first('email') }}</div>
-                                    @endif
-                                </label>
-                                <input type="email" name="email" class="form-control" id="email" placeholder="{{ trans('admin/user.email') }}" value="{{ $user->email }}">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-control-label" for="phone">
-                                    {{ trans('admin/user.phone') }}
-                                    @if ($errors->has('phone'))
-                                        <div class="badge badge-danger">{{ $errors->first('phone') }}</div>
-                                    @endif
-                                </label>
-                                <input type="phone" name="phone" class="form-control" id="phone" placeholder="{{ trans('admin/user.phone') }}" value="{{ $user->phone }}">
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-12 col-lg-4">
-                                    <label class="form-control-label" for="address">{{ trans('admin/user.address') }}</label>
-                                    <input type="text" name="address" class="form-control" id="address" placeholder="{{ trans('admin/user.address') }}" value="{{ $user->address }}">
-                                </div>
-                                <div class="form-group col-12 col-lg-4">
-                                    <label class="form-control-label" for="zip">{{ trans('admin/user.zip') }}</label>
-                                    <input type="text" name="zip" class="form-control" id="zip" placeholder="{{ trans('admin/user.zip') }}" value="{{ $user->zip }}">
-                                </div>
-                                <div class="form-group col-12 col-lg-4">
-                                    <label class="form-control-label" for="city">{{ trans('admin/user.city') }}</label>
-                                    <input type="text" name="city" class="form-control" id="city" placeholder="{{ trans('admin/user.city') }}" value="{{ $user->city }}">
-                                </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="language">{{ trans('admin/user.site_lang') }}</label>
-                                <select name="language" id="language" class="form-control">
-                                    @foreach (config('app.locales') as $langCode => $language)
-                                        <option value="{{ $langCode }}" {{ $langCode === $user->language ? 'selected' : '' }}>{{ $language }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+            <div class="row my-5">
 
-                            <p>
-                                {!! trans('admin/user.gdpr_consent_date', ['date' => $user->gdprConsent()->created_at]) !!}
-                            </p>
-                        </div>
+                <div class="col-md-8">
+                    {{-- Name --}}
+                    <div class="form-group">
+                        @include('new.components.forms.input', [
+                            'label'       => trans('admin/user.name'),
+                            'label_cap'   => true,
+                            'name'        => 'name',
+                            'type'        => 'text',
+                            'class'       => 'form-control bb-38 bc',
+                            'placeholder' => trans('admin/user.name'),
+                            'value'       => $user->name
+                        ])
                     </div>
 
+                    {{-- Email --}}
+                    <div class="form-group">
+                        @include('new.components.forms.input', [
+                            'label'       => trans('admin/user.email'),
+                            'label_cap'   => true,
+                            'name'        => 'email',
+                            'type'        => 'email',
+                            'class'       => 'form-control bb-38 bc',
+                            'placeholder' => trans('admin/user.email'),
+                            'value'       => $user->email
+                        ])
+                    </div>
+
+                    {{-- Phone --}}
+                    <div class="form-group">
+                        @include('new.components.forms.input', [
+                            'label'       => trans('admin/user.phone'),
+                            'label_cap'   => true,
+                            'name'        => 'phone',
+                            'type'        => 'phone',
+                            'class'       => 'form-control bb-38 bc',
+                            'placeholder' => trans('admin/user.phone'),
+                            'value'       => $user->phone
+                        ])
+                    </div>
+
+                    {{-- Address --}}
+                    <div class="form-group">
+                        @include('new.components.forms.input', [
+                            'label'       => trans('admin/user.address'),
+                            'label_cap'   => true,
+                            'name'        => 'address',
+                            'type'        => 'text',
+                            'class'       => 'form-control bb-38 bc',
+                            'placeholder' => trans('admin/user.address'),
+                            'value'       => $user->address
+                        ])
+                    </div>
+
+                    <div class="form-row">
+                    {{-- ZIP --}}
+                    <div class="form-group col">
+                        @include('new.components.forms.input', [
+                            'label'       => trans('admin/user.zip'),
+                            'label_cap'   => true,
+                            'name'        => 'zip',
+                            'type'        => 'text',
+                            'class'       => 'form-control bb-38 bc',
+                            'placeholder' => trans('admin/user.zip'),
+                            'value'       => $user->zip
+                        ])
+                    </div>
+
+                    {{-- City --}}
+                    <div class="form-group col">
+                        @include('new.components.forms.input', [
+                            'label'       => trans('admin/user.city'),
+                            'label_cap'   => true,
+                            'name'        => 'city',
+                            'type'        => 'text',
+                            'class'       => 'form-control bb-38 bc',
+                            'placeholder' => trans('admin/user.city'),
+                            'value'       => $user->city
+                        ])
+                    </div>
+                    </div>
+
+                    {{-- Language --}}
+                    <div class="form-group">
+                        @include('new.components.forms.dropdown', [
+                            'label'       => trans('admin/user.site_lang'),
+                            'name'        => 'language',
+                            'class'       => 'custom-select bb-38 bc',
+                            'options'     => config('app.locales'),
+                            'value'       => true,
+                            'val_key'     => true,
+                        ])
+                    </div>
+
+                    {{-- GDPR Concent --}}
+                    <p>{!! trans('admin/user.gdpr_consent_date', ['date' => $user->gdprConsent()->created_at]) !!}</p>
+                </div>
+
+                <div class="col-md-6 offset-md-2">
+
+                    {{-- Images --}}
                     @include('account.image-card', [
                         'images' => $user->images(),
                         'deleteUrl' => '/account/image/{imageId}/delete',
                         'limit' => 1,
                     ])
 
+                    <div class="mt-5">
+                        {{-- Save --}}
+                        <button type="submit" form="user-edit-form" class="btn btn-success">{{ trans('admin/user.save_user') }}</button>
+
+                        {{-- Delete --}}
+                        <a href="/account/user/delete/confirm" class="btn btn-danger float-right">{{ trans('admin/user.delete_user') }}</a>
+                    </div>
                 </div>
             </div>
-
-            @component('account.form-control-bar')
-                <button type="submit" form="user-edit-form" class="btn btn-success">{{ trans('admin/user.save_user') }}</button>
-                <a href="/account/user/delete/confirm" class="btn btn-danger">{{ trans('admin/user.delete_user') }}</a>
-            @endcomponent
         </form>
-
     </div>
 @endsection
 

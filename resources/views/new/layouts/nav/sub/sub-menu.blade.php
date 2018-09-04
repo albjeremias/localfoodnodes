@@ -9,10 +9,10 @@
     ];
 
     $account_navbar = [
-        ['name' => trans('public/nav.dashboard'),  'link' => '/account/user',      'icon' => 'th-large'],
-        ['name' => trans('public/nav.my_nodes'),   'link' => '/account/nodes',     'icon' => 'map-marker'],
-        ['name' => trans('public/nav.pick_ups'),   'link' => '#',                  'icon' => 'home'],
-        ['name' => trans('public/nav.my_profile'), 'link' => '/account/user/edit', 'icon' => 'user'],
+        ['name' => trans('public/nav.dashboard'),  'link' => '/account/user',         'icon' => 'th-large'],
+        ['name' => trans('public/nav.my_nodes'),   'link' => '/account/nodes',        'icon' => 'map-marker'],
+        ['name' => trans('public/nav.pick_ups'),   'link' => '/account/user/pickups', 'icon' => 'home'],
+        ['name' => trans('public/nav.my_profile'), 'link' => '/account/user/edit',    'icon' => 'user'],
     ];
 
     if (isset($sub_nav)) :

@@ -45,148 +45,110 @@ $theme-colors: map-merge((
         "facebook":   $fb,
 ), $theme-colors);
 
-// Compontentes
-$line-height-lg:              1.5;
-
-$input-btn-padding-y-lg:      1.032rem;
-$input-btn-padding-x-lg:      1rem;
-$input-btn-line-height-lg:    $line-height-lg;
-
-// TABLE
-$table-hover-bg:  $accent-light-12;
-
-// Buttons
-//
-// For each of Bootstrap's buttons, define text, background, and border color.
-
-$btn-border-radius:           20px;
-$btn-font-weight:             600;
-$btn-line-height:             18px;
-$input-btn-padding-y:         .5rem;
-
-// -lg
-$btn-border-radius-lg:        48px;
-$font-size-lg:                0.933rem;
-$btn-line-height-lg :         18px;
-$btn-padding-y-lg:            $input-btn-padding-y-lg;
-$btn-padding-x-lg:            1.56rem;
-
-//-sm
-$btn-border-radius-sm:        2px;
-
-// Fonts
-//
-// Font, line-height, and color for body text, headings, and more.
-
-$font-size-base:              1rem; // Assumes the browser default, typically `16px` 0.9375 '15px'    0.875 '14px
-$input-btn-padding-x:         1.462rem;
-
-$small-font-size:             87%;
-
-// HEADER 1-6
-$h1-font-size:                $font-size-base * 3;
-$h2-font-size:                $font-size-base * 2.27;
-$h3-font-size:                $font-size-base * 1.6;
-$h4-font-size:                $font-size-base * 1.6;
-$h5-font-size:                2.125rem;
-$h6-font-size:                $font-size-base;
-
-$headings-font-family:        $font-header;
-$headings-line-height:        1.21;
-$headings-font-weight:        400;
-
-
+// --------- FONTS ---------
+$font-family-base:            $font-header;
 $line-height-base:            1.6;
-$font-weight-base:            500;
+$font-weight-normal:          500;
 
-// NAVBAR
-$navbar-light-color:          #fff;
-$navbar-nav-link-padding-x:   1rem;
+$h1-font-size:                3rem;
+$h2-font-size:                2.26rem;
+$h3-font-size:                1.6rem;
+$h4-font-size:                1.6rem;
 
-// INPUTS
-$input-group-addon-bg:        #fff;
-$input-border-color:          #fff;
-$input-border-radius:         2px;
+$small-font-size:             88%;
 
-$input-box-shadow:            0 2px 4px 0 rgba(0,0,0,0.54);
+small { font-weight: 400 !important; } // CLEAN
 
-$input-btn-line-height:       1.8666;
+$font-size-lg:                .93;
 
-$custom-select-height:        100%;
-
-$input-padding-x:             0.719rem;
-$input-padding-y:             $input-padding-x;
-
-// LG
-$input-padding-y-lg:          $input-btn-padding-y-lg;
-$input-padding-x-lg:          $input-btn-padding-x-lg;
-$input-line-height-lg:        $input-btn-line-height-lg;
+// --------- INPUT ---------
 
 
-// BADGE
-$badge-border-radius:         20px;
-$badge-font-size:             13px;
-$badge-font-weight:           500;
-$badge-padding-y:             0.644rem;
-$badge-padding-x:             1.425rem;
+// --- FORM-GROUP ---
 
-// NAV
+$form-group-margin-bottom:              2rem;
 
-$navbar-light-toggler-border-color: transparent;
 
-.form-control {
-  font-weight: 500;
-  font-family: $font-header;
+// ---FORM-CONTROL---
+
+.input-group-prepend {.input-group-text { background-color: #fff }}
+.form-control { font-size: .88rem !important; }
+
+// color
+$input-border-color:                    $dark-38;
+
+// border radius
+$input-border-radius:                   2px;
+
+// padding
+$input-padding-y:                       .5rem;
+$input-padding-x:                       .5rem;
+
+// --------- FORM-CONTROL-LG ---------
+
+// OVERRIDE
+.form-control-lg {
+  border: 1px solid #fff;
+  font-size: 1rem !important;
 }
+
+// border radius
+$border-radius-lg:                       2px;
+
+// padding
+$input-btn-padding-y-lg:                 1rem;
+$input-btn-padding-x-lg:                 1rem;
+
+// --------- BUTTON ---------
+
+// ---BTN---
+
+.btn { text-transform: uppercase }
+
+.btn.btn-info { color: $dark-54; }
+
+// padding
+$input-btn-padding-y:               .5rem;
+$input-btn-padding-x:               1.46rem;
+
+// radius
+$btn-border-radius:                 20px;
+
+// ---BTN-LG---
+
+// padding
+$btn-padding-x-lg:                  1.53rem;
+
+// border radius
+$btn-border-radius-lg:              48px;
+
+// line height
+$btn-line-height-lg:                18px;
+
+// --------- CUSTOM SELECT ---------
+// height
+$custom-select-height:              100%;
+
+// border
+$custom-select-border-width:        1px;
+$custom-select-border-color:        #fff;
+
+// --------- BADGE ---------
 
 .badge {
   margin-right: 5px;
   margin-bottom: 7px;
 }
 
-.btn-info {
-  color: $dark-54 !important;
-}
+$badge-padding-y:                   .644rem;
+$badge-padding-x:                   1.425rem;
+$badge-border-radius:               20px;
 
-.btn-dark {
-  border: none !important;
-}
+// --------- NAV ---------
 
-.badge-success {
-  color: #fff !important;
-}
+$navbar-nav-link-padding-x:         1rem;
 
-.badge-danger {
-  color: #BF360C !important;
-}
-
-.badge-pill {
-  text-align: center;
-}
-
-.btn {
-  text-transform: uppercase !important;
-}
-
-.form-control-sm {
-  width: 100% !important;
-  display: block !important;
-  padding-top: .5rem !important;
-  padding-bottom: .5rem !important;
-  border-radius: 2px !important;
-  border: 1px solid $black-38;
-  margin-bottom: 1rem;
-}
-
-.badge-pill {
-  width: 117px !important;
-  line-height: 24px !important;
-  padding-bottom: 0.47rem !important;
-  padding-top: 0.47rem !important;
-}
 
 // LEAFLET
 
-.leaflet-popup-tip-container {
-  bottom: -6px;
-}
+.leaflet-popup-tip-container { bottom: -6px; }

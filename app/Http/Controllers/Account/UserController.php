@@ -401,7 +401,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        return view('account.user.pickups', [
+        return view('new.account.user.pickups', [
             'user' => $user,
             'breadcrumbs' => [
                 $user->name => 'user',

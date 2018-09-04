@@ -24,7 +24,7 @@
                         'label' => trans('public/register.farm_business_name'),
                         'name'  => 'name',
                         'type'  => 'text',
-                        'class' => 'form-control-sm',
+                        'class' => 'form-control',
                         'placeholder' => trans('public/register.name')
                     ])
                 </div>
@@ -35,7 +35,7 @@
                         'label' => trans('public/register.email'),
                         'name'  => 'email',
                         'type'  => 'email',
-                        'class' => 'form-control-sm',
+                        'class' => 'form-control',
                         'placeholder' => trans('public/register.email')
                     ])
                 </div>
@@ -46,7 +46,7 @@
                         'label' => trans('public/register.address'),
                         'name'  => 'address',
                         'type'  => 'text',
-                        'class' => 'form-control-sm',
+                        'class' => 'form-control',
                         'placeholder' => trans('public/register.address')
                     ])
                 </div>
@@ -57,7 +57,7 @@
                         'label' => trans('public/register.zip_code'),
                         'name'  => 'zip',
                         'type'  => 'text',
-                        'class' => 'form-control-sm',
+                        'class' => 'form-control',
                         'placeholder' => trans('public/register.zip_code')
                     ])
                 </div>
@@ -68,7 +68,7 @@
                         'label' => trans('public/register.city'),
                         'name'  => 'city',
                         'type'  => 'text',
-                        'class' => 'form-control-sm',
+                        'class' => 'form-control',
                         'placeholder' => trans('public/register.city')
                     ])
                 </div>
@@ -79,7 +79,7 @@
                         'label' => trans('public/register.describe_farm_business'),
                         'name'  => 'info',
                         'class' => 'form-control wysiwyg',
-                        'rows'  => 5,
+                        'rows'  => 7,
                         'old'   => $producer->info
                     ])
                 </div>
@@ -91,7 +91,7 @@
                     @include('new.components.forms.dropdown', [
                         'label'       => trans('public/register.currency_products'),
                         'name'        => 'currency',
-                        'class'       => 'bb-38 form-control-sm',
+                        'class'       => 'bb-38 form-control',
                         'placeholder' => trans('public/register.choose_currency'),
                         'options'     => UnitsHelper::getCurrencies(),
                         'value'       => false
@@ -104,7 +104,7 @@
                         'label' => trans('public/register.payment_info_with_confirm'),
                         'name'  => 'payment_info',
                         'type'  => 'text',
-                        'class' => 'form-control-sm',
+                        'class' => 'form-control',
                         'placeholder' => trans('public/register.write_here')
                     ])
                 </div>
@@ -127,7 +127,7 @@
                     'label' => trans('public/register.website'),
                     'name'  => 'link_homepage',
                     'type'  => 'text',
-                    'class' => 'form-control-sm',
+                    'class' => 'form-control',
                     'placeholder' => 'http://'
                 ])
             </div>
@@ -138,7 +138,7 @@
                     'label' => 'Facebook',
                     'name'  => 'link_facebook',
                     'type'  => 'text',
-                    'class' => 'form-control-sm',
+                    'class' => 'form-control',
                     'placeholder' => 'Facebook-' . trans('public/register.address_small')
                 ])
             </div>
@@ -149,7 +149,7 @@
                     'label' => 'Twitter',
                     'name'  => 'link_twitter',
                     'type'  => 'text',
-                    'class' => 'form-control-sm',
+                    'class' => 'form-control',
                     'placeholder' => 'Twitter-' . trans('public/register.address_small')
                 ])
             </div>
@@ -160,13 +160,12 @@
                     'label' => 'Instagram',
                     'name'  => 'link_instagram',
                     'type'  => 'text',
-                    'class' => 'form-control-sm',
+                    'class' => 'form-control',
                     'placeholder' => 'Instagram-' . trans('public/register.address_small')
                 ])
             </div>
 
             <button type="submit" class="btn btn-secondary mt-3 float-right">{{ trans('admin/producer.save_producer') }}</button>
-
         </div>
     </div>
 </div>

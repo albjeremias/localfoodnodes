@@ -10,6 +10,7 @@
     info_link    | string
     label_cap    | boolean
     min          | integer
+    append       | string
 
     *Required
 --}}
@@ -24,12 +25,23 @@
     </a>
 @endif
 
+<div class="input-group">
+
 <input type="{{ $type }}"
+       aria-describedby="input-aria-{{ $name }}"
        name="{{ $name }}"
        {{ isset($min) ? 'min='.$min : '' }}
        class="{{ $class }} {{ $errors->has($name) ? 'placeholder-error red-b' : '' }}"
        id="form-input-{{ $name }}"
+       {{ isset($value) ? 'value='.$value : '' }}
        placeholder="{{ $errors->has($name) ? $errors->first($name) : $placeholder }}">
+
+@if(isset($append))
+    <div class="input-group-append">
+        <span class="input-group-text" id="input-aria-{{ $name }}">{{ $append }}</span>
+    </div>
+@endif
+</div>
 
 
 
