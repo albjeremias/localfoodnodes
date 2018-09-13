@@ -13,7 +13,7 @@ class ProductVariant extends BaseModel
      */
     protected $validationRules = [
         'product_id' => 'required',
-        'name' => 'required',
+        'name' => 'required|max:255',
         'price' => 'required|numeric',
         'package_amount' => 'required|numeric|min:0.01',
         'main_variant' => 'boolean',

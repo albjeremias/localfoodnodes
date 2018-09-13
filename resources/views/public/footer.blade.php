@@ -1,7 +1,7 @@
 <div class="container-fluid footer">
     <div class="container">
         <div class="row no-gutters contact">
-            <div class="col-4">
+            <div class="col-12 col-lg-4 mb-5">
                 <ul>
                     <li><a href="mailto:info@localfoodnodes.org">info@localfoodnodes.org</a></li>
                 </ul>
@@ -13,10 +13,10 @@
                     <li>Org.nr: 769633-6598</li>
                 </ul>
             </div>
-            <div class="col-4">
+            <div class="col-12 col-lg-4 mb-5">
                 {{ trans('public/pages/find-out-more.paragraph_1_1') }}
             </div>
-            <div class="col-4 text-right">
+            <div class="col-12 col-lg-4 mb-5 text-lg-right">
                 <ul>
                     <li><a href="/membership">{{ trans('public/nav.membership') }}</a></li>
                     <li><a href="/find-out-more">{{ trans('public/nav.find_out_more') }}</a></li>

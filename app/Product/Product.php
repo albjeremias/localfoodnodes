@@ -17,12 +17,12 @@ class Product extends \App\BaseModel
      */
     public $validationRules = [
         'producer_id' => 'required|integer',
-        'name' => 'required',
+        'name' => 'required|max:255',
         'info' => 'required',
         'price_unit' => 'required',
-        'price' => 'required',
-        'vat' => '',
-        'package_amount' => '',
+        'price' => 'required|numeric',
+        'vat' => 'numeric',
+        'package_amount' => 'numberic',
         'is_hidden' => '',
         'deadline' => 'integer',
         'payment_info' => ''
