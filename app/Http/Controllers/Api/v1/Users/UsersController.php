@@ -93,10 +93,6 @@ class UsersController extends BaseController
             DB::table('user_activations')->insert(['user_id' => $user->id, 'token' => hash_hmac('sha256', str_random(64), config('app.key'))]);
             // Get token from database to ensure that we send the correct one in the email.
             $token = DB::table('user_activations')->select('token')->where('user_id', '=', $user->id)->value('token');
-
-            \App\Helpers\SlackHelper::message('error', 'Token ' . $token . ' created for user id ' . $user->id);
-        } else {
-            \App\Helpers\SlackHelper::message('error', 'Token ' . $token . ' already exists for user id ' . $user->id);
         }
 
         Mail::send('email.activate-user', ['user' => $user, 'token' => $token], function ($message) use ($user) {

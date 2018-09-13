@@ -113,20 +113,27 @@ class CronController extends BaseController
             // Get all users for this event
             if ($notificationEvent->context === 'node') {
                 $node = Node::find($notificationEvent->context_id);
-                $node->userLinks()->map(function($userLink) use ($node, $notificationEvent) {
-                    $user = $userLink->getUser();
 
-                    try {
-                        Notification::create([
-                            'user_id' => $user->id,
-                            'title' => $notificationEvent->title,
-                            'message' => $notificationEvent->message,
-                            'variables' => $notificationEvent->variables,
-                        ]);
-                    } catch(\Illuminate\Database\QueryException $e) {
-                        // Ignore duplicates
-                    }
-                });
+                if ($node) {
+                    $node->userLinks()->map(function($userLink) use ($node, $notificationEvent) {
+                        $user = $userLink->getUser();
+
+                        try {
+                            Notification::create([
+                                'user_id' => $user->id,
+                                'title' => $notificationEvent->title,
+                                'message' => $notificationEvent->message,
+                                'variables' => $notificationEvent->variables,
+                            ]);
+                        } catch(\Illuminate\Database\QueryException $e) {
+                            // Ignore duplicates
+                        }
+                    });
+                } else {
+                    // Todo: remove when solved (David - 2018-09-13)
+                    $message = sprintf('$notificationEvent with contect node and context id %s is null', $notificationEvent->context_id);
+                    \Log::debug($message);
+                }
             }
 
             // Order
