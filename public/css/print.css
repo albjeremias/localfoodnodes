@@ -1,9 +1,11 @@
 @media print {
     @page { margin: 0; }
     body { margin: 1.6cm; }
+    .user-nav { display: none !important; }
     .navbar { display: none !important; }
     .card-header { display: none !important; }
     .btn { display: none !important; }
+    .receipt { position: relative !important; }
     .receipt::after {
         font: normal normal normal 14px/1 FontAwesome;
         content: '\f0c4';
