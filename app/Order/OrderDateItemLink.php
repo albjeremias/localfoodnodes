@@ -165,14 +165,15 @@ class OrderDateItemLink extends \App\BaseModel
     public function getVatAmountWithUnit()
     {
         $vat = $this->getItem()->getProduct()->vat;
-        $vatAmount = $this->getPrice() * ($vat / 100);
+        $priceExclVat = $this->getPrice() / (($vat / 100) + 1);
+        $vatAmount = $this->getPrice() - $priceExclVat;
 
         $prefix = '';
         if (\UnitsHelper::isStandardUnit($this->getItem()->product['price_unit'])) {
             $prefix = '<span class="approx">&asymp;</span>';
         }
 
-        return $prefix . ' ' . $vatAmount . ' ' . $this->getUnit();
+        return $prefix . ' ' . round($vatAmount, 2) . ' ' . $this->getUnit();
     }
 
     /**

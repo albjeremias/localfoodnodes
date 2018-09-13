@@ -10,7 +10,13 @@
         <div class="card-body">
             @foreach ($orderItemsGroupedByUserId as $userId => $orderDateItemLinks)
                 <div class="receipt pb-3 mb-3">
-                    <div class="receipt__header mb-5 pull-left">{{ trans('admin/producer.receipt') }} - {{ $orderDateItemLinks->first()->getItem()->user['name'] }}</div>
+                    <h2 class="bold">{{ trans('admin/producer.receipt') }}</h2>
+                    <div class="mb-5 pull-left">
+                        <div class="receipt__header">{{ trans('admin/producer.customer') }}</div>
+                        <div>{{ $orderDateItemLinks->first()->getItem()->user['name'] }}</div>
+                        <div>{{ $orderDateItemLinks->first()->getItem()->user['phone'] }}</div>
+                        <div>{{ $orderDateItemLinks->first()->getItem()->user['email'] }}</div>
+                    </div>
                     <div class="pull-right mb-5">
                         <div class="receipt__header">{{ trans('admin/producer.seller') }}</div>
                         <div>{{ $producer->name }}</div>
@@ -83,7 +89,12 @@
                                         $price = $orderDateItemLink->getItem()->getProduct()->price;
                                     }
 
-                                    return $price * $orderDateItemLink->quantity * ($orderDateItemLink->getItem()->getProduct()->vat / 100);
+                                    // Same calculcations as in OrderDateItemLink
+                                    $vat = $orderDateItemLink->getItem()->getProduct()->vat;
+                                    $priceExclVat = $price / (($vat / 100) + 1);
+                                    $vatAmount = $price - $priceExclVat;
+
+                                    return round($vatAmount, 2);
                                 })
                             }} {{ $orderDateItemLinks->first()->getItem()->producer['currency'] }}
                         </div>
