@@ -1,0 +1,14 @@
+@media print {
+    @page { margin: 0; }
+    body { margin: 1.6cm; }
+    .navbar { display: none !important; }
+    .card-header { display: none !important; }
+    .btn { display: none !important; }
+    .receipt::after {
+        font: normal normal normal 14px/1 FontAwesome;
+        content: '\f0c4';
+        position: absolute;
+        left: 0;
+        bottom: 2rem;
+    }
+}

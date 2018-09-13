@@ -10,7 +10,8 @@
         <div class="card-body">
             @foreach ($orderItemsGroupedByUserId as $userId => $orderDateItemLinks)
                 <div class="receipt pb-3 mb-3">
-                    <h2 class="bold">{{ trans('admin/producer.receipt') }}</h2>
+                    <h2 class="bold mb-0">{{ trans('admin/producer.receipt') }}</h2>
+                    <div class="mb-5">{{ $node['name'] }} - {{ $orderDate->date('Y-m-d') }}</div>
                     <div class="mb-5 pull-left">
                         <div class="receipt__header">{{ trans('admin/producer.customer') }}</div>
                         <div>{{ $orderDateItemLinks->first()->getItem()->user['name'] }}</div>
@@ -102,7 +103,7 @@
                 </div>
             @endforeach
 
-            <button class="btn btn-success" onClick="window.print(); return false">{{ trans('admin/producer.print') }}</button>
+            <button class="btn btn-secondary" onClick="window.print(); return false">{{ trans('admin/producer.print') }}</button>
         </div>
     </div>
 

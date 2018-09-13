@@ -54,7 +54,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a href="/account/producer/{{ $producer->id }}/delivery/{{ $orderDate->id }}/picklist">{{ trans('admin/producer.picklist') }}</a>
+                            <a class="btn btn-secondary" href="/account/producer/{{ $producer->id }}/delivery/{{ $orderDate->id }}/picklist">{{ trans('admin/producer.picklist') }}</a>
                         </div>
                     </div>
                 @endforeach

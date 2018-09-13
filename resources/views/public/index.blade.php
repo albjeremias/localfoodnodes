@@ -188,6 +188,7 @@
             <h2 class="thin mb-5">{{ trans('public/index.supported_by') }}</h2>
             <a href="http://www.slowfoodyouthnetwork.org/" target="_blank"><img src="/images/sfyn-logo.png"></a>
             <a href="https://ideon.se/" target="_blank"><img src="/images/ideon-logo.png"></a>
+            <a href="http://www.stenkjohnsonsstiftelse.se" target="_blank"><img src="/images/stenkjohnson-logo.png"></a>
         </div>
     </div>
 
