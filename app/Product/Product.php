@@ -22,7 +22,7 @@ class Product extends \App\BaseModel
         'price_unit' => 'required',
         'price' => 'required|numeric',
         'vat' => 'numeric',
-        'package_amount' => 'numberic',
+        'package_amount' => 'numeric',
         'is_hidden' => '',
         'deadline' => 'integer',
         'payment_info' => ''

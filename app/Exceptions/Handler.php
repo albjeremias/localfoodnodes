@@ -38,6 +38,7 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        // Todo: implement and test $this->shouldReport($exception)
         app('sentry')->captureException($exception);
         parent::report($exception);
     }
