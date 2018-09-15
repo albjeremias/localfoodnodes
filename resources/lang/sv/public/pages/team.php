@@ -4,16 +4,17 @@ return [
     'header' => 'Local Food Team',
     'subheader' => 'Människorna bakom localfoodnodes.org',
     'title' => 'Team',
-    'alexanderfrodeberg_title' => 'Frontend webbutvecklare',
-    'alexanderfrodeberg' => '
-        <p>Född och uppvuxen i Skåne, men flyttade till Karlshamn, Blekinge för att studera webbutveckling på Blekinge Tekniska Högskola.</p>
-        <p>Som fullstack-utvecklare har jag en stor verktygslåda till hjälp när jag bygger skräddasydda webbapplikationer.</p>
-    ',
     'albinponnert_title' => 'Projektledare',
     'albinponnert' => '
         <p>Grundare och projektledare med ett driv för samhällsutvecklingsfrågor och delaktighetsprojekt på grösrotsnivå. Utbildad dokumentärfilmare och pappa till mycket, bland annat Sveriges största analogiserade instagramprojekt #enjoysweden.</p>
-        <p>Självhushållningsambitioner med djur och odlingar som håller på att gå över styr. Hockeypappa som själv var hejare på innebandy på rätt sida avsliten hälsena.</p>
+        <p>Självhushållningsambitioner med djur och odlingar som håller på att gå över styr. Hockey och fotbollspappa som själv var hejare på innebandy på rätt sida avsliten hälsena.</p>
         <p>Går ständigt och fnular på nya projekt, både på gården och på digitala. Har ett bananträdshål i sovrummet.</p>
+    ',
+    'alexanderfrodeberg_title' => 'Frontend webbutvecklare',
+    'alexanderfrodeberg' => '
+        <p>Webbutvecklare med fokus på frontend-utveckling på Local Food Nodes. Har även kunskaper inom backend-utveckling.</p>
+        <p>Försöker mitt bästa för att göra världen till en bättre plats med mina intressen och kunskaper som verktyg.
+        Älskar konceptutveckling och försöker med jämna mellanrum lämna min comfort zone för att utvecklar mig själv som person.</p>
     ',
     'davidajnered_title' => 'Backend webbutvecklare',
     'davidajnered' => '
