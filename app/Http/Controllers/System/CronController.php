@@ -130,9 +130,8 @@ class CronController extends BaseController
                         }
                     });
                 } else {
-                    // Todo: remove when solved (David - 2018-09-13)
-                    $message = sprintf('$notificationEvent with contect node and context id %s is null', $notificationEvent->context_id);
-                    \Log::debug($message);
+                    // Not doesn't exist any more so remove the notification event
+                    $notificationEvent->delete();
                 }
             }
 
