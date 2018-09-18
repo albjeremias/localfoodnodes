@@ -15,6 +15,7 @@ use Mail;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\User\User;
+use App\User\UserMembershipPayment;
 use App\User\GdprConsent;
 use App\User\UserNodeLink;
 use App\Image\Image;
@@ -36,12 +37,12 @@ class UserController extends Controller
     {
         parent::__construct();
 
-        /**
-         * Check if requested producer account exist, or if user has permission.
-         */
         $this->middleware(function ($request, $next) {
+            \Log::debug('middleware');
             $user = Auth::user();
             $orderId = $request->route('orderId');
+
+            \Log::debug(var_export($orderId, true));
 
             if (!$orderId) {
                 return $next($request);
@@ -492,11 +493,26 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
+        $users = User::with(['membershipPaymentsRelationship'])->get();
+        $members = $users->filter(function($user) {
+            return $user->isMember(true);
+        })->count();
+
+        $allPayments = UserMembershipPayment::get();
+        $totalMembershipPayments = $allPayments->map(function($payment) {
+            return ($payment->amount > 2) ? $payment->amount : null;
+        })->filter()->sum();
+
+        $totalPayingMembers = $allPayments->unique('user_id')->count();
+        $averageMembershipPayments = $members === 0 ? 0 : $totalMembershipPayments / $totalPayingMembers;
+
         return view('account.user.membership', [
             'breadcrumbs' => [
                 $user->name => 'user',
-                trans('admin/user-nav.membership') => ''
-            ]
+                trans('admin/user-nav.membership') => '',
+            ],
+            'members' => $members,
+            'averageMembership' => round($averageMembershipPayments)
         ]);
     }
 
@@ -506,20 +522,21 @@ class UserController extends Controller
     public function membershipCallback(Request $request)
     {
         $user = Auth::user();
-
         $token = $request->input('stripeToken');
         $amount = $request->input('amount');
-
         $status = $user->processMembershipPayment($token, $amount);
+        $errorKey = null;
 
         if ($status['error']) {
+            $errorKey = strtolower($status['message']);
+            $errorKey = preg_replace('/[^a-z0-9"\']/', '', $errorKey);
+            \Log::debug('Payment error key: ' . $errorKey);
+
             $request->session()->flash('message', [
-                trans('admin/messages.user_membership_error', [
-                    'errors' => $status['message']
-                ])
+                trans('admin/messages.user_membership_error')
             ]);
 
-            return redirect('/account/user/membership');
+            return redirect('/account/user/membership?error=' . $errorKey);
         }
 
         if ($status['message'] < 3) {

@@ -64,7 +64,7 @@ return [
     'user_password_not_changed' => 'Je paswoord kon niet worden veranderd.',
     'user_membership_amount_not_numeric' => 'Ledencontributie is numeriek. Moet een heel getal zijn.',
     'user_membership_success' => 'Jouw ledencontributie is nu betaald.',
-    'user_membership_error' => 'Betaling ledencontributie kon niet worden voltooid. :errors',
+    'user_membership_error' => 'Betaling ledencontributie kon niet worden voltooid.',
 
     // Password reset
     'password_reset_email_sent' => 'Wij hebben je een link verstuurd per em-mail om je wachtwoord opnieuw in te stellen.',

@@ -61,6 +61,7 @@ return [
     'package' => 'Package',
     'payment_info' => 'Payment info',
     'payment_info_email' => 'Payment info included in customer order email',
+    'phone' => 'Phone number',
     'picklist' => 'View pick list / receipt',
     'producer_information' => 'Producer information',
     'producer_terms' => 'Producer - Terms of use',

@@ -5,15 +5,10 @@ return [
     'header' => 'Medfinansiera framtidens mat!',
     'sub_header' => 'Bli medlem och medskapa nya matsystem',
     'body' => '
-        <p>Som medlem är du med och finansierar utveckling av framtidens matsystem. Vi kan alla vara med och påverka riktingen för vilken utveckling vi vill se kring maten vi äter.</p>
-
-        <p>Medlemsavgifterna stödjer arbetet med att successivt öka mängden mat som produceras och konsumeras lokalt. De stödjer lokalt jordbruk, lokal matdistribution och stärker av lokalekonomier.
-Först genom att möjliggöra utvecklingen av plattformen och därefter genom en fond för lokal utveckling som transparant kommer kunna distribuera pengar till insatser för att öka andelen mat som är odlad och konsumerad lokalt.</p>
-
-        <p>Local Food Nodes är ett verktyg med öppen källkod, som även möjliggör gräsrotsfinansiering av digital infrastruktur, lokal utveckling och olika initiativ som behövs för att göra vår livsmedelsförsörjning lokal igen.
-Storleken på medlemsavgiften är valfri och du bestämmer själv hur mycket eller lite du känner att du vill och kan bidra med.
-När du blir stödmedlem medfinansierar du utvecklingen av framtidens lokala matförsörjning.
-</p>',
+        <p><strong>Som medlem är du med och finansierar utveckling av framtidens matsystem. Vi kan alla vara med och påverka riktingen för vilken utveckling vi vill se kring maten vi äter.</strong></p>
+        <p>Medlemsavgifterna stödjer arbetet med att successivt öka mängden mat som produceras och konsumeras lokalt. De stödjer lokalt jordbruk, lokal matdistribution och lokala ekonomier. Först genom att möjliggöra utvecklingen av plattformen, och därefter genom en fond för lokal utveckling som transparant kommer kunna distribuera pengar till insatser för att öka andelen mat som är odlad och konsumerad lokalt.</p>
+        <p>Local Food Nodes är ett verktyg med öppen källkod, som även möjliggör gräsrotsfinansiering av digital infrastruktur, lokal utveckling och olika initiativ som behövs för att göra vår livsmedelsförsörjning lokal igen. Storleken på medlemsavgiften är valfri och du bestämmer själv hur mycket eller lite du känner att du vill och kan bidra med. När du blir stödmedlem medfinansierar du utvecklingen av framtidens lokala matförsörjning.</p>
+    ',
 
     'block_2_header' => 'Så här används medlemsavgiften',
     'block_2_content' => '<p>Varje år sätter vi en årsbudget som skall täcka kostnaderna för att bära, driva och vidareutveckla själva plattformen. Alla intäkter som överstiger den årsbudgeten kommer att återinvesteras i satsningar för att främja lokal mat. Detta genom en lokal utvecklingsfond. Mer information om förvaltningen av denna fond kommer att finnas tillgänglig.</p>',

@@ -26,6 +26,13 @@
                     <input type="email" name="email" class="form-control" id="email" placeholder="{{ trans('admin/producer.email') }}" value="{{ $producer->email or '' }}">
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label" for="phone">
+                        {{ trans('admin/producer.phone') }}
+                        @include('account.field-error', ['field' => 'phone'])
+                    </label>
+                    <input type="text" name="phone" class="form-control" id="phone" placeholder="{{ trans('admin/producer.phone') }}" value="{{ $producer->phone or '' }}">
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" for="info">
                         {{ trans('admin/producer.company_description') }}
                         @include('account.field-error', ['field' => 'info'])

@@ -15,9 +15,7 @@
                             {!! $content !!}
                         @endif
 
-                        <div>
-                            @include('public.user.create-user-form')
-                        </div>
+                        @include('public.user.create-user-form')
                     </div>
                 </div>
             </div>

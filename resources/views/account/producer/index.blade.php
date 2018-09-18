@@ -14,6 +14,7 @@
                 <li>{{ $producer->name }}</li>
                 <li>{{ $producer->address }} {{ $producer->zip }} {{ $producer->city }}</li>
                 <li>{{ $producer->email }}</li>
+                <li>{{ $producer->phone }}</li>
                 <li>{{ $producer->link_homepage }}</li>
             </ul>
         </div>

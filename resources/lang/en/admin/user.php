@@ -96,4 +96,5 @@ return [
     ',
     'membership_no_history' => 'You have no previous membership payments.',
     'renew_membership' => 'Renew member and view payment history',
+    'error_yourcardwasdeclined' => '<strong>Your card was not approved.</strong> This is usually because your card has restrictions for online purchases. We recommend that you sign in to your internet bank, change the settings and try again. If you still experience problems please contact your bank',
 ];

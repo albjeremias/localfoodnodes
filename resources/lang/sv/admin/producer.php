@@ -61,6 +61,7 @@ return [
     'package' => 'Förpackning',
     'payment_info' => 'Betalinformation',
     'payment_info_email' => 'Betalinformation som är inkluderat i bekräftelsen som skickas till kunden',
+    'phone' => 'Telefonnummer',
     'picklist' => 'Visa plocklista / kvitto',
     'producer_information' => 'Producentinformation',
     'producer_terms' => 'Producent - Villkor',

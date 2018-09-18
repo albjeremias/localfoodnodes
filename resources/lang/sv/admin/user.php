@@ -96,4 +96,5 @@ return [
     ',
     'membership_no_history' => 'Du har inte betalat några medlemsavgifter.',
     'renew_membership' => 'Förnya ditt medlemskap och se historik',
+    'error_yourcardwasdeclined' => '<strong>Ditt kort godkändes ej.</strong> Detta beror oftast på att kortet har begränsningar för köp på internet. Vi rekommenderar dig att logga in på din internetbank, ändra inställningarna och prova igen. Om du fortfarande upplever problem behöver du kontakta din bank.'
 ];

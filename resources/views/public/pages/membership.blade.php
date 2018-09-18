@@ -14,50 +14,31 @@
                     <div class="card-body body-text">
                         {!! trans('public/pages/membership.body') !!}
 
-                        <div class="metrics row">
-                            <div class="metric col">
-                                <i class="fa fa-user"></i>
-                                <div class="metric-inner">
-                                    <div class="value">{{ $members }}</div>
-                                    <div class="label">{{ trans('public/pages/membership.supporting') }}</div>
-                                </div>
-                            </div>
-                            <div class="metric col">
-                                <i class="fa fa-money"></i>
-                                <div class="metric-inner">
-                                    <div class="value">{{ $averageMembership }} SEK</div>
-                                    <div class="label">{{ trans('public/pages/membership.avg_fee') }}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row mt-5 mb-5 justify-content-center">
-            <div class="col-12 col-md-8 col-lg-6">
-                <div class="card">
-                    <div class="card-body body-text">
-                        @if (Auth::check())
-                            @include('account.user.membership-form')
-                        @else
-                            @include('public.user.create-user-form')
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row mb-5">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body body-text">
-                        <h2>{!! trans('public/pages/membership.block_2_header') !!}</h2>
+                        <h3>{!! trans('public/pages/membership.block_2_header') !!}</h3>
                         {!! trans('public/pages/membership.block_2_content') !!}
 
-                        <h2>{!! trans('public/pages/membership.block_3_header') !!}</h2>
+                        <h3>{!! trans('public/pages/membership.block_3_header') !!}</h3>
                         {!! trans('public/pages/membership.block_3_content') !!}
+                    </div>
+                </div>
+
+                <div class="row mt-5 mb-5 justify-content-center">
+                    <div class="col-12">
+                        @if (Auth::check())
+                            <div class="card">
+                                <div class="card-body body-text">
+                                    <h3>{!! trans('admin/user.membership') !!}</h3>
+                                    @include('account.user.membership-form')
+                                </div>
+                            </div>
+                        @else
+                            <div class="card">
+                                <div class="card-body body-text">
+                                    <h3>{!! trans('admin/user.create_account') !!}</h3>
+                                    @include('public.user.create-user-form')
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

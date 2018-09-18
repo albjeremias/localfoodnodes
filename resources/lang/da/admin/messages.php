@@ -64,7 +64,7 @@ return [
     'user_password_not_changed' => 'Din adgangskode kunne ikke ændres.',
     'user_membership_amount_not_numeric' => 'Beløbet for medlemskab skal være et tal.',
     'user_membership_success' => 'Dit medlemskab er nu betalt.',
-    'user_membership_error' => 'Kontingentbetaling kunne ikke gennemføres. :errors',
+    'user_membership_error' => 'Kontingentbetaling kunne ikke gennemføres.',
 
     // Password reset
     'password_reset_email_sent' => 'Vi har sendt et link til at nulstille din adgangskode.',

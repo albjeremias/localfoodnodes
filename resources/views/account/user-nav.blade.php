@@ -2,7 +2,10 @@
     <div class="user-nav d-none d-lg-block">
         <div class="scrollfix">
             <div class="logo">
-                <a href="/"><img src="/images/nav-logo.png"></a>
+                <a href="/">
+                    {{-- <img src="/images/nav-logo.png"> --}}
+                    Local Food Nodes
+                </a>
             </div>
 
             @include('public.cart')

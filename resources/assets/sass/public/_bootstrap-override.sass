@@ -17,6 +17,10 @@
     font: normal normal normal 14px/1 FontAwesome
     content: "\f054"
 
+*
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+
 /* Other Bootstrap overrides */
 .card
   margin-bottom: 30px
@@ -96,6 +100,7 @@
 
 .form-group,
 .input-group
+  font-family: 'montserrat'
   .disabled
     opacity: 0.5
   label
@@ -107,7 +112,6 @@
     font-family: 'montserrat'
     font-weight: 400
     font-size: inherit
-  input
     &:focus
       outline: none
       box-shadow: none
@@ -141,7 +145,6 @@
 
 .btn
   border: 0
-  border-radius: 0
   cursor: pointer
   font-weight: bold
   font-size: 14px
@@ -164,11 +167,14 @@
     &:focus
       background: #57a465
 
+input,
+textarea
+  font-family: 'montserrat'
+
 input[type=submit],
 .btn
   text-transform: uppercase
   font-family: 'montserrat'
-
 
 .text-success
   color: #67b475 !important

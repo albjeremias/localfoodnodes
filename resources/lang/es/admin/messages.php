@@ -64,7 +64,7 @@ return [
     'user_password_not_changed' => 'Tu contraseña no se pudo cambiar.',
     'user_membership_amount_not_numeric' => 'La sifra tiene que ser un número.',
     'user_membership_success' => 'Ahora tu membresía ha sido pagada.',
-    'user_membership_error' => 'No se pudo realizar el pago de tu membresía. :errors',
+    'user_membership_error' => 'No se pudo realizar el pago de tu membresía.',
 
     // Password reset
     'password_reset_email_sent' => 'Un correo electrónico con un enlace para restablecer tu contraseña ha sido enviado a tu dirección de correo electrónico.',

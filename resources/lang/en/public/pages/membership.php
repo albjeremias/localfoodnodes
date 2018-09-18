@@ -5,10 +5,8 @@ return [
     'header' => 'The future of food',
     'sub_header' => 'Become a member, become a part of the future of food',
     'body' => '
-        <p>When you become a supporting member you are co-funding the future of food. Together, all of us as supporting members, can choose the direction of local food development in the future.</p>
-
+        <p><strong>When you become a supporting member you are co-funding the future of food. Together, all of us as supporting members, can choose the direction of local food development in the future.</strong></p>
         <p>The supporting membership fees are used to increase the amount of food produced and consumed locally. These funds will help support local farming, local distribution, incresed local food access and strenghtened local economies. It is used to increse the percentage of food we eat that is produced by farmers we know personally.</p>
-
         <p>Local Food Nodes is an open source tool that will help crowdfund the needed infrastructure, models and intiatives in order to relocalize the food system. We do this together with the membership fees that we all self-determine the size of. </p>',
 
     'block_2_header' => 'This is what your fees enables',

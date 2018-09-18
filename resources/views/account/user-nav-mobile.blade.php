@@ -3,7 +3,8 @@
         <div class="row">
             <nav class="navbar navbar-light user-nav-responsive">
                 <a class="navbar-brand" href="/">
-                    <img src="/images/nav-logo-dark.png">
+                    {{-- <img src="/images/nav-logo-dark.png"> --}}
+                    <span>Local Food Nodes</span>
                 </a>
 
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,7 +33,12 @@
                                     </a>
                                 </li>
                             @endforeach
-                            <div class="nav-item nav-item-divider"></div>
+                        @else
+                            <li class="nav-item">
+                                <a href="/account/node/create">
+                                    {{ trans('admin/user-nav.create_node') }}
+                                </a>
+                            </li>
                         @endif
 
                         @if ($user->producerAdminLinks()->count() > 0)
@@ -43,8 +49,15 @@
                                     </a>
                                 </li>
                             @endforeach
-                            <div class="nav-item nav-item-divider"></div>
+                        @else
+                            <li class="nav-item">
+                                <a href="/account/producer/create">
+                                    {{ trans('admin/user-nav.create_producer') }}
+                                </a>
+                            </li>
                         @endif
+
+                        <div class="nav-item nav-item-divider"></div>
 
                         <li class="nav-item"><a href="/logout">{{ trans('admin/user-nav.logout') }}</a></li>
                     </ul>
