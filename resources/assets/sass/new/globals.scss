@@ -1,0 +1,417 @@
+html {
+  font-size: 15px !important;
+}
+
+body {
+  -webkit-font-smoothing: antialiased !important;
+}
+
+p,
+a,
+small,
+input,
+button,
+li,
+th,
+b {
+  font-family: $font-header !important;
+}
+
+small {
+  color: $dark-54;
+}
+
+section {
+  position: relative;
+}
+
+button {
+  font-weight: 600 !important;
+  cursor: pointer;
+}
+
+// -------------------------
+// FONTS
+// -------------------------
+
+h1 {
+  font-weight: 500 !important;
+  line-height: 3.2rem !important;
+}
+
+h2 {
+  font-weight: 400 !important;
+  line-height: 2.66rem !important;
+}
+
+h3 {
+  font-weight: 500 !important;
+  line-height: 1.93rem !important;
+}
+
+h4 {
+  font-weight: 400 !important;
+  line-height: 2.13rem !important;
+}
+
+a {
+  font-size: 0.933rem !important;
+  font-weight: 600 !important;
+  line-height: 1.2rem !important;
+}
+
+table th {
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+}
+
+td {
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 20px;
+}
+
+.list-p li {
+  font-size: 1rem;
+  line-height: 1.6rem;
+  font-weight: 500;
+}
+
+// -------------------------
+// TRANSITIONS
+// -------------------------
+
+.bg-color-trans {
+  transition: background-color 0.3s !important;
+}
+
+// -------------------------
+// BACKGROUND COLORS
+// -------------------------
+
+.bg-main-primary {
+  background-color: $main-primary;
+}
+
+.bg-main-accent {
+  background-color: $main-accent;
+}
+
+.bg-accent-light-12 {
+  background-color: $accent-light-12;
+}
+
+.bg-accent-light-24 {
+  background-color: $accent-light-24;
+}
+
+.bg-black-38 {
+  background-color: $black-38;
+}
+
+.bg-black-54 {
+  background-color: $black-54;
+}
+
+.bg-black-87 {
+  background-color: $black-87 !important;
+}
+
+.bg-shell {
+  background-color: $bg-1;
+}
+
+// -------------------------
+// BACKGROUND IMAGES
+// -------------------------
+
+.bg-img-basket {
+  background-image: $img-basket !important;
+}
+
+.bg-img-party {
+  background-image: $img-party !important;
+}
+
+.bg-img-party-red {
+  background-image: $img-party-red !important;
+}
+
+.bg-img-party-cut {
+  background-image: $party-cut !important;
+}
+
+.bg-img-carrots {
+  background-image: $img-carrots !important;
+}
+
+.bg-img-tomatoes {
+  background-image: $img-tomatoes !important;
+}
+
+.bg-img-calves {
+  background-image: $img-calves !important;
+}
+
+// -------------------------
+// FONT COLORS
+// -------------------------
+
+.wc {
+  color: white !important;
+}
+
+.bc {
+  color: $dark-87 !important;
+}
+
+.wh2 h2 {
+  color: white;
+}
+
+.wp p {
+  color: white;
+}
+
+.rc {
+  color: $main-primary;
+}
+
+.red-c {
+  color: red;
+}
+
+.rh2 h2 {
+  color: $main-primary;
+}
+
+.black-12 {
+  color: $black-12 !important;
+}
+
+.black-54 {
+  color: $black-54 !important;
+}
+
+.black-38 {
+  color: $black-38 !important;
+}
+
+.black-87 {
+  color: $black-87 !important;
+}
+
+// -------------------------
+// MARGINS
+// -------------------------
+
+.nm {
+  margin-top: $nav-margin;
+}
+
+.nms {
+  margin-top: $nav-margin-s;
+}
+
+// -------------------------
+// ICONS
+// -------------------------
+
+.icon {
+  font-size: 1.6em !important;
+  line-height: 24px !important;
+}
+
+.icon-54 {
+  @extend .icon;
+  color: $black-54 !important;
+}
+
+.icon-38 {
+  @extend .icon;
+  color: $black-38 !important;
+}
+
+.icon-green {
+  @extend .icon;
+  color: $secondary-green !important;
+}
+
+.icon-white {
+  @extend .icon;
+  color: white !important;
+}
+
+.icon-small {
+  @extend .icon;
+  font-size: 1rem !important;
+}
+
+.icon-big {
+  @extend .icon;
+  font-size: 4.1rem !important;
+}
+
+.arrow-container {
+
+  a:hover {
+    text-decoration: none;
+    @extend .wc;
+  }
+
+  .arrow {
+    font-size: 2.7rem !important;
+  }
+}
+
+.icon-circle {
+  border: #fff 1px solid;
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  color: #fff;
+}
+
+// -------------------------
+// TABLES
+// -------------------------
+
+.table th {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+thead {
+  //box-shadow: 0px 3px 1px -2px #111c;
+  border-bottom: 2px solid #a5a5a5;
+}
+
+// -------------------------
+// HELPERS
+// -------------------------
+
+.box-shadow {
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.24);
+}
+
+.bb {
+  border: $dark-87 1px solid !important;
+}
+
+.red-b {
+  border: red 1px solid !important;
+}
+
+.bb-38 {
+  border: $dark-38 1px solid !important;
+}
+
+.bby {
+  border-top: 1px solid $black-12 !important;
+  border-bottom: 1px solid $black-12 !important;
+}
+
+.bbx {
+  border-left: 1px solid $black-12 !important;
+  border-right: 1px solid $black-12 !important;
+}
+
+.bbl {
+  border-left: 2.5px solid $black-12 !important;
+}
+
+.bbr {
+  border-right: 2.5px solid $black-12 !important;
+}
+
+.no-bullets {
+  list-style: none;
+}
+
+// HOVER
+
+.hover-wbb:hover {
+  border-bottom: white 1px solid;
+}
+
+.image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.nb {
+  border: none !important;
+}
+
+.map-site-info {
+  background-color: white;
+  left: 50px;
+  position: absolute;
+  top: 50px;
+  z-index: 999;
+  @extend .box-shadow;
+}
+
+.white-box {
+  background-color: white;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  @extend .box-shadow;
+
+  .bottom-link {
+    position: absolute;
+    bottom: 1rem;
+  }
+}
+
+.accent-light-box {
+  background-color: $accent-light-24;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  @extend .box-shadow;
+}
+
+// Widths
+
+.w-20 {
+  width: 20% !important;
+}
+
+.w-15 {
+  width: 15% !important;
+}
+
+// NEEDS CLEANING
+
+input.placeholder-error::placeholder {
+  color: red;
+}
+
+.border-radius-3 {
+  border-radius: .3rem;
+}
+
+option:checked {
+  color: black !important;
+}
+
+.bottom-left-link {
+  position: absolute;
+  bottom: 1rem;
+  text-transform: uppercase;
+  color: $main-primary;
+}
+
+.arrow-absolute {
+  position: absolute;
+  bottom: 17px;
+}
+
+.no-focus.form-control:focus {
+    box-shadow: none;
+    outline: 0;
+    border-color: white;
+}

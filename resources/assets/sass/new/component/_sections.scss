@@ -1,0 +1,106 @@
+section.little-min {
+  min-height: 336px;
+  position: relative;
+}
+
+section.medium-min {
+  min-height: 530px;
+  position: relative;
+}
+
+section.big-min {
+  min-height: 595px;
+  position: relative;
+}
+
+section.little {
+  height: 336px;
+  position: relative;
+}
+
+section.medium {
+  height: 530px;
+  position: relative;
+}
+
+section.big {
+  height: 595px;
+  position: relative;
+}
+
+.node-lg {
+  min-height: 288px;
+  position: relative;
+}
+
+.white-box.tiny-min {
+  height: 144px;
+  position: relative;
+}
+
+.white-box.little-min {
+    height: 281px;
+    position: relative;
+}
+
+.white-box.medium-min {
+  height: 447px;
+  position: relative;
+}
+
+.white-box.big-min {
+  height: 744px;
+  position: relative;
+}
+
+form .img-upload {
+  min-height: 233px;
+  position: relative;
+
+  @extend .image;
+}
+
+section.medium-gradient {
+  @extend .medium-min, .image;
+  position: relative;
+  z-index: 0;
+
+  .gradient {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    .gradient-accent {
+      background: $main-accent;
+      @extend .gradient
+    }
+
+    .gradient-primary {
+      background: $main-primary;
+      @extend .gradient
+    }
+  }
+
+  .normal-primary {
+    background: linear-gradient(90deg, $main-primary 39%, rgba(9, 9, 121, 0) 60%);
+  }
+
+  .normal-accent {
+    background: linear-gradient(90deg, $main-accent 39%, rgba(9, 9, 121, 0) 60%);
+  }
+
+  .inverted-primary {
+    background: linear-gradient(90deg, rgba(2,0,36,0) 39%, $main-primary 60%);
+  }
+
+  .inverted-accent {
+    background: linear-gradient(90deg, rgba(2,0,36,0) 39%, $main-accent 60%);
+  }
+}
+
+
+

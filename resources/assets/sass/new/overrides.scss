@@ -1,0 +1,154 @@
+.btn {
+  font-size: 0.875rem !important;
+}
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+
+$container-max-widths: (
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1215px,
+);
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+
+$grid-columns: 16;
+$grid-gutter-width: 15.78px;
+
+//
+// Color system
+//
+$primary:       $main-accent;
+$secondary:     $main-primary;
+$light:         $dark-12;
+$info:          transparent;
+$success:       $secondary-green;
+$danger:        $raspberry;
+$warning:       $secondary-red;
+$dark:          $black-38;
+
+$theme-colors: ();
+$theme-colors: map-merge((
+        "primary":    $primary,
+        "secondary":  $secondary,
+        "success":    $success,
+        "info":       $info,
+        "warning":    $warning,
+        "danger":     $danger,
+        "light":      $light,
+        "dark":       $dark,
+        "facebook":   $fb,
+), $theme-colors);
+
+// --------- FONTS ---------
+$font-family-base:            $font-header;
+$line-height-base:            1.6;
+$font-weight-normal:          500;
+
+$h1-font-size:                3rem;
+$h2-font-size:                2.26rem;
+$h3-font-size:                1.6rem;
+$h4-font-size:                1.6rem;
+
+$small-font-size:             88%;
+
+small { font-weight: 400 !important; } // CLEAN
+
+$font-size-lg:                .93;
+
+// --------- INPUT ---------
+
+
+// --- FORM-GROUP ---
+
+$form-group-margin-bottom:              2rem;
+
+
+// ---FORM-CONTROL---
+
+.input-group-prepend {.input-group-text { background-color: #fff }}
+.form-control { font-size: .88rem !important; }
+
+// color
+$input-border-color:                    $dark-38;
+
+// border radius
+$input-border-radius:                   2px;
+
+// padding
+$input-padding-y:                       .5rem;
+$input-padding-x:                       .5rem;
+
+// --------- FORM-CONTROL-LG ---------
+
+// OVERRIDE
+.form-control-lg {
+  border: 1px solid #fff;
+  font-size: 1rem !important;
+}
+
+// border radius
+$border-radius-lg:                       2px;
+
+// padding
+$input-btn-padding-y-lg:                 1rem;
+$input-btn-padding-x-lg:                 1rem;
+
+// --------- BUTTON ---------
+
+// ---BTN---
+
+.btn { text-transform: uppercase }
+
+.btn.btn-info { color: $dark-54; }
+
+// padding
+$input-btn-padding-y:               .5rem;
+$input-btn-padding-x:               1.46rem;
+
+// radius
+$btn-border-radius:                 20px;
+
+// ---BTN-LG---
+
+// padding
+$btn-padding-x-lg:                  1.53rem;
+
+// border radius
+$btn-border-radius-lg:              48px;
+
+// line height
+$btn-line-height-lg:                18px;
+
+// --------- CUSTOM SELECT ---------
+// height
+$custom-select-height:              100%;
+
+// border
+$custom-select-border-width:        1px;
+$custom-select-border-color:        #fff;
+
+// --------- BADGE ---------
+
+.badge {
+  margin-right: 5px;
+  margin-bottom: 7px;
+}
+
+$badge-padding-y:                   .644rem;
+$badge-padding-x:                   1.425rem;
+$badge-border-radius:               20px;
+
+// --------- NAV ---------
+
+$navbar-nav-link-padding-x:         1rem;
+
+
+// LEAFLET
+
+.leaflet-popup-tip-container { bottom: -6px; }

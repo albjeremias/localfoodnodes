@@ -1,5 +1,12 @@
 <?php
 
+// PLACEHOLDER
+Route::view('/search', 'new.public.search');
+Route::view('/login', 'new.public.login');
+Route::view('/register', 'new.public.register');
+Route::view('/account/nodes', 'new.account.user.nodes');
+
+
 // Settings
 Route::get('/settings/locale/{locale}', 'SettingsController@changeLocale');
 

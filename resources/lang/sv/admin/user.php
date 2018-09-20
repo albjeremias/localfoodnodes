@@ -28,7 +28,6 @@ return [
     'email' => 'Email',
     'email_placeholder' => 'Din epostadress',
     'events' => 'Evenemang',
-    'event' => 'Evenemang',
     'fee' => 'Avgift',
     'gdpr' => 'Villkor och GDPR policy',
     'gdpr_checkbox' => 'Jag accepterar villkoren och godkänner att Local Food Nodes lagrar mina personuppgifter.',
@@ -39,7 +38,6 @@ return [
     'month' => 'Månad',
     'name' => 'Namn',
     'name_placeholder' => 'Ditt namn',
-    'next_pickup' => 'Nästa utlämning',
     'node' => 'Nod',
     'nodes_you_follow' => 'Noder du följer',
     'node_name' => 'Nodnamn',
@@ -79,13 +77,11 @@ return [
     'zip' => 'Postnummer',
 
     // Membership
-    'membership' => 'Bli medlem',
     'membership_paid_title' => 'Du är medlem!',
     'membership_paid' => 'Du har betalat medlemskap fram till :date. Utgår om :days dagar.',
     'membership_paid_link' => 'Läs mer om medlemskap',
     'membership_unpaid_title' => 'Bli medlem',
     'membership_unpaid' => 'För att kunna boka din lokala mat, måste du först bli stödmedlem genom att betala en årsavgift.  Du som användare bestämmer själv hur stor eller liten din årliga avgift kommer att vara.',
-    'membership_unpaid_link' => 'Läs mer och bli medlem',
     'payment_info' => 'Vi använder oss av <a href="https://stripe.com">Stripe</a> för kortbetalningar och vi sparar inte dina kortuppgifter.',
     'membership_modal_title' => 'Thanks för att du är medlem',
     'membership_modal_no_charge' => '
@@ -96,5 +92,33 @@ return [
     ',
     'membership_no_history' => 'Du har inte betalat några medlemsavgifter.',
     'renew_membership' => 'Förnya ditt medlemskap och se historik',
-    'error_yourcardwasdeclined' => '<strong>Ditt kort godkändes ej.</strong> Detta beror oftast på att kortet har begränsningar för köp på internet. Vi rekommenderar dig att logga in på din internetbank, ändra inställningarna och prova igen. Om du fortfarande upplever problem behöver du kontakta din bank.'
+    'error_yourcardwasdeclined' => '<strong>Ditt kort godkändes ej.</strong> Detta beror oftast på att kortet har begränsningar för köp på internet. Vi rekommenderar dig att logga in på din internetbank, ändra inställningarna och prova igen. Om du fortfarande upplever problem behöver du kontakta din bank.',
+
+
+	// ---------------------------
+	//	NEW AND/OR USED
+	// ---------------------------
+
+	// -------- DASHBOARD --------
+	'nav_title' => 'Mina Panel',
+	'profile_info' => 'Profil-information',
+	'followed_nodes' => 'Följa noder',
+	'producers' => 'Producenter',
+	'average_distance' => 'Snittavstånd till producent',
+	'edit_profile' => 'Redigera profil',
+	'still_not_member' => 'Ännu inte medlem?',
+    'membership_unpaid_link' => 'Läs mer och bli medlem',
+    'membership' => 'Bli medlem',
+    'next_pickup' => 'Nästa utlämning',
+    'no_deliveries' => 'Det finns för närvarande inga kommande utlämningar',
+	'find_deliveries' => 'Hitta nya utlämningar',
+	'close_delivery_spots' => 'Närliggande utlämningsplatser',
+    'event' => 'Evenemang',
+	'nodes_i_follow' => 'Noder jag följer',
+
+	// -------- MY NODES --------
+	'sort_by_node' => 'Sortera efter nod',
+	'visit_node' => 'Besök nod',
+	'users' => 'Användare',
+	'products_for_sale' => 'Produkter till salu'
 ];

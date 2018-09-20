@@ -4,7 +4,6 @@ return [
     'title' => 'Find Out More',
 
     'header_1' => 'Local Food Nodes',
-    'subheader_1' => 'Längtan att göra maten lokal igen',
 
     'paragraph_1_1' => 'Vi skapar Local Food Nodes för att möjliggöra nya kopplingar direkt mellan matproducenter och matkonsumenter samtidigt som vi vill stärka de lokala kopplingar som redan finns. Vi vill möjliggöra direkta transaktioner, resilienta samhällen och återfå närheten till maten vi äter och hur den är producerad. Vårt mål är att maten ska bli lokal igen.',
 
@@ -37,4 +36,27 @@ return [
     'paragraph_5_2' => 'Betalning kan göras på vilket sätt som helst som fungerar för producenten och konsumenten. Producenter indikerar vilken typ av betalning de accepterar för varje produkt när du beställer. Betalningar kan göras i förväg, när ni träffas eller genom medhavd faktura och kan ta vilken form ni vill, som till exempel: kontant, Swish, banköverföringar eller komplementerande valutor.',
 
     'quip' => 'Let\'s go local',
+
+
+	// ---------------------------
+	//	NEW AND/OR USED
+	// ---------------------------
+	'body' =>
+		'<p>
+            Anledningen till att vi skapar Local Food Nodes är att vi vill skapa nya kopplingar direkt mellan matproducenter och matkonsumenter samtidigt som vi vill stärka de lokala kopplingar som redan finns. Vi vill möjliggöra direkta transaktioner, resilienta samhällen och återfå närheten till maten vi äter och hur den är producerad. En vilja att göra maten lokal igen.
+        </p>
+        <p>
+            Resultatet är ett öppet digitalt verktyg där producenten presenterar sina varor, konsumenten bokar det man vill ha och betalar direkt till producenten. Utlämning och upphämtning av varorna sker sedan på en förutbestämd tid och plats, en nod (namnet kommer från konceptet “noder i ett nätverk”), där alla konsumenter och producenter samlas. På det viset kan du som konsument hämta upp varor från flera producenter på samma gång och som producent kan du lämna ut till flera kunder samtidigt
+        </p>
+        <p>
+            Med Local food nodes vill vi också skapa ett öppet och kollaborativt crowdfunding-verktyg för att främja utvecklingen av framtida matsystem, friskare jordbruk och mer lokalekonomisk aktivitet.
+        </p>
+        <p>
+            Genom att använda plattformen och stötta projektet blir du medskapare och medfinansiär till en ny modell för produktion och distribution av lokal mat. Årliga medlemsavgifter, som du som användare själv sätter storleken på, kommer att hjälpa till att göra denna modell precis så användbar som vi, tillsammans, bestämmer oss för att göra den.
+        </p>
+        <p>
+            Välkommen till Local Food Nodes, en plattform där vi skapar lokala matsystem, tillsammans.
+        </p>',
+	'title' => 'Om oss',
+    'subheader_1' => 'Längtan att göra maten lokal igen',
 ];

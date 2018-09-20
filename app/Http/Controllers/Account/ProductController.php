@@ -89,7 +89,7 @@ class ProductController extends Controller
             return $nodeLink->getNode();
         });
 
-        return view('account.product.create', [
+        return view('new.account.product.create', [
             'producer' => $producer,
             'product' => $product,
             'nodes' => $nodes,

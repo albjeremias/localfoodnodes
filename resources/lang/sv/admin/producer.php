@@ -100,4 +100,11 @@ return [
     'hdiw_item_3' => 'Hitta och ansluta dig som leverantör till den noder som passar dig.',
     'hdiw_item_4' => 'Skapa dina produkter och koppla dem till de noder och datum som passar dig.',
     'hdiw_outro' => 'För mer info se FAQ här.',
+
+
+	// ---------------------------
+	//	NEW AND/OR USED
+	// ---------------------------
+
+    'save_producer' => 'Spara konto',
 ];

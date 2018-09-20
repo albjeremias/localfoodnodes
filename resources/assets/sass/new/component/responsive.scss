@@ -1,0 +1,237 @@
+@media (min-width: 1600px) {
+  .normal-primary {
+    background: linear-gradient(90deg, $main-primary 43%, rgba(9, 9, 121, 0) 60%) !important;
+  }
+
+  .normal-accent {
+    background: linear-gradient(90deg, $main-accent 43%, rgba(9, 9, 121, 0) 60%) !important;
+  }
+
+  .inverted-primary {
+    background: linear-gradient(90deg, rgba(2,0,36,0) 39%, $main-primary 52%) !important;
+  }
+
+  .inverted-accent {
+    background: linear-gradient(90deg, rgba(2,0,36,0) 39%, $main-accent 52%) !important;
+  }
+}
+
+// -------------------------------------
+// LESS THEN XL
+// -------------------------------------
+
+@media (max-width: 1199px) {
+
+}
+
+// -------------------------------------
+// LESS THEN LG
+// -------------------------------------
+
+@media (max-width: 991px) {
+
+  .sub-nav {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+    //z-index: -1;
+    margin-left: 0;
+  }
+
+  .navbar-toggler {
+    z-index: 1;
+  }
+
+  .nav-logo {
+    z-index: 10;
+    position: relative;
+  }
+
+  .navbar-brand > img {
+    height: 40px;
+  }
+
+  .nms {
+    margin-top: $mobile-nav-margin-s;
+  }
+
+  .nm {
+    margin-top: $tablet-nav-margin;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .card-simple-container {
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+
+  .card-simple-overlay {
+    height: 80px;
+  }
+
+  .icon-circle {
+    bottom: 20px;
+  }
+
+  .normal-primary {
+    background: linear-gradient(90deg, $main-primary 55%, rgba(9, 9, 121, 0) 82%) !important;
+  }
+
+  .normal-accent {
+    background: linear-gradient(90deg, $main-accent 55%, rgba(9, 9, 121, 0) 82%) !important;
+  }
+
+  .inverted-primary {
+    background: linear-gradient(90deg, rgba(2,0,36,0) 39%, $main-primary 52%) !important;
+  }
+
+  .inverted-accent {
+    background: linear-gradient(90deg, rgba(2,0,36,0) 39%, $main-accent 52%) !important;
+  }
+
+  .node-lg {
+
+    .image {
+      height: 200px;
+    }
+  }
+}
+
+// -------------------------------------
+// LESS THEN MD
+// -------------------------------------
+
+@media (max-width: 767px) {
+
+  .navbar-brand > img {
+    height: 20px !important;
+  }
+
+  html {
+    font-size: 13px !important;
+  }
+
+  .height-rmd-auto {
+    height: auto !important;
+  }
+
+  .sub-nav {
+    position: relative;
+    top: 0;
+  }
+
+  .nm {
+    margin-top: $mobile-nav-margin;
+  }
+
+  .sub-nav-active {
+    border-bottom: #ff9800 4px solid !important;
+  }
+}
+
+
+// -------------------------------------
+// LESS THEN SM
+// -------------------------------------
+
+@media (max-width: 575px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .medium-gradient {
+    background-image: none !important;
+    min-height: 350px !important;
+
+    .gradient {
+      background: none !important;
+    }
+  }
+
+  .section.medium-gradient p {
+    width: 100% !important;
+  }
+
+  section.medium-gradient h2 {
+    width: 100% !important;
+  }
+
+  .inverted-accent p {
+    width: 100% !important;
+  }
+
+  .inverted-accent h2 {
+    width: 100% !important;
+  }
+
+  .button-main {
+    display: none !important;
+  }
+}
+
+
+
+// -------------------------------------
+// MORE THEN XL
+// -------------------------------------
+
+@media (min-width: 1199px) {
+  .bg-xl-white {
+    background-color: white !important;
+  }
+
+  .sub-nav {
+
+    li {
+      width: auto !important;
+    }
+
+    .sub-nav-active {
+      //padding-bottom: 0px !important;
+    }
+  }
+}
+
+
+// -------------------------------------
+// MORE THEN MD
+// -------------------------------------
+
+@media (min-width: 768px) {
+
+  .sub-nav {
+
+    li {
+      width: auto !important;
+    }
+
+    .sub-nav-active {
+      //padding-bottom: 0px !important;
+    }
+  }
+
+}
+
+// -------------------------------------
+// MORE THEN SM
+// -------------------------------------
+
+@media (min-width: 576px) {
+
+  .inverted-accent p {
+    width: 100% !important;
+  }
+
+  .inverted-accent h2 {
+    width: 100% !important;
+  }
+
+  #cover .input-group {
+    width: 52%;
+  }
+}
+

@@ -1,0 +1,14 @@
+.terms_text small {
+  color: $black-54 !important;
+}
+
+.terms_intro {
+  p, small {
+    @extend .black-87;
+  }
+
+  h2 {
+    @extend .rc;
+  }
+}
+

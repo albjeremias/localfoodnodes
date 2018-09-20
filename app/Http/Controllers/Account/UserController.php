@@ -153,7 +153,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        return view('account.user.index', [
+        return view('new.account.user.index', [
             'breadcrumbs' => [
                 $user->name => '',
                 trans('admin/user-nav.dashboard') => ''
@@ -236,7 +236,7 @@ class UserController extends Controller
         $user = Auth::user();
         $user->fill($request->old());
 
-        return view('account.user.edit', [
+        return view('new.account.user.edit', [
             'user' => $user,
             'breadcrumbs' => [
                 $user->name => 'user',
@@ -399,7 +399,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        return view('account.user.pickups', [
+        return view('new.account.user.pickups', [
             'user' => $user,
             'breadcrumbs' => [
                 $user->name => 'user',

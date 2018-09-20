@@ -99,7 +99,7 @@ class ProducerController extends Controller
     {
         $producer = new Producer();
         $producer->fill($request->old());
-        return view('account.producer.create', [
+        return view('new.account.producer.create', [
             'producer' => $producer,
             'breadcrumbs' => [
                 trans('admin/user-nav.create_producer') => ''

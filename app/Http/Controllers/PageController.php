@@ -29,7 +29,7 @@ class PageController extends Controller
 
     public function findOutMore()
     {
-        return view('public.pages.find-out-more');
+        return view('new.public.pages.find-out-more');
     }
 
     public function membership()
@@ -47,7 +47,7 @@ class PageController extends Controller
         $totalPayingMembers = $allPayments->unique('user_id')->count();
         $averageMembershipPayments = $members === 0 ? 0 : $totalMembershipPayments / $totalPayingMembers;
 
-        return view('public.pages.membership', [
+        return view('new.public.pages.membership', [
             'members' => $members,
             'averageMembership' => round($averageMembershipPayments)
         ]);
@@ -55,7 +55,7 @@ class PageController extends Controller
 
     public function economy()
     {
-        return view('public.pages.economy');
+        return view('new.public.pages.economy');
     }
 
     public function transactions()

@@ -50,7 +50,7 @@ class IndexController extends Controller
         $totalPayingMembers = $allPayments->unique('user_id')->count();
         $averageMembershipPayments = $members === 0 ? 0 : $totalMembershipPayments / $totalPayingMembers;
 
-        return view('public.index', [
+        return view('new.public.index', [
             'metrics' => $metrics,
             'members' => $members,
             'averageMembership' => round($averageMembershipPayments)
@@ -94,7 +94,7 @@ class IndexController extends Controller
             'shareImage' => $node->images()->count() > 0 ? $node->images()->first()->url('small') : null
         ];
 
-        return view('public.node.node', [
+        return view('new.public.node.node', [
             'node' => $node,
             'events' => $events,
             'products' => $filteredProducts->sortBy('name')->values(),

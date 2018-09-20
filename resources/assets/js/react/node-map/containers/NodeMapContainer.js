@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import _ from 'lodash';
 
-import SearchResultComponent from '../components/SearchResultComponent';
-
 const rootElement = document.getElementById('node-map-component-root');
 const trans = JSON.parse(rootElement.dataset.trans);
 
@@ -17,7 +15,7 @@ let visibleLatLng = [];
 class NodeMapContainer extends Component {
     constructor(props) {
         super(props);
-        this.debouncedSearch = this.debouncedSearch.bind(this);
+
         this.getNodePreview = this.getNodePreview.bind(this);
         this.onSelect = this.onSelect.bind(this);
 
@@ -55,10 +53,15 @@ class NodeMapContainer extends Component {
             center: [56, 13],
             zoom: 8,
             maxZoom: 15,
+            zoomControl: false,
             scrollWheelZoom: false,
         });
 
-        let mapboxUrl = 'https://api.mapbox.com/styles/v1/davidajnered/cj9r1s64b0pc12snzmvgt6lup/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGF2aWRham5lcmVkIiwiYSI6ImNpenZxcWhoMzAwMGcyd254dGU4YzNkMjQifQ.DJncF9-KJ5RQAozfIwlKDw';
+        L.control.zoom({
+            position:'bottomright'
+       }).addTo(map);
+
+        let mapboxUrl = 'https://api.mapbox.com/styles/v1/davidajnered/cjbhze779dawz2sp6vvsw4ktq/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGF2aWRham5lcmVkIiwiYSI6ImNpenZxcWhoMzAwMGcyd254dGU4YzNkMjQifQ.DJncF9-KJ5RQAozfIwlKDw';
 
         let tileLayer = L.tileLayer(mapboxUrl, {
         	attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -98,14 +101,21 @@ class NodeMapContainer extends Component {
 
         let markers = L.markerClusterGroup({
             iconCreateFunction: function(cluster) {
-                return L.divIcon({ html: '<div class="leaflet-cluster-marker"></div>' });
+                return L.divIcon({ html: `<div class="leaflet-cluster-marker">${cluster.getChildCount()}</div>` });
             },
             showCoverageOnHover: false,
             spiderLegPolylineOptions: { opacity: 0 }
         });
 
-        let nodeIcon = L.icon({iconSize: [36, 36], iconAnchor: [36, 36], popupAnchor: [-16, -20], iconUrl: '/css/leaflet/images/marker-icon.png'});
-        let rekoIcon = L.icon({iconSize: [32, 32], iconAnchor: [32, 32], popupAnchor: [-16, -20], iconUrl: '/css/leaflet/images/reko-icon.png'});
+        let iconBase = {
+            html: '<i class="fa fa-map-marker"></i>',
+            iconSize: [50, 50],
+            // iconAnchor: [0, 50],
+            // popupAnchor: [-25, -25]
+        };
+
+        let nodeIcon = L.divIcon(_.merge(iconBase, {className: 'map-marker node'}));
+        let rekoIcon = L.divIcon(_.merge(iconBase, {className: 'map-marker reko'}));
 
         _(this.props.nodes).each((node, index) => {
             if (addedNodes.indexOf(node.id) === -1) {
@@ -169,17 +179,24 @@ class NodeMapContainer extends Component {
 
     getNodePreview(node) {
         return (
-            <div className='map-preview'>
-                <a href={node.permalink_relationship.url} className='header'>
-                    <h3>{node.name}</h3>
-                    <div className='meta'>
-                        <div><i className='fa fa-home' />{node.address} {node.zip} {node.city}</div>
-                        <div><i className='fa fa-clock-o' />{trans[node.delivery_weekday]} {node.delivery_time}</div>
-                    </div>
-                </a>
-                <div className='body-text'>
-                    <p>{trans.welcome_to} {node.name}</p>
-                    <a href={node.permalink_relationship.url} className='btn btn-success'>{trans.visit_node} <i className='fa fa-caret-right' style={{float: 'right'}}/></a>
+            <div className='card-node-container'>
+                <div className='node-image image p-3' style={{backgroundImage: 'url(/images/shutterstock_271622087.jpg)'}}>
+                    <span className='btn btn-dark'>
+                        <i className='fa fa-clock-o' aria-hidden='true' /> {trans[node.delivery_weekday]} {node.delivery_time}
+                    </span>
+                </div>
+
+                <div className='node-content p-3'>
+                    <h4 className='mb-0'>{node.name}</h4>
+                    <small>{node.address} {node.zip} {node.city}</small>
+
+                    <p className='mt-3'>
+                        <small>{trans.welcome_to} {node.name}</small>
+                    </p>
+
+                    <hr/>
+                    <a className='rc text-uppercase' href={node.permalink_relationship.url}>{trans.visit_node}</a>
+                    <i className='product-items-share fa fa-share icon-38 float-right' aria-hidden='true'></i>
                 </div>
             </div>
         );
@@ -210,12 +227,6 @@ class NodeMapContainer extends Component {
         );
     }
 
-    search(event) {
-        event.persist();
-        this.setState({searchString: event.target.value})
-        this.debouncedSearch(event);
-    }
-
     onSelect(place) {
         const { dispatch } = this.props;
 
@@ -234,34 +245,10 @@ class NodeMapContainer extends Component {
         actions.fetchContent(dispatch, this.getSanitizedBoundsObject(place.boundingbox));
     }
 
-    debouncedSearch(event) {
-        const { dispatch } = this.props;
-        actions.searchGeo(dispatch, event.target.value);
-    }
-
     render() {
         let loader = (this.props.fetching) ? this.getMapLoader() : null;
 
-        let searchResults = null;
-        if (this.props.searchResults) {
-            searchResults = <SearchResultComponent data={this.props.searchResults} onSelect={this.onSelect}/>;
-        }
-
-        return (
-            <div className='map container-fluid'>
-                <h2 className='thin'>{trans.go_local}</h2>
-                <div className='row no-gutters map-search mb-5'>
-                    <div className='col-12 col-md-6'>
-                        <div className='input-group'>
-                            <span className="input-group-addon"><i className="fa fa-search" /></span>
-                            <input value={this.state.searchString} type="text" className="form-control" placeholder={trans.find_node_near_you} onChange={this.search.bind(this)} />
-                        </div>
-                        {searchResults}
-                    </div>
-                </div>
-                <div className='map-holder' ref='map'>{loader}</div>
-            </div>
-        );
+        return <div className='map-holder' ref='map' style={{height: '70vh'}}>{loader}</div>;
     }
 }
 
