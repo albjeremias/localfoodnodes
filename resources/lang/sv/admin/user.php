@@ -18,6 +18,7 @@ return [
     'confirm_delete_info' => 'Du är på väg att ta bort din användare. All data kommer att tas bort och kommer inte gå att återskapa. Är du säker på att du vill fortsätta?',
     'confirm_password' => 'Bekräfta lösenord',
     'create_account' => 'Skapa konto',
+    'currency' => 'Valuta',
     'date' => 'Datum',
     'delete_order' => 'Ta bort beställning',
     'delivery' => 'Utlämning',
@@ -27,8 +28,6 @@ return [
     'edit_information' => 'Redigera information',
     'email' => 'Email',
     'email_placeholder' => 'Din epostadress',
-    'events' => 'Evenemang',
-    'event' => 'Evenemang',
     'fee' => 'Avgift',
     'gdpr' => 'Villkor och GDPR policy',
     'gdpr_checkbox' => 'Jag accepterar villkoren och godkänner att Local Food Nodes lagrar mina personuppgifter.',
@@ -43,7 +42,6 @@ return [
     'node' => 'Nod',
     'nodes_you_follow' => 'Noder du följer',
     'node_name' => 'Nodnamn',
-    'no_events' => 'Du har inte anmält dig till några evenemang.',
     'no_nodes' => 'Du följer inga noder.',
     'no_orders' => 'Du har inte gjort några beställningar.',
     'order' => 'Beställning',
@@ -96,5 +94,6 @@ return [
     ',
     'membership_no_history' => 'Du har inte betalat några medlemsavgifter.',
     'renew_membership' => 'Förnya ditt medlemskap och se historik',
-    'error_yourcardwasdeclined' => '<strong>Ditt kort godkändes ej.</strong> Detta beror oftast på att kortet har begränsningar för köp på internet. Vi rekommenderar dig att logga in på din internetbank, ändra inställningarna och prova igen. Om du fortfarande upplever problem behöver du kontakta din bank.'
+    'error_yourcardwasdeclined' => '<strong>Ditt kort godkändes ej.</strong> Detta beror oftast på att kortet har begränsningar för köp på internet. Vi rekommenderar dig att logga in på din internetbank, ändra inställningarna och prova igen. Om du fortfarande upplever problem behöver du kontakta din bank.',
+    'error_yourcardhasinsufficientfunds' => '<strong>Du har inte tillräckligt med pengar på kontot.</strong>',
 ];

@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Collection;
 
 use App\Http\Requests;
 use App\Node\Node;
-use App\Node\NodeCalendar;
 use App\User\User;
 use App\User\UserMembershipPayment;
 use App\Producer\Producer;
@@ -16,7 +15,6 @@ use App\Producer\ProducerNodeLink;
 use App\Product\Product;
 use App\Product\ProductNodeDeliveryLink;
 use App\Product\ProductProduction;
-use App\Event\Event;
 
 use App\Product\ProductFilter;
 
@@ -36,16 +34,10 @@ class IndexController extends Controller
             return $user->isMember(true);
         })->count();
 
-        // SELECT count(ump.user_id) AS count FROM user_membership_payments AS ump;
-
         $allPayments = UserMembershipPayment::get();
         $totalMembershipPayments = $allPayments->map(function($payment) {
             return ($payment->amount > 2) ? $payment->amount : null;
         })->filter()->sum();
-
-        // SELECT sum(ump.amount) FROM users AS u
-        // LEFT JOIN user_membership_payments AS ump ON u.id = ump.user_id
-        // WHERE ump.id IS NOT NULL;
 
         $totalPayingMembers = $allPayments->unique('user_id')->count();
         $averageMembershipPayments = $members === 0 ? 0 : $totalMembershipPayments / $totalPayingMembers;
@@ -77,15 +69,11 @@ class IndexController extends Controller
 
         $productFilter = new ProductFilter($products, $request);
         $filteredProducts = $productFilter->filterDate($nodeId)->filterTags()->filterVisibility()->get();
-        $calendarMonth = $productFilter->getMonthDate();
-        $calendar = new NodeCalendar($node);
 
         $date = null;
         if ($request->has('date')) {
             $date = new \DateTime($request->get('date'));
         }
-
-        $events = $node->getAllEvents($date);
 
         $shareMeta = [
             'shareUrl' => $this->shareUrl($node->permalink()->url),
@@ -96,10 +84,7 @@ class IndexController extends Controller
 
         return view('public.node.node', [
             'node' => $node,
-            'events' => $events,
             'products' => $filteredProducts->sortBy('name')->values(),
-            'calendar'=> $calendar->get($request),
-            'calendarMonth' => $calendarMonth,
             'date' => $date,
             'tags' => $productFilter->getTagFilter($request),
         ] + $shareMeta);
@@ -166,25 +151,6 @@ class IndexController extends Controller
         return view('public.product.product', [
             'product' => $product,
             'producer' => $producer
-        ] + $shareMeta);
-    }
-
-    /**
-     * Event action.
-     */
-    public function event(Request $request, $eventId)
-    {
-        $event = Event::find($eventId);
-
-        $shareMeta = [
-            'shareUrl' => $this->shareUrl($event->permalink()->url),
-            'shareTitle' => trim($event->name),
-            'shareDescription' => trim(strip_tags($event->info)),
-            'shareImage' => $event->images()->count() > 0 ? $event->images()->first()->url('small') : null
-        ];
-
-        return view('public.event', [
-            'event' => $event
         ] + $shareMeta);
     }
 

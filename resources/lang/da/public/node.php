@@ -3,11 +3,8 @@
 return [
     'add_to_cart' => 'Læg i kurv',
     'avg_dist' => 'Gennemsnitlig afstand<br><span class="small">producent - udvekslingssted</span>',
-    'calendar' => 'Kalender',
     'clear_date' => '(nulstil dato)',
     'contact' => 'Kontakt admin på ',
-    'event' => 'Begivenhed',
-    'events' => 'Begivenheder',
     'filters' => 'Filter',
     'find_communication' => 'Find vores kommunikationsgruppe',
     'find_producer_communication' => 'Find vores kommunikationsgruppe for producenter',

@@ -53,10 +53,10 @@
 
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <div class="input-group quantity-component">
-                                                <span class="input-group-addon decrease"><i class="fa fa-minus-circle"></i></span>
+                                            <div class="input-group">
+                                                <span class="input-group-prepend decrease"><i class="input-group-text fa fa-minus-circle"></i></span>
                                                 <input type="number" min="0" name="product[{{ $product->id }}][quantity]" class="form-control" value="0" />
-                                                <span class="input-group-addon increase"><i class="fa fa-plus-circle"></i></span>
+                                                <span class="input-group-append increase"><i class="input-group-text fa fa-plus-circle"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -86,10 +86,10 @@
 
                                     <div class="col-5">
                                         <div class="form-group">
-                                            <div class="input-group quantity-component">
-                                                <span class="input-group-addon decrease"><i class="fa fa-minus-circle"></i></span>
+                                            <div class="input-group">
+                                                <span class="input-group-prepend decrease"><i class="input-group-text fa fa-minus-circle"></i></span>
                                                 <input type="number" min="0" name="product[{{ $product->id }}][quantity]" class="form-control" value="0" />
-                                                <span class="input-group-addon increase"><i class="fa fa-plus-circle"></i></span>
+                                                <span class="input-group-append increase"><i class="input-group-text fa fa-plus-circle"></i></span>
                                             </div>
                                         </div>
                                     </div>

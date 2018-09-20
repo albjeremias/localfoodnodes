@@ -63,7 +63,9 @@
                     </label>
                     <div class="input-group">
                         <input type="text" name="package_amount" class="form-control" id="price" placeholder="{{ trans('admin/product.estimate_package_amount') }}" value="{{ $product->package_amount or '' }}">
-                        <span class="input-group-addon" id="package-amount-unit"></span>
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="package-amount-unit"></span>
+                        </div>
                     </div>
                     <div class="form-text text-muted">
                         {{ trans('admin/product.package_amount_info') }}

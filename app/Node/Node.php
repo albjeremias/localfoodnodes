@@ -6,12 +6,11 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
 use App\BaseModel;
-use App\Event\EventOwnerInterface;
 use App\Node\NodeDeliveryDate;
 
 use DateTime;
 
-class Node extends BaseModel implements EventOwnerInterface
+class Node extends BaseModel
 {
     protected $appends = ['location'];
 
@@ -80,7 +79,6 @@ class Node extends BaseModel implements EventOwnerInterface
             $node->adminLinks()->each->delete();
             $node->userLinks()->each->delete();
             $node->producerLinks()->each->delete();
-            $node->events()->each->delete();
             $node->images()->each->delete();
             $node->permalink()->delete();
         });
@@ -213,72 +211,6 @@ class Node extends BaseModel implements EventOwnerInterface
     public function permalink()
     {
         return $this->permalinkRelationship()->first();
-    }
-
-    /**
-     * Get events.
-     */
-    public function events(\DateTime $date = null, $ignoreHidden = true)
-    {
-        $endOfToday = date('Y-m-d 23:59:59');
-        $events = $this->hasMany('App\Event\Event', 'owner_id')->where('owner_type', 'node')->where('end_datetime', '>=', $endOfToday)->get();
-
-        if ($ignoreHidden) {
-            $events = $events->where('is_hidden', 0);
-        }
-
-        if ($date) {
-            $events = $events->where('start_datetime', '<=', $date)->where('end_datetime', '>=', $date);
-        }
-
-        return $events;
-    }
-
-    /**
-     * Get specific event.
-     *
-     * @param int $eventId
-     * @return Event
-     */
-    public function event($eventId)
-    {
-        return $this->events()->where('id', $eventId)->first();
-    }
-
-    /**
-     * Get node and producer events.
-     *
-     * @param DateTime $date
-     * @return Collection
-     */
-    public function getAllEvents(\DateTime $date = null)
-    {
-        $allEvents = $this->events($date, true);
-        $allEvents = $allEvents->merge($this->getProducerEvents($date));
-
-        return $allEvents->sortBy('start_datetime');
-    }
-
-    /**
-     * Get producer events.
-     *
-     * @param DateTime $date
-     * @return Collection
-     */
-    private function getProducerEvents(\DateTime $date = null)
-    {
-        $allProducerEvents = new Collection();
-
-        if ($this->producerLinks()->count() > 0) {
-            $this->producerLinks()->each(function($producerLink) use (&$allProducerEvents, $date) {
-                $producerEvents = $producerLink->getProducer()->events($date, true);
-                if ($producerEvents->count() > 0) {
-                    $allProducerEvents = $allProducerEvents->merge($producerEvents);
-                }
-            });
-        }
-
-        return $allProducerEvents;
     }
 
     /**
@@ -565,22 +497,6 @@ class Node extends BaseModel implements EventOwnerInterface
         })->sum();
 
         return round($averageProducerDistance / $this->producerLinks()->count(), 1);
-    }
-
-    /**
-     * @return string
-     */
-    public function eventOwnerType()
-    {
-        return 'node';
-    }
-
-    /**
-     * @return string
-     */
-    public function eventOwnerUrl()
-    {
-        return $this->eventOwnerType() . '/' . $this->id;
     }
 
     /**

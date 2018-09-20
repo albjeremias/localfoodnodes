@@ -41,7 +41,6 @@ return [
     'subheader' => 'Mira nuestra aplicación - <a href="/app">Local Food App</a> - ahora disponible para tu teléfono',
     'supported_by' => 'Apoyado por',
     'title' => 'Encontrar puntos de entregas locales',
-    'upcoming' => 'Próximas eventos',
     'visit_node' => 'Visitar punto de entrega',
     'welcome_to' => 'Bienvenido a',
     'where' => 'Dónde: ',

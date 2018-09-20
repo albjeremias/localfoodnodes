@@ -42,13 +42,13 @@
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                        <span class="input-group-prepend"><i class="input-group-text fa fa-user"></i></span>
                                         <input type="email" name="email" class="form-control" id="email" placeholder="Email">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                        <span class="input-group-prepend"><i class="input-group-text fa fa-key"></i></span>
                                         <input type="password" name="password" class="form-control" id="password" placeholder="Password">
                                     </div>
                                 </div>

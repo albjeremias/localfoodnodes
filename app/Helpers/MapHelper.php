@@ -4,7 +4,6 @@ namespace App\Helpers;
 
 use Illuminate\Support\Facades\DB;
 use App\Node\Node;
-use App\Event\Event;
 use App\Helpers\DistanceHelper;
 
 class MapHelper

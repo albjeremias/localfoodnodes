@@ -7,13 +7,7 @@ return [
     'request_no_variant' => 'Kunne ikke finde varianten.',
     'request_no_order' => 'Kunne ikke finde ordren.',
     'request_no_order_item' => 'Kunne ikke finde varen på ordren.',
-    'request_no_event' => 'Kunne ikke finde din begivenhed.',
     'request_no_node' => 'Kunne ikke finde nodekontoen.',
-
-    // Event
-    'event_created' => 'Din begivenhed er oprettet.',
-    'event_updated' => 'Din begivenhed er ændret.',
-    'event_deleted' => 'Din begivenhed er slettet.',
 
     // Node
     'node_created' => 'Din node er oprettet.',

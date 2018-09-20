@@ -12,7 +12,7 @@ use App\Http\Requests;
 use App\Product\Product;
 use App\Producer\Producer;
 use App\Node\Node;
-use \App\Traits\CartLogic;
+use App\Traits\CartLogic;
 
 use \DateTime;
 

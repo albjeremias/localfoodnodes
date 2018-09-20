@@ -95,62 +95,6 @@
           .form-group
             margin: 0
 
-/* Node */
-.node-calendar
-  .calendar-nav
-    width: 100%
-    position: absolute
-    top: 0
-    left: 0
-    display: flex
-    justify-content: space-between
-    color: #fff
-    .calendar-nav-item
-      cursor: pointer
-      line-height: 45px
-      margin-left: 10px
-      margin-right: 10px
-      &.disabled
-        opacity: 0.5
-        cursor: inherit
-  .month
-    border: 0
-    .month-header
-      text-align: center
-      font-weight: 700
-      text-transform: uppercase
-      color: #fff
-      background: #a9322a
-      border: 0
-    .days
-      border: 2px solid #fff
-      .day
-        display: block
-        width: calc(100% / 7)
-        border: 2px solid #fff
-        padding: 5px
-        text-decoration: none
-        color: #000
-        .date
-          line-height: 30px
-          margin: 0 auto
-        &:nth-child(7n)
-          border-right: 0
-        &.disabled
-          background: #eee
-          cursor: inherit
-        &.event
-          background: #e6ba7b
-          color: #fff
-        &.delivery
-          background: #67b475
-          color: #fff
-          &.event
-            background: repeating-linear-gradient(135deg, #e6ba7b, #e6ba7b 50%, #67b475 50%, #67b475 100%)
-            color: #fff
-        &.active
-          opacity: 1
-
 .calendar-explanation
   p
     margin-bottom: 0

@@ -7,13 +7,7 @@ return [
     'request_no_variant' => 'Kunde inte hitta produktvarianten du efterfrågade',
     'request_no_order' => 'Kunde inte hitta beställningen du efterfrågade',
     'request_no_order_item' => 'Kunde inte hitta beställningsraden du efterfrågade',
-    'request_no_event' => 'Kunde inte hitta evenemanget du efterfrågade',
     'request_no_node' => 'Kunde inte hitta noden du efterfrågade',
-
-    // Event
-    'event_created' => 'Ditt evenemang har skapats',
-    'event_updated' => 'Ditt evenemang har uppdaterats',
-    'event_deleted' => 'Ditt evenemang har tagits bort',
 
     // Node
     'node_created' => 'Din nod har skapats',

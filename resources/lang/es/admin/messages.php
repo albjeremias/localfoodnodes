@@ -7,13 +7,7 @@ return [
     'request_no_variant' => 'No encontramos la variante del producto solicitado',
     'request_no_order' => 'No encontramos el pedido solicitado',
     'request_no_order_item' => 'No encontramos la línea del pedido solicitada',
-    'request_no_event' => 'No encontramos el evento solicitado',
     'request_no_node' => 'No encontramos el nodo solicitado',
-
-    // Event
-    'event_created' => 'Tu evento ha sido creado',
-    'event_updated' => 'Tu evento ha sido editado',
-    'event_deleted' => 'Tu evento ha sido eliminado',
 
     // Node
     'node_created' => 'Tu nodo ha sido creado',

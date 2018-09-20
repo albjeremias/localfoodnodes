@@ -253,7 +253,7 @@ class NodeMapContainer extends Component {
                 <div className='row no-gutters map-search mb-5'>
                     <div className='col-12 col-md-6'>
                         <div className='input-group'>
-                            <span className="input-group-addon"><i className="fa fa-search" /></span>
+                            <span className="input-group-prepend"><i className="input-group-text fa fa-search" /></span>
                             <input value={this.state.searchString} type="text" className="form-control" placeholder={trans.find_node_near_you} onChange={this.search.bind(this)} />
                         </div>
                         {searchResults}

@@ -199,45 +199,14 @@
                     <form action="/account/producer/{{ $producer->id }}/invite/send" method="post">
                         {{ csrf_field() }}
                         <div class="input-group">
-                            <input type="email" name="email" id="email" class="form-control" placeholder="User email">
-                            <button type="submit" class="input-group-addon btn btn-primary">
-                                {{ trans('admin/producer.invite_admin') }}
-                            </button>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                            <div class="input-group-prepend">
+                                <button type="submit" class="btn btn-secondary">{{ trans('admin/producer.invite_admin') }}</button>
+                            </div>
                         </div>
                     </form>
                 </div>
             </div> <!-- Producer admin end -->
         @endif
-
-        <!-- Events -->
-        <div class="card">
-            <div class="card-header">{{ trans('admin/producer.events') }}</div>
-            <div class="card-body">
-                @if ($producer->events()->count() > 0)
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>{{ trans('admin/producer.event') }}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($producer->events() as $event)
-                                    <tr>
-                                        <td><a href="/account/event/{{ $event->id }}/edit">{{ $event->name }}</a></td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    <a href="/account/producer/{{ $producer->id }}/events">{{ trans('admin/producer.all_events') }}</a>
-                @else
-                    <p>{{ trans('admin/producer.no_events') }}</p>
-                @endif
-            </div>
-            <div class="card-footer">
-                <a href="/account/producer/{{ $producer->id }}/event/create">{{ trans('admin/producer.create_event') }}</a>
-            </div>
-        </div> <!-- Events end -->
     </div> <!-- Card deck end -->
 @endsection

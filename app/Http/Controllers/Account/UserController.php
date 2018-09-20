@@ -22,7 +22,6 @@ use App\Image\Image;
 use App\Node\Node;
 use App\Producer\Producer;
 use App\Order\Order;
-use App\Event\EventUserLink;
 
 use App\Helpers\GoogleMapsHelper;
 
@@ -38,11 +37,8 @@ class UserController extends Controller
         parent::__construct();
 
         $this->middleware(function ($request, $next) {
-            \Log::debug('middleware');
             $user = Auth::user();
             $orderId = $request->route('orderId');
-
-            \Log::debug(var_export($orderId, true));
 
             if (!$orderId) {
                 return $next($request);
@@ -562,40 +558,6 @@ class UserController extends Controller
             UserNodeLInk::create([
                 'user_id' => $user->id,
                 'node_id' => $nodeId
-            ]);
-        }
-
-        return redirect()->back();
-    }
-
-    /**
-     * User event action.
-     */
-    public function events()
-    {
-        $user = Auth::user();
-
-        return view('account.user.events', [
-            'breadcrumbs' => [
-                $user->name => 'user',
-                trans('admin/user-nav.events') => ''
-            ]
-        ]);
-    }
-
-    /**
-     * Add or remove user from event.
-     */
-    public function toggleEvent(Request $request, $eventId)
-    {
-        $user = Auth::user();
-        $eventUserLink = EventUserLink::where(['user_id' => $user->id, 'event_id' => $eventId])->first();
-        if ($eventUserLink) {
-            $eventUserLink->delete();
-        } else {
-            EventUserLInk::create([
-                'user_id' => $user->id,
-                'event_id' => $eventId
             ]);
         }
 

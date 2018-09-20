@@ -7,13 +7,7 @@ return [
     'request_no_variant' => 'Could not find the variant you requested.',
     'request_no_order' => 'Could not find the order you requested.',
     'request_no_order_item' => 'Could not find the order item you requested.',
-    'request_no_event' => 'Could not find the event you requested.',
     'request_no_node' => 'Could not find the node account you requested.',
-
-    // Event
-    'event_created' => 'Your event has been created.',
-    'event_updated' => 'Your event has been updated.',
-    'event_deleted' => 'Your event has been deleted.',
 
     // Node
     'node_created' => 'Your node has been created.',

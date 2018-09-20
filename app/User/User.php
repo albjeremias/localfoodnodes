@@ -30,6 +30,7 @@ class User extends \App\User\BaseUser
         'city' => '',
         'phone' => '',
         'language' => '',
+        'currency' => '',
         'active' => '',
     ];
 
@@ -47,6 +48,7 @@ class User extends \App\User\BaseUser
         'city',
         'phone',
         'language',
+        'currency',
         'active'
     ];
 
@@ -77,7 +79,6 @@ class User extends \App\User\BaseUser
             $user->nodeAdminLinks()->each->delete();
             $user->nodeAdminInvites()->each->delete();
             $user->producerAdminLinks()->each->delete();
-            $user->eventLinks()->each->delete();
             $user->images()->each->delete();
         });
     }
@@ -598,24 +599,6 @@ class User extends \App\User\BaseUser
     }
 
     /**
-     *Get event links.
-     */
-    public function eventLinks()
-    {
-        return $this->hasMany('App\Event\EventUserLink')->get();
-    }
-
-    /**
-     * Get a specific event link.
-     *
-     * @param int $eventId
-     */
-    public function eventLink($eventId)
-    {
-        return $this->eventLinks()->where('event_id', $eventId)->first();
-    }
-
-    /**
      * Get images.
      */
     public function images()
@@ -633,64 +616,6 @@ class User extends \App\User\BaseUser
     public function image($imageId)
     {
         return $this->images()->where('id', $imageId)->first();
-    }
-
-    /**
-     * [isEventAdmin description]
-     * @param  [type]  $ownerId   [description]
-     * @param  [type]  $ownerType [description]
-     * @return boolean            [description]
-     */
-    public function isEventAdmin($ownerId, $ownerType)
-    {
-        $isAdmin = false;
-
-        if ($ownerType === 'node' && $this->nodeAdminLink($ownerId)) {
-            $isAdmin = true;
-        } else if ($ownerType === 'producers' && $this->producerAdminLink($ownerId)) {
-            $isAdmin = true;
-        }
-
-        return $isAdmin;
-    }
-
-    /**
-     * [eventOwner description]
-     * @return [type] [description]
-     */
-    public function eventOwner()
-    {
-        $eventOwner = new Collection();
-
-        if ($this->producerAdminLinks()->count() > 0) {
-            $eventOwner->add($this->producerAdminLinks()->map(function($producerAdminLink) {
-                $producer = $producerAdminLink->getProducer();
-
-                return [
-                    'id' => $producer->id,
-                    'unique_key' => 'producer_' . $producer->id,
-                    'type' => 'producer',
-                    'name' => $producer->name,
-                    'object' => $producer
-                ];
-            }));
-        }
-
-        if ($this->nodeAdminLinks()->count() > 0) {
-            $eventOwner->add($this->nodeAdminLinks()->map(function($nodeAdminLink) {
-                $node = $nodeAdminLink->getNode();
-
-                return [
-                    'id' => $node->id,
-                    'unique_key' => 'node_' . $node->id,
-                    'type' => 'node',
-                    'name' => $node->name,
-                    'object' => $node
-                ];
-            }));
-        }
-
-        return $eventOwner->flatten(1);
     }
 
     /**

@@ -24,9 +24,11 @@
         {{ csrf_field() }}
         <div class="input-group mb-3">
             <input type="number" placeholder="{{ trans('admin/user.amount') }}" name="amount" class="form-control"/>
-            <div class="input-group-addon">
-                <span class="input-group-text">SEK</span>
-            </div>
+            <select class="custom-select" id="inputGroupSelect01">
+                @foreach (config('app.currencies') as $code => $currency)
+                    <option {{ $code === $user->currency ? 'selected' : '' }} value="{{ $code }}">{{ $code }} - {{ $currency }}</a>
+                @endforeach
+            </select>
         </div>
 
         <div id="card-element"></div>

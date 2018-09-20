@@ -101,29 +101,6 @@
                     @endif
                 </div> <!-- Product end -->
 
-                <!-- Events -->
-                @if ($events->count() > 0)
-                    <div class="events row no-gutters">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <div>
-                                        {{ trans('public/node.events') }}
-                                        @if (Request::has('date'))
-                                            - {{ Request::get('date') }} <a href="{{ $node->permalink()->url }}"><i class="fa fa-times-circle"></i></a>
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    @foreach ($events as $event)
-                                        @include('public.components.event')
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endif
-
                 <div class="card">
                     <div class="card-header">{{ $node->name }}</div>
                     <div class="card-body">
@@ -178,51 +155,6 @@
                         </div>
                     @endif
                 </div>
-
-                @if (isset($calendar))
-                    <div class="card">
-                        <div class="calendar node-calendar">
-                            <div class="calendar-nav">
-                                <i class="fa fa-chevron-left calendar-nav-item" id="calendar-nav-prev"></i>
-                                <i class="fa fa-chevron-right calendar-nav-item" id="calendar-nav-next"></i>
-                            </div>
-                            @foreach ($calendar as $monthDate => $month)
-                                <div class="month {{ $calendarMonth !== $monthDate ? 'hidden' : '' }}">
-                                    <div class="month-header">{{ trans('public/node.calendar') }} - {{ date('F Y', strtotime($monthDate)) }}</div>
-                                    <div class="days">
-                                        @for ($i = 0; $i < $month['offsetStart']; $i++)
-                                            <div class="day disabled"></div>
-                                        @endfor
-
-                                        @if ($month['days'])
-                                            @foreach ($month['days'] as $dayDate => $dayData)
-                                                @if (!empty($dayData['events']))
-                                                    <a href="{{ $dayData['url'] }}" class="{{ join(' ', $dayData['activities']) }}">
-                                                        <div class="date">{{ date('j', strtotime($dayDate)) }}</div>
-                                                    </a>
-                                                @else
-                                                    <div class="day">
-                                                        <div class="date">{{ date('j', strtotime($dayDate)) }}</div>
-                                                    </div>
-                                                @endif
-                                            @endforeach
-                                        @endif
-
-                                        @for ($i = 0; $i < $month['offsetEnd']; $i++)
-                                            <div class="day disabled"></div>
-                                        @endfor
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                        <div class="card-body">
-                            <div class="calendar-explanation">
-                                <p><i class="fa fa-square text-success"></i> {{ trans('public/node.pickup') }}</p>
-                                <p><i class="fa fa-square text-event"></i> {{ trans('public/node.event') }}</p>
-                            </div>
-                        </div>
-                    </div> <!-- Calendar end -->
-                @endif
 
                 <!-- Node images -->
                 @if ($node->images()->count() > 0)

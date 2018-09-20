@@ -48,9 +48,9 @@
                 <div>{{ $user->name }}</div>
                 <div>{{ $user->email }}</div>
                 <div>{{ $user->address }}</div>
-                <div>{{ $user->zip }}</div>
-                <div>{{ $user->city }}</div>
+                <div>{{ $user->zip }} {{ $user->city }}</div>
                 <div>{{ trans('admin/user.language') }}: <a href="/account/user/edit">{{ $user->getLanguageName() }}</a></div>
+                <div>{{ trans('admin/user.currency') }}: <a href="/account/user/edit">{{ $user->currency }}</a></div>
             </div>
 
             <div class="card-footer d-flex justify-content-between">

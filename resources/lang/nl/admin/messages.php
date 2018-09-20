@@ -7,13 +7,7 @@ return [
     'request_no_variant' => 'De aangevraagde variant kon niet worden gevonden.',
     'request_no_order' => 'De aangevraagde bestelling kon niet worden gevonden.',
     'request_no_order_item' => 'Het aangevraagde item kon niet worden gevonden.',
-    'request_no_event' => 'Het aangevraagde evenement kon niet worden gevonden.',
     'request_no_node' => 'De aangevraagde knooppuntaccount kan niet worden gevonden.',
-
-    // Event
-    'event_created' => 'Je evenement is gecreërd.',
-    'event_updated' => 'Je evenement is bijgewerkt.',
-    'event_deleted' => 'Je evenement is verwijderd.',
 
     // Node
     'node_created' => 'Je knooppunt is gecreërd.',

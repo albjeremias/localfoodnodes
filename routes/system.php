@@ -1,2 +1,4 @@
 <?php
-Route::get('/cron', 'System\CronController@run');
+
+Route::get('/cron/notification', 'System\CronController@notifications');
+Route::get('/cron/currency', 'System\CronController@currency');

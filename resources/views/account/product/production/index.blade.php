@@ -100,7 +100,6 @@
                                 </div>
                                 <div class="card-body">
                                     <p>{{ trans('admin/product.weekly_adjustment') }}</p>
-                                    <a href="/account/producer/{{ $producer->id }}/product/{{ $product->id }}/production/adjustment">{{ trans('admin/product.adjust_production_quantity_per_week') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -190,7 +189,9 @@
                                                                 @include('account.field-error', ['field' => 'occasional_date[' . $index . ']'])
                                                             </label>
                                                             <div class="input-group">
-                                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                <div class="input-group-prepend">
+                                                                    <i class="input-group-text fa fa-calendar"></i>
+                                                                </div>
                                                                 <input type="text" name="occasional_date[]" class="form-control picker date" placeholder="Date" value="{{ $occasional_date }}" />
                                                             </div>
                                                         </div>
@@ -205,7 +206,9 @@
                                                     <div class="form-group">
                                                         <label>{{ trans('admin/product.production_date') }}</label>
                                                         <div class="input-group">
-                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                            <div class="input-group-prepend">
+                                                                <i class="input-group-text fa fa-calendar"></i>
+                                                            </div>
                                                             <input type="text" name="occasional_date[]" class="form-control picker date" placeholder="{{ trans('admin/product.production_date') }}" />
                                                         </div>
                                                     </div>

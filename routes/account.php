@@ -22,8 +22,6 @@ Route::group(['prefix' => '/user'], function () {
     Route::get('/order/{orderItemId}/delete', 'Account\UserController@deleteOrderItem');
     Route::post('/membership/callback', 'Account\UserController@membershipCallback');
     Route::get('/node/{nodeId}', 'Account\UserController@toggleNode');
-    Route::get('/events', 'Account\UserController@events');
-    Route::get('/event/{eventId}', 'Account\UserController@toggleEvent');
     Route::get('/membership', 'Account\UserController@membership');
 });
 
@@ -102,24 +100,10 @@ Route::group(['prefix' => '/producer/{producerId}/product'], function () {
     // Production
     Route::get('/{productId}/production', 'Account\ProductProductionController@index');
     Route::post('/{productId}/production/update', 'Account\ProductProductionController@update');
-    Route::get('/{productId}/production/adjustment', 'Account\ProductProductionController@adjustment');
-    Route::post('/{productId}/production/adjustment/update', 'Account\ProductProductionController@updateAdjustment');
 
     // Deliveries
     Route::get('/{productId}/deliveries', 'Account\ProductController@editDeliveries');
     Route::post('/{productId}/deliveries/update', 'Account\ProductController@updateDeliveries');
-});
-
-// Events
-Route::group(['prefix' => '/{ownerType}/{ownerId}'], function () {
-    Route::get('/events', 'Account\EventController@index');
-    Route::get('/event/create', 'Account\EventController@create');
-    Route::post('/event/insert', 'Account\EventController@insert');
-    Route::get('/event/{eventId}/edit', 'Account\EventController@edit');
-    Route::post('/event/{eventId}/update', 'Account\EventController@update');
-    Route::get('/event/{eventId}/delete', 'Account\EventController@delete');
-    Route::get('/event/{eventId}/deleteConfirm', 'Account\EventController@deleteConfirm');
-    Route::get('/event/{eventId}/guests', 'Account\EventController@guests');
 });
 
 // Image
