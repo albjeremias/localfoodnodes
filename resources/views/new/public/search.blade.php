@@ -36,26 +36,12 @@
             @php
                 $items = [
                     [
-                        'type' => 'map-marker',
-                        'name' => 'Bygdens Saluhall Dalby',
-                        'distance_from_you' => '100 km',
-                        'address' => 'Pumpavägen 1, 24750, Dalby',
-                        'open' => 'Onsdagar, 18:30',
-                    ],
-                    [
-                        'type' => 'home',
-                        'name' => 'Möllan',
-                        'distance_from_you' => '8 km',
-                        'address' => 'Möllevångstorget, 21,424, Malmö',
-                        'open' => 'Onsdagar, 18:30',
-                    ],
-                    [
-                    	'type' => 'facebook-square',
-                        'name' => 'Lindängelund',
-                        'distance_from_you' => '9 km',
-                        'address' => 'Gånglåtsvägen, 171, 215 78',
-                        'open' => 'Tisdagar, 14:30',
-                    ],
+                        'type'                                          => 'map-marker',
+                        trans('public/pages/explore.name')              => 'Bygdens Saluhall Dalby',
+                        trans('public/pages/explore.distance_from_you') => '100 km',
+                        trans('public/pages/explore.address')           => 'Pumpavägen 1, 24750, Dalby',
+                        trans('public/pages/explore.open')              => 'Onsdagar, 18:30',
+                    ]
                 ]
             @endphp
 
