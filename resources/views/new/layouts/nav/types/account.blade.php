@@ -1,6 +1,6 @@
 {{-- MY PANEL --}}
 <li class="nav-item">
-    <a class="nav-link black-54" href="/account/user">{{ trans('admin/user-nav.my_panel') }}</a>
+    <a class="nav-link black-54" href="/account/user">{{ trans('admin/user-nav.consumer') }}</a>
 </li>
 
 {{-- PRODUCER --}}
@@ -34,9 +34,7 @@
     </li>
 @endif
 
-
-
-
+{{-- NODE --}}
 @if ($user->nodeAdminLinks()->count() > 0)
 
     <li class="nav-item dropdown">
@@ -51,7 +49,10 @@
         </div>
     </li>
 @else
-    <li class="nav item"><a href="/account/node/create"><i class="fa fa-plus-circle"></i> {{ trans('admin/user-nav.create_node') }}</a></li>
+    {{-- CREATE NODE --}}
+    <li class="nav-item">
+        <a class="nav-link black-54" href="/account/node/create">{{ trans('admin/user-nav.create_node') }}</a>
+    </li>
 @endif
 
 

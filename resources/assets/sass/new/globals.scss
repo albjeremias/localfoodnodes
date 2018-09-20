@@ -326,6 +326,7 @@ thead {
 
 .no-bullets {
   list-style: none;
+  @extend .pl-0;
 }
 
 // HOVER

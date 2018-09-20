@@ -10,7 +10,6 @@
 @section('content')
     <div class="bg-shell">
         <div class="container nm pt-2">
-
             @if ($user->orderDates()->count() > 0)
                 @foreach ($user->orderDates() as $orderDate)
                     <div class="white-box mb-5">
@@ -74,10 +73,7 @@
                     </div>
                 @endforeach
             @else
-                <div class="card-header">{{ trans('admin/user.orders') }}</div>
-                <div class="card-body">
-                    {{ trans('admin/user.no_orders') }}
-                </div>
+                {{ trans('admin/user.no_orders') }}
             @endif
         </div>
     </div>

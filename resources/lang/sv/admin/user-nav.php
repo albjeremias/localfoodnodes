@@ -53,5 +53,6 @@ return [
 	// ---------------------------
     'my_panel' => 'Min Panel',
     'explore' => 'Utforska',
-    'admin' => 'Administration'
+    'admin' => 'Administration',
+	'consumer' => 'Konsument'
 ];

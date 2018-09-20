@@ -417,7 +417,7 @@ class UserController extends Controller
         $producer = Producer::find($producerId);
         $orderDateItemLinks = $user->orderDateItemLinks($producerId);
 
-        return view('account.user.producer-orders', [
+        return view('new.account.user.producer-orders', [
             'orderDateItemLinks' => $orderDateItemLinks,
             'breadcrumbs' => [
                 $user->name => 'user',
@@ -435,7 +435,7 @@ class UserController extends Controller
         $user = Auth::user();
         $orderDateItemLink = $user->orderDateItemLink($orderDateItemLinkId);
 
-        return view('account.user.order', [
+        return view('new.account.user.order', [
             'user' => $user,
             'orderDateItemLink' => $orderDateItemLink,
             'orderDate' => $orderDateItemLink->getDate(),
@@ -459,7 +459,7 @@ class UserController extends Controller
             return $orderDateItemLink->getItem()->product_id == $productId;
         });
 
-        return view('account.user.product-orders', [
+        return view('new.account.user.product-orders', [
             'user' => $user,
             'orderDateItemLinks' => $orderDateItemLinks,
             'breadcrumbs' => [

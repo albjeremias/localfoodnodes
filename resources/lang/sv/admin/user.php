@@ -99,6 +99,8 @@ return [
 	//	NEW AND/OR USED
 	// ---------------------------
 
+	'payment_information' => 'Betalningsinformation',
+
 	// -------- DASHBOARD --------
 	'nav_title' => 'Mina Panel',
 	'profile_info' => 'Profil-information',
