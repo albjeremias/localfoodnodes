@@ -70,7 +70,6 @@ class Producer extends BaseModel
             $producer->products()->each->delete();
             $producer->blacklists()->each->delete();
             $producer->cartDateItemLinks()->each->delete();
-            $producer->orderItems()->each->delete();
             $producer->permalink()->delete();
         });
 

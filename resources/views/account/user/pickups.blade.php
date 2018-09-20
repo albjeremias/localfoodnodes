@@ -29,25 +29,30 @@
                                     </thead>
                                     @foreach ($orderDate->orderDateItemLinks($user->id) as $orderDateItemLink)
                                         <tr>
-                                            <td>
-                                                <a href="/account/user/order/{{ $orderDateItemLink->id }}">
-                                                    {{ $orderDateItemLink->ref }}
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="/account/user/orders/product/{{ $orderDateItemLink->getItem()->product_id }}">
-                                                    {{ $orderDateItemLink->getItem()->getName() }}
-                                                </a>
-                                            </td>
-                                            <td class="text-right">{{ $orderDateItemLink->quantity }}</td>
-                                            <td>
-                                                <a href="/account/user/orders/producer/{{ $orderDateItemLink->producer_id }}">
-                                                    {{ $orderDateItemLink->getItem()->producer['name'] }}
-                                                </a>
-                                            </td>
-                                            <td>{{ $orderDateItemLink->getItem()->node['name'] }}</td>
-                                            <td class="text-right">{!! $orderDateItemLink->getPriceWithUnit() !!}</td>
-                                            <td class="text-right"><span class="{{ $orderDateItemLink->getItem()->getCurrentStatus()->getHtmlClass() }}">{{ $orderDateItemLink->getItem()->getCurrentStatus()}}</span></td>
+                                            @if ($orderDateItemLink->getItem())
+                                                <td>
+                                                    <a href="/account/user/order/{{ $orderDateItemLink->id }}">
+                                                        {{ $orderDateItemLink->ref }}
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a hr)ef="/account/user/orders/product/{{ $orderDateItemLink->getItem()->product_id }}">
+                                                        {{ $orderDateItemLink->getItem()->getName() }}
+                                                    </a>
+                                                </td>
+                                                <td class="text-right">{{ $orderDateItemLink->quantity }}</td>
+                                                <td>
+                                                    <a href="/account/user/orders/producer/{{ $orderDateItemLink->producer_id }}">
+                                                        {{ $orderDateItemLink->getItem()->producer['name'] }}
+                                                    </a>
+                                                </td>
+                                                <td>{{ $orderDateItemLink->getItem()->node['name'] }}</td>
+                                                <td class="text-right">{!! $orderDateItemLink->getPriceWithUnit() !!}</td>
+                                                <td class="text-right"><span class="{{ $orderDateItemLink->getItem()->getCurrentStatus()->getHtmlClass() }}">{{ $orderDateItemLink->getItem()->getCurrentStatus()}}</span></td>
+                                            @else
+                                                <td>{{ $orderDateItemLink->ref }}</td>
+                                                <td colspan="6">This product has been deleted</td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </table>

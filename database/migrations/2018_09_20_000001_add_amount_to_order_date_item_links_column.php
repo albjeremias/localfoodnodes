@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStatisticsTable extends Migration
+class AddAmountToOrderDateItemLinksColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateStatisticsTable extends Migration
      */
     public function up()
     {
-        Schema::create('statistics', function (Blueprint $table) {
-            $table->string('key')->required();
-            $table->double('value')->required();
+        Schema::table('order_date_item_links', function (Blueprint $table) {
+            $table->float('amount')->after('quantity')->nullable();
         });
     }
 
@@ -26,6 +25,8 @@ class CreateStatisticsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('statistics');
+        Schema::table('order_date_item_links', function (Blueprint $table) {
+            $table->dropColumn('currency');
+        });
     }
 }
