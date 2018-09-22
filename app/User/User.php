@@ -426,6 +426,7 @@ class User extends \App\User\BaseUser
                 throw new \Exception(trans('admin/messages.user_membership_amount_not_numeric'));
             }
 
+            // Move to app config
             $zeroDecimalCurrencies = ['MGA', 'BIF', 'CLP', 'PYG', 'DJF', 'RWF', 'GNF', 'UGX', 'JPY', 'VND', 'VUV', 'XAF', 'KMF', 'KRW', 'XOF', 'XPF'];
 
             // If not a zero decimal currency we multiply by 100

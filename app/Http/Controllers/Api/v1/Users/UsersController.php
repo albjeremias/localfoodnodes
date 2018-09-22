@@ -133,7 +133,7 @@ class UsersController extends BaseController
         $status = $user->processMembershipPayment($token, $amount, 'SEK');
 
         if ($status['error']) {
-            return response('invalid_amount', 400);
+            return response($status['code'], 400);
         }
 
         return User::find($user->id); // Reload user
