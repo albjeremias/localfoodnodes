@@ -4,22 +4,54 @@ namespace App\System;
 
 use Illuminate\Support\Facades\DB;
 
+use App\Helpers\CurrencyHelper;
 use App\Order\OrderDateItemLink;
+use App\Order\OrderDate;
 use App\User\User;
 use App\Producer\Producer;
 use App\Node\Node;
 
 class StatisticsGenerator
 {
+    private $currencyHelper;
+
+    public function __construct()
+    {
+        $this->currencyHelper = new CurrencyHelper();
+    }
+
     public function totalOrderAmount()
     {
-        $orderDateItemLinks = OrderDateItemLink::all();
-        $total = $orderDateItemLinks->sum(function($orderDateItemLink) {
-            return $orderDateItemLink->amount;
-        });
+        $oldest = OrderDate::orderBy('date', 'asc')->first()->date;
+        $latest = OrderDate::orderBy('date', 'desc')->first()->date;
 
-        $query = ['key' => 'order_amount_total', 'value' => $total];
-        $this->insertOrUpdate($query);
+        $dateInterval = new \DateInterval('P1D');
+        $datePeriod = new \DatePeriod($oldest, $dateInterval, $latest);
+
+        $orderDateItemLinks = OrderDateItemLink::all();
+
+        $ordersPerDate = [];
+        $orderAmountPerDate = [];
+        foreach ($datePeriod as $date) {
+            $ordersPerDate[$date->format('Y-m-d')] = 0;
+            $orderAmountPerDate[$date->format('Y-m-d')] = 0;
+        }
+
+        $totalOrderAmount = 0;
+        foreach ($orderDateItemLinks as $orderDateItemLink) {
+            $amount = $this->currencyHelper->convert($orderDateItemLink->amount, $orderDateItemLink->currency, 'USD');
+            $totalOrderAmount += $amount;
+
+            $orderDate = $orderDateItemLink->getDate();
+            if ($orderDate) {
+                $ordersPerDate[$orderDate->date('Y-m-d')] += 1;
+                $orderAmountPerDate[$orderDate->date('Y-m-d')] += $amount;
+            }
+        }
+
+        $this->insertOrUpdate(['key' => 'order_amount_total', 'value' => $totalOrderAmount]);
+        $this->insertOrUpdate(['key' => 'order_amount_per_date', 'value' => serialize($orderAmountPerDate)]);
+        $this->insertOrUpdate(['key' => 'orders_per_date', 'value' => serialize($ordersPerDate)]);
     }
 
     public function userCount()

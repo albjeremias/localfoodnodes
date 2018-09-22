@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Collection;
 use App\Mail\ResetPassword as ResetPasswordNotification;
 
-use Stripe\Stripe;
-use Stripe\Charge;
-
 use Mail;
 use App\Traits\Excludable;
 use App\User\UserMembershipPayment;
@@ -418,48 +415,60 @@ class User extends \App\User\BaseUser
     /**
      * Process payments.
      */
-    public function processMembershipPayment($token, $amount)
+    public function processMembershipPayment($token, $amount, $currency)
     {
         try {
-            Stripe::setApiKey(config('payment.stripe.live.secret_key')); // Use .env
+            \Stripe\Stripe::setApiKey(config('payment.stripe.live.secret_key'));
 
             if (!is_numeric($amount)) {
                 throw new \Exception(trans('admin/messages.user_membership_amount_not_numeric'));
             }
 
-            $adjustedAmount = (int) $amount * 100;
+            $zeroDecimalCurrencies = ['MGA', 'BIF', 'CLP', 'PYG', 'DJF', 'RWF', 'GNF', 'UGX', 'JPY', 'VND', 'VUV', 'XAF', 'KMF', 'KRW', 'XOF', 'XPF'];
 
-            // If user pays less than 3SEK (stripe limit)
-            if ($amount < 3) {
-                UserMembershipPayment::create([
-                    'user_id' => $this->id,
-                    'amount' => $adjustedAmount
-                ]);
-
-                \App\Helpers\SlackHelper::message('notification', $this->name . ' (' . $this->email . ')' . ' payed ' . $amount . 'SEK to become a member.');
-                return ['error' => false, 'message' => $amount];
-            } else {
-                $charge = Charge::create(array(
-                    'amount' => $adjustedAmount,
-                    'currency' => 'sek',
-                    'source' => $token,
-                    'description' => $this->name
-                ));
-
-                if ($charge['status'] === 'succeeded') {
-                    UserMembershipPayment::create([
-                        'user_id' => $this->id,
-                        'amount' => $adjustedAmount
-                    ]);
-
-                    \App\Helpers\SlackHelper::message('notification', $this->name . ' (' . $this->email . ')' . ' payed ' . $amount . 'SEK to become a member.');
-                    return ['error' => false, 'message' => $amount];
-                } else {
-                    return ['error' => true, 'message' => $charge['status']];
-                }
+            // If not a zero decimal currency we multiply by 100
+            $adjustedAmount = $amount;
+            if (!in_array($currency, $zeroDecimalCurrencies)) {
+                $adjustedAmount = $amount * 100;
             }
+
+            $charge = \Stripe\Charge::create(array(
+                'amount' => (int) $adjustedAmount,
+                'currency' => $currency,
+                'source' => $token,
+                'description' => $this->name
+            ));
+
+            UserMembershipPayment::create([
+                'user_id' => $this->id,
+                'amount' => $adjustedAmount
+            ]);
+
+            \App\Helpers\SlackHelper::message('notification', $this->name . ' (' . $this->email . ')' . ' payed ' . $amount . 'SEK to become a member.');
+
+            return ['error' => false, 'code' => null];
+        } catch (\Stripe\Error\Base $e) {
+            $error = $e->getJsonBody();
+            $errorCode = $error['error']['code'];
+
+            if ($errorCode === 'amount_too_small') {
+                return [
+                    'error' => false,
+                    'code' => $errorCode
+                ];
+            }
+
+            return [
+                'error' => true,
+                'code' => $errorCode,
+            ];
         } catch (\Exception $e) {
-            return ['error' => true, 'message' => $e->getMessage()];
+            \App\Helpers\SlackHelper::message('error', 'Stripe error: ' . $e->getMessage());
+
+            return [
+                'error' => true,
+                'code' => 'stripe_error_unknown_php',
+            ];
         }
     }
 

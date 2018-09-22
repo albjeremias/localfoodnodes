@@ -63,6 +63,7 @@ return [
     'resend' => 'Skicka aktiveringslänk igen',
     'reset_password' => 'Återställ lösenord',
     'save_user' => 'Spara användare',
+    'select_currency' => 'Välj valuta',
     'send_password_reset_link' => 'Skicka återställningslänk',
     'site_lang' => 'Språk',
     'status' => 'Status',
@@ -87,13 +88,24 @@ return [
     'payment_info' => 'Vi använder oss av <a href="https://stripe.com">Stripe</a> för kortbetalningar och vi sparar inte dina kortuppgifter.',
     'membership_modal_title' => 'Thanks för att du är medlem',
     'membership_modal_no_charge' => '
-        <p>Tack för att du har valt att bli medlem. Ditt medlemskap är giltigt i 12 månader och under den tiden kan du handla lokal mat direkt från lokala producenter så mycket du önskar.</p><p>Eftersom du valde att betala mindre än 3 SEK kommer vi inte att dra några pengar från ditt konto då det kostar oss med att genomföra transaktionen.</p>
+        <p>Tack för att du har valt att bli medlem. Ditt medlemskap är giltigt i 12 månader och under den tiden kan du handla lokal mat direkt från lokala producenter så mycket du önskar.</p><p>Eftersom du valde att betala mindre än 3 SEK kommer vi inte att dra några pengar från ditt konto då det kostar oss mer att genomföra transaktionen.</p>
     ',
     'membership_modal_thanks' => '
         <p>Stort tack för att du har valt att bli medlem och ett ännu större tack för ditt bidrag. Ditt medlemskap är giltigt i 12 månader och under den tiden kan du handla lokal mat direkt från lokala producenter så mycket du önskar.</p><p>Medlemsavgiften kommer användas till utvecklingsarbete för att främja handel, produktion och distribution av lokalproducerad mat.</p>
     ',
     'membership_no_history' => 'Du har inte betalat några medlemsavgifter.',
     'renew_membership' => 'Förnya ditt medlemskap och se historik',
-    'error_yourcardwasdeclined' => '<strong>Ditt kort godkändes ej.</strong> Detta beror oftast på att kortet har begränsningar för köp på internet. Vi rekommenderar dig att logga in på din internetbank, ändra inställningarna och prova igen. Om du fortfarande upplever problem behöver du kontakta din bank.',
-    'error_yourcardhasinsufficientfunds' => '<strong>Du har inte tillräckligt med pengar på kontot.</strong>',
+
+    // Stripe errors
+    'balance_insufficient' => 'Betalningen kunde inte genomföras då det finns för lite pengar på kortet.',
+    'card_declined' => 'Ditt kort godkändes ej. Detta beror oftast på att kortet har begränsningar för köp på internet. Vi rekommenderar dig att logga in på din internetbank, ändra inställningarna och prova igen. Om du fortfarande upplever problem behöver du kontakta din bank.',
+    'expired_card' => 'Ditt kort har gått ut. Kontrollera utgångsdatum eller prova med ett annat kort.',
+    'incorrect_cvc' => 'Den angivna CVC-koden är felaktig. Kontrollera kortet CVC-kod eller prova me ett annat kort.',
+    'incorrect_number' => 'Kortnumret är felaktigt. Kontrollera kortnumret eller prova med ett annat kort.',
+    'invalid_card_type' => 'Kortet är av en ogiltig typ och kan inte debiteras. Prova med ett annat kort.',
+    'invalid_charge_amount' => 'Summan är felaktig. Kontrollera så att summan är en positiv siffra.',
+    'invalid_cvc' => 'Den angivna CVC-koden är felaktig. Kontrollera kortet CVC-kod eller prova me ett annat kort.',
+    'invalid_expiry_month' => 'Kortets utgångsmånad är felaktigt. Kontrollera utgångsdatumet eller prova med ett annat kort.',
+    'invalid_expiry_year' => 'Kortets utgångsår är felaktigt. Kontrollera utgångsdatumet eller prova med ett annat kort.',
+    'invalid_number' => 'Kortnumret är felaktigt. Kontrollera kortnumret eller prova med ett annat kort.',
 ];

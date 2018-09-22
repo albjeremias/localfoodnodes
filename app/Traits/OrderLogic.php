@@ -143,12 +143,19 @@ trait OrderLogic
                 ]);
             }
 
+            $amount = $cartDateItemLink->quantity * $cartItem->product['price'];
+            if ($cartItem->variant) {
+                $amount = $cartDateItemLink->quantity * $cartItem->variant['price'];
+            }
+
             $orderDateItemLink = OrderDateItemLink::create([
                 'user_id' => $user->id,
                 'producer_id' => $cartItem->producer['id'],
                 'order_item_id' => $orderItem->id,
                 'order_date_id' => $orderDate->id,
                 'quantity' => $cartDateItemLink->quantity,
+                'amount' => $amount,
+                'currency' => $cartItem->producer['currency'],
                 'ref' => $cartDateItemLink->ref,
             ]);
 

@@ -61,16 +61,17 @@
                                     <option value="{{ $langCode }}" {{ $langCode === $user->language ? 'selected' : '' }}>{{ $language }}</option>
                                 @endforeach
                             </select>
-                         </div>
+                        </div>
 
-                         <div class="form-group">
+                        <div class="form-group">
                             <label for="currency">{{ trans('admin/user.currency') }}</label>
                             <select name="currency" id="currency" class="form-control">
+                                <option value="">{{ trans('admin/user.select_currency') }}</option>
                                 @foreach (config('app.currencies') as $code => $currency)
                                     <option value="{{ $code }}" {{ $code === $user->currency ? 'selected' : '' }}>{{ $code }} - {{ $currency }}</option>
                                 @endforeach
                             </select>
-                         </div>
+                        </div>
 
                          <p>
                             {!! trans('admin/user.gdpr_consent_date', ['date' => $user->gdprConsent()->created_at]) !!}

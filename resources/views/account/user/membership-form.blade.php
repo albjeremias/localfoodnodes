@@ -22,22 +22,30 @@
 <div class="card-body">
     <form action="/account/user/membership/callback" method="post" id="payment-form">
         {{ csrf_field() }}
-        <div class="input-group mb-3">
-            <input type="number" placeholder="{{ trans('admin/user.amount') }}" name="amount" class="form-control"/>
-            <select class="custom-select" id="inputGroupSelect01">
-                @foreach (config('app.currencies') as $code => $currency)
-                    <option {{ $code === $user->currency ? 'selected' : '' }} value="{{ $code }}">{{ $code }} - {{ $currency }}</a>
-                @endforeach
-            </select>
+        <div class="form-row mb-3">
+            <div class="col">
+                <input class="form-control" type="number" step="0.01" placeholder="{{ trans('admin/user.amount') }}" name="amount" />
+            </div>
+            <div class="col">
+                <select name="currency" class="form-control">
+                    @foreach (config('app.currencies') as $code => $currency)
+                        <option {{ $code === $user->currency ? 'selected' : '' }} value="{{ $code }}">{{ $code }} - {{ $currency }}</a>
+                    @endforeach
+                </select>
+            </div>
         </div>
 
-        <div id="card-element"></div>
+        <div class="form-row">
+            <div class="col">
+                <div id="card-element"></div>
+            </div>
+        </div>
         <div><small>{!! trans('admin/user.payment_info') !!}</small></div>
         <div id="card-errors" class="alert alert-danger mt-3 mb-0" role="alert"></div>
 
         @if (isset($_GET['error']))
             <div class="alert alert-warning mt-3 mb-0">
-                {!! trans('admin/user.error_' . $_GET['error']) !!}
+                {!! trans('admin/user.' . $_GET['error']) !!}
             </div>
         @endif
 
@@ -141,7 +149,9 @@
             </div>
         </div>
         <script>
-            $('#membership-modal-no-charge').modal('show');
+            $(function() {
+                $('#membership-modal-no-charge').modal({show: true});
+            });
         </script>
     @elseif (Session::has('membership_modal_thanks'))
         <div class="modal fade" id="membership-modal-thanks" tabindex="-1" role="dialog">
@@ -158,7 +168,9 @@
             </div>
         </div>
         <script>
-            $('#membership-modal-thanks').modal('show');
+            $(function() {
+                $('#membership-modal-thanks').modal({show: true});
+            });
         </script>
     @endif
 @endsection

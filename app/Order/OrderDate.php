@@ -87,8 +87,6 @@ class OrderDate extends \App\BaseModel
             $orderDateItemLinks = $this->orderDateItemLinksRelationship->where('user_id', $userId);
         } else if ($producerId) {
             $orderDateItemLinks = $this->orderDateItemLinksRelationship->where('producer_id', $producerId);
-        } else {
-            \Log::error('Error in function orderDateItemLinks: both userId and producerId cannot be null');
         }
 
         // Limit query to filter

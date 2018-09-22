@@ -66,7 +66,13 @@ class CronController extends BaseController
                 $orderDateItemLink->amount = 0;
                 $orderDateItemLink->save();
             } else {
-                $orderDateItemLink->amount = $orderDateItemLink->quantity * $orderItem->getProduct()->price;
+                $amount = $orderDateItemLink->quantity * $orderItem->getProduct()->price;
+                if ($orderItem->getVariant()) {
+                    $amount = $orderDateItemLink->quantity * $orderItem->getVariant()->price;
+                }
+
+                $orderDateItemLink->amount = $amount;
+                $orderDateItemLink->currency = $orderItem->getProducer()->currency;
                 $orderDateItemLink->save();
             }
         });

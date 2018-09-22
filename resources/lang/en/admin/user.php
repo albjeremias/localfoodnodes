@@ -63,6 +63,7 @@ return [
     'resend' => 'Resend activation link',
     'reset_password' => 'Reset password',
     'save_user' => 'Save user',
+    'select_currency' => 'Select currency',
     'send_password_reset_link' => 'Send reset link',
     'site_lang' => 'Site language',
     'status' => 'Status',
@@ -94,6 +95,17 @@ return [
     ',
     'membership_no_history' => 'You have no previous membership payments.',
     'renew_membership' => 'Renew member and view payment history',
-    'error_yourcardwasdeclined' => '<strong>Your card was not approved.</strong> This is usually because your card has restrictions for online purchases. We recommend that you sign in to your internet bank, change the settings and try again. If you still experience problems please contact your bank',
-    'error_yourcardhasinsufficientfunds' => '<strong>Your card har insufficient funds.</strong>',
+
+    // Stripe errors
+    'balance_insufficient' => 'The transfer or payout could not be completed because the associated account does not have a sufficient balance available. Create a new transfer or payout using an amount less than or equal to the account’s available balance.',
+    'card_declined' => 'The card has been declined. This is usually because the card has restrictions for online purchases. We recommend that you check the settings for your card in your internet bank and try again. If you still experience problems, please contact your bank.',
+    'expired_card' => 'The card has expired. Check the expiration date or use a different card.',
+    'incorrect_cvc' => 'The card’s security code is incorrect. Check the card’s security code or use a different card.',
+    'incorrect_number' => 'The card number is incorrect. Check the card’s number or use a different card.',
+    'invalid_card_type' => 'The card provided as an external account is not a debit card. Provide a debit card or use a bank account instead.',
+    'invalid_charge_amount' => 'The specified amount is invalid. The charge amount must be a positive integer in the smallest currency unit, and not exceed the minimum or maximum amount.',
+    'invalid_cvc' => 'The card’s security code is invalid. Check the card’s security code or use a different card.',
+    'invalid_expiry_month' => 'The card’s expiration month is incorrect. Check the expiration date or use a different card.',
+    'invalid_expiry_year' => 'The card’s expiration year is incorrect. Check the expiration date or use a different card.',
+    'invalid_number' => 'The card number is invalid. Check the card details or use a different card.',
 ];

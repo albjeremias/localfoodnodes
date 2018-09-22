@@ -28,7 +28,7 @@ class Producer extends BaseModel
         'vat_identification_number' => '',
         'info' => 'required',
         'email' => 'required',
-        'currency' => '',
+        'currency' => 'required',
         'payment_info' => '',
         'link_homepage' =>'',
         'link_facebook' => '',

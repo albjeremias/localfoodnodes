@@ -18,7 +18,7 @@
                         @include('account.field-error', ['field' => 'package_amount'])
                     </label>
                     <div class="input-group">
-                        <input type="number" step="0.01" name="package_amount" class="form-control" id="package_amount" placeholder="{{ trans('admin/product.amount_per_package') }}" value="{{ $variant->package_amount }}">
+                        <input type="number" step="0.01" min="0" name="package_amount" class="form-control" id="package_amount" placeholder="{{ trans('admin/product.amount_per_package') }}" value="{{ $variant->package_amount }}">
                         @if ($product->package_unit)
                             <div class="input-group-append">
                                 <span class="input-group-text">{{ trans_choice('units.' . $product->package_unit, 2) }}</span>
@@ -31,7 +31,7 @@
                         {{ trans('admin/product.price') }}
                         @include('account.field-error', ['field' => 'price'])
                     </label>
-                    <input type="number" min="0" name="price" class="form-control" id="price" placeholder="{{ trans('admin/product.price') }}" value="{{ $variant->price }}">
+                    <input type="number" step="0.01" min="0" name="price" class="form-control" id="price" placeholder="{{ trans('admin/product.price') }}" value="{{ $variant->price }}">
                 </div>
             </div>
         </div>

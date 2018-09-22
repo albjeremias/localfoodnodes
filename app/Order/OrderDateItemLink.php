@@ -19,6 +19,8 @@ class OrderDateItemLink extends \App\BaseModel
         'order_item_id' => 'required',
         'order_date_id' => 'required',
         'quantity' => 'required',
+        'amount' => '',
+        'currency' => '',
         'ref' => 'required',
     ];
 
@@ -33,6 +35,8 @@ class OrderDateItemLink extends \App\BaseModel
         'order_item_id',
         'order_date_id',
         'quantity',
+        'amount',
+        'currency',
         'ref',
     ];
 

@@ -520,26 +520,29 @@ class UserController extends Controller
         $user = Auth::user();
         $token = $request->input('stripeToken');
         $amount = $request->input('amount');
-        $status = $user->processMembershipPayment($token, $amount);
+        $currency = $request->input('currency');
+
+        $status = $user->processMembershipPayment($token, $amount, $currency);
         $errorKey = null;
 
         if ($status['error']) {
-            $errorKey = strtolower($status['message']);
-            $errorKey = preg_replace('/[^a-z0-9"\']/', '', $errorKey);
-            \Log::debug('Payment error key: ' . $errorKey);
-
             $request->session()->flash('message', [
                 trans('admin/messages.user_membership_error')
             ]);
 
-            return redirect('/account/user/membership?error=' . $errorKey);
+            return redirect('/account/user/membership?error=' . $status['code']);
         }
 
-        if ($status['message'] < 3) {
+        if ($status['code'] === 'amount_too_small') {
             $request->session()->flash('membership_modal_no_charge', true);
         } else {
             $request->session()->flash('membership_modal_thanks', true);
             $request->session()->flash('message', [trans('admin/messages.user_membership_success')]);
+        }
+
+        if (!$user->currency) {
+            $user->currency = $currency;
+            $user->save();
         }
 
         return redirect('/account/user/membership');
