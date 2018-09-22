@@ -129,7 +129,8 @@ class UsersController extends BaseController
         $token = $request->input('stripeToken');
         $amount = $request->input('amount');
 
-        $status = $user->processMembershipPayment($token, $amount);
+        // Todo: Enable currency support in app
+        $status = $user->processMembershipPayment($token, $amount, 'SEK');
 
         if ($status['error']) {
             return response('invalid_amount', 400);
