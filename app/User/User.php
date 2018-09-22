@@ -417,6 +417,8 @@ class User extends \App\User\BaseUser
      */
     public function processMembershipPayment($token, $amount, $currency)
     {
+        $successMessage = $this->name . ' (' . $this->email . ')' . ' payed ' . $amount . ' ' . $currency . ' to become a member.';
+
         try {
             \Stripe\Stripe::setApiKey(config('payment.stripe.live.secret_key'));
 
@@ -444,7 +446,7 @@ class User extends \App\User\BaseUser
                 'amount' => $adjustedAmount
             ]);
 
-            \App\Helpers\SlackHelper::message('notification', $this->name . ' (' . $this->email . ')' . ' payed ' . $amount . 'SEK to become a member.');
+            \App\Helpers\SlackHelper::message('notification', $successMessage);
 
             return ['error' => false, 'code' => null];
         } catch (\Stripe\Error\Base $e) {
@@ -452,6 +454,14 @@ class User extends \App\User\BaseUser
             $errorCode = $error['error']['code'];
 
             if ($errorCode === 'amount_too_small') {
+                // Create a payment even if payment was too small
+                UserMembershipPayment::create([
+                    'user_id' => $this->id,
+                    'amount' => $adjustedAmount
+                ]);
+
+                \App\Helpers\SlackHelper::message('notification', $successMessage);
+
                 return [
                     'error' => false,
                     'code' => $errorCode
