@@ -15,7 +15,7 @@ class CreateStatisticsTable extends Migration
     {
         Schema::create('statistics', function (Blueprint $table) {
             $table->string('key')->required()->unique();
-            $table->double('value')->required();
+            $table->mediumText('data')->required();
         });
     }
 
