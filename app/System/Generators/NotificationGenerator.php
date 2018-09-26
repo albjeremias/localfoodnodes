@@ -1,6 +1,6 @@
 <?php
 
-namespace App\System;
+namespace App\System\Generators;
 
 use Illuminate\Support\Facades\DB;
 

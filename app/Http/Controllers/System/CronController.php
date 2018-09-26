@@ -5,9 +5,9 @@ namespace App\Http\Controllers\System;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 
-use App\System\NotificationGenerator;
-use App\System\CurrencyRateImporter;
-use App\System\StatisticsGenerator;
+use App\System\Importers\CurrencyRateImporter;
+use App\System\Generators\NotificationGenerator;
+use App\System\Generators\StatisticsGenerator;
 
 use App\Order\OrderDateItemLink;
 
@@ -18,9 +18,8 @@ class CronController extends BaseController
      *
      * @param Request $request
      */
-    public function currency(Request $request)
+    public function currency(Request $request, CurrencyRateImporter $currencyRateImporter)
     {
-        $currencyRateImporter = new CurrencyRateImporter();
         $currencyRateImporter->import();
     }
 
@@ -33,10 +32,9 @@ class CronController extends BaseController
      *
      * @param Request $request
      */
-    public function statistics(Request $request)
+    public function statistics(Request $request, StatisticsGenerator $statisticsGenerator)
     {
-        $statisticsGenerator = new StatisticsGenerator();
-        $statisticsGenerator->totalOrderAmount();
+        $statisticsGenerator->ordersCountAndAmount();
         $statisticsGenerator->userCount();
         $statisticsGenerator->producerCount();
         $statisticsGenerator->nodeCount();
@@ -47,9 +45,8 @@ class CronController extends BaseController
      *
      * @param Request $request
      */
-    public function notifications(Request $request)
+    public function notifications(Request $request, NotificationGenerator $notificationGenerator)
     {
-        $notificationGenerator = new NotificationGenerator();
         $notificationGenerator->generateNextPickupDate();
         $notificationGenerator->generatePickupReminderDay();
         // $notificationGenerator->generatePickupReminderHour();

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\System;
+namespace App\System\Importers;
 
 use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
@@ -18,7 +18,7 @@ class CurrencyRateImporter
 
         $values = [];
         foreach ((array) $json->rates as $currency => $rate) {
-            $dbValues[] = [
+            $values[] = [
                 'currency' => $currency,
                 'rate' => $rate,
             ];
