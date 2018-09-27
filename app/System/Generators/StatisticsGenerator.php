@@ -74,7 +74,7 @@ class StatisticsGenerator
     public function userCount()
     {
         $total = User::count();
-        $query = ['key' => 'users', 'data' => $total];
+        $query = ['key' => 'users_count', 'data' => $total];
         $this->insertOrUpdate($query);
     }
 
@@ -86,7 +86,7 @@ class StatisticsGenerator
     public function producerCount()
     {
         $total = Producer::count();
-        $query = ['key' => 'producers', 'data' => $total];
+        $query = ['key' => 'producers_count', 'data' => $total];
         $this->insertOrUpdate($query);
     }
 
@@ -98,7 +98,7 @@ class StatisticsGenerator
     public function nodeCount()
     {
         $total = Node::count();
-        $query = ['key' => 'nodes', 'data' => $total];
+        $query = ['key' => 'nodes_count', 'data' => $total];
         $this->insertOrUpdate($query);
     }
 
