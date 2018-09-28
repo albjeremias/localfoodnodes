@@ -35,6 +35,8 @@ class CronController extends BaseController
     public function statistics(Request $request, StatisticsGenerator $statisticsGenerator)
     {
         $statisticsGenerator->ordersCountAndAmount();
+        $statisticsGenerator->ordersPerNodesAndTags();
+        $statisticsGenerator->ordersCountAndAmountPerNodeAndDate();
         $statisticsGenerator->userCount();
         $statisticsGenerator->producerCount();
         $statisticsGenerator->nodeCount();
