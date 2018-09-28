@@ -40,6 +40,7 @@ class CronController extends BaseController
         $statisticsGenerator->userCount();
         $statisticsGenerator->producerCount();
         $statisticsGenerator->nodeCount();
+        $statisticsGenerator->nodesMembersByNode();
     }
 
     /**

@@ -246,6 +246,30 @@ class StatisticsGenerator
     }
 
     /**
+     * Generate membership count per node.
+     *
+     * @return void
+     */
+    public function nodesMembersByNode()
+    {
+        $rows = DB::table('user_node_links')
+        ->select('node_id', 'user_id')
+        ->get();
+
+        $nodesMembersPerNode = [];
+        foreach ($rows as $row) {
+            if (!isset($nodesMembersPerNode[$row->node_id])) {
+                $nodesMembersPerNode[$row->node_id] = 0;
+            }
+
+            $nodesMembersPerNode[$row->node_id] += 1;
+        }
+
+        $query = ['key' => 'nodes_members_per_node', 'data' => json_encode($nodesMembersPerNode)];
+        $this->insertOrUpdate($query);
+    }
+
+    /**
      * Helper function that does inserts or updates to database.
      *
      * @param array $query
