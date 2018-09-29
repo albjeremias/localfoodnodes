@@ -378,31 +378,6 @@ class StatisticsGenerator
     }
 
     /**
-     * Generate current number of producers per node.
-     *
-     * @return void
-     */
-    public function nodesProducersPerNode()
-    {
-        $rows = DB::table('order_items')
-            ->select(DB::raw('producer_id, count(*) as count'))
-            ->groupBy('producer_id')
-            ->get();
-
-        $data = [];
-        foreach ($rows as $row) {
-            if (!isset($data[$row->node_id])) {
-                $data[$row->node_id] = 0;
-            }
-
-            $data[$row->node_id] = $row->count;
-        }
-
-        $query = ['key' => 'nodes_producers_per_node', 'data' => json_encode($data)];
-        $this->insertOrUpdate($query);
-    }
-
-    /**
      * Generate number of unique products per node and date.
      *
      * @return void
