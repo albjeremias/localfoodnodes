@@ -270,6 +270,31 @@ class StatisticsGenerator
     }
 
     /**
+     * Generate number of unique memberships per node.
+     *
+     * @return void
+     */
+    public function nodesNumberOfUniqueCustomersPerNode()
+    {
+        $rows = DB::table('order_items')
+        ->select(DB::raw('node_id, count(*) as count'))
+        ->groupBy('node_id')
+        ->get();
+
+        $nodesNumberOfUniqueCustomersPerNode = [];
+        foreach ($rows as $row) {
+            if (!isset($nodesNumberOfUniqueCustomersPerNode[$row->node_id])) {
+                $nodesNumberOfUniqueCustomersPerNode[$row->node_id] = 0;
+            }
+
+            $nodesNumberOfUniqueCustomersPerNode[$row->node_id] = $row->count;
+        }
+
+        $query = ['key' => 'nodes_unique_customers_per_node', 'data' => json_encode($nodesNumberOfUniqueCustomersPerNode)];
+        $this->insertOrUpdate($query);
+    }
+
+    /**
      * Helper function that does inserts or updates to database.
      *
      * @param array $query
@@ -277,10 +302,14 @@ class StatisticsGenerator
      */
     private function insertOrUpdate($query)
     {
+        $query['updated'] = date('Y-m-d H:i:s');
+
         try {
             DB::table('statistics')->insert($query);
         } catch (\Exception $e) {
-            DB::table('statistics')->where('key', $query['key'])->update(['data' => $query['data']]);
+            DB::table('statistics')
+            ->where('key', $query['key'])
+            ->update($query);
         }
     }
 }

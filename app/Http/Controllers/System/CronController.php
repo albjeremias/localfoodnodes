@@ -34,13 +34,21 @@ class CronController extends BaseController
      */
     public function statistics(Request $request, StatisticsGenerator $statisticsGenerator)
     {
+        // Order
         $statisticsGenerator->ordersCountAndAmount();
         $statisticsGenerator->ordersPerNodesAndTags();
         $statisticsGenerator->ordersCountAndAmountPerNodeAndDate();
+
+        // User
         $statisticsGenerator->userCount();
+
+        // Producer
         $statisticsGenerator->producerCount();
+
+        // Node
         $statisticsGenerator->nodeCount();
         $statisticsGenerator->nodesMembersByNode();
+        $statisticsGenerator->nodesNumberOfUniqueCustomersPerNode();
     }
 
     /**
