@@ -256,41 +256,178 @@ class StatisticsGenerator
         ->select('node_id', 'user_id')
         ->get();
 
-        $nodesMembersPerNode = [];
+        $data = [];
         foreach ($rows as $row) {
-            if (!isset($nodesMembersPerNode[$row->node_id])) {
-                $nodesMembersPerNode[$row->node_id] = 0;
+            if (!isset($data[$row->node_id])) {
+                $data[$row->node_id] = 0;
             }
 
-            $nodesMembersPerNode[$row->node_id] += 1;
+            $data[$row->node_id] += 1;
         }
 
-        $query = ['key' => 'nodes_members_per_node', 'data' => json_encode($nodesMembersPerNode)];
+        $query = ['key' => 'nodes_members_per_node', 'data' => json_encode($data)];
         $this->insertOrUpdate($query);
     }
 
     /**
-     * Generate number of unique memberships per node.
+     * Generate total number of customers per node.
      *
      * @return void
      */
-    public function nodesNumberOfUniqueCustomersPerNode()
+    public function nodesCustomersPerNode()
     {
         $rows = DB::table('order_items')
         ->select(DB::raw('node_id, count(*) as count'))
         ->groupBy('node_id')
         ->get();
 
-        $nodesNumberOfUniqueCustomersPerNode = [];
+        $data = [];
         foreach ($rows as $row) {
-            if (!isset($nodesNumberOfUniqueCustomersPerNode[$row->node_id])) {
-                $nodesNumberOfUniqueCustomersPerNode[$row->node_id] = 0;
+            if (!isset($data[$row->node_id])) {
+                $data[$row->node_id] = 0;
             }
 
-            $nodesNumberOfUniqueCustomersPerNode[$row->node_id] = $row->count;
+            $data[$row->node_id] = $row->count;
         }
 
-        $query = ['key' => 'nodes_unique_customers_per_node', 'data' => json_encode($nodesNumberOfUniqueCustomersPerNode)];
+        $query = ['key' => 'nodes_customers_per_node', 'data' => json_encode($data)];
+        $this->insertOrUpdate($query);
+    }
+
+    /**
+     * Generate number of unique customers per node and date.
+     *
+     * @return void
+     */
+    public function nodesCustomersPerNodeAndDate()
+    {
+        $rows = DB::table('order_date_item_links')
+        ->join('order_items', 'order_items.id', '=', 'order_date_item_links.order_item_id')
+        ->join('order_dates', 'order_dates.id', '=', 'order_date_item_links.order_date_id')
+        ->select(DB::raw('order_items.node_id, order_dates.date, count(distinct order_items.user_id) AS count'))
+        ->groupBy('node_id', 'date')
+        ->get();
+
+        $data = [];
+        foreach ($rows as $row) {
+            if (!isset($data[$row->node_id])) {
+                $data[$row->node_id] = [];
+            }
+
+            if (!isset($data[$row->node_id][$row->date])) {
+                $data[$row->node_id][$row->date] = $row->count;
+            }
+        }
+
+        $query = ['key' => 'nodes_customers_per_node_and_date', 'data' => json_encode($data)];
+        $this->insertOrUpdate($query);
+    }
+
+    /**
+     * Generate current number of producers per node.
+     *
+     * @return void
+     */
+    public function nodesProducersPerNode()
+    {
+        $rows = DB::table('order_items')
+            ->select(DB::raw('producer_id, count(*) as count'))
+            ->groupBy('producer_id')
+            ->get();
+
+        $data = [];
+        foreach ($rows as $row) {
+            if (!isset($data[$row->node_id])) {
+                $data[$row->node_id] = 0;
+            }
+
+            $data[$row->node_id] = $row->count;
+        }
+
+        $query = ['key' => 'nodes_producers_per_node', 'data' => json_encode($data)];
+        $this->insertOrUpdate($query);
+    }
+
+    /**
+     * Generate number of unique producers per node and date.
+     *
+     * @return void
+     */
+    public function nodesProducersPerNodeAndDate()
+    {
+        $rows = DB::table('order_date_item_links')
+        ->join('order_items', 'order_items.id', '=', 'order_date_item_links.order_item_id')
+        ->join('order_dates', 'order_dates.id', '=', 'order_date_item_links.order_date_id')
+        ->select(DB::raw('order_items.node_id, order_dates.date, count(distinct order_items.producer_id) AS count'))
+        ->groupBy('node_id', 'date')
+        ->get();
+
+        $data = [];
+        foreach ($rows as $row) {
+            if (!isset($data[$row->node_id])) {
+                $data[$row->node_id] = [];
+            }
+
+            if (!isset($data[$row->node_id][$row->date])) {
+                $data[$row->node_id][$row->date] = $row->count;
+            }
+        }
+
+        $query = ['key' => 'nodes_producers_per_node_and_date', 'data' => json_encode($data)];
+        $this->insertOrUpdate($query);
+    }
+
+    /**
+     * Generate current number of producers per node.
+     *
+     * @return void
+     */
+    public function nodesProducersPerNode()
+    {
+        $rows = DB::table('order_items')
+            ->select(DB::raw('producer_id, count(*) as count'))
+            ->groupBy('producer_id')
+            ->get();
+
+        $data = [];
+        foreach ($rows as $row) {
+            if (!isset($data[$row->node_id])) {
+                $data[$row->node_id] = 0;
+            }
+
+            $data[$row->node_id] = $row->count;
+        }
+
+        $query = ['key' => 'nodes_producers_per_node', 'data' => json_encode($data)];
+        $this->insertOrUpdate($query);
+    }
+
+    /**
+     * Generate number of unique products per node and date.
+     *
+     * @return void
+     */
+    public function nodesProductsPerNodeAndDate()
+    {
+        $rows = DB::table('order_date_item_links')
+        ->join('order_items', 'order_items.id', '=', 'order_date_item_links.order_item_id')
+        ->join('order_dates', 'order_dates.id', '=', 'order_date_item_links.order_date_id')
+        ->select(DB::raw('order_items.node_id, order_dates.date, count(distinct order_items.product_id) AS count'))
+        ->groupBy('node_id', 'date')
+        ->get();
+
+        $data = [];
+        foreach ($rows as $row) {
+            if (!isset($data[$row->node_id])) {
+                $data[$row->node_id] = [];
+            }
+
+            if (!isset($data[$row->node_id][$row->date])) {
+                $data[$row->node_id][$row->date] = $row->count;
+            }
+        }
+
+        $query = ['key' => 'nodes_products_per_node_and_date', 'data' => json_encode($data)];
         $this->insertOrUpdate($query);
     }
 

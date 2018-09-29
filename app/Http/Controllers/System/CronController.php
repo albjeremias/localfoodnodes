@@ -48,7 +48,10 @@ class CronController extends BaseController
         // Node
         $statisticsGenerator->nodeCount();
         $statisticsGenerator->nodesMembersByNode();
-        $statisticsGenerator->nodesNumberOfUniqueCustomersPerNode();
+        $statisticsGenerator->nodesCustomersPerNode();
+        $statisticsGenerator->nodesCustomersPerNodeAndDate();
+        $statisticsGenerator->nodesProducersPerNodeAndDate();
+        $statisticsGenerator->nodesProductsPerNodeAndDate();
     }
 
     /**
