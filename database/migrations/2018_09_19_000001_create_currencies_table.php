@@ -17,6 +17,7 @@ class CreateCurrenciesTable extends Migration
             $table->increments('id');
             $table->string('currency')->required();
             $table->double('rate')->required();
+            $table->dateTime('updated')->required();
         });
     }
 

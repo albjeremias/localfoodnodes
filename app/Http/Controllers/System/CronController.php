@@ -64,25 +64,4 @@ class CronController extends BaseController
 
         $notificationGenerator->sendUserNotifications();
     }
-
-    public function script()
-    {
-        $orderDateItemLinks = OrderDateItemLink::all();
-        $orderDateItemLinks->map(function($orderDateItemLink) {
-            $orderItem = $orderDateItemLink->getItem();
-            if (!$orderItem) {
-                $orderDateItemLink->amount = 0;
-                $orderDateItemLink->save();
-            } else {
-                $amount = $orderDateItemLink->quantity * $orderItem->getProduct()->price;
-                if ($orderItem->getVariant()) {
-                    $amount = $orderDateItemLink->quantity * $orderItem->getVariant()->price;
-                }
-
-                $orderDateItemLink->amount = $amount;
-                $orderDateItemLink->currency = $orderItem->getProducer()->currency;
-                $orderDateItemLink->save();
-            }
-        });
-    }
 }
