@@ -6,8 +6,8 @@ use Illuminate\Support\ServiceProvider;
 
 use App\System\Utils\CurrencyConverter;
 use App\System\Importers\CurrencyRateImporter;
-use App\System\Generators\StatisticsGenerator;
-use App\System\Generators\NotificationGenerator;
+use App\System\StatisticsGenerator\StatisticsGenerator;
+use App\System\NotificationGenerator\NotificationGenerator;
 
 class AppServiceProvider extends ServiceProvider
 {

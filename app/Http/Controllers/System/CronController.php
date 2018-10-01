@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 
 use App\System\Importers\CurrencyRateImporter;
-use App\System\Generators\NotificationGenerator;
-use App\System\Generators\StatisticsGenerator;
+use App\System\NotificationGenerator\NotificationGenerator;
+use App\System\StatisticsGenerator\StatisticsGenerator;
 
 use App\Order\OrderDateItemLink;
 
@@ -26,32 +26,11 @@ class CronController extends BaseController
     /**
      * Statistic cron jobs
      *
-     * Generate statistics for
-     * - Number of orders
-     * - Order amount (in EUR)
-     *
      * @param Request $request
      */
     public function statistics(Request $request, StatisticsGenerator $statisticsGenerator)
     {
-        // Order
-        $statisticsGenerator->ordersCountAndAmount();
-        $statisticsGenerator->ordersPerNodesAndTags();
-        $statisticsGenerator->ordersCountAndAmountPerNodeAndDate();
-
-        // User
-        $statisticsGenerator->userCount();
-
-        // Producer
-        $statisticsGenerator->producerCount();
-
-        // Node
-        $statisticsGenerator->nodeCount();
-        $statisticsGenerator->nodesMembersByNode();
-        $statisticsGenerator->nodesCustomersPerNode();
-        $statisticsGenerator->nodesCustomersPerNodeAndDate();
-        $statisticsGenerator->nodesProducersPerNodeAndDate();
-        $statisticsGenerator->nodesProductsPerNodeAndDate();
+        $statisticsGenerator->generate();
     }
 
     /**

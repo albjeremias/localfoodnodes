@@ -1,6 +1,6 @@
 <?php
 
-namespace App\System\Generators;
+namespace App\System\NotificationGenerator;
 
 use Illuminate\Support\Facades\DB;
 
