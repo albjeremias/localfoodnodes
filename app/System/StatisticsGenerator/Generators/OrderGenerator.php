@@ -30,6 +30,7 @@ class OrderGenerator extends BaseGenerator
     public function generate()
     {
         $this->countAndAmount();
+        $this->ordersPerNode();
         $this->ordersPerNodeAndTag();
     }
 
@@ -100,36 +101,55 @@ class OrderGenerator extends BaseGenerator
      *
      * @return void
      */
-    public function ordersPerNodeAndTag()
+    public function ordersPerNode()
     {
         $rows = DB::table('order_date_item_links')
         ->join('order_items', 'order_items.id', '=', 'order_date_item_links.order_item_id')
-        ->leftJoin('product_tags', 'order_items.product_id', '=', 'product_tags.product_id')
-        ->select('order_date_item_links.id', 'amount', 'currency', 'node', 'tag')
+        ->select('amount', 'currency', 'node_id')
         ->whereNotNull('currency')
         ->get();
 
         $ordersCountPerNode = [];
         $ordersAmountPerNode = [];
-        $ordersAmountPerTag = [];
-        $ordersAmountPerNodeAndTag = [];
         foreach ($rows as $row) {
             $amount = $this->currencyConverter->convert($row->amount, $row->currency, 'EUR');
-            $node = json_decode($row->node);
 
             // Group by nodes
-            if (!isset($ordersAmountPerNode[$node->id])) {
-                $ordersCountPerNode[$node->id] = 0;
-                $ordersAmountPerNode[$node->id] = [
-                    'node_name' => $node->name,
+            if (!isset($ordersAmountPerNode[$row->node_id])) {
+                $ordersCountPerNode[$row->node_id] = 0;
+                $ordersAmountPerNode[$row->node_id] = [
                     'count' => 0,
                     'amount' => 0,
                 ];
             }
 
-            $ordersCountPerNode[$node->id] += 1;
-            $ordersAmountPerNode[$node->id]['count'] += 1;
-            $ordersAmountPerNode[$node->id]['amount'] += $amount;
+            $ordersCountPerNode[$row->node_id] += 1;
+            $ordersAmountPerNode[$row->node_id]['count'] += 1;
+            $ordersAmountPerNode[$row->node_id]['amount'] += $amount;
+        }
+
+        $this->insertOrUpdate(['key' => 'order_count_per_node', 'data' => json_encode($ordersCountPerNode)]);
+        $this->insertOrUpdate(['key' => 'order_amount_per_node', 'data' => json_encode($ordersAmountPerNode)]);
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function ordersPerNodeAndTag()
+    {
+        $rows = DB::table('order_date_item_links')
+        ->join('order_items', 'order_items.id', '=', 'order_date_item_links.order_item_id')
+        ->leftJoin('product_tags', 'order_items.product_id', '=', 'product_tags.product_id')
+        ->select('amount', 'currency', 'node_id', 'tag')
+        ->whereNotNull('currency')
+        ->get();
+
+        $ordersAmountPerTag = [];
+        $ordersAmountPerNodeAndTag = [];
+        foreach ($rows as $row) {
+            $amount = $this->currencyConverter->convert($row->amount, $row->currency, 'EUR');
 
             // Grouped by tags
             $tag = $row->tag ?: 'untagged';
@@ -145,26 +165,23 @@ class OrderGenerator extends BaseGenerator
             $ordersAmountPerTag[$tag]['amount'] += $amount;
 
             // Group by nodes and tags
-            if (!isset($ordersAmountPerNodeAndTag[$node->id])) {
-                $ordersAmountPerNodeAndTag[$node->id] = [
-                    'node_name' => $node->name,
+            if (!isset($ordersAmountPerNodeAndTag[$row->node_id])) {
+                $ordersAmountPerNodeAndTag[$row->node_id] = [
                     'tags' => [],
                 ];
             }
 
-            if (!isset($ordersAmountPerNodeAndTag[$node->id]['tags'][$tag])) {
-                $ordersAmountPerNodeAndTag[$node->id]['tags'][$tag] = [
+            if (!isset($ordersAmountPerNodeAndTag[$row->node_id]['tags'][$tag])) {
+                $ordersAmountPerNodeAndTag[$row->node_id]['tags'][$tag] = [
                     'count' => 0,
                     'amount' => 0
                 ];
             }
 
-            $ordersAmountPerNodeAndTag[$node->id]['tags'][$tag]['count'] += 1;
-            $ordersAmountPerNodeAndTag[$node->id]['tags'][$tag]['amount'] += $amount;
+            $ordersAmountPerNodeAndTag[$row->node_id]['tags'][$tag]['count'] += 1;
+            $ordersAmountPerNodeAndTag[$row->node_id]['tags'][$tag]['amount'] += $amount;
         }
 
-        $this->insertOrUpdate(['key' => 'order_count_per_node', 'data' => json_encode($ordersCountPerNode)]);
-        $this->insertOrUpdate(['key' => 'order_amount_per_node', 'data' => json_encode($ordersAmountPerNode)]);
         $this->insertOrUpdate(['key' => 'order_amount_per_tag', 'data' => json_encode($ordersAmountPerTag)]);
         $this->insertOrUpdate(['key' => 'order_amount_per_node_and_tag', 'data' => json_encode($ordersAmountPerNodeAndTag)]);
     }
