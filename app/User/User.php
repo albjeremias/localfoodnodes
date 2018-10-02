@@ -426,12 +426,9 @@ class User extends \App\User\BaseUser
                 throw new \Exception(trans('admin/messages.user_membership_amount_not_numeric'));
             }
 
-            // Move to app config
-            $zeroDecimalCurrencies = ['MGA', 'BIF', 'CLP', 'PYG', 'DJF', 'RWF', 'GNF', 'UGX', 'JPY', 'VND', 'VUV', 'XAF', 'KMF', 'KRW', 'XOF', 'XPF'];
-
             // If not a zero decimal currency we multiply by 100
             $adjustedAmount = $amount;
-            if (!in_array($currency, $zeroDecimalCurrencies)) {
+            if (!in_array($currency, config('app.zero_decimal_currencies'))) {
                 $adjustedAmount = $amount * 100;
             }
 
@@ -444,7 +441,8 @@ class User extends \App\User\BaseUser
 
             UserMembershipPayment::create([
                 'user_id' => $this->id,
-                'amount' => $adjustedAmount
+                'amount' => $adjustedAmount,
+                'currency' => $currency,
             ]);
 
             \App\Helpers\SlackHelper::message('notification', $successMessage);

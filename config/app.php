@@ -255,6 +255,9 @@ return [
         'ZWL' => 'Zimbabwe Dollar',
     ],
 
+    'zero_decimal_currencies' => ['MGA', 'BIF', 'CLP', 'PYG', 'DJF', 'RWF', 'GNF', 'UGX', 'JPY', 'VND', 'VUV', 'XAF', 'KMF', 'KRW', 'XOF', 'XPF'],
+
+
     /*
     |--------------------------------------------------------------------------
     | Encryption Key
