@@ -32,7 +32,7 @@
                                 @foreach ($user->membershipPayments() as $payment)
                                     <tr>
                                         <td>{{ $payment->created_at }}</td>
-                                        <td>{{ $payment->amount }} SEK</td>
+                                        <td>{{ $payment->amount }} {{ $payment->currency }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
