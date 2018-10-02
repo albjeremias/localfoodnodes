@@ -57,11 +57,11 @@ class OrderGenerator extends BaseGenerator
         $datePeriod = new \DatePeriod($oldest, $dateInterval, $latest);
 
         $ordersCountPerDate = [];
-        $ordersProductCountPerDate = [];
+        $ordersItemsCountPerDate = [];
         $orderAmountPerDate = [];
         foreach ($datePeriod as $date) {
             $ordersCountPerDate[$date->format('Y-m-d')] = 0;
-            $ordersProductCountPerDate[$date->format('Y-m-d')] = 0;
+            $ordersItemsCountPerDate[$date->format('Y-m-d')] = 0;
             $orderAmountPerDate[$date->format('Y-m-d')] = 0;
         }
 
@@ -72,26 +72,26 @@ class OrderGenerator extends BaseGenerator
         ->get();
 
         $ordersCount = 0;
-        $ordersProductCount = 0;
+        $ordersItemsCount = 0;
         $ordersAmount = 0;
         foreach ($rows as $row) {
             $amount = $this->currencyConverter->convert($row->amount, $row->currency, 'EUR'); // Convert to default currency
 
             // Total count
             $ordersCount += 1;
-            $ordersProductCount += (int) $row->quantity;
+            $ordersItemsCount += (int) $row->quantity;
             $ordersAmount += $amount;
 
             // Per date
             $ordersCountPerDate[$row->date] += 1;
-            $ordersProductCountPerDate[$row->date] += (int) $row->quantity;
+            $ordersItemsCountPerDate[$row->date] += (int) $row->quantity;
             $orderAmountPerDate[$row->date] += $amount;
         }
 
         $this->insertOrUpdate(['key' => 'order_count', 'data' => $ordersCount]);
         $this->insertOrUpdate(['key' => 'order_count_per_date', 'data' => json_encode($ordersCountPerDate)]);
-        $this->insertOrUpdate(['key' => 'order_product_count', 'data' => $ordersProductCount]);
-        $this->insertOrUpdate(['key' => 'order_product_count_per_date', 'data' => json_encode($ordersProductCountPerDate)]);
+        $this->insertOrUpdate(['key' => 'order_items_count', 'data' => $ordersItemsCount]);
+        $this->insertOrUpdate(['key' => 'order_items_count_per_date', 'data' => json_encode($ordersItemsCountPerDate)]);
         $this->insertOrUpdate(['key' => 'order_amount', 'data' => $ordersAmount]);
         $this->insertOrUpdate(['key' => 'order_amount_per_date', 'data' => json_encode($orderAmountPerDate)]);
     }
@@ -105,12 +105,13 @@ class OrderGenerator extends BaseGenerator
     {
         $rows = DB::table('order_date_item_links')
         ->join('order_items', 'order_items.id', '=', 'order_date_item_links.order_item_id')
-        ->select('amount', 'currency', 'node_id')
+        ->select('amount', 'currency', 'node_id', 'product_id')
         ->whereNotNull('currency')
         ->get();
 
         $ordersCountPerNode = [];
         $ordersAmountPerNode = [];
+        $ordersUniqueItemsCount = [];
         foreach ($rows as $row) {
             $amount = $this->currencyConverter->convert($row->amount, $row->currency, 'EUR');
 
@@ -123,11 +124,13 @@ class OrderGenerator extends BaseGenerator
                 ];
             }
 
+            $ordersUniqueItemsCount[$row->product_id] = null; // Count keys
             $ordersCountPerNode[$row->node_id] += 1;
             $ordersAmountPerNode[$row->node_id]['count'] += 1;
             $ordersAmountPerNode[$row->node_id]['amount'] += $amount;
         }
 
+        $this->insertOrUpdate(['key' => 'order_unique_items_count', 'data' => count($ordersUniqueItemsCount)]);
         $this->insertOrUpdate(['key' => 'order_count_per_node', 'data' => json_encode($ordersCountPerNode)]);
         $this->insertOrUpdate(['key' => 'order_amount_per_node', 'data' => json_encode($ordersAmountPerNode)]);
     }

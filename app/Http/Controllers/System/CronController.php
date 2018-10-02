@@ -30,7 +30,7 @@ class CronController extends BaseController
      */
     public function statistics(Request $request, StatisticsGenerator $statisticsGenerator)
     {
-        $statisticsGenerator->generate();
+        $statisticsGenerator->generate($request->get('type'));
     }
 
     /**
