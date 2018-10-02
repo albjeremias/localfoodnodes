@@ -17,6 +17,7 @@ class UserGenerator extends BaseGenerator
     public function generate()
     {
         $this->count();
+        $this->members();
     }
 
     /**
@@ -28,6 +29,21 @@ class UserGenerator extends BaseGenerator
     {
         $total = User::count();
         $query = ['key' => 'user_count', 'data' => $total];
+        $this->insertOrUpdate($query);
+    }
+
+    /**
+     * Generate payment users count
+     *
+     * @return void
+     */
+    public function members()
+    {
+        $row = DB::table('user_membership_payments')
+        ->select(DB::raw('count(DISTINCT user_id) AS count'))
+        ->first();
+
+        $query = ['key' => 'user_members_count', 'data' => $row->count];
         $this->insertOrUpdate($query);
     }
 }
