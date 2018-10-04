@@ -21,9 +21,13 @@ class CurrencyRateImporter
             $values[] = [
                 'currency' => $currency,
                 'rate' => $rate,
+                'updated' => date('Y-m-d H:i:s')
             ];
         };
 
-        DB::table('currencies')->insert($values);
+        if (!empty($values)) {
+            DB::table('currencies')->truncate();
+            DB::table('currencies')->insert($values);
+        }
     }
 }

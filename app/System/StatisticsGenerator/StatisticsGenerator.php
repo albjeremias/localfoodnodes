@@ -26,7 +26,7 @@ class StatisticsGenerator
         $this->nodeGenerator = new NodeGenerator();
         $this->producerGenerator = new ProducerGenerator();
         $this->productGenerator = new ProductGenerator();
-        $this->userGenerator = new UserGenerator();
+        $this->userGenerator = new UserGenerator($currencyConverter);
     }
 
     /**

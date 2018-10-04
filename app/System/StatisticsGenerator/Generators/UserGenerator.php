@@ -5,10 +5,24 @@ namespace App\System\StatisticsGenerator\Generators;
 use Illuminate\Support\Facades\DB;
 
 use App\System\StatisticsGenerator\Generators\BaseGenerator;
+use App\System\Utils\CurrencyConverter;
 use App\User\User;
+use App\User\UserMembershipPayment;
 
 class UserGenerator extends BaseGenerator
 {
+    private $currencyConverter;
+
+    /**
+     * Constructor.
+     *
+     * @param CurrencyConverter $currencyConverter
+     */
+    public function __construct(CurrencyConverter $currencyConverter)
+    {
+        $this->currencyConverter = $currencyConverter;
+    }
+
     /**
      * Run scripts.
      *
@@ -18,6 +32,7 @@ class UserGenerator extends BaseGenerator
     {
         $this->count();
         $this->members();
+        $this->averageAmount();
     }
 
     /**
@@ -45,5 +60,32 @@ class UserGenerator extends BaseGenerator
 
         $query = ['key' => 'user_members_count', 'data' => $row->count];
         $this->insertOrUpdate($query);
+    }
+
+    /**
+     * Generate average membership amount
+     *
+     * @return void
+     */
+    public function averageAmount()
+    {
+        $payments = UserMembershipPayment::all();
+
+        $filteredAmounts = [];
+        $amount = [];
+        foreach ($payments as $payment) {
+            $convertedAmount = $this->currencyConverter->convert($payment->amount, $payment->currency);
+            $amount[] = $convertedAmount;
+
+            if ($convertedAmount > 1) {
+                $filteredAmount[] = $convertedAmount;
+            }
+        }
+
+        $average = array_sum($amount) / count($amount);
+        $filteredAverage = array_sum($filteredAmount) / count($filteredAmount);
+
+        $this->insertOrUpdate(['key' => 'user_average_amount', 'data' => $average]);
+        $this->insertOrUpdate(['key' => 'user_average_amount_filtered', 'data' => $filteredAverage]);
     }
 }

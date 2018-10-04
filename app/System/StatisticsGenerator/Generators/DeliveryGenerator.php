@@ -64,7 +64,7 @@ class DeliveryGenerator extends BaseGenerator
         $ordersAmountPerNodeAndDate = [];
 
         foreach ($rows as $row) {
-            $amount = $this->currencyConverter->convert($row->amount, $row->currency, 'EUR');
+            $amount = $this->currencyConverter->convert($row->amount, $row->currency);
 
             // Count
             if (!isset($ordersCountPerNodeAndDate[$row->node_id])) {

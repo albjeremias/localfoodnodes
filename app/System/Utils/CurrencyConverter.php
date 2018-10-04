@@ -25,7 +25,7 @@ class CurrencyConverter
      * @param string $to
      * @return int
      */
-    public function convert($amount, $from, $to = null)
+    public function convert($amount, $from, $to = 'EUR')
     {
         if (!$from || !$to) {
             return null;

@@ -75,7 +75,7 @@ class OrderGenerator extends BaseGenerator
         $ordersItemsCount = 0;
         $ordersAmount = 0;
         foreach ($rows as $row) {
-            $amount = $this->currencyConverter->convert($row->amount, $row->currency, 'EUR'); // Convert to default currency
+            $amount = $this->currencyConverter->convert($row->amount, $row->currency);
 
             // Total count
             $ordersCount += 1;
@@ -113,7 +113,7 @@ class OrderGenerator extends BaseGenerator
         $ordersAmountPerNode = [];
         $ordersUniqueItemsCount = [];
         foreach ($rows as $row) {
-            $amount = $this->currencyConverter->convert($row->amount, $row->currency, 'EUR');
+            $amount = $this->currencyConverter->convert($row->amount, $row->currency);
 
             // Group by nodes
             if (!isset($ordersAmountPerNode[$row->node_id])) {
@@ -152,7 +152,7 @@ class OrderGenerator extends BaseGenerator
         $ordersAmountPerTag = [];
         $ordersAmountPerNodeAndTag = [];
         foreach ($rows as $row) {
-            $amount = $this->currencyConverter->convert($row->amount, $row->currency, 'EUR');
+            $amount = $this->currencyConverter->convert($row->amount, $row->currency);
 
             // Grouped by tags
             $tag = $row->tag ?: 'untagged';
