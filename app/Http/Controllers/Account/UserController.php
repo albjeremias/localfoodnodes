@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Account;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\MessageBag;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
 use GuzzleHttp\Client;
 
@@ -231,9 +231,11 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $user->fill($request->old());
+        $currencies = Db::table('currencies')->where('enabled', true)->get();
 
         return view('account.user.edit', [
             'user' => $user,
+            'currencies' => $currencies,
             'breadcrumbs' => [
                 $user->name => 'user',
                 trans('admin/user-nav.edit') => ''

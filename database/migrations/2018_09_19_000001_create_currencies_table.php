@@ -15,7 +15,9 @@ class CreateCurrenciesTable extends Migration
     {
         Schema::create('currencies', function (Blueprint $table) {
             $table->string('currency')->required()->unique();
+            $table->string('label')->required();
             $table->double('rate')->required();
+            $table->boolean('enabled')->required();
             $table->dateTime('updated')->required();
         });
     }
