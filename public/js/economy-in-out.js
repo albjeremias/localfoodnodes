@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -71,14 +71,6 @@
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"row"},[_c('income-graph',{attrs:{"trans":_vm.trans,"data":_vm.data}}),_vm._v(" "),_c('costs-graph',{attrs:{"trans":_vm.trans,"data":_vm.data}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.loading),expression:"!loading"}],staticClass:"col-12"},[_c('div',{staticClass:"text-center mb-5"},[_c('h3',[_vm._v(_vm._s((_vm.data.total.income - _vm.data.total.cost).toLocaleString('sv'))+" SEK")]),_vm._v(" "),_c('div',[_vm._v(_vm._s(_vm.trans.available_balance))])])])],1)}
 var staticRenderFns = []
 module.exports = { render: render, staticRenderFns: staticRenderFns }
-
-/***/ }),
-
-/***/ 1:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("dK2/");
-
 
 /***/ }),
 
@@ -150,6 +142,14 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (this && this.clearImmediate);
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("DuR2")))
+
+/***/ }),
+
+/***/ 2:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("dK2/");
+
 
 /***/ }),
 

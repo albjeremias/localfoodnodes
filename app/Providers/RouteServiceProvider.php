@@ -72,14 +72,22 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function apiRoutes()
     {
-        $options = [
-            // 'middleware' => 'auth:api', // Set middleware in routes file instead
+        $publicOptions = [
+            'namespace' => $this->namespace,
+            'prefix' => 'api',
+        ];
+
+        Route::group($publicOptions, function ($router) {
+            require base_path('routes/public-api.php');
+        });
+
+        $privateOptions = [
             'namespace' => $this->namespace,
             'prefix' => 'api/v1',
         ];
 
-        Route::group($options, function ($router) {
-            require base_path('routes/api.php');
+        Route::group($privateOptions, function ($router) {
+            require base_path('routes/private-api.php');
         });
     }
 

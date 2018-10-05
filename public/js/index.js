@@ -57,25 +57,49 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/public/node-map/index.js":
+/***/ "./resources/assets/js/vue/payment-form/index.js":
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: SyntaxError: Unexpected token (16:2)\n\n\u001b[0m \u001b[90m 14 | \u001b[39m\n \u001b[90m 15 | \u001b[39m\u001b[33mReactDOM\u001b[39m\u001b[33m.\u001b[39mrender(\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 16 | \u001b[39m  \u001b[33m<\u001b[39m\u001b[33mProvider\u001b[39m store\u001b[33m=\u001b[39m{store}\u001b[33m>\u001b[39m\n \u001b[90m    | \u001b[39m  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 17 | \u001b[39m    \u001b[33m<\u001b[39m\u001b[33mNodeMapContainer\u001b[39m \u001b[33m/\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m 18 | \u001b[39m  \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mProvider\u001b[39m\u001b[33m>\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 19 | \u001b[39m  document\u001b[33m.\u001b[39mgetElementById(\u001b[32m'node-map-component-root'\u001b[39m)\u001b[0m\n");
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/davidajnered/Sites/localfoodnodes/resources/assets/js/vue/payment-form/index.js'");
 
 /***/ }),
 
-/***/ 1:
+/***/ "./resources/assets/sass/account.sass":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/assets/sass/admin.sass":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/assets/sass/public.sass":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("./resources/js/public/node-map/index.js");
+__webpack_require__("./resources/assets/js/vue/payment-form/index.js");
+__webpack_require__("./resources/assets/sass/public.sass");
+__webpack_require__("./resources/assets/sass/account.sass");
+module.exports = __webpack_require__("./resources/assets/sass/admin.sass");
 
 
 /***/ })

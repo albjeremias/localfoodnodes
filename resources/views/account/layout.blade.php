@@ -3,6 +3,8 @@
     <head>
         <title>@yield('title') - Local Food Nodes</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
         <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png" />
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">

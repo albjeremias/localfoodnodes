@@ -1,0 +1,21 @@
+.StripeElement {
+    background-color: white;
+    padding: .375rem .75rem;
+    border: 1px solid #c5c5bc;
+    border-radius: 3px;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+}
+
+.StripeElement--invalid {
+    border-color: #f5c6cb;
+}
+
+#card-errors {
+    display: none;
+}
+
+.loader {
+    width: 50px;
+    margin: 25px auto;
+}

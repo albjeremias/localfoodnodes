@@ -1,18 +1,13 @@
 # Local Food Nodes
 
-### Get started with the dev environment
-* Install VirtualBox (https://www.virtualbox.org)
+# Dev environment prerequisite
 * Install Composer
-* Install Laravel Homestead
-
-### Setup dev environment
-* Follow the Homestead documentation to configure the vagrant box.
-* Add dev.localfoodnodes.org to your hosts file.
+* Install Laravel Valet
 
 #### Project
 * Clone git repo
 * Run `composer install` in project root directory or from inside vagrant
-* Create cache folders named sessions, views and cache under storage/framework.
+* Create folders named **sessions**, **views** and **cache** in **storage/framework**.
 * Configure your .env (ask David)
 
 ### Building assets
@@ -28,8 +23,16 @@ php artisan migrate --database='phpunit'
 php artisan db:seed --database='phpunit'
 
 # App development
-* Start ngrok with `./ngrok http -region=eu -hostname=app.localfoodnodes.org 192.168.10.10:80`
+Start tunnel with `valet share` and use generated url in app .env
 
+# API's
+There are multiple API's in use.
+## Public API
+Public API serves data to JS components on the site.
+## Private API
+The private API uses passport auth
+## Statistics API
+An Open API with calculated/aggregated data
 
 # Notifications
 
