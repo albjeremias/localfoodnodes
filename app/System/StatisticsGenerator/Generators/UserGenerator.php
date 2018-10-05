@@ -31,6 +31,7 @@ class UserGenerator extends BaseGenerator
     public function generate()
     {
         $this->count();
+        $this->countPerDate();
         $this->members();
         $this->averageAmount();
     }
@@ -44,6 +45,27 @@ class UserGenerator extends BaseGenerator
     {
         $total = User::count();
         $query = ['key' => 'user_count', 'data' => $total];
+        $this->insertOrUpdate($query);
+    }
+
+    /**
+     * Generate user count per date.
+     *
+     * @return void
+     */
+    public function countPerDate()
+    {
+        $rows = Db::table('users')
+        ->select(DB::raw('DATE_FORMAT(created_at, \'%Y-%m-%d\') AS date, count(DATE_FORMAT(created_at, \'%Y-%m-%d\')) AS count'))
+        ->groupBy('date')
+        ->get();
+
+        $countPerDate = [];
+        foreach ($rows as $row) {
+            $countPerDate[$row->date] = $row->count;
+        }
+
+        $query = ['key' => 'user_count_per_date', 'data' => json_encode($countPerDate)];
         $this->insertOrUpdate($query);
     }
 
