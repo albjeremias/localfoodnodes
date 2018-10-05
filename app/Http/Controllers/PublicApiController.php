@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\DB;
 
 class PublicApiController extends BaseController
 {
@@ -32,6 +33,19 @@ class PublicApiController extends BaseController
         }
 
         return response()->json($res);
+    }
+
+    /**
+     * Translations endpoint.
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function currencies(Request $request)
+    {
+        $currencies = DB::table('currencies')->where('enabled', true)->get()->keyBy('currency');
+
+        return response()->json($currencies);
     }
 
     /**

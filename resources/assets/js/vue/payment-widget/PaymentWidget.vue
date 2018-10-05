@@ -32,7 +32,7 @@
 
                         <div class="col">
                             <select name="currency" class="form-control" v-on:change="changeCurrency" v-model="currency">
-                                <option v-for="(rate, currency) in currencies" :key="currency" :value="currency">{{ currency }}</option>
+                                <option v-for="currency in currencies" :key="currency.currency" :value="currency.currency">{{ currency.currency }} - {{ currency.label }} </option>
                             </select>
                         </div>
                     </div>

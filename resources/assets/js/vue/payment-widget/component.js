@@ -26,8 +26,8 @@ export default {
             component.members = res.data;
         });
 
-        jQuery.get('https://api.localfoodnodes.org/v1.0/currency/rates', function(res) {
-            component.currencies = res.data;
+        jQuery.get('https://localfoodnodes.test/api/currencies', function(res) {
+            component.currencies = res;
         });
 
         jQuery.get('https://api.localfoodnodes.org/v1.0/users/amount/average/' + this.currency, function(res) {

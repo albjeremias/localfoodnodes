@@ -147,6 +147,20 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "305p":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("ZagV");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("10679303", content, true, {});
+
+/***/ }),
+
 /***/ "4kxe":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -157,21 +171,6 @@ Vue.component('payment-widget', __webpack_require__("z7WM"));
 var app = new Vue({
     el: '#payment-widget'
 });
-
-/***/ }),
-
-/***/ "7YLQ":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("FZ+f")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".StripeElement[data-v-73aca6f9]{background-color:#fff;padding:.375rem .75rem;border:1px solid #c5c5bc;border-radius:3px;-webkit-transition:box-shadow .15s ease;-webkit-transition:-webkit-box-shadow .15s ease;transition:-webkit-box-shadow .15s ease;transition:box-shadow .15s ease;transition:box-shadow .15s ease,-webkit-box-shadow .15s ease}.StripeElement--invalid[data-v-73aca6f9]{border-color:#f5c6cb}#card-errors[data-v-73aca6f9]{display:none}.loader[data-v-73aca6f9]{width:50px;margin:25px auto}", ""]);
-
-// exports
-
 
 /***/ }),
 
@@ -11258,8 +11257,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             component.members = res.data;
         });
 
-        jQuery.get('https://api.localfoodnodes.org/v1.0/currency/rates', function (res) {
-            component.currencies = res.data;
+        jQuery.get('https://localfoodnodes.test/api/currencies', function (res) {
+            component.currencies = res;
         });
 
         jQuery.get('https://api.localfoodnodes.org/v1.0/users/amount/average/' + this.currency, function (res) {
@@ -11372,15 +11371,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "Q9GL":
-/***/ (function(module, exports) {
-
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"payment-widget"},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.loading),expression:"loading"}]},[_c('img',{staticClass:"loader",attrs:{"src":"/images/loader-red.svg"}})]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.loading),expression:"!loading"}]},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"card-body"},[_c('div',{staticClass:"metrics row"},[_c('div',{staticClass:"metric col"},[_c('div',{staticClass:"metric-inner"},[_c('div',{staticClass:"value"},[_vm._v(_vm._s(this.members)+" st")]),_vm._v(" "),_c('div',{staticClass:"label"},[_vm._v(_vm._s(this.trans.supporting_members))])])]),_vm._v(" "),_c('div',{staticClass:"metric col"},[_c('div',{staticClass:"metric-inner"},[_c('div',{staticClass:"value"},[_vm._v(_vm._s(this.averageAmount)+" "+_vm._s(this.currency))]),_vm._v(" "),_c('div',{staticClass:"label"},[_vm._v(_vm._s(this.trans.average_fee))])])])])]),_vm._v(" "),_c('div',{staticClass:"card-body"},[_c('form',{attrs:{"action":"/account/user/membership/callback","method":"post","id":"payment-widget-form"}},[_c('div',{staticClass:"form-row mb-3"},[_c('div',{staticClass:"col"},[_c('input',{staticClass:"form-control",attrs:{"type":"number","step":"0.01","name":"amount","placeholder":this.trans.amount}})]),_vm._v(" "),_c('div',{staticClass:"col"},[_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.currency),expression:"currency"}],staticClass:"form-control",attrs:{"name":"currency"},on:{"change":[function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.currency=$event.target.multiple ? $$selectedVal : $$selectedVal[0]},_vm.changeCurrency]}},_vm._l((_vm.currencies),function(rate,currency){return _c('option',{key:currency,domProps:{"value":currency}},[_vm._v(_vm._s(currency))])}))])]),_vm._v(" "),_vm._m(1),_vm._v(" "),_c('div',{staticClass:"alert alert-danger mt-3",attrs:{"id":"card-errors"}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.error),expression:"error"}],staticClass:"alert alert-warning mt-3 mb-0"},[_vm._v("\n                    "+_vm._s(this.trans[this.error])+"\n                ")]),_vm._v(" "),_c('button',{staticClass:"btn btn-success mt-3",attrs:{"type":"submit"}},[_vm._v(_vm._s(this.trans.become_member))])])])])])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"master-alerts"},[_c('div',{staticClass:"alert alert-danger payment-errors",staticStyle:{"display":"none"}})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"form-row"},[_c('div',{staticClass:"col"},[_c('div',{attrs:{"id":"card-element"}})])])}]
-module.exports = { render: render, staticRenderFns: staticRenderFns }
 
 /***/ }),
 
@@ -11699,17 +11689,27 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ "fAf5":
+/***/ "YMaZ":
+/***/ (function(module, exports) {
+
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"payment-widget"},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.loading),expression:"loading"}]},[_c('img',{staticClass:"loader",attrs:{"src":"/images/loader-red.svg"}})]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.loading),expression:"!loading"}]},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"card-body"},[_c('div',{staticClass:"metrics row"},[_c('div',{staticClass:"metric col"},[_c('div',{staticClass:"metric-inner"},[_c('div',{staticClass:"value"},[_vm._v(_vm._s(this.members)+" st")]),_vm._v(" "),_c('div',{staticClass:"label"},[_vm._v(_vm._s(this.trans.supporting_members))])])]),_vm._v(" "),_c('div',{staticClass:"metric col"},[_c('div',{staticClass:"metric-inner"},[_c('div',{staticClass:"value"},[_vm._v(_vm._s(this.averageAmount)+" "+_vm._s(this.currency))]),_vm._v(" "),_c('div',{staticClass:"label"},[_vm._v(_vm._s(this.trans.average_fee))])])])])]),_vm._v(" "),_c('div',{staticClass:"card-body"},[_c('form',{attrs:{"action":"/account/user/membership/callback","method":"post","id":"payment-widget-form"}},[_c('div',{staticClass:"form-row mb-3"},[_c('div',{staticClass:"col"},[_c('input',{staticClass:"form-control",attrs:{"type":"number","step":"0.01","name":"amount","placeholder":this.trans.amount}})]),_vm._v(" "),_c('div',{staticClass:"col"},[_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.currency),expression:"currency"}],staticClass:"form-control",attrs:{"name":"currency"},on:{"change":[function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.currency=$event.target.multiple ? $$selectedVal : $$selectedVal[0]},_vm.changeCurrency]}},_vm._l((_vm.currencies),function(currency){return _c('option',{key:currency.currency,domProps:{"value":currency.currency}},[_vm._v(_vm._s(currency.currency)+" - "+_vm._s(currency.label)+" ")])}))])]),_vm._v(" "),_vm._m(1),_vm._v(" "),_c('div',{staticClass:"alert alert-danger mt-3",attrs:{"id":"card-errors"}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.error),expression:"error"}],staticClass:"alert alert-warning mt-3 mb-0"},[_vm._v("\n                    "+_vm._s(this.trans[this.error])+"\n                ")]),_vm._v(" "),_c('button',{staticClass:"btn btn-success mt-3",attrs:{"type":"submit"}},[_vm._v(_vm._s(this.trans.become_member))])])])])])}
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"master-alerts"},[_c('div',{staticClass:"alert alert-danger payment-errors",staticStyle:{"display":"none"}})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"form-row"},[_c('div',{staticClass:"col"},[_c('div',{attrs:{"id":"card-element"}})])])}]
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+
+/***/ }),
+
+/***/ "ZagV":
 /***/ (function(module, exports, __webpack_require__) {
 
-// style-loader: Adds some css to the DOM by adding a <style> tag
+exports = module.exports = __webpack_require__("FZ+f")(false);
+// imports
 
-// load the styles
-var content = __webpack_require__("7YLQ");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("rjj0")("00414a86", content, true, {});
+
+// module
+exports.push([module.i, ".StripeElement[data-v-4f708261]{background-color:#fff;padding:.375rem .75rem;border:1px solid #c5c5bc;border-radius:3px;-webkit-transition:box-shadow .15s ease;-webkit-transition:-webkit-box-shadow .15s ease;transition:-webkit-box-shadow .15s ease;transition:box-shadow .15s ease;transition:box-shadow .15s ease,-webkit-box-shadow .15s ease}.StripeElement--invalid[data-v-4f708261]{border-color:#f5c6cb}#card-errors[data-v-4f708261]{display:none}.loader[data-v-4f708261]{width:50px;margin:25px auto}", ""]);
+
+// exports
+
 
 /***/ }),
 
@@ -12174,19 +12174,19 @@ module.exports = function listToStyles (parentId, list) {
 /***/ (function(module, exports, __webpack_require__) {
 
 function injectStyle (ssrContext) {
-  __webpack_require__("fAf5")
+  __webpack_require__("305p")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
 var __vue_script__ = __webpack_require__("J9gi")
 /* template */
-var __vue_template__ = __webpack_require__("Q9GL")
+var __vue_template__ = __webpack_require__("YMaZ")
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-73aca6f9"
+var __vue_scopeId__ = "data-v-4f708261"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
