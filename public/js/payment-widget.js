@@ -11257,7 +11257,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             component.members = res.data;
         });
 
-        jQuery.get('https://localfoodnodes.test/api/currencies', function (res) {
+        jQuery.get('https://localfoodnodes.org/api/currencies', function (res) {
             component.currencies = res;
         });
 
