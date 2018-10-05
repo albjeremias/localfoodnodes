@@ -456,7 +456,8 @@ class User extends \App\User\BaseUser
                 // Create a payment even if payment was too small
                 UserMembershipPayment::create([
                     'user_id' => $this->id,
-                    'amount' => $adjustedAmount
+                    'amount' => $adjustedAmount,
+                    'currency' => $currency,
                 ]);
 
                 \App\Helpers\SlackHelper::message('notification', $successMessage);
