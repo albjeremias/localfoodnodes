@@ -8,4 +8,7 @@ return [
     'more_link' => 'Mer statistik',
     'subheader' => 'Grafer och statiskt för handel med lokal mat',
     'title' => 'Local Food Impact - Statistik',
+    'node' => 'Nod',
+    'order_count' => 'Antal beställningar',
+    'order_amount' => 'Summa',
 ];

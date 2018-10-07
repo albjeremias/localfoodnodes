@@ -5,74 +5,109 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use LocalFoodNodes\Sdk\LocalFoodNodes;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
+use App\System\Parsers\TransactionParser\Transaction;
+use App\System\Parsers\TransactionParser\Parsers\Swedbank;
+Use App\System\Utils\CurrencyConverter;
+use App\User\User;
+
 class AdminController extends Controller
 {
-    /**
-     * @var LocalFoodNodes
-     */
-    private $api;
-
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->api = new LocalFoodNodes(env('API_URL'), env('ADMIN_API_CLIENT_ID'), env('ADMIN_API_SECRET'), env('ADMIN_API_USERNAME'), env('ADMIN_API_PASSWORD'));
-    }
-
-    /**
-     * [apiProxy description]
-     * @param  Request $request [description]
-     * @return [type]           [description]
-     */
-    public function apiProxy(Request $request)
-    {
-        $method = $request->method();
-        $url = $request->input('url');
-        $data = $request->has('data') ? $request->input('data') : [];
-
-        return $this->api->{$method}($url, $data);
-    }
-
-    /**
-     * Get API token.
-     *
-     * @return array
-     */
-    public function getApiAccessToken()
-    {
-        return $this->api->getToken();
-    }
-
-    public function index(Request $request)
-    {
-        return view('admin.index');
-    }
+    // Make sure auth user is admin in controller...
 
     public function users(Request $request)
     {
-        return view('admin.users');
+        $users = User::orderBy('active', 'created_at')->get()->reverse();
+
+        return view('account.admin.users', [
+            'users' => $users,
+            'breadcrumbs' => [
+                'Admin' => '',
+                'Users' => ''
+            ]
+        ]);
     }
 
-    public function orders(Request $request)
+    public function activateUser(Request $request, $userId)
     {
-        return view('admin.orders');
+        $user = User::find($userId);
+        $user->active = true;
+        $user->save();
+
+        return redirect()->back();
     }
 
-    public function economy(Request $request)
+    public function transactions(Request $request)
     {
-        return view('admin.economy');
+        return view('account.admin.transactions', [
+            'breadcrumbs' => [
+                'Admin' => '',
+                'Economy' => '',
+                'Transactions' => ''
+            ]
+        ]);
     }
 
-    public function api(Request $request)
+    /**
+     * Get all transaction categories.
+     *
+     * @param  Request $request
+     * @return Collection
+     */
+    public function transactionCategories(Request $request)
     {
-        return view('admin.api');
+        return $this->categories;
+    }
+
+    /**
+     * Upload transaction file.
+     *
+     * @param  Request $request
+     * @return
+     */
+    public function uploadTransactionsFile(Request $request)
+    {
+        if ($request->has('file')) {
+            $currencyConverter = new CurrencyConverter();
+            $swedbankParser = new Swedbank($request->file('file'));
+
+            $swedbankParser->parse(function($validTransaction) use ($currencyConverter) {
+                if ($validTransaction['ref'] === 'STRIPE') {
+                    $validTransaction['category'] = 2;
+                }
+
+                // Convert currency from SEK to EUR
+                $validTransaction['amount'] = $currencyConverter->convert($validTransaction['amount'], 'SEK');
+
+                $transaction = new Transaction();
+                $errors = $transaction->validate($validTransaction);
+
+                if ($errors->isEmpty()) {
+                    Transaction::create($validTransaction);
+                }
+            });
+        }
+    }
+
+    /**
+     * Update a transaction
+     *
+     * @param Request $request
+     * @return Transaction
+     */
+    public function updateTransaction(Request $request)
+    {
+        try {
+            $transaction = Transaction::find($request->input('id'));
+            $transaction->category = $request->input('category');
+            $transaction->save();
+
+            return $transaction;
+        } catch(\Exception $e) {
+            return response($e, 400);
+        }
     }
 }

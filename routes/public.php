@@ -8,12 +8,6 @@ Route::get('/app/notification', 'Account\UserController@testNotification');
 
 // Index
 Route::get('/', 'IndexController@index');
-Route::get('/api-proxy', 'AjaxController@apiProxy');
-
-// Ajax
-Route::get('/ajax/map/content', 'AjaxController@mapContent');
-Route::get('/ajax/economy/order-count', 'AjaxController@orderCount');
-Route::get('/ajax/economy/order-circulation', 'AjaxController@orderCirculation');
 
 // Account create
 Route::get('/account/user/create/{type?}', 'Account\UserController@create');

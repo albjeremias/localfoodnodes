@@ -14,7 +14,7 @@ class CurrencyConverter
      */
     public function __construct()
     {
-        $this->currencies = DB::table('currencies')->get();
+        $this->currencies = DB::table('currencies')->get()->keyBy('currency');
     }
 
     /**
@@ -31,14 +31,22 @@ class CurrencyConverter
             return null;
         }
 
-        $fromRate = $this->currencies->where('currency', $from)->first()->rate;
-        $toRate = $this->currencies->where('currency', $to)->first()->rate;
-        $convertedAmount = $amount / $fromRate;
+        $fromObj = $this->currencies->get($from);
+        $toObj = $this->currencies->get($to);
 
-        if ($to) {
-            $convertedAmount = $convertedAmount * $toRate;
+        if ($fromObj && $toObj) {
+            $fromRate = $fromObj->rate;
+            $toRate = $toObj->rate;
+
+            $convertedAmount = $amount / $fromRate;
+
+            if ($toObj->currency !== 'EUR') {
+                $convertedAmount = $convertedAmount * $toRate;
+            }
+
+            return $convertedAmount;
+        } else {
+            throw new \Exception('Currency ' . $from . ' or ' . $to . ' does not exist');
         }
-
-        return $convertedAmount;
     }
 }

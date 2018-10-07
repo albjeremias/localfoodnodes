@@ -20,7 +20,7 @@ return [
     'economy' => 'Økonomi',
     'header' => 'Økonomi',
     'income' => 'Ind',
-    'money_circulated' => 'Lokal pengecirkulation (SEK)',
+    'money_circulated' => 'Lokal pengecirkulation (EUR)',
     'orders' => 'Ordre',
     'read_more_economy' => 'Lær mere om vores økonomi',
     'ref' => 'Referencer',

@@ -35,11 +35,7 @@
         mounted() {
             this.trans = JSON.parse(this.translations);
 
-            axios.get('/api-proxy', {
-                params: {
-                    url: '/api/v1/economy/transactions',
-                }
-            })
+            axios.get('/api/economy/transactions')
             .then(response => {
                 this.loading = false;
                 this.data = response.data;

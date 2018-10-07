@@ -18,6 +18,23 @@
                 </ul>
             </div>
 
+            @if ($user->admin)
+                <div class="block">
+                    <div class="block-header">
+                        Site admin
+                    </div>
+                    <ul class="user">
+                        <li>
+                            <ul>
+                                <li><a class="{{ Request::is('admin/users*') ? 'active' : '' }}" href="/admin/users">- Users</a></li>
+                                <li><a class="{{ Request::is('admin/economy/transactions*') ? 'active' : '' }}" href="/admin/economy/transactions">- Transactions</a></li>
+                                <li><a class="{{ Request::is('admin/email*') ? 'active' : '' }}" href="/admin/email">- Email</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            @endif
+
             <div class="block">
                 <div class="block-header">
                     {{ trans('admin/user-nav.your_user') }}

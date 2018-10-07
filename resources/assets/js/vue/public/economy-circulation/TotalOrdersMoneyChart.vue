@@ -44,15 +44,15 @@
         },
         mounted() {
             this.trans = JSON.parse(this.translations);
-            axios.get('/ajax/economy/order-circulation')
+            axios.get('https://api.localfoodnodes.org/v1.0/orders/amount')
             .then(response => {
-                this.data.circulation = response.data;
+                this.data.circulation = response.data.data;
                 this.loading = this.isLoadingComplete();
             });
 
-            axios.get('/ajax/economy/order-count')
+            axios.get('https://api.localfoodnodes.org/v1.0/orders/count')
             .then(response => {
-                this.data.count = response.data;
+                this.data.count = response.data.data;
                 this.loading = this.isLoadingComplete();
             });
         },

@@ -15,7 +15,12 @@ class EmailController extends Controller
 {
     public function index(Request $request)
     {
-        return view('admin.email');
+        return view('account.admin.email', [
+            'breadcrumbs' => [
+                'admin' => '',
+                'email' => '',
+            ]
+        ]);
     }
 
     public function userActivation(Request $request)
