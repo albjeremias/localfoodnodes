@@ -1651,37 +1651,103 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['translations'],
     data: function data() {
         return {
+            currency: 'EUR',
+            currencies: null,
             data: {
                 circulation: null,
-                count: null
+                count: null,
+                products: null
             },
-            loading: true,
             trans: {}
         };
     },
     mounted: function mounted() {
         var _this = this;
 
-        this.trans = JSON.parse(this.translations);
-        axios.get('https://api.localfoodnodes.org/v1.0/orders/amount').then(function (response) {
+        axios.get('/api/translations?lang=' + window.lang + '&keys=metrics').then(function (response) {
+            _this.trans = response.data.data;
+        });
+
+        axios.get('https://api.localfoodnodes.org/v1.0/orders/amount?currency=' + this.currency).then(function (response) {
             _this.data.circulation = response.data.data;
-            _this.loading = _this.isLoadingComplete();
         });
 
         axios.get('https://api.localfoodnodes.org/v1.0/orders/count').then(function (response) {
             _this.data.count = response.data.data;
-            _this.loading = _this.isLoadingComplete();
+        });
+
+        axios.get('https://api.localfoodnodes.org/v1.0/orders/products').then(function (response) {
+            _this.data.products = response.data.data;
+        });
+
+        axios.get('/api/currencies').then(function (response) {
+            _this.currencies = response.data;
         });
     },
 
     methods: {
-        isLoadingComplete: function isLoadingComplete() {
-            return this.data.count && this.data.circulation ? false : true;
+        changeCurrency: function changeCurrency(currency) {
+            var _this2 = this;
+
+            this.currency = currency;
+
+            axios.get('https://api.localfoodnodes.org/v1.0/orders/amount?currency=' + currency).then(function (response) {
+                _this2.data.circulation = response.data.data;
+            });
+        }
+    },
+    computed: {
+        loading: function loading() {
+            return this.data.count && this.data.products && this.data.circulation ? false : true;
         }
     }
 });
@@ -1696,7 +1762,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.metric .fa[data-v-1c103fe5],\n.metric .value[data-v-1c103fe5] {\n    color: #666\n}\n", ""]);
+exports.push([module.i, "\n.metrics[data-v-1c103fe5] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\n.metric[data-v-1c103fe5] {\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    background: #d6c69b;\n    border-radius: 100%;\n    color: #fff;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    height: 200px;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    margin: 1rem;\n    width: 200px;\n}\n.metric-inner[data-v-1c103fe5] {\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    background: #d6c69b;\n    border: 2px dashed #fff;\n    border-radius: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    height: 190px;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    padding-top: 15px;\n    text-align: center;\n    width: 190px;\n}\n.metric-inner .value[data-v-1c103fe5] {\n    font-size: 24px;\n    font-weight: bold;\n}\n.metric-inner .label[data-v-1c103fe5] {\n    font-weight: bold;\n    margin-top: 5px;\n}\n", ""]);
 
 // exports
 
@@ -29876,7 +29942,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row justify-content-center mt-5" }, [
-    _c("div", { staticClass: "col-12 col-md-8 mb-5" }, [
+    _c("div", { staticClass: "col-12 mb-5" }, [
       _c("i", {
         directives: [
           {
@@ -29903,9 +29969,19 @@ var render = function() {
           staticClass: "row metrics"
         },
         [
-          _c("div", { staticClass: "metric col-6" }, [
-            _c("i", { staticClass: "fa fa-shopping-cart" }),
-            _vm._v(" "),
+          _c("div", { staticClass: "metric" }, [
+            _c("div", { staticClass: "metric-inner" }, [
+              _c("div", { staticClass: "value" }, [
+                _vm._v(_vm._s(_vm.data.products))
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "label" }, [
+                _vm._v(_vm._s(this.trans.products))
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "metric" }, [
             _c("div", { staticClass: "metric-inner" }, [
               _c("div", { staticClass: "value" }, [
                 _vm._v(_vm._s(_vm.data.count))
@@ -29917,13 +29993,13 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "metric col-6" }, [
-            _c("i", { staticClass: "fa fa-refresh" }),
-            _vm._v(" "),
+          _c("div", { staticClass: "metric" }, [
             _c("div", { staticClass: "metric-inner" }, [
               _c("div", { staticClass: "value" }, [
                 _vm._v(
-                  _vm._s(parseInt(_vm.data.circulation).toLocaleString("sv"))
+                  _vm._s(parseInt(_vm.data.circulation).toLocaleString("sv")) +
+                    " " +
+                    _vm._s(_vm.currency)
                 )
               ]),
               _vm._v(" "),
@@ -29933,7 +30009,49 @@ var render = function() {
             ])
           ])
         ]
-      )
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "dropdown" }, [
+        _c(
+          "span",
+          {
+            staticClass: "dropdown-toggle",
+            attrs: { id: "dropdownMenuButton", "data-toggle": "dropdown" }
+          },
+          [
+            _vm._v(
+              "\n                " +
+                _vm._s(this.trans.change_currency) +
+                ": " +
+                _vm._s(this.currency) +
+                "\n            "
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "dropdown-menu",
+            attrs: { "aria-labelledby": "dropdownMenuButton" }
+          },
+          _vm._l(this.currencies, function(currency) {
+            return _c(
+              "span",
+              {
+                key: currency.id,
+                staticClass: "dropdown-item",
+                on: {
+                  click: function($event) {
+                    _vm.changeCurrency(currency.currency)
+                  }
+                }
+              },
+              [_vm._v(_vm._s(currency.currency) + " " + _vm._s(currency.label))]
+            )
+          })
+        )
+      ])
     ])
   ])
 }

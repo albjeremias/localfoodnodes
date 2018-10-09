@@ -17,6 +17,9 @@
         <!-- Scripts -->
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script>
+            window.lang = '{{ app()->getLocale() }}';
+        </script>
 
         <!-- CSS -->
         <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png">

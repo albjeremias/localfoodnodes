@@ -87,17 +87,20 @@
             };
         },
         mounted() {
-            this.trans = JSON.parse(this.translations);
-
-            axios.get('/api/economy/transactions')
+            axios.get('/api/translations?lang=' + window.lang + '&keys=metrics')
             .then(response => {
-                this.transactions = response.data.transactions;
-                this.filteredTransactions = response.data.transactions;
+                this.trans = response.data.data;
+            });
+
+            axios.get('/api/economy/transactions?lang=' + window.lang)
+            .then(response => {
+                this.transactions = response.data.transactions.all;
+                this.filteredTransactions = response.data.transactions.all;
                 this.categories = response.data.categories;
                 this.loading = false;
             });
 
-            axios.get('/api/currencies?all')
+            axios.get('/api/currencies')
             .then(response => {
                 this.currencies = response.data;
             });
@@ -139,7 +142,7 @@
                 this.loading = true;
                 this.currency = currency;
 
-                axios.get('/api/economy/transactions?currency=' + currency)
+                axios.get('/api/economy/transactions?currency=' + currency +'&lang=' + window.lang)
                 .then(response => {
                     this.transactions = response.data.transactions;
                     this.filteredTransactions = response.data.transactions;

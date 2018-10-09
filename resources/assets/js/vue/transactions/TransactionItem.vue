@@ -32,7 +32,7 @@
             categoryName() {
                 let categoryName = null;
 
-                if (this.transaction.category) {
+                if (this.transaction.category && this.categories[this.transaction.category]) {
                     return this.categories[this.transaction.category].label;
                 }
 

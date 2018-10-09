@@ -7,14 +7,14 @@
             </div>
 
             <div class="card-body">
-                <div class="metrics row">
-                    <div class="metric col">
+                <div class="metrics">
+                    <div class="metric">
                         <div class="metric-inner">
                             <div class="value">{{ this.members }} st</div>
                             <div class="label">{{ this.trans.supporting_members }}</div>
                         </div>
                     </div>
-                    <div class="metric col">
+                    <div class="metric">
                         <div class="metric-inner">
                             <div class="value">{{ this.averageAmount }} {{ this.currency }}</div>
                             <div class="label">{{ this.trans.average_fee }}</div>

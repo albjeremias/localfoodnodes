@@ -34,7 +34,7 @@ export default {
             component.averageAmount = Math.round(res.data);
         });
 
-        jQuery.get('https://localfoodnodes.test/api/translations?keys=payment_widget,stripe', function(res) {
+        jQuery.get('https://localfoodnodes.org/api/translations?keys=payment_widget,stripe', function(res) {
             component.trans = res.data;
         });
 

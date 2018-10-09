@@ -31,8 +31,8 @@ class CurrencyConverter
             return null;
         }
 
-        $fromObj = $this->currencies->get($from);
-        $toObj = $this->currencies->get($to);
+        $fromObj = $this->currencies->get(strtoupper($from));
+        $toObj = $this->currencies->get(strtoupper($to));
 
         if ($fromObj && $toObj) {
             $fromRate = $fromObj->rate;

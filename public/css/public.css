@@ -671,55 +671,6 @@ body.public .page .shop-header .top a {
   margin: 0;
 }
 
-.metrics .metric {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  text-align: center;
-  margin-bottom: 15px;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-}
-
-.metrics .metric .fa {
-  font-size: 5rem;
-  margin-right: 15px;
-}
-
-.metrics .metric .metric-inner {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: start;
-}
-
-.metrics .metric .metric-inner .value {
-  font-size: 24px;
-  font-weight: bold;
-  font-family: 'montserrat';
-  line-height: 1em;
-}
-
-.metrics .metric .metric-inner .label {
-  font-family: 'montserrat';
-}
-
-@media (max-width: 575px) {
-  .metrics .metric .fa {
-    font-size: 28px;
-  }
-
-  .metrics .metric .value {
-    font-size: 24px !important;
-  }
-}
-
 .footer {
   background: #333;
   padding: 50px 0 50px;

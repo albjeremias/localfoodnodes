@@ -8,4 +8,7 @@ return [
     'more_link' => 'More statistics',
     'subheader' => 'Graphs and statistics for trade in local food',
     'title' => 'Local Food Impact - Statistics',
+    'node' => 'Node',
+    'order_count' => 'Number of orders',
+    'order_amount' => 'Amount',
 ];

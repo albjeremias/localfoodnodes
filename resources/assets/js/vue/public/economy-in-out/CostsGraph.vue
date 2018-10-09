@@ -1,7 +1,7 @@
 <template>
     <div class="col-12 col-lg-6 justify-content-center">
-        <h3 v-show="!loading" class="text-center">{{ parseInt(total).toLocaleString('sv') }} SEK</h3>
-        <div v-show="!loading" class="text-center">{{ trans.costs }} 2017</div>
+        <h3 v-show="!loading" class="text-center mb-0">{{ parseInt(total).toLocaleString('sv') }} {{ currency }}</h3>
+        <div v-show="!loading" class="text-center">{{ trans.out }} {{ year }}</div>
         <i v-show="loading" class="fa fa-spinner fa-spin loader"></i>
         <div v-show="!loading" id="costs-chart" class="chart" style="height:300px; width: 100%;"></div>
     </div>
@@ -9,59 +9,24 @@
 
 <script>
     export default {
-        props: ['trans', 'data'],
+        props: ['trans', 'data', 'total', 'currency', 'year'],
         data: function() {
             return {
                 loading: true,
-                incomeTransactions: null,
-                total: null,
             }
         },
         watch: {
-            data(data) {
-                let formattedData = this.formatData(data.transactions, data.categories.all);
-                this.draw(formattedData);
-                this.loading = false;
+            data: {
+                immediate: true,
+                handler(data) {
+                    if (data) {
+                        this.draw(data);
+                        this.loading = false;
+                    }
+                }
             }
         },
         methods: {
-            formatData(transactions, categories) {
-                let trans = this.trans;
-
-                let filteredTransactions = _.filter(transactions, transaction => {
-                    return transaction.amount < 0;
-                })
-
-                let costs = _(filteredTransactions).groupBy(transaction => {
-                    return transaction.category;
-                }).map(function(category, categoryId) {
-                    let sum = _.sumBy(category, transactions => {
-                        return transactions.amount;
-                    });
-
-                    let categoryObject = _.find(categories, category => {
-                        return category.id == categoryId;
-                    });
-
-                    let sumString = '\r' + -sum + ' SEK';
-                    let label = (categoryObject && categoryObject.label) ? trans['category_' + categoryObject.id] : trans.uncategorized;
-                    label += sumString;
-
-                    return [label, -sum]; // Convert to positive
-                })
-                .value();
-
-                let total = _.sumBy(filteredTransactions, transaction => {
-                    return transaction.amount;
-                });
-
-                this.total = -total;
-
-                // Add headers
-                costs.unshift(['Category', 'Amount']);
-
-                return costs;
-            },
             draw(dataArray) {
                 google.charts.load("current", {packages:["corechart"]});
                 google.charts.setOnLoadCallback(drawChart);

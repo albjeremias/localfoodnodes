@@ -50,7 +50,7 @@
                     category: event.target.value,
                 }
 
-                axios.put('/admin/economy/transactions', data)
+                axios.put('/admin/economy/transactions?lang=' + window.lang, data)
                 .then(response => {
                     this.loading = false;
                     this.success = true;

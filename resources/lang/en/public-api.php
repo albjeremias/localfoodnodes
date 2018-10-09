@@ -8,6 +8,32 @@ return [
         'supporting_members' => 'Supporing members',
     ],
 
+    // All js metrics widgets
+    'metrics' => [
+        'available_balance' => 'Available balance',
+        'category' => 'Category',
+        'change_currency' => 'Change currency',
+        'currency' => 'Currency',
+        'date' => 'Date',
+        'description' => 'Description',
+        'in' => 'In',
+        'money_circulated' => 'Money circulation',
+        'orders' => 'Orders',
+        'out' => 'Out',
+        'products' => 'Products',
+        'ref' => 'Reference',
+
+        // Transaction categories
+        'all' => 'All',
+        'all_incomes' => 'All incomes',
+        'all_costs' => 'All costs',
+        'category_1' => 'Memberships',
+        'category_2' => 'Other incomes',
+        'category_3' => 'Operation',
+        'category_4' => 'Saleries',
+        'category_5' => 'Other costs',
+    ],
+
     // Stripe errors
     'stripe' => [
         'balance_insufficient' => 'The transfer or payout could not be completed because the associated account does not have a sufficient balance available. Create a new transfer or payout using an amount less than or equal to the account’s available balance.',

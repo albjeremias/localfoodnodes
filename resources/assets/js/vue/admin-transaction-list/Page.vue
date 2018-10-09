@@ -29,9 +29,9 @@
         methods: {
             fetch() {
                 this.fetching = true;
-                axios.get('/api/economy/transactions')
+                axios.get('/api/economy/transactions?lang=' + window.lang)
                 .then(response => {
-                    this.transactions = response.data.transactions;
+                    this.transactions = response.data.transactions.all;
                     this.categories = response.data.categories.all;
                     this.fetching = false;
                 });
@@ -44,7 +44,7 @@
                 let formData = new FormData();
                 formData.append('file', file.files[0]);
 
-                axios.post('/admin/economy/transactions', formData)
+                axios.post('/admin/economy/transactions?lang=' + window.lang, formData)
                 .then(response => {
                     this.uploadInProgress = false;
                     let file = document.querySelector('#upload-form input[type=file]');

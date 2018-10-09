@@ -20,7 +20,7 @@ return [
     'economy' => 'Economie',
     'header' => 'Economie',
     'income' => 'Inkomend',
-    'money_circulated' => 'Lokale valuta (EUR)',
+    'money_circulated' => 'Geldcirculatie',
     'orders' => 'Bestellingen',
     'read_more_economy' => 'Lees meer over onze economie',
     'ref' => 'Referentie',

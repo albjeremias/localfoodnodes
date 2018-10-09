@@ -6,8 +6,8 @@ return [
      */
     'categories' => [
         'income' => [
-            ['id' => 0, 'label' => 'Memberships', 'type_label' => 'Income - Membership'],
-            ['id' => 1, 'label' => 'Other incomes', 'type_label' => 'Income - Other'],
+            ['id' => 1, 'label' => 'Memberships', 'type_label' => 'Income - Membership'],
+            ['id' => 2, 'label' => 'Other incomes', 'type_label' => 'Income - Other'],
         ],
         'cost' => [
             ['id' => 3, 'label' => 'Operation', 'type_label' => 'Cost - Operation'],

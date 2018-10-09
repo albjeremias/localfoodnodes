@@ -19,3 +19,19 @@
     width: 50px;
     margin: 25px auto;
 }
+
+.metrics {
+    display: flex;
+    justify-content: space-evenly;
+}
+.metrics {
+    text-align: center;
+}
+.metric .value {
+    font-family: 'montserrat';
+    font-size: 24px;
+    font-weight: bold;
+}
+.metric .label {
+    font-family: 'montserrat';
+}

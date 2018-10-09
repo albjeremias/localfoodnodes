@@ -1654,7 +1654,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         categoryName: function categoryName() {
             var categoryName = null;
 
-            if (this.transaction.category) {
+            if (this.transaction.category && this.categories[this.transaction.category]) {
                 return this.categories[this.transaction.category].label;
             }
 
@@ -1761,16 +1761,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
-        this.trans = JSON.parse(this.translations);
+        axios.get('/api/translations?lang=' + window.lang + '&keys=metrics').then(function (response) {
+            _this.trans = response.data.data;
+        });
 
-        axios.get('/api/economy/transactions').then(function (response) {
-            _this.transactions = response.data.transactions;
-            _this.filteredTransactions = response.data.transactions;
+        axios.get('/api/economy/transactions?lang=' + window.lang).then(function (response) {
+            _this.transactions = response.data.transactions.all;
+            _this.filteredTransactions = response.data.transactions.all;
             _this.categories = response.data.categories;
             _this.loading = false;
         });
 
-        axios.get('/api/currencies?all').then(function (response) {
+        axios.get('/api/currencies').then(function (response) {
             _this.currencies = response.data;
         });
     },
@@ -1814,7 +1816,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.loading = true;
             this.currency = currency;
 
-            axios.get('/api/economy/transactions?currency=' + currency).then(function (response) {
+            axios.get('/api/economy/transactions?currency=' + currency + '&lang=' + window.lang).then(function (response) {
                 _this2.transactions = response.data.transactions;
                 _this2.filteredTransactions = response.data.transactions;
                 _this2.categories = response.data.categories;

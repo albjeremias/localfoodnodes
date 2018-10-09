@@ -1631,58 +1631,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['trans', 'data'],
+    props: ['trans', 'data', 'total', 'currency', 'year'],
     data: function data() {
         return {
-            loading: true,
-            incomeTransactions: null,
-            total: null
+            loading: true
         };
     },
     watch: {
-        data: function data(_data) {
-            var formattedData = this.formatData(_data.transactions, _data.categories.all);
-            this.draw(formattedData);
-            this.loading = false;
+        data: {
+            immediate: true,
+            handler: function handler(data) {
+                if (data) {
+                    this.draw(data);
+                    this.loading = false;
+                }
+            }
         }
     },
     methods: {
-        formatData: function formatData(transactions, categories) {
-            var trans = this.trans;
-
-            var filteredTransactions = _.filter(transactions, function (transaction) {
-                return transaction.amount < 0;
-            });
-
-            var costs = _(filteredTransactions).groupBy(function (transaction) {
-                return transaction.category;
-            }).map(function (category, categoryId) {
-                var sum = _.sumBy(category, function (transactions) {
-                    return transactions.amount;
-                });
-
-                var categoryObject = _.find(categories, function (category) {
-                    return category.id == categoryId;
-                });
-
-                var sumString = '\r' + -sum + ' SEK';
-                var label = categoryObject && categoryObject.label ? trans['category_' + categoryObject.id] : trans.uncategorized;
-                label += sumString;
-
-                return [label, -sum]; // Convert to positive
-            }).value();
-
-            var total = _.sumBy(filteredTransactions, function (transaction) {
-                return transaction.amount;
-            });
-
-            this.total = -total;
-
-            // Add headers
-            costs.unshift(['Category', 'Amount']);
-
-            return costs;
-        },
         draw: function draw(dataArray) {
             google.charts.load("current", { packages: ["corechart"] });
             google.charts.setOnLoadCallback(drawChart);
@@ -1733,58 +1699,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['trans', 'data'],
+    props: ['trans', 'data', 'total', 'currency', 'year'],
     data: function data() {
         return {
-            loading: true,
-            incomeTransactions: null,
-            total: null
+            loading: true
         };
     },
     watch: {
-        data: function data(_data) {
-            var formattedData = this.formatData(_data.transactions, _data.categories.all);
-            this.draw(formattedData);
-            this.loading = false;
+        data: {
+            immediate: true,
+            handler: function handler(data) {
+                if (data) {
+                    this.draw(data);
+                    this.loading = false;
+                }
+            }
         }
     },
     methods: {
-        formatData: function formatData(transactions, categories) {
-            var trans = this.trans;
-
-            var filteredTransactions = _.filter(transactions, function (transaction) {
-                return transaction.amount > 0;
-            });
-
-            var incomes = _(filteredTransactions).groupBy(function (transaction) {
-                return transaction.category;
-            }).map(function (category, categoryId) {
-                var sum = _.sumBy(category, function (transactions) {
-                    return transactions.amount;
-                });
-
-                var categoryObject = _.find(categories, function (category) {
-                    return category.id == categoryId;
-                });
-
-                var sumString = '\r' + sum + ' SEK';
-                var label = categoryObject && categoryObject.label ? trans['category_' + categoryObject.id] : trans.uncategorized;
-                label += sumString;
-
-                return [label, sum];
-            }).value();
-
-            var total = _.sumBy(filteredTransactions, function (transaction) {
-                return transaction.amount;
-            });
-
-            this.total = total;
-
-            // Add headers
-            incomes.unshift(['Category', 'Amount']);
-
-            return incomes;
-        },
         draw: function draw(dataArray) {
             google.charts.load('current', { packages: ['corechart'] });
             google.charts.setOnLoadCallback(drawChart);
@@ -1836,21 +1768,51 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['translations'],
     data: function data() {
         return {
+            currencies: null,
+            currency: 'EUR',
             data: {
+                chartData: {},
+                filter: {
+                    categories: null,
+                    year: '2018'
+                },
                 total: {
                     income: null,
-                    cost: null
+                    cost: null,
+                    grouped: null
                 },
-                categories: null,
-                transactions: null
+                transactions: null,
+                transactionsIncome: null,
+                transactionsCost: null
             },
             loading: true,
-            trans: {}
+            trans: {} // remove
         };
     },
     components: {
@@ -1860,12 +1822,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
-        this.trans = JSON.parse(this.translations);
-
-        axios.get('/api/economy/transactions').then(function (response) {
-            _this.loading = false;
-            _this.data = response.data;
+        axios.get('/api/translations?lang=' + window.lang + '&keys=metrics').then(function (response) {
+            _this.trans = response.data.data;
         });
+
+        axios.get('/api/economy/transactions?year=2018&lang=' + window.lang).then(function (response) {
+            _this.data = response.data;
+            _this.loading = false;
+        });
+
+        axios.get('/api/currencies').then(function (response) {
+            _this.currencies = response.data;
+        });
+    },
+
+    methods: {
+        changeYear: function changeYear(year) {
+            var _this2 = this;
+
+            axios.get('/api/economy/transactions?year=' + year + '&lang=' + window.lang).then(function (response) {
+                _this2.data = response.data;
+            });
+        },
+        changeCurrency: function changeCurrency(currency) {
+            var _this3 = this;
+
+            this.loading = true;
+            axios.get('/api/economy/transactions?currency=' + currency + '&year=' + this.data.filter.year + '&lang=' + window.lang).then(function (response) {
+                _this3.data = response.data;
+                _this3.currency = currency;
+                _this3.loading = false;
+            });
+        }
     }
 });
 
@@ -29972,9 +29960,15 @@ var render = function() {
             expression: "!loading"
           }
         ],
-        staticClass: "text-center"
+        staticClass: "text-center mb-0"
       },
-      [_vm._v(_vm._s(parseInt(_vm.total).toLocaleString("sv")) + " SEK")]
+      [
+        _vm._v(
+          _vm._s(parseInt(_vm.total).toLocaleString("sv")) +
+            " " +
+            _vm._s(_vm.currency)
+        )
+      ]
     ),
     _vm._v(" "),
     _c(
@@ -29990,7 +29984,7 @@ var render = function() {
         ],
         staticClass: "text-center"
       },
-      [_vm._v(_vm._s(_vm.trans.costs) + " 2017")]
+      [_vm._v(_vm._s(_vm.trans.out) + " " + _vm._s(_vm.year))]
     ),
     _vm._v(" "),
     _c("i", {
@@ -30039,46 +30033,141 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "row" },
-    [
-      _c("income-graph", { attrs: { trans: _vm.trans, data: _vm.data } }),
-      _vm._v(" "),
-      _c("costs-graph", { attrs: { trans: _vm.trans, data: _vm.data } }),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: !_vm.loading,
-              expression: "!loading"
+  return _c("div", [
+    _c("div", { staticClass: "row mb-5" }, [
+      _c("div", { staticClass: "col-12 d-flex justify-content-center" }, [
+        _c(
+          "div",
+          {
+            staticClass: "btn-toolbar",
+            attrs: {
+              role: "toolbar",
+              "aria-label": "Toolbar with button groups"
             }
-          ],
-          staticClass: "col-12"
-        },
-        [
-          _c("div", { staticClass: "text-center mb-5" }, [
-            _c("h3", [
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass: "btn-group mr-2",
+                attrs: { role: "group", "aria-label": "First group" }
+              },
+              _vm._l(_vm.data.years, function(year) {
+                return _c(
+                  "button",
+                  {
+                    key: year,
+                    staticClass: "btn btn-success",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        _vm.changeYear(year)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(year))]
+                )
+              })
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "btn-group" }, [
+              _c("div", { staticClass: "btn btn-success dropdown" }, [
+                _c(
+                  "span",
+                  {
+                    staticClass: "dropdown-toggle",
+                    attrs: {
+                      id: "dropdownMenuButton",
+                      "data-toggle": "dropdown"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(_vm.trans.currency) +
+                        ": " +
+                        _vm._s(this.currency) +
+                        "\n                        "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "dropdown-menu",
+                    attrs: { "aria-labelledby": "dropdownMenuButton" }
+                  },
+                  _vm._l(this.currencies, function(currency) {
+                    return _c(
+                      "span",
+                      {
+                        key: currency.id,
+                        staticClass: "dropdown-item",
+                        on: {
+                          click: function($event) {
+                            _vm.changeCurrency(currency.currency)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          _vm._s(currency.currency) +
+                            " - " +
+                            _vm._s(currency.label)
+                        )
+                      ]
+                    )
+                  })
+                )
+              ])
+            ])
+          ]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row" },
+      [
+        _c("income-graph", {
+          attrs: {
+            trans: _vm.trans,
+            data: _vm.data.chartData.income,
+            total: _vm.data.total.income,
+            currency: _vm.currency,
+            year: _vm.data.filter.year
+          }
+        }),
+        _vm._v(" "),
+        _c("costs-graph", {
+          attrs: {
+            trans: _vm.trans,
+            data: _vm.data.chartData.cost,
+            total: _vm.data.total.cost,
+            currency: _vm.currency,
+            year: _vm.data.filter.year
+          }
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-12" }, [
+          _c("div", { staticClass: "text-center" }, [
+            _c("h3", { staticClass: "mb-0" }, [
               _vm._v(
-                _vm._s(
-                  (_vm.data.total.income - _vm.data.total.cost).toLocaleString(
-                    "sv"
-                  )
-                ) + " SEK"
+                _vm._s(parseInt(_vm.data.total.diff).toLocaleString("sv")) +
+                  " " +
+                  _vm._s(_vm.currency)
               )
             ]),
             _vm._v(" "),
             _c("div", [_vm._v(_vm._s(_vm.trans.available_balance))])
           ])
-        ]
-      )
-    ],
-    1
-  )
+        ])
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -30111,9 +30200,15 @@ var render = function() {
             expression: "!loading"
           }
         ],
-        staticClass: "text-center"
+        staticClass: "text-center mb-0"
       },
-      [_vm._v(_vm._s(parseInt(_vm.total).toLocaleString("sv")) + " SEK")]
+      [
+        _vm._v(
+          _vm._s(parseInt(_vm.total).toLocaleString("sv")) +
+            " " +
+            _vm._s(_vm.currency)
+        )
+      ]
     ),
     _vm._v(" "),
     _c(
@@ -30129,7 +30224,7 @@ var render = function() {
         ],
         staticClass: "text-center"
       },
-      [_vm._v(_vm._s(_vm.trans.income) + " 2017")]
+      [_vm._v(_vm._s(_vm.trans.in) + " " + _vm._s(_vm.year))]
     ),
     _vm._v(" "),
     _c("i", {

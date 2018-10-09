@@ -1705,8 +1705,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             this.fetching = true;
-            axios.get('/api/economy/transactions').then(function (response) {
-                _this.transactions = response.data.transactions;
+            axios.get('/api/economy/transactions?lang=' + window.lang).then(function (response) {
+                _this.transactions = response.data.transactions.all;
                 _this.categories = response.data.categories.all;
                 _this.fetching = false;
             });
@@ -1721,7 +1721,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var formData = new FormData();
             formData.append('file', file.files[0]);
 
-            axios.post('/admin/economy/transactions', formData).then(function (response) {
+            axios.post('/admin/economy/transactions?lang=' + window.lang, formData).then(function (response) {
                 _this2.uploadInProgress = false;
                 var file = document.querySelector('#upload-form input[type=file]');
                 file.value = '';
@@ -1792,7 +1792,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 category: event.target.value
             };
 
-            axios.put('/admin/economy/transactions', data).then(function (response) {
+            axios.put('/admin/economy/transactions?lang=' + window.lang, data).then(function (response) {
                 _this.loading = false;
                 _this.success = true;
             }).catch(function (error) {

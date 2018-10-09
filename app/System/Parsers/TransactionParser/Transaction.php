@@ -34,4 +34,17 @@ class Transaction extends \App\BaseModel
         'amount',
         'category',
     ];
+
+    /**
+     * Get transaction year for filters
+     *
+     * @param string $value A DateTime string
+     * @return void
+     */
+    public function getYearAttribute()
+    {
+        $dateTime = new \DateTime($this->date);
+
+        return $dateTime->format('Y');
+    }
 }

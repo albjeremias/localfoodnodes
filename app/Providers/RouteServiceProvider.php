@@ -72,21 +72,22 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function apiRoutes()
     {
-        $publicOptions = [
+        $publicApiOptions = [
+            'middleware' => 'api',
             'namespace' => $this->namespace,
             'prefix' => 'api',
         ];
 
-        Route::group($publicOptions, function ($router) {
+        Route::group($publicApiOptions, function ($router) {
             require base_path('routes/public-api.php');
         });
 
-        $privateOptions = [
+        $privateApiOptions = [
             'namespace' => $this->namespace,
             'prefix' => 'api/v1',
         ];
 
-        Route::group($privateOptions, function ($router) {
+        Route::group($privateApiOptions, function ($router) {
             require base_path('routes/private-api.php');
         });
     }

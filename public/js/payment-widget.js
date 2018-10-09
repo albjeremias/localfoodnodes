@@ -103,7 +103,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             component.averageAmount = Math.round(res.data);
         });
 
-        jQuery.get('https://localfoodnodes.test/api/translations?keys=payment_widget,stripe', function (res) {
+        jQuery.get('https://localfoodnodes.org/api/translations?keys=payment_widget,stripe', function (res) {
             component.trans = res.data;
         });
 
@@ -213,7 +213,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.StripeElement[data-v-151642d3] {\n    background-color: white;\n    padding: .375rem .75rem;\n    border: 1px solid #c5c5bc;\n    border-radius: 3px;\n    -webkit-transition: box-shadow 150ms ease;\n    -webkit-transition: -webkit-box-shadow 150ms ease;\n    transition: -webkit-box-shadow 150ms ease;\n    transition: box-shadow 150ms ease;\n    transition: box-shadow 150ms ease, -webkit-box-shadow 150ms ease;\n}\n.StripeElement--invalid[data-v-151642d3] {\n    border-color: #f5c6cb;\n}\n#card-errors[data-v-151642d3] {\n    display: none;\n}\n.loader[data-v-151642d3] {\n    width: 50px;\n    margin: 25px auto;\n}", ""]);
+exports.push([module.i, "\n.StripeElement[data-v-151642d3] {\n    background-color: white;\n    padding: .375rem .75rem;\n    border: 1px solid #c5c5bc;\n    border-radius: 3px;\n    -webkit-transition: box-shadow 150ms ease;\n    -webkit-transition: -webkit-box-shadow 150ms ease;\n    transition: -webkit-box-shadow 150ms ease;\n    transition: box-shadow 150ms ease;\n    transition: box-shadow 150ms ease, -webkit-box-shadow 150ms ease;\n}\n.StripeElement--invalid[data-v-151642d3] {\n    border-color: #f5c6cb;\n}\n#card-errors[data-v-151642d3] {\n    display: none;\n}\n.loader[data-v-151642d3] {\n    width: 50px;\n    margin: 25px auto;\n}\n.metrics[data-v-151642d3] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: space-evenly;\n        -ms-flex-pack: space-evenly;\n            justify-content: space-evenly;\n}\n.metrics[data-v-151642d3] {\n    text-align: center;\n}\n.metric .value[data-v-151642d3] {\n    font-family: 'montserrat';\n    font-size: 24px;\n    font-weight: bold;\n}\n.metric .label[data-v-151642d3] {\n    font-family: 'montserrat';\n}", ""]);
 
 // exports
 
@@ -913,8 +913,8 @@ var render = function() {
         _vm._m(0),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
-          _c("div", { staticClass: "metrics row" }, [
-            _c("div", { staticClass: "metric col" }, [
+          _c("div", { staticClass: "metrics" }, [
+            _c("div", { staticClass: "metric" }, [
               _c("div", { staticClass: "metric-inner" }, [
                 _c("div", { staticClass: "value" }, [
                   _vm._v(_vm._s(this.members) + " st")
@@ -926,7 +926,7 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "metric col" }, [
+            _c("div", { staticClass: "metric" }, [
               _c("div", { staticClass: "metric-inner" }, [
                 _c("div", { staticClass: "value" }, [
                   _vm._v(

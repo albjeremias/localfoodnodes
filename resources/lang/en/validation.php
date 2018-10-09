@@ -113,4 +113,6 @@ return [
     */
 
     'attributes' => [],
+
+    'passwords.user' => 'Invalid email, user does not exist',
 ];

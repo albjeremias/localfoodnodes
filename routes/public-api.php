@@ -1,9 +1,9 @@
 <?php
 
-Route::get('/translations', 'PublicApiController@translations');
-Route::get('/currencies', 'PublicApiController@currencies');
-Route::get('/nodes', 'PublicApiController@nodes');
+Route::get('/translations', 'Api\PublicApiController@translations');
+Route::get('/currencies', 'Api\PublicApiController@currencies');
+Route::get('/nodes', 'Api\PublicApiController@nodes');
 
 Route::group(['prefix' => '/economy'], function () {
-    Route::get('/transactions', 'PublicApiController@transactions');
+    Route::get('/transactions', 'Api\PublicApiController@transactions');
 });

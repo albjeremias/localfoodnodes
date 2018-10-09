@@ -8,6 +8,32 @@ return [
         'supporting_members' => 'Stöttande medlemmar',
     ],
 
+    // All js metrics widgets
+    'metrics' => [
+        'available_balance' => 'Tillgänliga medel',
+        'category' => 'Kategori',
+        'change_currency' => 'Ändra valuta',
+        'currency' => 'Valuta',
+        'date' => 'Datum',
+        'description' => 'Beskrivning',
+        'in' => 'In',
+        'money_circulated' => 'Pengacirkulation',
+        'orders' => 'Beställningar',
+        'out' => 'Ut',
+        'products' => 'Produkter',
+        'ref' => 'Referens',
+
+        // Transaction categories
+        'all' => 'Alla',
+        'all_incomes' => 'Alla intäkter',
+        'all_costs' => 'Alla kostnader',
+        'category_1' => 'Medlemskap',
+        'category_2' => 'Övriga instäkter',
+        'category_3' => 'Driftkostnader',
+        'category_4' => 'Arvoden',
+        'category_5' => 'Övriga kostnader',
+    ],
+
     // Stripe errors
     'stripe' => [
         'balance_insufficient' => 'Betalningen kunde inte genomföras då det finns för lite pengar på kortet.',
