@@ -99,15 +99,10 @@ class PublicApiController extends ApiBaseController
             $currencyConverter = new CurrencyConverter();
         }
 
-        // Translate categories
-        $incomeCategories = new Collection(config('economy.categories.income'));
-        $costCategories = new Collection(config('economy.categories.cost'));
+        $economyCategories = $this->getEconomyCategories();
+        $incomeCategories = new Collection($economyCategories['income']);
+        $costCategories = new Collection($economyCategories['cost']);
         $allCategories = $incomeCategories->concat($costCategories);
-
-        // Translate here
-        // foreach ($allCategories as $category) {
-
-        // }
 
         // All categories
         $availableYears = [];
@@ -121,13 +116,6 @@ class PublicApiController extends ApiBaseController
                 $amount = (int) $currencyConverter->convert($amount, 'EUR', $request->get('currency'));
             }
 
-            // if (!isset($totalPerCategory[$transaction->category])) {
-            //     $totalPerCategory[$transaction->category] = 0;
-            // }
-
-            // if ($transaction->category) {
-            //     $totalPerCategory[$transaction->category] += $amount;
-            // }
             if ($incomeCategories->contains('id', $transaction->category)) {
                 $income += $amount;
             } else if ($costCategories->contains('id', $transaction->category)) {
@@ -225,6 +213,21 @@ class PublicApiController extends ApiBaseController
         ];
 
         return response()->json($data);
+    }
+
+    private function getEconomyCategories() {
+        // Economy categories
+        return [
+            'income' => [
+                ['id' => 1, 'label' => trans('public-api.metrics.category_1'), 'type_label' => 'Income - Membership'],
+                ['id' => 2, 'label' => trans('public-api.metrics.category_2'), 'type_label' => 'Income - Other'],
+            ],
+            'cost' => [
+                ['id' => 3, 'label' => trans('public-api.metrics.category_3'), 'type_label' => 'Cost - Operation'],
+                ['id' => 4, 'label' => trans('public-api.metrics.category_4'), 'type_label' => 'Cost - Saleries'],
+                ['id' => 5, 'label' => trans('public-api.metrics.category_5'), 'type_label' => 'Cost - Other'],
+            ]
+        ];
     }
 
     /**
