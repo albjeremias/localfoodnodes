@@ -170,6 +170,18 @@ module.exports = function settle(resolve, reject, response) {
 
 /***/ }),
 
+/***/ "2JBg":
+/***/ (function(module, exports) {
+
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('tr',[_c('td',[_vm._v(_vm._s(_vm.transaction.date))]),_vm._v(" "),_c('td',[_vm._v(_vm._s(_vm.transaction.ref.toLowerCase()))]),_vm._v(" "),_c('td',[_vm._v(_vm._s(_vm.transaction.description))]),_vm._v(" "),_c('td',[_c('div',{class:{
+            'text-danger': _vm.isNegative(_vm.transaction.amount),
+            'text-success': !_vm.isNegative(_vm.transaction.amount)
+            }},[_vm._v("\n            "+_vm._s(parseFloat(_vm.transaction.amount).toFixed(2))+"\n        ")])]),_vm._v(" "),_c('td',[_vm._v(_vm._s(_vm.categoryName()))])])}
+var staticRenderFns = []
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+
+/***/ }),
+
 /***/ 3:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11842,20 +11854,6 @@ module.exports = function bind(fn, thisArg) {
 
 /***/ }),
 
-/***/ "JatM":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("XLqZ");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("rjj0")("2a793f60", content, true, {});
-
-/***/ }),
-
 /***/ "KCLY":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11954,6 +11952,20 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 module.exports = defaults;
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("W2nU")))
+
+/***/ }),
+
+/***/ "LcVs":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("wMRR");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("78af00ae", content, true, {});
 
 /***/ }),
 
@@ -29088,18 +29100,6 @@ exports.push([module.i, ".table th[data-v-747ebc61]{font-size:14px}.btn[data-v-7
 
 /***/ }),
 
-/***/ "MqQp":
-/***/ (function(module, exports) {
-
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('tr',[_c('td',[_vm._v(_vm._s(_vm.transaction.date))]),_vm._v(" "),_c('td',[_vm._v(_vm._s(_vm.transaction.ref.toLowerCase()))]),_vm._v(" "),_c('td',[_vm._v(_vm._s(_vm.transaction.description))]),_vm._v(" "),_c('td',[_c('div',{class:{
-            'text-danger': _vm.isNegative(_vm.transaction.amount),
-            'text-success': !_vm.isNegative(_vm.transaction.amount)
-            }},[_vm._v("\n            "+_vm._s(parseFloat(_vm.transaction.amount).toFixed(2))+"\n        ")])]),_vm._v(" "),_c('td',[_vm._v(_vm._s(_vm.categoryName()))])])}
-var staticRenderFns = []
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-
-/***/ }),
-
 /***/ "OQVd":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29510,21 +29510,6 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 process.umask = function() { return 0; };
-
-
-/***/ }),
-
-/***/ "XLqZ":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("FZ+f")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".table td[data-v-c50e2ad2]{font-size:14px;text-transform:capitalize}", ""]);
-
-// exports
 
 
 /***/ }),
@@ -30112,19 +30097,19 @@ module.exports = InterceptorManager;
 /***/ (function(module, exports, __webpack_require__) {
 
 function injectStyle (ssrContext) {
-  __webpack_require__("JatM")
+  __webpack_require__("LcVs")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
 var __vue_script__ = __webpack_require__("rsJU")
 /* template */
-var __vue_template__ = __webpack_require__("MqQp")
+var __vue_template__ = __webpack_require__("2JBg")
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-c50e2ad2"
+var __vue_scopeId__ = "data-v-fc0ecc8c"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -30784,10 +30769,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return Math.sign(number) < 1 ? true : false;
         },
         categoryName: function categoryName() {
-            var categoryName = null;
+            var _this = this;
 
-            if (this.transaction.category && this.categories[this.transaction.category]) {
-                return this.categories[this.transaction.category].label;
+            var category = _.find(this.categories, function (category) {
+                return category.id == _this.transaction.category;
+            });
+
+            var categoryName = null;
+            if (this.transaction.category && category) {
+                return category.label;
             }
 
             return categoryName;
@@ -30970,6 +30960,21 @@ module.exports = btoa;
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.loading),expression:"!loading"}],staticClass:"filters mb-5"},[_c('div',[_c('button',{class:_vm.yearFilter == '2018' ? 'btn btn-success' : 'btn btn-secondary',on:{"click":function($event){_vm.filterYear('2018', $event)}}},[_vm._v("2018")]),_vm._v(" "),_c('button',{class:_vm.yearFilter == '2017' ? 'btn btn-success' : 'btn btn-secondary',on:{"click":function($event){_vm.filterYear('2017', $event)}}},[_vm._v("2017")])]),_vm._v(" "),_c('div',[_c('button',{class:_vm.categoryFilter == -1 ? 'btn btn-success' : 'btn btn-secondary',on:{"click":function($event){_vm.filterTransactions(-1, $event)}}},[_vm._v(_vm._s(_vm.trans.all))]),_vm._v(" "),_c('button',{class:_vm.categoryFilter == _vm.categories.income ? 'btn btn-success' : 'btn btn-secondary',on:{"click":function($event){_vm.filterTransactions(_vm.categories.income, $event)}}},[_vm._v(_vm._s(_vm.trans.all_incomes))]),_vm._v(" "),_c('button',{class:_vm.categoryFilter == _vm.categories.cost ? 'btn btn-success' : 'btn btn-secondary',on:{"click":function($event){_vm.filterTransactions(_vm.categories.cost, $event)}}},[_vm._v(_vm._s(_vm.trans.all_costs))])]),_vm._v(" "),_c('div',_vm._l((this.categories.all),function(category){return _c('button',{key:category.id,class:_vm.categoryFilter.indexOf(category.id) != -1 ? 'btn btn-success' : 'btn btn-secondary',on:{"click":function($event){(_vm.filterTransactions(category.id, $event))}}},[_vm._v(_vm._s(_vm.trans['category_' + category.id]))])}))]),_vm._v(" "),_c('i',{directives:[{name:"show",rawName:"v-show",value:(_vm.loading),expression:"loading"}],staticClass:"fa fa-spinner fa-spin loader"}),_vm._v(" "),_c('div',{staticClass:"table-responsive"},[_c('table',{directives:[{name:"show",rawName:"v-show",value:(!_vm.loading),expression:"!loading"}],staticClass:"table table-hover"},[_c('thead',[_c('tr',[_c('th',[_vm._v(_vm._s(_vm.trans.date))]),_vm._v(" "),_c('th',[_vm._v(_vm._s(_vm.trans.ref))]),_vm._v(" "),_c('th',[_vm._v(_vm._s(_vm.trans.description))]),_vm._v(" "),_c('th',[_c('div',{staticClass:"dropdown"},[_c('span',{staticClass:"dropdown-toggle",attrs:{"id":"dropdownMenuButton","data-toggle":"dropdown"}},[_vm._v("\n                                "+_vm._s(_vm.trans.amount)+" "+_vm._s(this.currency)+"\n                            ")]),_vm._v(" "),_c('div',{staticClass:"dropdown-menu",attrs:{"aria-labelledby":"dropdownMenuButton"}},_vm._l((this.currencies),function(currency){return _c('span',{key:currency.id,staticClass:"dropdown-item",on:{"click":function($event){_vm.changeCurrency(currency.currency)}}},[_vm._v(_vm._s(currency.currency)+" "+_vm._s(currency.label))])}))])]),_vm._v(" "),_c('th',[_vm._v(_vm._s(_vm.trans.category))])])]),_vm._v(" "),_c('tbody',_vm._l((_vm.filteredTransactions),function(transaction){return _c('transaction-item',{key:transaction.hash,attrs:{"transaction":transaction,"categories":_vm.categories.all}})}))])])])}
 var staticRenderFns = []
 module.exports = { render: render, staticRenderFns: staticRenderFns }
+
+/***/ }),
+
+/***/ "wMRR":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("FZ+f")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".table td[data-v-fc0ecc8c]{font-size:14px;text-transform:capitalize}", ""]);
+
+// exports
+
 
 /***/ }),
 

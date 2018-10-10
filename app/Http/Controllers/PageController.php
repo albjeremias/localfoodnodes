@@ -83,7 +83,7 @@ class PageController extends Controller
         $res = $client->request('GET', 'https://api.localfoodnodes.org/v1.0/nodes/names');
         $nodes = json_decode($res->getBody());
 
-        $res = $client->request('GET', 'https://api.localfoodnodes.org/v1.0/currency/rates');
+        $res = $client->request('GET', 'https://localfoodnodes.org/api/currencies');
         $currencies = json_decode($res->getBody());
 
         $res = $client->request('GET', 'https://api.localfoodnodes.org/v1.0/currency/labels');
@@ -92,7 +92,7 @@ class PageController extends Controller
         return view('public.pages.statistics', [
             'orders' => $orders->data,
             'nodes' => $nodes->data,
-            'currencies' => $currencies->data,
+            'currencies' => $currencies,
             'currencyLabels' => $currencyLabels->data,
         ]);
     }

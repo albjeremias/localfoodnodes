@@ -6,13 +6,13 @@
                 <div class="metric">
                     <div class="metric-inner">
                         <div class="value">{{ data.products }}</div>
-                        <div class="label">{{ this.trans.products }}</div>
+                        <div class="label">{{ this.trans.unique_products }}</div>
                     </div>
                 </div>
                 <div class="metric">
                     <div class="metric-inner">
                         <div class="value">{{ data.count }}</div>
-                        <div class="label">{{ this.trans.orders }}</div>
+                        <div class="label">{{ this.trans.items_sold }}</div>
                     </div>
                 </div>
                 <div class="metric">
@@ -116,11 +116,10 @@
         },
         methods: {
             changeCurrency(currency) {
-                this.currency = currency;
-
                 axios.get('https://api.localfoodnodes.org/v1.0/orders/amount?currency=' + currency)
                 .then(response => {
                     this.data.circulation = response.data.data;
+                    this.currency = currency;
                 });
             }
         },

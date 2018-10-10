@@ -75,10 +75,6 @@ class AdminController extends Controller
             $swedbankParser = new Swedbank($request->file('file'));
 
             $swedbankParser->parse(function($validTransaction) use ($currencyConverter) {
-                if ($validTransaction['ref'] === 'STRIPE') {
-                    $validTransaction['category'] = 2;
-                }
-
                 // Convert currency from SEK to EUR
                 $validTransaction['amount'] = $currencyConverter->convert($validTransaction['amount'], 'SEK');
 

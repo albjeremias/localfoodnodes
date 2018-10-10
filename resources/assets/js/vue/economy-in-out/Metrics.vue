@@ -81,7 +81,7 @@
         },
         methods: {
             changeYear(year) {
-                axios.get('/api/economy/transactions?year=' + year + '&lang=' + window.lang)
+                axios.get('/api/economy/transactions?currency=' + this.currency + '&year=' + year + '&lang=' + window.lang)
                 .then(response => {
                     this.data = response.data;
                 });

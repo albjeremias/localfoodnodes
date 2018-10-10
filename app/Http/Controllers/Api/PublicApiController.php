@@ -99,12 +99,20 @@ class PublicApiController extends ApiBaseController
             $currencyConverter = new CurrencyConverter();
         }
 
+        // Translate categories
         $incomeCategories = new Collection(config('economy.categories.income'));
         $costCategories = new Collection(config('economy.categories.cost'));
         $allCategories = $incomeCategories->concat($costCategories);
 
+        // Translate here
+        // foreach ($allCategories as $category) {
+
+        // }
+
         // All categories
         $availableYears = [];
+        $income = 0;
+        $cost = 0;
         foreach ($transactions as $transaction) {
             $availableYears[$transaction->year] = $transaction->year;
             $amount = $transaction->amount;
@@ -113,12 +121,17 @@ class PublicApiController extends ApiBaseController
                 $amount = (int) $currencyConverter->convert($amount, 'EUR', $request->get('currency'));
             }
 
-            if (!isset($totalPerCategory[$transaction->category])) {
-                $totalPerCategory[$transaction->category] = 0;
-            }
+            // if (!isset($totalPerCategory[$transaction->category])) {
+            //     $totalPerCategory[$transaction->category] = 0;
+            // }
 
-            if ($transaction->category) {
-                $totalPerCategory[$transaction->category] += $amount;
+            // if ($transaction->category) {
+            //     $totalPerCategory[$transaction->category] += $amount;
+            // }
+            if ($incomeCategories->contains('id', $transaction->category)) {
+                $income += $amount;
+            } else if ($costCategories->contains('id', $transaction->category)) {
+                $cost += -$amount;
             }
         }
 
@@ -132,9 +145,9 @@ class PublicApiController extends ApiBaseController
         }
 
         // Calculate sums based on year filter
-        $totalIncome = 0;
-        $totalCost = 0;
-        $totalPerCategory = [];
+        $incomeFiltered = 0;
+        $costFiltered = 0;
+        $totalFilteredPerCategory = [];
         foreach ($transactions as $transaction) {
             $amount = $transaction->amount;
 
@@ -142,18 +155,18 @@ class PublicApiController extends ApiBaseController
                 $amount = (int) $currencyConverter->convert($amount, 'EUR', $request->get('currency'));
             }
 
-            if (!isset($totalPerCategory[$transaction->category])) {
-                $totalPerCategory[$transaction->category] = 0;
+            if (!isset($totalFilteredPerCategory[$transaction->category])) {
+                $totalFilteredPerCategory[$transaction->category] = 0;
             }
 
             if ($transaction->category) {
-                $totalPerCategory[$transaction->category] += $amount;
+                $totalFilteredPerCategory[$transaction->category] += $amount;
             }
 
             if ($incomeCategories->contains('id', $transaction->category)) {
-                $totalIncome += $amount;
+                $incomeFiltered += $amount;
             } else if ($costCategories->contains('id', $transaction->category)) {
-                $totalCost += -$amount;
+                $costFiltered += -$amount;
             }
         }
 
@@ -175,7 +188,7 @@ class PublicApiController extends ApiBaseController
             if ($group) {
                 $chartData[$group][] = [
                     $categoryName,
-                    isset($totalPerCategory[$categoryId]) ? abs($totalPerCategory[$categoryId]) : 0
+                    isset($totalFilteredPerCategory[$categoryId]) ? abs($totalFilteredPerCategory[$categoryId]) : 0
                 ];
             }
         }
@@ -202,10 +215,10 @@ class PublicApiController extends ApiBaseController
                 'cost' => $transactions->whereIn('category', $costCategories->pluck('id'))->groupBy('category'),
             ],
             'total' => [
-                'income' => $totalIncome,
-                'cost' => $totalCost,
-                'grouped' => $totalPerCategory,
-                'diff' => (int) ($totalIncome - $totalCost),
+                'income' => $incomeFiltered,
+                'cost' => $costFiltered,
+                'grouped' => $totalFilteredPerCategory,
+                'diff' => (int) ($income - $cost),
             ],
             'chartData' => $chartData,
             'years' => $availableYears,

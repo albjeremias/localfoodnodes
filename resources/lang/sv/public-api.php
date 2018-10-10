@@ -18,9 +18,9 @@ return [
         'description' => 'Beskrivning',
         'in' => 'In',
         'money_circulated' => 'Pengacirkulation',
-        'orders' => 'Beställningar',
+        'items_sold' => 'Sålda varor',
         'out' => 'Ut',
-        'products' => 'Produkter',
+        'unique_products' => 'Unika produkter',
         'ref' => 'Referens',
 
         // Transaction categories

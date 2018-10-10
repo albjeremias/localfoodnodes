@@ -30,10 +30,13 @@
                 return Math.sign(number) < 1 ? true : false;
             },
             categoryName() {
-                let categoryName = null;
+                let category = _.find(this.categories, category => {
+                    return category.id == this.transaction.category;
+                });
 
-                if (this.transaction.category && this.categories[this.transaction.category]) {
-                    return this.categories[this.transaction.category].label;
+                let categoryName = null;
+                if (this.transaction.category && category) {
+                    return category.label;
                 }
 
                 return categoryName;

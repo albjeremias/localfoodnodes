@@ -18,9 +18,9 @@ return [
         'description' => 'Description',
         'in' => 'In',
         'money_circulated' => 'Money circulation',
-        'orders' => 'Orders',
+        'items_sold' => 'Items sold',
         'out' => 'Out',
-        'products' => 'Products',
+        'unique_products' => 'Unique products',
         'ref' => 'Reference',
 
         // Transaction categories
