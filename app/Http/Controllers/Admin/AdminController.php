@@ -82,6 +82,9 @@ class AdminController extends Controller
                 // Convert currency from SEK to EUR
                 $validTransaction['amount'] = $currencyConverter->convert($validTransaction['amount'], 'SEK');
 
+                // Remove swish numbers with regexp here
+                $validTransaction['description'] = preg_replace('/(?:[+0-9]?){6,14}[0-9]/', '', $validTransaction['description']);
+
                 $transaction = new Transaction();
                 $errors = $transaction->validate($validTransaction);
 
