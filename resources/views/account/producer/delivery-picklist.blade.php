@@ -53,7 +53,7 @@
                                     <td>{!! $orderDateItemLink->getPriceWithUnit() !!}</td>
                                     <td>
                                         @if ($orderDateItemLink->getItem()->getProduct()->vat)
-                                            {{ $orderDateItemLink->getVatAmountWithUnit() }}
+                                            {!! $orderDateItemLink->getVatAmountWithUnit() !!}
                                             ({{ $orderDateItemLink->getItem()->getProduct()->vat }}%)
                                         @else
                                             -
