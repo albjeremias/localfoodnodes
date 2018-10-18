@@ -32,6 +32,7 @@
                     </label>
                     <input type="text" name="phone" class="form-control" id="phone" placeholder="{{ trans('admin/producer.phone') }}" value="{{ $producer->phone or '' }}">
                 </div>
+                </div>
                 <div class="form-group">
                     <label class="form-control-label" for="info">
                         {{ trans('admin/producer.company_description') }}

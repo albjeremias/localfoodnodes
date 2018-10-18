@@ -20,7 +20,6 @@
                     @else
                         @include('new.layouts.nav.types.account')
                     @endif
-
                 </ul>
 
                 <ul class="navbar-nav ml-auto mb-5 mb-lg-0 mt-3 mt-lg-0">

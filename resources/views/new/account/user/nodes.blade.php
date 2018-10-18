@@ -2,6 +2,7 @@
 [
     'nav_title' => trans('admin/user.nav_title'),
     'sub_nav' => 'account',
+    'nav_active' => 0,
     'sub_nav_active' => 1
 ])
 

@@ -9,7 +9,7 @@
 
     <div class="product-container px-3 py-1">
 
-        <h4 class="h10">20 Lådor med blandade grönsaker</h4>
+        <h4 class="h10">{{ $product->name }}</h4>
 
         <p>Kollinge torpargård</p>
 

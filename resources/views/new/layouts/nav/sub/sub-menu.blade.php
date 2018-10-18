@@ -1,5 +1,14 @@
 {{-- EXTEND NAVBAR TO SHOW ACCOUNT NAVBAR --}}
 
+
+
+{{-- PLACEHOLDER - Will be replaced when we store selected producer in session. @NOTE David --}}
+@foreach ($user->producerAdminLinks() as $producerAdminLink)
+    @php
+        $active_producer_id = $producerAdminLink->getProducer()->id;
+    @endphp
+@endforeach
+
 @php
     $node_navbar = [
         ['name' => trans('public/nav.products'),  'link' => '/node/' . (isset($node_slug) ? $node_slug : ''), 'icon' => 'shopping-basket'],
@@ -15,6 +24,13 @@
         ['name' => trans('public/nav.my_profile'), 'link' => '/account/user/edit',    'icon' => 'user'],
     ];
 
+    $producer_navbar = [
+        ['name' => trans('public/nav.dashboard'),           'link' => '/account/producer/' . $active_producer_id, 'icon' => 'th-large'],
+        ['name' => trans('admin/user-nav.create_product'),  'link' => '/account/producer/' . $active_producer_id . '/product/create', 'icon' => 'map-marker'],
+        ['name' => trans('admin/user-nav.products'),        'link' => '/account/producer/' . $active_producer_id . '/product*', 'icon' => 'home'],
+        ['name' => trans('admin/user-nav.deliveries'),      'link' => '/account/producer/' . $active_producer_id . '/deliveries', 'icon' => 'user'],
+    ];
+
     if (isset($sub_nav)) :
         switch ($sub_nav) :
             case 'account':
@@ -22,6 +38,9 @@
                 break;
             case 'node' :
                 $active_navbar = $node_navbar;
+                break;
+            case 'producer' :
+                $active_navbar = $producer_navbar;
                 break;
         endswitch;
     endif;

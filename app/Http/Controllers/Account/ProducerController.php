@@ -80,7 +80,7 @@ class ProducerController extends Controller
             return $orderDateItemLink->getDate();
         })->flatten();
 
-        return view('account.producer.index', [
+        return view('new.account.producer.index', [
             'producer' => $producer,
             'orderDateItemLinks' => $orderDateItemLinks,
             'orderDates' => $orderDates,
@@ -147,7 +147,7 @@ class ProducerController extends Controller
         $producer = $user->producerAdminLink($producerId)->getProducer();
         $producer->fill($request->old());
 
-        return view('account.producer.edit', [
+        return view('new.account.producer.edit', [
             'producer' => $producer,
             'breadcrumbs' => [
                 $producer->name => 'producer/' . $producer->id,
@@ -280,7 +280,7 @@ class ProducerController extends Controller
         $producer = $user->producerAdminLink($producerId)->getProducer();
         $products = Product::where('producer_id', $producer->id)->get();
 
-        return view('account.producer.products', [
+        return view('new.account.producer.products', [
             'producer' => $producer,
             'products' => $products,
             'breadcrumbs' => [
@@ -298,7 +298,7 @@ class ProducerController extends Controller
         $user = Auth::user();
         $producer = $user->producerAdminLink($producerId)->getProducer();
 
-        return view('account.producer.deliveries', [
+        return view('new.account.producer.deliveries', [
             'producer' => $producer,
             'breadcrumbs' => [
                 $producer->name => 'producer/' . $producer->id,

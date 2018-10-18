@@ -3,6 +3,7 @@
     'bread_type'     => trans('public/nav.search_result'),
     'bread_result'   => $node->name,
     'sub_nav'        => 'node',
+    'nav_active' => 0,
     'sub_nav_active' => 0,
     'node_slug'      => 'bygdens-saluhall-billinge',
 ]

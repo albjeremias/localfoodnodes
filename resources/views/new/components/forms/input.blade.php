@@ -8,6 +8,7 @@
     *placeholder | string
     info_text    | string
     info_link    | string
+    value        | *
     label_cap    | boolean
     min          | integer
     append       | string
@@ -24,8 +25,8 @@
         <small>{{ $info_text }}</small>
     </a>
 @endif
-
 <div class="input-group">
+
 
 <input type="{{ $type }}"
        aria-describedby="input-aria-{{ $name }}"
@@ -33,7 +34,7 @@
        {{ isset($min) ? 'min='.$min : '' }}
        class="{{ $class }} {{ $errors->has($name) ? 'placeholder-error red-b' : '' }}"
        id="form-input-{{ $name }}"
-       {{ isset($value) ? 'value='.$value : '' }}
+       value="{{ isset($m_value) ? $m_value : '' }}"
        placeholder="{{ $errors->has($name) ? $errors->first($name) : $placeholder }}">
 
 @if(isset($append))

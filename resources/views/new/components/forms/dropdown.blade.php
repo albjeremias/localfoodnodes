@@ -7,7 +7,7 @@
     placeholder  | string
     *options     | array
     *value       | boolean
-    *val_key      | boolean
+    *val_key     | boolean
 
     *Required
 --}}

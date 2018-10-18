@@ -416,3 +416,8 @@ option:checked {
     outline: 0;
     border-color: white;
 }
+
+.nav-acount-active {
+  background-color: $main-accent;
+  border-radius: 20px;
+}

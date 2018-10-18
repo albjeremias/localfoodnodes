@@ -25,7 +25,8 @@
                         'name'  => 'name',
                         'type'  => 'text',
                         'class' => 'form-control',
-                        'placeholder' => trans('public/register.name')
+                        'placeholder' => trans('public/register.name'),
+                        'm_value' => $producer->name ?? ''
                     ])
                 </div>
 
@@ -36,7 +37,8 @@
                         'name'  => 'email',
                         'type'  => 'email',
                         'class' => 'form-control',
-                        'placeholder' => trans('public/register.email')
+                        'placeholder' => trans('public/register.email'),
+                        'm_value' => $producer->email ?? ''
                     ])
                 </div>
 
@@ -47,7 +49,8 @@
                         'name'  => 'address',
                         'type'  => 'text',
                         'class' => 'form-control',
-                        'placeholder' => trans('public/register.address')
+                        'placeholder' => trans('public/register.address'),
+                        'm_value' => $producer->address ?? ''
                     ])
                 </div>
 
@@ -58,7 +61,8 @@
                         'name'  => 'zip',
                         'type'  => 'text',
                         'class' => 'form-control',
-                        'placeholder' => trans('public/register.zip_code')
+                        'placeholder' => trans('public/register.zip_code'),
+                        'm_value' => $producer->zip ?? ''
                     ])
                 </div>
 
@@ -69,7 +73,8 @@
                         'name'  => 'city',
                         'type'  => 'text',
                         'class' => 'form-control',
-                        'placeholder' => trans('public/register.city')
+                        'placeholder' => trans('public/register.city'),
+                        'm_value' => $producer->city ?? ''
                     ])
                 </div>
 
@@ -80,7 +85,8 @@
                         'name'  => 'info',
                         'class' => 'form-control wysiwyg',
                         'rows'  => 7,
-                        'old'   => $producer->info
+                        'old'   => $producer->info,
+                        'm_value' => $producer->info ?? ''
                     ])
                 </div>
 
@@ -95,6 +101,7 @@
                         'placeholder' => trans('public/register.choose_currency'),
                         'options'     => UnitsHelper::getCurrencies(),
                         'value'       => false
+                        // Add set value
                     ])
                 </div>
 
@@ -105,7 +112,8 @@
                         'name'  => 'payment_info',
                         'type'  => 'text',
                         'class' => 'form-control',
-                        'placeholder' => trans('public/register.write_here')
+                        'placeholder' => trans('public/register.write_here'),
+                        'm_value' => $producer->payment_info ?? ''
                     ])
                 </div>
             </div>
@@ -128,7 +136,8 @@
                     'name'  => 'link_homepage',
                     'type'  => 'text',
                     'class' => 'form-control',
-                    'placeholder' => 'http://'
+                    'placeholder' => 'http://',
+                    'm_value' => $producer->link_homepage ?? ''
                 ])
             </div>
 
@@ -139,7 +148,8 @@
                     'name'  => 'link_facebook',
                     'type'  => 'text',
                     'class' => 'form-control',
-                    'placeholder' => 'Facebook-' . trans('public/register.address_small')
+                    'placeholder' => 'Facebook-' . trans('public/register.address_small'),
+                    'm_value' => $producer->link_facebook ?? ''
                 ])
             </div>
 
@@ -150,7 +160,8 @@
                     'name'  => 'link_twitter',
                     'type'  => 'text',
                     'class' => 'form-control',
-                    'placeholder' => 'Twitter-' . trans('public/register.address_small')
+                    'placeholder' => 'Twitter-' . trans('public/register.address_small'),
+                    'm_value' => $producer->link_twitter ?? ''
                 ])
             </div>
 
@@ -161,11 +172,11 @@
                     'name'  => 'link_instagram',
                     'type'  => 'text',
                     'class' => 'form-control',
-                    'placeholder' => 'Instagram-' . trans('public/register.address_small')
+                    'placeholder' => 'Instagram-' . trans('public/register.address_small'),
+                    'm_value' => $producer->link_instagram
                 ])
             </div>
 
-            <button type="submit" class="btn btn-secondary mt-3 float-right">{{ trans('admin/producer.save_producer') }}</button>
         </div>
     </div>
 </div>

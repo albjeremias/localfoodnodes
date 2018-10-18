@@ -1,9 +1,9 @@
 @extends('new.account.layout',
 [
     'nav_title' => trans('admin/user.nav_title'),
-    'sub_nav' => 'account',
-    'nav_active' => 0,
-    'sub_nav_active' => 0
+    'sub_nav' => 'producer',
+    'nav_active' => 1,
+    'sub_nav_active' => 0,
 ])
 
 @section('title', 'Dashboard')
