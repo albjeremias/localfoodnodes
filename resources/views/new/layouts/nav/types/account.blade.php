@@ -1,35 +1,49 @@
+{{-- PLACEHOLDER - Will be replaced when we store selected producer in session. @NOTE David --}}
+@foreach ($user->producerAdminLinks() as $producerAdminLink)
+    @php
+        $active_producer_name = $producerAdminLink->getProducer()->name;
+    @endphp
+@endforeach
+
 {{-- MY PANEL --}}
 <li class="nav-item">
     <a class="nav-link black-54 {{ $nav_active == 0 ? 'nav-acount-active ml-3' : '' }}" href="/account/user">{{ trans('admin/user-nav.consumer') }}</a>
 </li>
 
 {{-- PRODUCER --}}
-@if ($user->producerAdminLinks()->count() > 0 && $nav_active == 1)
+@if ($user->producerAdminLinks()->count() > 0 && $nav_active && 1)
     <li class="nav-item dropdown nav-acount-active">
 
-        @foreach ($user->producerAdminLinks() as $producerAdminLink)
-            <a class="nav-link black-54 dropdown-toggle {{ Request::is('account/producer/' . $producerAdminLink->getProducer()->id) ? 'active' : '' }}" href="/account/producer/{{ $producerAdminLink->getProducer()->id }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ $producerAdminLink->getProducer()->name }}
+            <a class="nav-link black-54 dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ $active_producer_name }}
             </a>
 
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/account/producer/{{ $producerAdminLink->getProducer()->id }}">Visit</a>
+
+                @foreach ($user->producerAdminLinks() as $producerAdminLink)
+                    <a class="dropdown-item" href="/account/producer/{{ $producerAdminLink->getProducer()->id }}">{{ $producerAdminLink->getProducer()->name }}</a>
+                @endforeach
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/account/producer/create">{{ trans('admin/user-nav.create_producer') }}</a>
+
             </div>
-        @endforeach
     </li>
 
 @elseif($user->producerAdminLinks()->count() > 0 && $nav_active != 1)
     <li class="nav-item dropdown">
+        <a class="nav-link black-54 dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Producent
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-        @foreach ($user->producerAdminLinks() as $producerAdminLink)
-            <a class="nav-link black-54 dropdown-toggle {{ Request::is('account/producer/' . $producerAdminLink->getProducer()->id) ? 'active' : '' }}" href="/account/producer/{{ $producerAdminLink->getProducer()->id }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Producent
-            </a>
-
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            @foreach ($user->producerAdminLinks() as $producerAdminLink)
                 <a class="dropdown-item" href="/account/producer/{{ $producerAdminLink->getProducer()->id }}">{{ $producerAdminLink->getProducer()->name }}</a>
-            </div>
-        @endforeach
+            @endforeach
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/account/producer/create">{{ trans('admin/user-nav.create_producer') }}</a>
+
+        </div>
+
     </li>
 @elseif ($user->producerAdminLinks()->count() === 0)
     {{-- CREATE PRODUCER --}}

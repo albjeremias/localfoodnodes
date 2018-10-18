@@ -24,12 +24,14 @@
         ['name' => trans('public/nav.my_profile'), 'link' => '/account/user/edit',    'icon' => 'user'],
     ];
 
-    $producer_navbar = [
-        ['name' => trans('public/nav.dashboard'),           'link' => '/account/producer/' . $active_producer_id, 'icon' => 'th-large'],
-        ['name' => trans('admin/user-nav.create_product'),  'link' => '/account/producer/' . $active_producer_id . '/product/create', 'icon' => 'map-marker'],
-        ['name' => trans('admin/user-nav.products'),        'link' => '/account/producer/' . $active_producer_id . '/product*', 'icon' => 'home'],
-        ['name' => trans('admin/user-nav.deliveries'),      'link' => '/account/producer/' . $active_producer_id . '/deliveries', 'icon' => 'user'],
-    ];
+    if(isset($active_producer_id)) :
+        $producer_navbar = [
+            ['name' => trans('public/nav.dashboard'),           'link' => '/account/producer/' . $active_producer_id, 'icon' => 'th-large'],
+            ['name' => trans('admin/user-nav.create_product'),  'link' => '/account/producer/' . $active_producer_id . '/product/create', 'icon' => 'map-marker'],
+            ['name' => trans('admin/user-nav.products'),        'link' => '/account/producer/' . $active_producer_id . '/products', 'icon' => 'home'],
+            ['name' => trans('admin/user-nav.deliveries'),      'link' => '/account/producer/' . $active_producer_id . '/deliveries', 'icon' => 'user'],
+        ];
+    endif;
 
     if (isset($sub_nav)) :
         switch ($sub_nav) :
