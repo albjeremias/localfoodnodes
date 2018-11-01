@@ -1,9 +1,9 @@
 {
-    "/js/admin-transaction-list.js": "/js/admin-transaction-list.js?id=b6e6837cfd20b4ff39c9",
-    "/js/transactions.js": "/js/transactions.js?id=7a5222a59bf24efe249f",
-    "/js/economy-in-out.js": "/js/economy-in-out.js?id=2fc1f8adfef62c25f18c",
-    "/js/economy-circulation.js": "/js/economy-circulation.js?id=c643dc7f3ca5fa35c67d",
-    "/js/payment-widget.js": "/js/payment-widget.js?id=8c0b13a15747945d4fb8",
-    "/css/public.css": "/css/public.css?id=b0f0dcd73441cdb68a4b",
-    "/css/account.css": "/css/account.css?id=29196f37630f5d327309"
+    "/js/admin-transaction-list.js": "/js/admin-transaction-list.js?id=73a85d2826f2ba32052d",
+    "/js/transactions.js": "/js/transactions.js?id=49b393d96f9db2d7a058",
+    "/js/economy-in-out.js": "/js/economy-in-out.js?id=9a4b222f61b5682c6c15",
+    "/js/economy-circulation.js": "/js/economy-circulation.js?id=4ff9ac94d9f73d694f13",
+    "/js/payment-widget.js": "/js/payment-widget.js?id=f4c962dfa308d87310c0",
+    "/css/public.css": "/css/public.css?id=754c253bea06110b547a",
+    "/css/account.css": "/css/account.css?id=9769c06a769b1c2148c0"
 }

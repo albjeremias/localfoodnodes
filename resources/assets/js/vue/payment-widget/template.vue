@@ -8,7 +8,7 @@
                         <div class="timeline" v-show="!loading">
                             <div class="next-goal">
                                 <div class="next-goal-inner">
-                                    <b>{{ parseInt(members) }} {{ trans['have_become_members'] }}</b> {{ trans['lets_go_to'] }} {{ parseInt(nextGoal.members) }}!
+                                    <b>{{ parseInt(members) }} {{ trans['have_become_members'] }}</b> {{ trans['lets_go_to'] }} {{ parseInt(goals[0].members) }}!
                                 </div>
                             </div>
                             <div class="line">
