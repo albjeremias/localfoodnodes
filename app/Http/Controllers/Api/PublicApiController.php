@@ -215,6 +215,11 @@ class PublicApiController extends ApiBaseController
         return response()->json($data);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     private function getEconomyCategories() {
         // Economy categories
         return [

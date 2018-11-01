@@ -9,6 +9,7 @@ use App\Mail\ResetPassword as ResetPasswordNotification;
 use Mail;
 use App\Traits\Excludable;
 use App\User\UserMembershipPayment;
+use App\User\UserMembershipSubscription;
 
 class User extends \App\User\BaseUser
 {
@@ -29,6 +30,7 @@ class User extends \App\User\BaseUser
         'language' => '',
         'currency' => '',
         'active' => '',
+        'stripe_customer_id' => '',
     ];
 
     /**
@@ -391,6 +393,14 @@ class User extends \App\User\BaseUser
     }
 
     /**
+     * Define relationship with membership payments.
+     */
+    public function membershipSubscription()
+    {
+        return $this->hasOne('App\User\UserMembershipSubscription')->first();
+    }
+
+    /**
      * Check if user is a member.
      *
      * Todo: implement
@@ -415,7 +425,7 @@ class User extends \App\User\BaseUser
     /**
      * Process payments.
      */
-    public function processMembershipPayment($token, $amount, $currency)
+    public function processMembershipPayment($token, $amount, $currency, $recurring = false)
     {
         $successMessage = $this->name . ' (' . $this->email . ')' . ' payed ' . $amount . ' ' . $currency . ' to become a member.';
 
@@ -432,12 +442,71 @@ class User extends \App\User\BaseUser
                 $adjustedAmount = $amount * 100;
             }
 
-            $charge = \Stripe\Charge::create(array(
-                'amount' => (int) $adjustedAmount,
-                'currency' => $currency,
-                'source' => $token,
-                'description' => $this->name
-            ));
+            if ($recurring === 'monthly') {
+                $membershipSubscription = $this->membershipSubscription();
+                $productId = 'prod_Dlg5pEcdYz4TbL'; // Manually created, should only exist one
+
+                // Retreive or create customer
+                $customer = null;
+                if ($membershipSubscription && $membershipSubscription->customer_id) {
+                    $customer = \Stripe\Customer::retrieve($membershipSubscription->customer_id);
+                }
+
+                if (!$customer) {
+                    $customer = \Stripe\Customer::create([
+                        'email' => $this->email,
+                        'source'  => $token
+                    ]);
+                }
+
+                // Retreive or create plan
+                $plan = null;
+                if ($membershipSubscription && $membershipSubscription->plan_id) {
+                    $plan = \Stripe\Plan::retrieve($membershipSubscription->plan_id);
+                }
+
+                if (!$plan) {
+                    $plan = \Stripe\Plan::create([
+                        'currency' => $currency,
+                        'interval' => 'month',
+                        'product' => $productId,
+                        'nickname' => 'Monthly membership',
+                        'amount' => $adjustedAmount,
+                    ]);
+                }
+
+                // Retreive or create subscription
+                $subscription = null;
+                if ($membershipSubscription && $membershipSubscription->subscription_id) {
+                    $subscription = \Stripe\Subscription::retrieve($membershipSubscription->subscription_id);
+                }
+
+                if (!$subscription) {
+                    $subscription = \Stripe\Subscription::create([
+                        'customer' => $customer->id,
+                        'items' => [['plan' => $plan->id]],
+                    ]);
+                }
+
+                if (!$membershipSubscription) {
+                    // Create membership subscription record
+                    UserMembershipSubscription::create([
+                        'user_id' => $this->id,
+                        'customer_id' => $customer->id,
+                        'product_id' => $productId,
+                        'plan_id' => $plan->id,
+                        'subscription_id' => $subscription->id,
+                    ]);
+                }
+            } else {
+                // Create one time charge
+                \Stripe\Charge::create([
+                    'amount' => (int) $adjustedAmount,
+                    'currency' => $currency,
+                    'source' => $token,
+                    'description' => $this->name
+                ]);
+            }
 
             UserMembershipPayment::create([
                 'user_id' => $this->id,

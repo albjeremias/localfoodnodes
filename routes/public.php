@@ -13,6 +13,7 @@ Route::get('/', 'IndexController@index');
 Route::get('/account/user/create/{type?}', 'Account\UserController@create');
 Route::post('/account/user/insert', 'Account\UserController@insert');
 Route::get('/account/user/activate/token/{token}', 'Account\UserController@activateToken'); // Activate account even if user is not logged in
+Route::post('/account/user/membership/callback', 'Account\UserController@membershipCallback'); // Need to be public with the new membership donation form
 
 // Cart - needs auth since cart only works for logged in users
 Route::group(['prefix' => '/checkout', 'middleware' => 'auth.account'], function () {

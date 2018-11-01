@@ -1,7 +1,7 @@
 @extends('public.layout-page', [
     'header' => trans('public/economy.header'),
     'subHeader' => '',
-    'image' => '/images/money-ladder.jpg'
+    'image' => '/images/shutterstock_664170823.jpg'
 ])
 
 @section('title', trans('public/economy.title'))

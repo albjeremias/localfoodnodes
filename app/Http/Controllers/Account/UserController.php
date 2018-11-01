@@ -519,35 +519,125 @@ class UserController extends Controller
      */
     public function membershipCallback(Request $request)
     {
-        $user = Auth::user();
-        $token = $request->input('stripeToken');
-        $amount = $request->input('amount');
-        $currency = $request->input('currency');
 
-        $status = $user->processMembershipPayment($token, $amount, $currency);
+        $token = $request->input('stripeToken');
+        if (!$token) {
+            return response()->json([
+                'message' => 'missing_token',
+                'section' => null,
+            ], 400);
+        }
+
+        $amount = $request->input('amount');
+        if (!$amount) {
+            return response()->json([
+                'message' => 'missing_amount',
+                'section' => 'amount',
+            ], 400);
+        }
+
+        $currency = $request->input('currency');
+        if (!$currency) {
+            return response()->json([
+                'message' => 'missing_currency',
+                'section' => 'currency',
+            ], 400);
+        }
+
+        $recurring = $request->input('recurring');
+        if (!$recurring) {
+            return response()->json([
+                'message' => 'missing_recurring',
+                'section' => 'recurring',
+            ], 400);
+        }
+
+        $user = Auth::user();
+
+        if (!$user) {
+            // Login
+            if ($request->input('user-action') === 'login') {
+                if (!$request->input('login-email') || !$request->input('login-password')) {
+                    return response()->json([
+                        'message' => 'error_login_failed',
+                        'section' => 'submit',
+                    ], 401);
+                } else {
+                    $authenticated = Auth::attempt([
+                        'email' => $request->input('login-email'),
+                        'password' => $request->input('login-password')
+                    ]);
+
+                    if ($authenticated) {
+                        $user = Auth::user();
+                    } else {
+                        return response()->json([
+                            'message' => 'error_login_failed',
+                            'section' => 'submit',
+                        ], 401);
+                    }
+                }
+            }
+
+            // Create
+            if ($request->input('user-action') === 'signup') {
+                if (!$request->input('signup-name') || !$request->input('signup-email') || !$request->input('signup-password')) {
+                    return response()->json([
+                        'message' => 'error_signup_required_failed',
+                        'section' => 'submit',
+                    ], 401);
+                } else if (!$request->input('signup-gdpr')) {
+                    return response()->json([
+                        'message' => 'error_signup_gdpr_failed',
+                        'section' => 'submit',
+                    ], 401);
+                } else {
+                    $data = [
+                        'name' => $request->input('signup-name'),
+                        'email' => $request->input('signup-email'),
+                        'password' => $request->input('signup-password'),
+                        'phone' => $request->input('signup-phone'),
+                    ];
+
+                    $user = new User();
+                    $userData = $user->sanitize($data);
+                    $userData['password'] = \Hash::make($userData['password']);
+                    $user->fill($userData);
+                    $user->language = $this->getLang();
+
+                    // Default location Röstånga
+                    $user->setLocation('56.002490 13.293257');
+                    $user->save();
+
+                    GdprConsent::create(['user_id' => $user->id, 'name' => $user->name]);
+
+                    \App\Helpers\SlackHelper::message('notification', $user->name . ' (' . $user->email . ')' . ' signed up as a user through membership payment form.');
+
+                    $this->sendActivationLink($user);
+
+                    Auth::login($user);
+                }
+            }
+        }
+
+        $status = $user->processMembershipPayment($token, $amount, $currency, $recurring);
         $errorKey = null;
 
         if ($status['error']) {
-            $request->session()->flash('message', [
-                trans('admin/messages.user_membership_error')
-            ]);
-
-            return redirect('/account/user/membership?error=' . $status['code']);
+            return response()->json(trans('admin/messages.user_membership_error'), 400);
         }
 
-        if ($status['code'] === 'amount_too_small') {
-            $request->session()->flash('membership_modal_no_charge', true);
-        } else {
-            $request->session()->flash('membership_modal_thanks', true);
-            $request->session()->flash('message', [trans('admin/messages.user_membership_success')]);
-        }
-
+        // Save currency to user
         if (!$user->currency) {
             $user->currency = $currency;
             $user->save();
         }
 
-        return redirect('/account/user/membership');
+        if ($status['code'] === 'amount_too_small') {
+            return response()->json(false, 200);
+        } else {
+            return response()->json(true, 200);
+        }
     }
 
     /**

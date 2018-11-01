@@ -20,7 +20,6 @@ Route::group(['prefix' => '/user'], function () {
     // Route::get('/orders', 'Account\UserController@orders');
     Route::get('/order/{orderItemId}', 'Account\UserController@order');
     Route::get('/order/{orderItemId}/delete', 'Account\UserController@deleteOrderItem');
-    Route::post('/membership/callback', 'Account\UserController@membershipCallback');
     Route::get('/node/{nodeId}', 'Account\UserController@toggleNode');
     Route::get('/membership', 'Account\UserController@membership');
 });
