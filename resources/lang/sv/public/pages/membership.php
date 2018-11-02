@@ -23,7 +23,7 @@ return [
         <div class="col-12 col-sm-6 col-lg-3 mb-3">
             <b>Funktioner i appen</b>
             <ul class="list">
-                <li>Skapa produtker i appen</li>
+                <li>Skapa produkter i appen</li>
                 <li>Skapa noder i appen</li>
                 <li>Push notifikationer</li>
                 <li>Följa producenter</li>

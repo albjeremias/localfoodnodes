@@ -8,8 +8,8 @@ export default {
     data: function() {
         return {
             amount: 0,
-            amounts: [5, 10, 15, 20, 25, 30, 40, 50], // EUR - default value but WILL be updated,
-            amountsStatic: [5, 10, 15, 20, 25, 30, 40, 50], // EUR - default value but WILL NOT be updated,
+            amounts: [10, 20, 30, 40, 50], // EUR - default value but WILL be updated,
+            amountsStatic: [10, 20, 30, 40, 50], // EUR - default value but WILL NOT be updated,
             annualGoal: {
                 amount: null,
                 average: null,
