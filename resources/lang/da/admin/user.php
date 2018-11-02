@@ -74,7 +74,7 @@ return [
     // Membership
     'membership' => 'Bliv medlem',
     'membership_paid_title' => 'Du er medlem!',
-    'membership_paid' => 'Du har betalt medlemskab frem til :date. Udløber om :days dage.',
+    'membership_paid' => 'Medlem til :date',
     'membership_paid_link' => 'Læs mere om medlemskab',
     'membership_unpaid_title' => 'Bliv medlem',
     'membership_unpaid' => 'For at kunnne købe lokale fødevarer skal du først være betalende medlem. Du bestemmer selv hvor meget eller hvor lidt du vil betale for at være medlem.',

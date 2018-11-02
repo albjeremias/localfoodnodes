@@ -366,3 +366,48 @@ $timelineColor: #e6e2d7;
     }
   }
 }
+
+@media (max-width: 991px) {
+  .payment-widget {
+    .timeline {
+      .line {
+        ol {
+          &:after {
+            left: -5px;
+          }
+
+          li {
+            &:nth-child(odd),
+            &:nth-child(even) {
+              .description {
+                border-left: 10px solid $timelineColor;
+                border-right: 0;
+
+                .point {
+                  right: auto;
+                  left: -10px;
+                }
+
+                .description-inner {
+                  margin-right: 0;
+                }
+              }
+            }
+
+            .description {
+              width: 100%;
+
+              .description-inner {
+                margin-left: 30px;
+              }
+            }
+          }
+        }
+      }
+
+      .current {
+        left: 0;
+      }
+    }
+  }
+}

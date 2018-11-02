@@ -80,7 +80,7 @@ return [
     // Membership
     'membership' => 'Membership',
     'membership_paid_title' => 'You\'re already a member!',
-    'membership_paid' => 'You have paid membership until :date. Expires in :days days.',
+    'membership_paid' => 'Member until :date',
     'membership_paid_link' => 'Read about membership',
     'membership_unpaid_title' => 'Become a supporting member',
     'membership_unpaid' => 'To be able to make your orders on Local Food Nodes, you need to become a supporting member and pay an annual fee. You decide for yourself how big or small your annual fee will be.',

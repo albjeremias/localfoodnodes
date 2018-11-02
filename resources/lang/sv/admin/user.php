@@ -80,7 +80,7 @@ return [
     // Membership
     'membership' => 'Bli medlem',
     'membership_paid_title' => 'Du är medlem!',
-    'membership_paid' => 'Du har betalat medlemskap fram till :date. Utgår om :days dagar.',
+    'membership_paid' => 'Medlem till :date',
     'membership_paid_link' => 'Läs mer om medlemskap',
     'membership_unpaid_title' => 'Bli medlem',
     'membership_unpaid' => 'För att kunna boka din lokala mat, måste du först bli stödmedlem genom att betala en årsavgift.  Du som användare bestämmer själv hur stor eller liten din årliga avgift kommer att vara.',

@@ -3,7 +3,7 @@
         <div>
             <div class="row">
 
-                <div class="col-xs-12 col-md-7">
+                <div class="col-12 col-lg-7">
                     <div class="card-body pb-0">
                         <div class="timeline" v-show="!loading">
                             <div class="next-goal">
@@ -37,7 +37,7 @@
                     </div> <!-- Timeline -->
                 </div> <!-- End col -->
 
-                <div class="col-xs-12 col-md-5">
+                <div class="col-12 col-lg-5">
 
                     <div class="card">
                         <div class="card-body body-text">

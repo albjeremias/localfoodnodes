@@ -35,7 +35,7 @@ return [
             <ul>
         ',
         'goal_2_header' => 'Fickpengar',
-        'goal_2_desc' => 'Ökar utvecklingen med fler arbetsdagar tillsammans. Mestadels pro bono med några timmar finasierade.
+        'goal_2_desc' => 'Ökar utvecklingen med fler arbetsdagar tillsammans. Mestadels pro bono med några timmar finansierade.
             <ul class="list">
                 <li>Team på tre personer</li>
                 <li>36h/veckan</li>
@@ -52,7 +52,7 @@ return [
             </ul>
         ',
         'goal_4_header' => 'Soffkodning',
-        'goal_4_desc' => 'Vi utvecklingar plattformen i ett långsamt tempo när vi hittar tid.
+        'goal_4_desc' => 'Vi utvecklar plattformen i ett långsamt tempo när vi hittar tid.
             <ul class="list">
                 <li>Team på tre personer</li>
                 <li>Jobb på kvällar och helger</li>
@@ -76,7 +76,7 @@ return [
         'value_card_body' => '
             <p>Ett av huvudskälen till att vi utvecklar plattformen LFN, och på det sätt vi gör det, är för att vi tror på ett Internet där mänskliga relationer skall kunna knytas, blomstra och utvecklas utan att vi som individer skall behöva ge upp vår personliga integritet. Där vi som användare inte utgör handelsvaran som säljs till okänd tredjepart. Istället sporras vi av tanken på ett Internet som stärker våra mänskliga band och där vi känner oss trygga i vetskapen att aldrig bli redskap för att någon skall tjäna pengar eller användas oss som verktyg i för oss okända sammanhang.</p>
             <p>För att kunna göra detta bygger Local Food Nodes, till skillnad från traditionella online-affärsmodeller, på öppenhet och en gåvoekonomi.</p>
-            <p>Så, vill du bli hooka upp med grymt bra lokalt producerade mat, helt utan mellanhänder, med hjälp av ett grymt digitalt verktyg är du välkommen att  support oss med så stor eller liten summa du känner för, så skall vi försöka göra sjukt bra grejer med det förtroendet.</p>
+            <p>Så, vill du hooka upp med grymt bra lokalt producerade mat, helt utan mellanhänder, med hjälp av ett grymt digitalt verktyg är du välkommen att  support oss med så stor eller liten summa du känner för, så skall vi försöka göra sjukt bra grejer med det förtroendet.</p>
         ',
         'your_email' => 'Din E-postadress',
         'your_name' => 'Ditt namn',
