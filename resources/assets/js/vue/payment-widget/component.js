@@ -217,7 +217,6 @@ export default {
                 component.paymentInProgress = false;
             })
             .catch(function(error) {
-                console.log(error);
                 error = error.response.data;
 
                 if (error.message) {
@@ -252,12 +251,6 @@ export default {
                 let convertedAmount = this.amountsStatic[i] * currencyRate;
                 convertedAmount = Math.ceil(convertedAmount / 5) * 5; // Convert to even 5
                 this.amounts[i] = convertedAmount;
-            }
-
-            // Convert goals to selected currency
-            for (let i = 0; i < this.goals.length; i++) {
-                let convertedAmount = this.goals[i].amountStatic * currencyRate;
-                this.goals[i].amount = convertedAmount;
             }
 
             jQuery.get('https://api.localfoodnodes.org/v1.0/users/amount/average?currency=' + currency, function(res) {
@@ -299,7 +292,11 @@ export default {
 
                     this.goals[i].header = this.trans['goal_' + i + '_header'];
                     this.goals[i].desc = this.trans['goal_' + i + '_desc'];
-                    this.goals[i].members = this.goals[i].amount / this.averageAmount;
+
+                    let convertedAmount = this.goals[i].amountStatic * this.currencies[this.currency].rate;;
+                    this.goals[i].amount = convertedAmount;
+
+                    this.goals[i].members = parseInt(this.goals[i].amount) / parseInt(this.averageAmount);
                     $this.data('goal', this.goals[i].amount);
 
                     // Annual goal
