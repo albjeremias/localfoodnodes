@@ -94,7 +94,7 @@ class ProductProductionController extends Controller
             $product->production_type = $request->old('production_type');
         }
 
-        return view('account.product.production.index', [
+        return view('new.account.product.production.index', [
             'producer' => $producer,
             'product' => $product,
             'orderQuantity' => $orderQuantity,

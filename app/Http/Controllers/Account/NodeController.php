@@ -98,7 +98,7 @@ class NodeController extends Controller
         $node = new Node();
         $node->fill($request->old());
 
-        return view('account.node.create', [
+        return view('new.account.node.create', [
             'node' => $node,
             'breadcrumbs' => [
                 trans('admin/user-nav.create_node') => ''

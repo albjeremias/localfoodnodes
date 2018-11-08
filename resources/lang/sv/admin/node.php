@@ -26,11 +26,9 @@ return [
     'edit_node' => 'Redigera nod',
     'email' => 'Email',
     'events' => 'Evenemang',
-    'facebook_page' => 'Facebook-sida',
-    'facebook_page_producers' => 'Facebook-sida för producenter',
     'guests' => 'Gäster',
     'hide_from_map' => 'Dölj noden på kartan',
-    'information' => 'Information',
+    'information' => 'Beskrivning',
     'information_placeholder' => 'Information om din nod',
     'invite_admin' => 'Bjud in admin',
     'leave_node' => 'Lämna nod',
@@ -83,4 +81,26 @@ return [
     'week_3' => 'Var tredje vecka',
     'week_4' => 'Var fjärde vecka',
     'month_1' => 'En gång i månaden',
+
+
+	// ---------------------------
+	//	NEW AND/OR USED
+	// ---------------------------
+	'n_hdiw_item_1' => 'Läs igenom alla villkoren',
+	'n_hdiw_item_2' => 'Skapa',
+	'n_hdiw_item_3' => 'Bjud in',
+	'n_hdiw_item_4' => 'Marknadsför',
+
+    'facebook_page' => 'Kommunikationsgrupp för konsumenter',
+    'facebook_page_producers' => 'Kommunikationsgrupp för producenter',
+
+    'facebook_page_placeholder' => 'T.ex. Slack eller FB grupp',
+	'name_your_node' => 'Namnge din nod',
+
+	'optional_data' => 'Valfri information',
+
+	'occurs_once' => 'Förekommer en gång',
+
+
+
 ];
