@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 
 use App\System\Utils\CurrencyConverter;
+use App\System\NodesGenerator;
 use App\System\Importers\CurrencyRateImporter;
 use App\System\StatisticsGenerator\StatisticsGenerator;
 use App\System\NotificationGenerator\NotificationGenerator;
@@ -39,6 +40,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton(CurrencyRateImporter::class, function($app) {
             return new CurrencyRateImporter();
+        });
+
+        $this->app->singleton(NodesGenerator::class, function($app) {
+            return new NodesGenerator();
         });
     }
 }

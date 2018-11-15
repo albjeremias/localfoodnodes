@@ -5,6 +5,7 @@ namespace App\Http\Controllers\System;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 
+use App\System\NodesGenerator;
 use App\System\Importers\CurrencyRateImporter;
 use App\System\NotificationGenerator\NotificationGenerator;
 use App\System\StatisticsGenerator\StatisticsGenerator;
@@ -31,6 +32,16 @@ class CronController extends BaseController
     public function statistics(Request $request, StatisticsGenerator $statisticsGenerator)
     {
         $statisticsGenerator->generate($request->get('type'));
+    }
+
+    /**
+     * Statistic cron jobs
+     *
+     * @param Request $request
+     */
+    public function nodes(Request $request, NodesGenerator $nodesGenerator)
+    {
+        $nodesGenerator->generate();
     }
 
     /**
