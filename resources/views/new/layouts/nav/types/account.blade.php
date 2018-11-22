@@ -7,7 +7,7 @@
 
 {{-- MY PANEL --}}
 <li class="nav-item">
-    <a class="nav-link black-54 {{ $nav_active == 0 ? 'nav-acount-active ml-3' : '' }}" href="/account/user">{{ trans('admin/user-nav.consumer') }}</a>
+    <a class="nav-link black-54 {{ $nav_active == 0 ? 'nav-acount-active ml-3' : '' }}" href="/account/user">{{ Auth::user()->name }}</a>
 </li>
 
 {{-- PRODUCER --}}
@@ -64,6 +64,8 @@
             @foreach ($user->nodeAdminLinks() as $nodeAdminLink)
                 <a class="dropdown-item {{ Request::is('account/node/' . $nodeAdminLink->getNode()->id) ? 'active' : '' }}" href="/account/node/{{ $nodeAdminLink->getNode()->id }}">{{ $nodeAdminLink->getNode()->name }}</a>
             @endforeach
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/account/node/create">{{ trans('admin/user-nav.create_node') }}</a>
         </div>
     </li>
 @else
@@ -76,7 +78,7 @@
 
 
 
-{{-- ADMINISTRATION --}}
+{{-- NODES --}}
 <li class="nav-item">
-    <a class="nav-link black-54" href="/account/user">{{ trans('admin/user-nav.admin') }}</a>
+    <a class="nav-link black-54" href="/explore">{{ trans('admin/user-nav.find_nodes') }}</a>
 </li>

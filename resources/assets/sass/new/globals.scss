@@ -375,6 +375,10 @@ thead {
   @extend .box-shadow;
 }
 
+.text-transform-none {
+  text-transform: none;
+}
+
 // Widths
 
 .w-20 {

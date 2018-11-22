@@ -52,7 +52,9 @@ return [
 	//	NEW AND/OR USED
 	// ---------------------------
     'my_panel' => 'Min Panel',
-    'explore' => 'Utforska',
+    'find_nodes' => 'Hitta noder',
     'admin' => 'Administration',
-	'consumer' => 'Konsument'
+	'consumer' => 'Konsument',
+	'my_profile' => 'Min profil',
+	'search' => 'Sök'
 ];

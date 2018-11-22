@@ -34,8 +34,8 @@
                     <!-- Fast login hidden on mobile -->
                     @if (Auth::user() && !isset($transparent_nav))
                         <li class="d-none d-lg-block">
-                            <a href="/account/user/edit" class="wc nav-link text-capitalize px-0">
-                                {{ Auth::user()->name }}
+                            <a href="/account/user/edit" class="wc nav-link text-transform-none px-0">
+                                {{ trans('admin/user-nav.my_profile') }}
                             </a>
                         </li>
 

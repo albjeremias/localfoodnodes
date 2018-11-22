@@ -21,40 +21,28 @@
             ]
         ])
 
+        {{-- PLACEHOLDER - Will be replaced when we store selected producer in session. @NOTE David --}}
+        @foreach ($user->producerAdminLinks() as $producerAdminLink)
+            @php
+                $active_producer_id = $producerAdminLink->getProducer()->id;
+            @endphp
+        @endforeach
+
         <div class="container py-5">
-            <h2>{{ trans('admin/product.production') }}</h2>
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="white-box">
-                        <div class="text-center">{{ trans('admin/product.production_type_header') }}</div>
-                            <ul class="no-bullets">
-                                <li>
-                                    <b class="d-block">{{ trans('admin/product.recurring_products_weekly') }}</b>
-                                    {!! trans('admin/product.recurring_products_info') !!}
-                                </li>
-                                <li class="mt-3">
-                                    <b class="d-block">{{ trans('admin/product.occasional_products') }}</b>
-                                    {!! trans('admin/product.occasional_products_info') !!}
-                                </li>
-                                <li class="mt-3">
-                                    <b class="d-block">{{ trans('admin/product.csa_products') }}</b>
-                                    {!! trans('admin/product.csa_products_info') !!}
-                                </li>
-                            </ul>
-                    </div>
-
-
-                    <form action="/account/producer/{{ $producer->id }}/product/{{ $product->id }}/production/update" method="post" enctype="multipart/form-data"
-                        {{ csrf_field() }}
-
-                        @include('new.account.product.production.production-form')
-                        <button type="submit" name="update" class="btn btn-success">{{ trans('admin/product.save') }}</button>
-                    </form>
-                </div>
-                <div class="col-md-6">
-                    @include('new.account.product.product.how-does-it-work')
-                </div>
+            <div class="white-box">
+                <p>
+                    På denna sida kan du göra flera och mer detaljerade inställningar som passar för denna produkt.
+                    Du når alltid denna vy närsomhelst för varje enskild produkt i din produktvy.
+                </p>
+                <a class="btn btn-primary text-center" href="{{ '/account/producer/' . $active_producer_id . '/products' }}">{{ trans('admin/user-nav.products') }}</a>
             </div>
+
+            @include('new.account.product.settings.basic-info')
+
+            @include('new.account.product.settings.stocks-and-variants')
+
+            @include('new.account.product.settings.delivery-dates')
+
         </div>
     </div>
 @endsection
