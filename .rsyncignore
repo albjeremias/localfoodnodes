@@ -1,3 +1,5 @@
 node_modules
 resources/assets/js/react/node-map/node_modules
 resources/assets/js/react/producer-node-map/node_modules
+storage/*
+.env
