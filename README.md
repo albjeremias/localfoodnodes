@@ -23,7 +23,9 @@ php artisan migrate --database='phpunit'
 php artisan db:seed --database='phpunit'
 
 # App development
-Start tunnel with `valet share` and use generated url in app .env
+* Create symlink to project in sites folder named `app.localfoodnodes`.
+* Change domain to `.org` with `valet domain org`.
+* Start ngrok with `./ngrok http -region=eu -hostname=app.localfoodnodes.org app.localfoodnodes.org:80`
 
 # API's
 There are multiple API's in use.
