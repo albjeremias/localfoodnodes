@@ -56,12 +56,10 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key' => 'AKIAIXXXYJKXFSFLU6HQ',
-            'secret' => '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',
-            'region' => 'eu-central-1',
-            'bucket' => 'local-food-nodes',
+            'key' => env('AWS_S3_KEY'),
+            'secret' => env('AWS_S3_SECRET'),
+            'region' => env('AWS_S3_REGION'),
+            'bucket' => env('AWS_S3_BUCKET'),
         ],
-
     ],
-
 ];
