@@ -31,6 +31,7 @@ $success:       $secondary-green;
 $danger:        $raspberry;
 $warning:       $secondary-red;
 $dark:          $black-38;
+$raspberry:     $raspberry;
 
 $theme-colors: ();
 $theme-colors: map-merge((
@@ -43,6 +44,7 @@ $theme-colors: map-merge((
         "light":      $light,
         "dark":       $dark,
         "facebook":   $fb,
+        "raspberry":  $raspberry,
 ), $theme-colors);
 
 // --------- FONTS ---------
@@ -138,6 +140,10 @@ $custom-select-border-color:        #fff;
 .badge {
   margin-right: 5px;
   margin-bottom: 7px;
+}
+
+.container .badge-pill.badge-raspberry {
+  color: $main-primary;
 }
 
 $badge-padding-y:                   .644rem;

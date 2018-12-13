@@ -150,6 +150,6 @@
 
 {{-- Right Section --}}
 <div class="col-md-6">
-    @include('new.account.product.product.how-does-it-work')
+    @include('new.account.product.how-does-it-work')
 </div>
 

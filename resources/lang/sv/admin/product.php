@@ -132,4 +132,13 @@ return [
     'delivery_adjustment' => 'Återkommande produkter med leveranssaldo är produkter som produceras kontinuerligt under en period där saldon administreras per utläming. Eftersom kvaniteten kan variera under denna period så kan du i vyn justera produktionskvantitet per nod och utlämning ändra hur många produkter som du tillgängliggör vid de olika utlämningarna under säsongen.',
 
     'weekly_adjustment' => 'Återkommande produkter med veckosaldo är produkter som produceras kontinuerligt under en period där saldon administreras per vecka. Eftersom kvaniteten kan variera under denna period så kan du i vyn justera produktionskvantitet per vecka ändra hur många produkter som du tillgängliggör vid de olika veckorna under säsongen. Produkter finns tillgängliga alla veckor där du har valt att göra minst en leverans',
+
+	'stock' => 'Stock',
+	'recurring' => 'Återkommande',
+	'unit' => 'Enhet',
+	'image' => 'Bild',
+    'amount' => 'Kvantitet',
+    'edit' => 'Redigera',
+	'use_variants' => 'Använd varianter',
+	'shared_variants_stock' => 'Delat saldo'
 ];

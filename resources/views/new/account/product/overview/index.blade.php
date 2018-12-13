@@ -33,13 +33,13 @@
                     </div>
                 </div>
 
-                @include('new.account.product.settings.basic-info')
+                @include('new.account.product.overview.basic-info')
 
-                @include('new.account.product.settings.stocks-and-variants')
+                @include('new.account.product.overview.stocks-and-variants')
 
-                @include('new.account.product.settings.delivery-dates')
+                @include('new.account.product.overview.delivery-dates')
 
-                @include('new.account.product.settings.meat-box')
+                @include('new.account.product.overview.meat-box')
             </div>
 
         </div>

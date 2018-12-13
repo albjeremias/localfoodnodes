@@ -1,14 +1,17 @@
 {{--
     -Form Checkbox Component-
 
-    *name        | string
-    *text         | string
-    *checked      | boolean
+    *name           | string
+    *text           | string
+    *checked        | boolean
+    container_class | string
 
     *Required
 --}}
 
-<label class="form-check-label ml-4">
-    <input class="form-check-input" name="{{ $name }}" type="checkbox" value="1" {{ $checked ? 'checked' : '' }} />
-    {{ $text }}
-</label>
+<div id="checkbox-container-{{ $name }}" class="form-check {{ isset($container_class) ? $container_class : '' }}">
+    <input name="{{ $name }}" class="form-check-input" type="checkbox" value="1" {{ $checked ? 'checked' : '' }} id="checkbox-{{ $name }}">
+    <label class="form-check-label" for="defaultCheck1">
+        {{ $text }}
+    </label>
+</div>

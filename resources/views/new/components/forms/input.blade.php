@@ -1,11 +1,11 @@
 {{--
     -Form Input Component-
 
-    label        | string
     *name        | string
     *type        | string
     *class       | string
-    *placeholder | string
+    label        | string
+    placeholder  | string
     info_text    | string
     info_link    | string
     value        | *
@@ -15,6 +15,12 @@
 
     *Required
 --}}
+
+@php
+    if($errors->has($name)) :
+        $placeholder =  $errors->first($name);
+    endif
+@endphp
 
 @if(isset($label))
     <label for="form-input-{{ $name }}" class="{{ $errors->has($name) ? 'red-c' : '' }} {{ isset($label_cap) ? 'text-uppercase' : '' }}">{{ $label }}</label>
@@ -35,7 +41,7 @@
        class="{{ $class }} {{ $errors->has($name) ? 'placeholder-error red-b' : '' }}"
        id="form-input-{{ $name }}"
        value="{{ isset($m_value) ? $m_value : '' }}"
-       placeholder="{{ $errors->has($name) ? $errors->first($name) : $placeholder }}">
+       placeholder="{{ isset($placeholder) ? $placeholder : '' }}">
 
 @if(isset($append))
     <div class="input-group-append">

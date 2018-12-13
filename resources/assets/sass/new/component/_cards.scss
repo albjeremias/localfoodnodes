@@ -19,29 +19,31 @@
   background-color: #FFFFFF;
   @extend .box-shadow;
 
-  .product-img {
+  &__img-container {
     height: 176px;
-
     position: relative;
 
-    .product-items-quantity {
+    &__quantity {
       position: absolute;
       top: 15px;
       left: 15px;
+      @extend .badge, .badge-success;
     }
 
-    .product-items-type {
+    &__tag {
       position: absolute;
       bottom: 8px;
       left: 15px;
       width: 99px;
+      @extend .badge-pill, .badge-raspberry, .text-center;
     }
 
-    .product-items-share {
+    &__share {
       position: absolute;
       top: 15px;
       right: 15px;
       color: white;
+      @extend .fa, .fa-share, .icon;
     }
   }
 }

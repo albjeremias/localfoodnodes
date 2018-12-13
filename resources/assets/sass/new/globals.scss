@@ -389,6 +389,10 @@ thead {
   width: 15% !important;
 }
 
+.w-35 {
+  width: 35% !important;
+}
+
 // NEEDS CLEANING
 
 input.placeholder-error::placeholder {
@@ -431,58 +435,7 @@ option:checked {
   display: none;
 }
 
-.lfn-checkbox {
-  input[type=checkbox] {
-    visibility: hidden;
-  }
-
-  .checkboxTwo {
-    width: 60px;
-    height: 25px;
-    background: $main-primary;
-    margin: 20px 60px;
-
-    border-radius: 50px;
-    position: relative;
-  }
-
-  /**
- * Create the line for the circle to move across
- */
-  .checkboxTwo:before {
-    content: '';
-    position: absolute;
-    top: 12px;
-    left: 14px;
-    height: 1.5px;
-    width: 30px;
-    background: #e0dcdc;
-    border-radius: 5px;
-  }
-
-  /**
- * Create the circle to click
- */
-  .checkboxTwo label {
-    display: block;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-
-    transition: all .5s ease;
-    cursor: pointer;
-    position: absolute;
-    top: 5px;
-    z-index: 1;
-    left: 12px;
-    background: #ddd;
-  }
-
-  /**
- * Create the click event for the checkbox
- */
-  .checkboxTwo input[type=checkbox]:checked + label {
-    left: 35px;
-    background: $main-accent;
-  }
+.form-table-image {
+  height: 50px;
+  @extend .image;
 }

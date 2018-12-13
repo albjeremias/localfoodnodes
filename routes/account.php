@@ -100,7 +100,7 @@ Route::group(['prefix' => '/producer/{producerId}/product'], function () {
     Route::get('/{productId}/variant/{variantId}/set-main-variant', 'Account\ProductVariantController@setMainVariant');
 
     // Production
-    Route::get('/{productId}/production', 'Account\ProductProductionController@index');
+    Route::get('/{productId}/production', 'Account\ProductProductionController@index'); // Not used, replaced with /{productID}
     Route::post('/{productId}/production/update', 'Account\ProductProductionController@update');
     Route::get('/{productId}/production/adjustment', 'Account\ProductProductionController@adjustment');
     Route::post('/{productId}/production/adjustment/update', 'Account\ProductProductionController@updateAdjustment');
@@ -108,6 +108,10 @@ Route::group(['prefix' => '/producer/{producerId}/product'], function () {
     // Deliveries
     Route::get('/{productId}/deliveries', 'Account\ProductController@editDeliveries');
     Route::post('/{productId}/deliveries/update', 'Account\ProductController@updateDeliveries');
+
+    // Overview
+	Route::get('/{productId}', 'Account\ProductProductionController@index');
+
 });
 
 // Events

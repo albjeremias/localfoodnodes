@@ -1,7 +1,7 @@
 <div class="col-16">
     <div class="white-box">
         <h4 class="d-inline-block">Stock and variants</h4>
-        <a class="btn btn-secondary float-right" href="#">Edit</a>
+        <a class="btn btn-secondary float-right" href="{{ '/account/producer/' . $active_producer_id . '/product/' . $product->id . '/variants' }}">Edit</a>
 
         @php
             $items = array(

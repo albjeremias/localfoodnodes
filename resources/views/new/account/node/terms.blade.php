@@ -30,7 +30,7 @@
 
         <div class="col text-right my-5">
             <a class="rc text-uppercase mr-4" href="#">{{ trans('admin/terms.cancel') }}</a>
-            <a class="btn btn-secondary" href="/account/producer/create?terms=approved">{{ trans('admin/terms.accept') }}</a>
+            <a class="btn btn-secondary" href="/account/node/create?terms=approved">{{ trans('admin/terms.accept') }}</a>
         </div>
     </div>
 </div>

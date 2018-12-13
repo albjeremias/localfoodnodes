@@ -91,7 +91,7 @@ class ProductVariantController extends Controller
         $producer = $user->producerAdminLink($producerId)->getProducer();
         $product = $producer->product($productId);
 
-        return view('account/product.variants.index', [
+        return view('new.account.product.stocks-and-variants.index', [
             'product' => $product,
             'producer' => $producer,
             'breadcrumbs' => [

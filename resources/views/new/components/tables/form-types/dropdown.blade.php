@@ -1,22 +1,17 @@
 {{--
-    -Form Dropdown Component-
+    -Form table Dropdown Component-
 
     *name        | string
-    *class       | string
     *options     | array
     *value       | boolean
     *val_key     | boolean
-    label        | string
     placeholder  | string
+    *disabled    | boolean
 
     *Required
 --}}
 
-@if(isset($label))
-    <label for="form-dropwdown-{{ $name }}">{{ $label }}</label>
-@endif
-
-<select class="{{ $class }}" name="{{ $name }}">
+<select id="dropdown-{{ $name }}" {{ $disabled ? 'disabled' : '' }} class="form-control form-control-sm w-50" name="{{ $name }}">
     @if(isset($placeholder))
         <option>{{ $placeholder }}</option>
     @endif
