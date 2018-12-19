@@ -140,5 +140,10 @@ return [
     'amount' => 'Kvantitet',
     'edit' => 'Redigera',
 	'use_variants' => 'Använd varianter',
-	'shared_variants_stock' => 'Delat saldo'
+	'shared_variants_stock' => 'Delat saldo',
+	'deadline' => 'Senaste beställningsdatum',
+	'active' => 'Aktiv',
+	'nodes' => 'Noder',
+	'farm_delivery' => 'Gårdsförsäljning',
+	'home_delivery' => 'Hemleverans',
 ];

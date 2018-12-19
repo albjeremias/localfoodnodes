@@ -340,7 +340,7 @@ class ProductController extends Controller
             return $nodeLink->getNode();
         });
 
-        return view('account.product.delivery.index', [
+        return view('new.account.product.delivery-dates.index', [
             'producer' => $producer,
             'product' => $product,
             'nodes' => $nodes,

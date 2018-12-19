@@ -27,6 +27,7 @@
                     if (!isset($value['disabled'])) $value['disabled'] = false;
                     if (!isset($value['class'])) $value['class'] = false;
                     if (!isset($value['value'])) $value['value'] = false;
+                    if (!isset($value['placeholder'])) $value['placeholder'] = false;
                 @endphp
 
                 <td>
@@ -51,11 +52,12 @@
 
                         @case('text')
                             @include('new.components.tables.form-types.input', [
-                                'name'     => $value['name'],
-                                'type'     => $value['type'],
-                                'disabled' => $value['disabled'],
-                                'm_value'  => $value['value'],
-                                'class'    => $value['class']
+                                'name'        => $value['name'],
+                                'type'        => $value['type'],
+                                'disabled'    => $value['disabled'],
+                                'm_value'     => $value['value'],
+                                'class'       => $value['class'],
+                                'placeholder' => $value['placeholder'],
                             ])
                         @break
 

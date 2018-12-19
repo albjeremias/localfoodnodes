@@ -1,10 +1,10 @@
 {
-    "/js/admin.js": "/js/admin.js?id=982039b209abe2ee915e",
-    "/css/public.css": "/css/public.css?id=44038bbc0c898ab1f6b5",
+    "/js/admin.js": "/js/admin.js?id=98f94eb9478505b27f12",
+    "/css/public.css": "/css/public.css?id=7eaf3441dcf795ec8799",
     "/css/account.css": "/css/account.css?id=d41d8cd98f00b204e980",
     "/css/admin.css": "/css/admin.css?id=d41d8cd98f00b204e980",
-    "/js/transactions.js": "/js/transactions.js?id=dfb3c402d71380028db3",
-    "/js/economy-in-out.js": "/js/economy-in-out.js?id=a74eebfe156ca5869318",
-    "/js/economy-circulation.js": "/js/economy-circulation.js?id=1ae1bf441d8883eb31e5",
-    "/js/statistics.js": "/js/statistics.js?id=11da2c1e781758e18ac9"
+    "/js/transactions.js": "/js/transactions.js?id=1eb4ecf66331125aea03",
+    "/js/economy-in-out.js": "/js/economy-in-out.js?id=bb01413c10bd7f7ceec5",
+    "/js/economy-circulation.js": "/js/economy-circulation.js?id=e36ad2683f063c245c95",
+    "/js/statistics.js": "/js/statistics.js?id=7623c51d765a887af206"
 }

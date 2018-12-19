@@ -154,6 +154,20 @@ $badge-border-radius:               20px;
 
 $navbar-nav-link-padding-x:         1rem;
 
+// --------- Cards ---------
+
+$card-border-radius:                0;
+$card-spacer-y:                     0;
+$card-spacer-x:                     0;
+.card {
+  border: none !important;
+
+  .no-btn {
+    background-color: transparent;
+    border-radius: 0;
+  }
+}
+
 
 // LEAFLET
 

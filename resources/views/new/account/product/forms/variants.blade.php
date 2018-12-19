@@ -11,7 +11,8 @@
                     'tr'    => trans('admin/product.image'),
                     'name'  => 'variant-image-' . $loop->index,
                     'value' => 'https://local-food-nodes.s3.eu-central-1.amazonaws.com/201810161102_img_4010_jpeg_small.jpeg',
-                    'type'  => 'image'
+                    'type'  => 'image',
+                    'class' => 'rounded-circle',
                 ],
                 [
                     'tr'       => trans('admin/product.name'),
@@ -41,9 +42,52 @@
                     'type'  => 'number'
                 ]
             );
+            $index = $loop->index;
             array_push($items, $item);
         @endphp
     @endforeach
+
+    {{-- Empty row for adding a new variant --}}
+    @php
+        $new_item = array(
+            [
+                'tr'    => trans('admin/product.image'),
+                'name'  => 'variant-image-' . $index++,
+                'value' => 'https://local-food-nodes.s3.eu-central-1.amazonaws.com/201810161102_img_4010_jpeg_small.jpeg',
+                'type'  => 'image',
+                'class' => 'rounded-circle',
+            ],
+            [
+                'tr'          => trans('admin/product.name'),
+                'name'        => 'variant-name-' . $index++,
+                'value'       => '',
+                'type'        => 'text',
+                'class'       => 'w-100',
+                'tr_class'    => 'w-35',
+                'placeholder' => 'Add new variant...'
+            ],
+            [
+                'tr'    => trans('admin/product.amount_per_package'),
+                'name'  => 'variant-amount-' . $index++,
+                'value' => '',
+                'type'  => 'number'
+            ],
+            [
+                'tr'    => trans('admin/product.stock'),
+                'name'  => 'variant-stock-' . $index++,
+                'value' => '',
+                'type'  => 'number',
+                'class' => 'input-stock-fields',
+            ],
+            [
+                'tr'    => trans('admin/product.price'),
+                'name'  => 'variant-price-' . $index++,
+                'value' => '',
+                'type'  => 'number'
+            ]
+        );
+        array_push($items, $new_item);
+    @endphp
 
     @include('new.components.tables.form', ['items' => $items ])
 </div>
@@ -67,7 +111,5 @@
         $('#checkbox-shared-stock').change(function () {
             $('.input-stock-fields').prop('disabled', function(i, v) { return !v; });
         });
-
-
     });
 </script>
