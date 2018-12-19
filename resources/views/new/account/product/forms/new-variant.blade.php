@@ -1,54 +1,7 @@
-<div id="variants-container" class="mt-5">
+<div id="new-variants-container" class="d-none">
     @php
         $items = [];
-    @endphp
 
-    @foreach($product->productVariants() as $variant)
-
-        @php
-            $item = array(
-                [
-                    'tr'    => trans('admin/product.image'),
-                    'name'  => 'variant-image-' . $loop->index,
-                    'value' => 'https://local-food-nodes.s3.eu-central-1.amazonaws.com/201810161102_img_4010_jpeg_small.jpeg',
-                    'type'  => 'image',
-                    'class' => 'rounded-circle',
-                ],
-                [
-                    'tr'       => trans('admin/product.name'),
-                    'name'     => 'variant-name-' . $loop->index,
-                    'value'    => $variant->name,
-                    'type'     => 'text',
-                    'class'    => 'w-100',
-                    'tr_class' => 'w-35'
-                ],
-                [
-                    'tr'    => trans('admin/product.amount_per_package'),
-                    'name'  => 'variant-amount-' . $loop->index,
-                    'value' => $variant->package_amount,
-                    'type'  => 'number'
-                ],
-                [
-                    'tr'    => trans('admin/product.stock'),
-                    'name'  => 'variant-stock-' . $loop->index,
-                    'value' => $variant->getProductionQuantity(),
-                    'type'  => 'number',
-                    'class' => 'input-stock-fields',
-                ],
-                [
-                    'tr'    => trans('admin/product.price'),
-                    'name'  => 'variant-price-' . $loop->index,
-                    'value' => $variant->price,
-                    'type'  => 'number'
-                ]
-            );
-            $index = $loop->index;
-            array_push($items, $item);
-        @endphp
-    @endforeach
-
-    {{-- Empty row for adding a new variant --}}
-    @php
         $new_item = array(
             [
                 'tr'    => trans('admin/product.image'),
@@ -94,7 +47,7 @@
 
 <script>
     $(document).ready(function () {
-        var variants_container = $('#variants-container');
+        var variants_container = $('#new-variants-container');
         var is_variants_checked = $('input[name="variants"]:checked').length > 0;
         var variants_checkbox = $('#checkbox-variants');
 

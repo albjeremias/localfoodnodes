@@ -26,6 +26,7 @@
                     @include('new.account.product.forms.variants')
                 @else
                     <p>{{ trans('admin/product.no_variants') }}</p>
+                    @include('new.account.product.forms.new-variant')
                 @endif
                 @include('new.components.forms.submit')
             </div>
