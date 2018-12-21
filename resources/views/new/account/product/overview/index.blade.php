@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-16">
                     <div class="white-box">
-                        <h3 class="text-center mb-3">{{ $product->name }}</h3>
+                        <h4 class="rc text-center mb-3">{{ $product->name }}</h4>
                         <p>
                             På denna sida kan du göra flera och mer detaljerade inställningar som passar för denna produkt.
                             Du når alltid denna vy närsomhelst för varje enskild produkt i din produktvy.

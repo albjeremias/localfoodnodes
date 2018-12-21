@@ -6,7 +6,7 @@
     *Required
 --}}
 
-<table class="table table-hover {{ isset($table_classes) ? $table_classes : ''}}">
+<table class="form-table table table-hover {{ isset($table_classes) ? $table_classes : ''}}">
     <thead border="0">
     <tr>
         @foreach($items[0] as $item)
@@ -30,13 +30,21 @@
                     if (!isset($value['placeholder'])) $value['placeholder'] = false;
                 @endphp
 
-                <td>
+                <td class="position-relative {{ $value['type'] == 'radio' ? 'vert-top' : '' }}">
                     @switch($value['type'])
                         @case('checkbox')
                             @include('new.components.tables.form-types.checkbox', [
                                 'name'     => $value['name'],
                                 'checked'  => $value['checked'],
                                 'disabled' => $value['disabled']
+                            ])
+                        @break
+
+                        @case('radio')
+                            @include('new.components.tables.form-types.radio', [
+                                'name'     => $value['name'],
+                                'checked'  => $value['checked'],
+                                'disabled' => $value['disabled'],
                             ])
                         @break
 

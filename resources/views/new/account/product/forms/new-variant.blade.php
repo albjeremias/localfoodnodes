@@ -20,6 +20,13 @@
                 'placeholder' => 'Add new variant...'
             ],
             [
+                'tr'       => trans('admin/product.main_variant'),
+                'name'     => 'new-variant-main',
+                'type'     => 'radio',
+                'checked'  => false,
+                'disabled' => true,
+            ],
+            [
                 'tr'    => trans('admin/product.amount_per_package'),
                 'name'  => 'new-variant-amount',
                 'value' => '',

@@ -25,7 +25,7 @@
            aria-describedby="input-aria-{{ $name }}"
            name="{{ $name }}"
            {{ isset($min) ? 'min='.$min : '' }}
-           class="{{ isset($class) ? $class : '' }} {{ $errors->has($name) ? 'placeholder-error red-b' : '' }}"
+           class="form-control form-control-sm {{ isset($class) ? $class : '' }} {{ $errors->has($name) ? 'placeholder-error red-b' : '' }}"
            id="form-input-{{ $name }}"
            value="{{ isset($m_value) ? $m_value : '' }}"
            placeholder="{{ isset($placeholder) ? $placeholder : '' }}">

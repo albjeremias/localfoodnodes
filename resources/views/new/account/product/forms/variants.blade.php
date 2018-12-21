@@ -1,10 +1,9 @@
-<div id="variants-container" class="mt-5">
+<div id="variants-container" class="mt-5 tex">
     @php
         $items = [];
     @endphp
 
     @foreach($product->productVariants() as $variant)
-
         @php
             $item = array(
                 [
@@ -13,6 +12,7 @@
                     'value' => 'https://local-food-nodes.s3.eu-central-1.amazonaws.com/201810161102_img_4010_jpeg_small.jpeg',
                     'type'  => 'image',
                     'class' => 'rounded-circle',
+                    'tr_class' => 'text-center'
                 ],
                 [
                     'tr'       => trans('admin/product.name'),
@@ -23,10 +23,18 @@
                     'tr_class' => 'w-35'
                 ],
                 [
+                    'tr'        => trans('admin/product.main_variant'),
+                    'name'      => 'variant-main',
+                    'type'      => 'radio',
+                    'checked'   => $variant->main_variant,
+                    'tr_class' => 'text-center'
+                ],
+                [
                     'tr'    => trans('admin/product.amount_per_package'),
                     'name'  => 'variant-amount-' . $loop->index,
                     'value' => $variant->package_amount,
-                    'type'  => 'number'
+                    'type'  => 'number',
+                    'tr_class' => 'w-25'
                 ],
                 [
                     'tr'    => trans('admin/product.stock'),
@@ -65,6 +73,13 @@
                 'class'       => 'w-100',
                 'tr_class'    => 'w-35',
                 'placeholder' => 'Add new variant...'
+            ],
+            [
+                'tr'       => trans('admin/product.main_variant'),
+                'name'     => 'new-variant-main',
+                'type'     => 'radio',
+                'checked'  => false,
+                'disabled' => true,
             ],
             [
                 'tr'    => trans('admin/product.amount_per_package'),

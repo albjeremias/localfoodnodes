@@ -17,6 +17,11 @@ b {
   font-family: $font-header !important;
 }
 
+*::selection {
+  color: black;
+  background: #ff9d0da8;
+}
+
 small {
   color: $dark-54;
 }
@@ -120,6 +125,11 @@ td {
 .bg-shell {
   background-color: $bg-1;
 }
+
+.no-bg {
+  background-color: transparent;
+}
+
 
 // -------------------------
 // BACKGROUND IMAGES
@@ -294,6 +304,10 @@ thead {
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.24);
 }
 
+.box-shadow-square {
+  box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.24);
+}
+
 .bb {
   border: $dark-87 1px solid !important;
 }
@@ -438,4 +452,15 @@ option:checked {
 .form-table-image {
   height: 50px;
   @extend .image;
+}
+
+//.form-table-radio {
+//  position: absolute;
+//  left: 50%;
+//  transform: translateX(-50%);
+//  padding-left: 1.25rem;
+//}
+
+.form-table tr td {
+    vertical-align: middle;
 }

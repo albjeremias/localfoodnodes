@@ -2,6 +2,10 @@
   height: 30px;
 }
 
+.nav-item.dropdown {
+  cursor: pointer;
+}
+
 .navbar-toggler:focus {
   outline: none;
 }
@@ -31,6 +35,10 @@
 
 .sub-nav {
   margin-left: 57px;
+
+  .list-inline-item a:hover {
+    text-decoration: none;
+  }
 }
 
 #nav-container.bg-main-primary .main-nav a {
@@ -56,6 +64,7 @@
   }
 
   .form-control {
+    height: auto;
     @extend small;
   }
 

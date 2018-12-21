@@ -6,19 +6,26 @@
     @php
         $item = array(
             [
-                'tr'       => trans('admin/product.active'),
-                'name'     => 'active-' . $place->id . '-' . $loop->index,
-                'checked'  => true,
-                'type'     => 'checkbox'
-            ],
-            [
                 'tr'       => trans('admin/product.date'),
                 'name'     => 'date-' . $place->id . '-' . $loop->index,
                 'value'    => $date,
                 'type'     => 'text',
-                'class'    => 'w-100',
-                'tr_class' => 'w-35',
+                'class'    => 'nb font-weight-bold no-bg',
                 'disabled' => true,
+            ],
+            [
+                'tr'       => trans('admin/product.name'),
+                'name'     => 'name-' . $place->id . '-' . $loop->index,
+                'type'     => 'text',
+                'class'    => 'nb no-bg',
+                'disabled' => true,
+                'value'    => $product->name,
+            ],
+            [
+                'tr'       => trans('admin/product.active'),
+                'name'     => 'active-' . $place->id . '-' . $loop->index,
+                'checked'  => true,
+                'type'     => 'checkbox'
             ],
             [
                 'tr'    => trans('admin/product.stock'),

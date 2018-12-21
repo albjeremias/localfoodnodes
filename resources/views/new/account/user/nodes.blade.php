@@ -9,6 +9,7 @@
 <?php
 $viewName = 'my-nodes';
 $user = Auth::user();
+//dd($user->nodes());
 ?>
 
 @section('title', 'Mina noder')
@@ -58,47 +59,20 @@ $user = Auth::user();
                             </div>
 
                             <div class="col-16 pb-5">
-                                @include('new.components.cards.node-lg',
-                                [
-                                    'name'           => 'Bygdens Saluhall Dalby',
-                                    'users'          => 1129,
-                                    'producers'      => 41,
-                                    'products_count' => 12,
-                                    'average_dist'   => '13.5',
-                                    'address'        => 'Nybygdsvägen 24, 234 01',
-                                    'image'          => '/images/field-1000x680.jpg',
-                                    'products'       => [
-                                        'Honung', 'Fisk', 'Sylt', 'Gurka', 'Bär', 'Kött', 'Bröd'
-                                    ]
-                                ])
-
-                                @include('new.components.cards.node-lg',
-                                [
-                                    'name'           => 'Bygdens Saluhall Dalby',
-                                    'users'          => 1129,
-                                    'producers'      => 41,
-                                    'products_count' => 12,
-                                    'average_dist'   => '13.5',
-                                    'address'        => 'Nybygdsvägen 24, 234 01',
-                                    'image'          => '/images/field-1000x680.jpg',
-                                    'products'       => [
-                                        'Honung', 'Fisk', 'Sylt', 'Gurka', 'Bär', 'Kött', 'Bröd'
-                                    ]
-                                ])
-
-                                @include('new.components.cards.node-lg',
-                                [
-                                    'name'           => 'Bygdens Saluhall Dalby',
-                                    'users'          => 1129,
-                                    'producers'      => 41,
-                                    'products_count' => 12,
-                                    'average_dist'   => '13.5',
-                                    'address'        => 'Nybygdsvägen 24, 234 01',
-                                    'image'          => '/images/field-1000x680.jpg',
-                                    'products'       => [
-                                        'Honung', 'Fisk', 'Sylt', 'Gurka', 'Bär', 'Kött', 'Bröd'
-                                    ]
-                                ])
+                                @foreach($user->nodes() as $node)
+                                    @include('new.components.cards.node-lg', [
+                                        'name'           => $node->name,
+                                        'users'          => $node->userLinks()->count(),
+                                        'producers'      => $node->producerLinks()->count(),
+                                        'products_count' => $node->products()->count(),
+                                        'average_dist'   => '13.5',
+                                        'address'        => $node->address . ', ' . $node->zip,
+                                        'image'          => isset($node->images()[0]) ? $node->images()[0]->url('small') : false,
+                                        'products'       => [
+                                            'Honung', 'Fisk', 'Sylt', 'Gurka', 'Bär', 'Kött', 'Bröd'
+                                        ]
+                                    ])
+                                @endforeach
                             </div>
                         </div>
                     </div>

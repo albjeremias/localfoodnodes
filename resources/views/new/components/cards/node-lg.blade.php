@@ -1,6 +1,6 @@
-<div class="row bby node-lg box-shadow mb-5">
+<div class="row node-lg box-shadow-square mb-5">
     <div class="col-lg-11 my-3">
-        <h4 class="mb-0">{{ $name }}</h4>
+        <h4 class="rc mb-0">{{ $name }}</h4>
         <p class="black-54">{{ $address }}</p>
 
         <ul class="list-inline mb-0 black-54">
@@ -35,9 +35,8 @@
             @endforeach
         </div>
 
-        <a class="rc" href="#">{{ trans('admin/user.visit_node') }}</a>
-
+        <a class="visit-link" href="#">{{ trans('admin/user.visit_node') }}</a>
     </div>
 
-    <div class="col-lg-5 order-first order-lg-last image" style="background-image: url({{ $image }})"></div>
+    <div class="col-lg-5 order-first order-lg-last image" style="background-image: url('{{ $image }}')"></div>
 </div>

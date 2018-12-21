@@ -2,7 +2,7 @@
 [
     'nav_title'      => trans('admin/user.nav_title'),
     'sub_nav'        => 'producer',
-    'sub_nav_active' => 1,
+    'sub_nav_active' => 2,
     'nav_active'     => 1
 ])
 
@@ -11,7 +11,7 @@
     <div class="nm bg-shell">
         <div class="container pt-2">
             <div class="white-box">
-                <h5 class="mb-4">{{ trans('admin/product.stock') }}</h5>
+                <h5 class="rc mb-4">{{ trans('admin/product.stock') }}</h5>
                 <form>
                     @include('new.account.product.forms.stock')
                     @include('new.components.forms.submit')
@@ -19,7 +19,7 @@
             </div>
 
             <div class="white-box">
-                <h5 class="mb-4">{{ trans('admin/product.variants') }}</h5>
+                <h5 class="rc mb-4">{{ trans('admin/product.variants') }}</h5>
                 @include('new.account.product.forms.variants-settings')
 
                 @if(count($product->productVariants()) > 0)

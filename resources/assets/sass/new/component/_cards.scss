@@ -58,3 +58,13 @@
     height: 176px;
   }
 }
+
+// --- NODE-LG ---
+.node-lg {
+  .visit-link {
+    position: absolute;
+    bottom: 0;
+    left: 0.5rem;
+    @extend .rc;
+  }
+}

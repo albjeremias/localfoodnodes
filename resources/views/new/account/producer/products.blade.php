@@ -17,7 +17,7 @@
                     <div class="container">
                         <div class="row justify-content-center">
                             @foreach ($products->sortBy('name') as $product)
-                                <div class="col-16 col-sm-8 col-lg-5 mb-3">
+                                <div class="col-16 col-sm-8 col-lg-8 mb-3">
                                     @include('new.components.cards.product', ['admin' => true])
                                 </div>
                             @endforeach
