@@ -9,7 +9,6 @@
 <?php
 $viewName = 'my-nodes';
 $user = Auth::user();
-//dd($user->nodes());
 ?>
 
 @section('title', 'Mina noder')
@@ -20,7 +19,7 @@ $user = Auth::user();
             <div class="row">
                 <div class="d-none d-xl-block col-xl-4">
                     <div class="bg-shell pt-3 pl-4 h-100">
-                        @include('new.components.nodes-following')
+                        @include('new.components.nodes-following', ['nodes' => $user->nodes()])
                     </div>
                 </div>
 

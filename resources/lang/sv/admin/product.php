@@ -141,7 +141,7 @@ return [
     'edit' => 'Redigera',
 	'use_variants' => 'Använd varianter',
 	'shared_variants_stock' => 'Delat saldo',
-	'deadline' => 'Deadline för bokning',
+	'deadline' => 'Deadline',
 	'active' => 'Aktiv',
 	'nodes' => 'Noder',
 	'farm_delivery' => 'Gårdsförsäljning',

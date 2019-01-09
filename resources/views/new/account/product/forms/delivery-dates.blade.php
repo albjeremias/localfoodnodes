@@ -10,8 +10,9 @@
                 'name'     => 'date-' . $place->id . '-' . $loop->index,
                 'value'    => $date,
                 'type'     => 'text',
-                'class'    => 'nb font-weight-bold no-bg',
+                'class'    => 'nb font-weight-bold no-bg text-center',
                 'disabled' => true,
+                'td_class' => 'w-15',
             ],
             [
                 'tr'       => trans('admin/product.name'),
@@ -25,13 +26,16 @@
                 'tr'       => trans('admin/product.active'),
                 'name'     => 'active-' . $place->id . '-' . $loop->index,
                 'checked'  => true,
-                'type'     => 'checkbox'
+                'type'     => 'checkbox',
+                'tr_class' => 'text-center'
+
             ],
             [
                 'tr'    => trans('admin/product.stock'),
                 'name'  => 'stock-' . $place->id . '-' . $loop->index,
                 'value' => $product->isInStock($place->id, new DateTime($date)),
-                'type'  => 'text'
+                'type'  => 'text',
+                'td_class' => 'w-15'
             ],
             [
                 'tr'    => trans('admin/product.price'),
@@ -39,23 +43,19 @@
                 'value' => $product->price,
                 'type'  => 'text',
                 'class' => 'input-stock-fields',
+                'td_class' => 'w-15'
             ],
             [
                 'tr'    => trans('admin/product.deadline'),
                 'name'  => 'deadline-' . $place->id . '-' . $loop->index,
                 'value' => $product->deadline,
-                'type'  => 'text'
+                'type'  => 'text',
+                'td_class' => 'w-15'
             ]
         );
         $index = $loop->index;
         array_push($items, $item);
     @endphp
 @endforeach
-
-{{-- Empty row for adding a new variant --}}
-@php
-    // $new_item = array();
-    // array_push($items, $new_item);
-@endphp
 
 @include('new.components.tables.form', ['items' => $items ])
