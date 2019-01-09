@@ -15,4 +15,3 @@ mix.js('resources/assets/js/vue/economy-circulation/economy-circulation.js', 'pu
 mix.js('resources/assets/js/vue/transactions/transactions.js', 'public/js').version();
 
 mix.js('resources/assets/js/vue/admin-transaction-list/admin-transaction-list.js', 'public/js').version();
-
