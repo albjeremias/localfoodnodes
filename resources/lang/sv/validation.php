@@ -113,4 +113,6 @@ return [
     */
 
     'attributes' => [],
+
+    'passwords.user' => 'Ogiltig epost, användaren finns inte',
 ];

@@ -80,11 +80,14 @@
             <div class="card-body">
                 <div class="row">
                     <div class="form-group col-12 col-lg-6">
-                        <label for="currency">{{ trans('admin/producer.currency') }}</label>
+                        <label for="currency">
+                            {{ trans('admin/user.currency') }}
+                            @include('account.field-error', ['field' => 'currency'])
+                        </label>
                         <select name="currency" id="currency" class="form-control">
                             <option value="">{{ trans('admin/producer.select_currency') }}</option>
-                            @foreach (UnitsHelper::getCurrencies() as $currency)
-                                <option value="{{ $currency }}" {{ $currency === $producer->currency ? 'selected' : '' }}>{{ $currency }}</option>
+                            @foreach ($currencies as $currency)
+                                <option value="{{ $currency->currency }}" {{ $currency->currency === $producer->currency ? 'selected' : '' }}>{{ $currency->currency }} - {{ $currency->label }}</option>
                             @endforeach
                         </select>
                     </div>

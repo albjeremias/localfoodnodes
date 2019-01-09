@@ -20,7 +20,7 @@ return [
     'economy' => 'Economia',
     'header' => 'Economia',
     'income' => 'Ingresos',
-    'money_circulated' => 'Dinero Circulado Localmente (SEK)',
+    'money_circulated' => 'Dinero Circulado',
     'orders' => 'Orders',
     'read_more_economy' => 'Lee más sobre nuestra economia',
     'ref' => 'Referencia',

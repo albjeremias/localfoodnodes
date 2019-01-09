@@ -19,39 +19,6 @@
                 <a href="/account/node/{{ $node->id }}/edit">{{ trans('admin/node.edit_node') }}</a>
             </div>
         </div>
-
-        <div class="card">
-            <div class="card-header">{{ trans('admin/node.events') }}</div>
-            <div class="card-body">
-                @if ($node->events()->count() > 0)
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>{{ trans('admin/node.name') }}</th>
-                                    <th>{{ trans('admin/node.date') }}</th>
-                                    <th>{{ trans('admin/node.guests') }}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($node->events() as $event)
-                                    <tr>
-                                        <td><a href="/account/node/{{ $node->id }}/event/{{ $event->id }}/edit">{{ $event->name }}</a></td>
-                                        <td>{{ $event->start_datetime->format('Y-m-d H:i') }} - {{ $event->end_datetime->format('Y-m-d H:i') }}</td>
-                                        <td><a href="/account/node/{{ $node->id }}/event/{{ $event->id }}/guests">{{ $event->userLinks()->count() }} {{ trans('admin/node.guests') }}</a></td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                @else
-                    <p>{{ trans('admin/node.no_events') }}</p>
-                @endif
-            </div>
-            <div class="card-footer">
-                <a href="/account/node/{{ $node->id }}/event/create">{{ trans('admin/node.create_event') }}</a>
-            </div>
-        </div>
     </div>
 
     <div class="row">
@@ -201,8 +168,10 @@
                         <form action="/account/node/{{ $node->id }}/invite/send" method="post">
                             {{ csrf_field() }}
                             <div class="input-group">
-                                <input type="email" name="email" id="email" class="form-control" placeholder="User email">
-                                <button type="submit" class="input-group-addon btn btn-primary">{{ trans('admin/node.invite_admin') }}</button>
+                                <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-secondary">{{ trans('admin/node.invite_admin') }}</button>
+                                </div>
                             </div>
                         </form>
                     </div>

@@ -18,6 +18,23 @@
                 </ul>
             </div>
 
+            @if ($user->admin)
+                <div class="block">
+                    <div class="block-header">
+                        Site admin
+                    </div>
+                    <ul class="user">
+                        <li>
+                            <ul>
+                                <li><a class="{{ Request::is('admin/users*') ? 'active' : '' }}" href="/admin/users">- Users</a></li>
+                                <li><a class="{{ Request::is('admin/economy/transactions*') ? 'active' : '' }}" href="/admin/economy/transactions">- Transactions</a></li>
+                                <li><a class="{{ Request::is('admin/email*') ? 'active' : '' }}" href="/admin/email">- Email</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            @endif
+
             <div class="block">
                 <div class="block-header">
                     {{ trans('admin/user-nav.your_user') }}
@@ -27,7 +44,6 @@
                         <a class="block-section-header {{ Request::is('account/user') ? 'active' : '' }}" href="/account/user">{{ $user->name }}</a>
                         <ul>
                             <li><a class="{{ Request::is('account/user/pickups*') ? 'active' : '' }}" href="/account/user/pickups">- {{ trans('admin/user-nav.pickups') }}</a></li>
-                            <li><a class="{{ Request::is('account/user/event*') ? 'active' : '' }}" href="/account/user/events">- {{ trans('admin/user-nav.events') }}</a></li>
                         </ul>
                     </li>
 
@@ -62,9 +78,6 @@
                                     <li>
                                         <a class="{{ Request::is('account/node/' . $nodeAdminLink->getNode()->id . '/users') ? 'active' : '' }}" href="/account/node/{{ $nodeAdminLink->getNode()->id }}/users">- {{ trans('admin/user-nav.users') }}</a>
                                     </li>
-                                    <li>
-                                        <a class="{{ Request::is('account/node/' . $nodeAdminLink->getNode()->id . '/event*') ? 'active' : '' }}" href="/account/node/{{ $nodeAdminLink->getNode()->id }}/events">- {{ trans('admin/user-nav.events') }}</a>
-                                    </li>
                                 </ul>
                             </li>
                         @endforeach
@@ -93,9 +106,6 @@
                                     </li>
                                     <li>
                                         <a class="{{ Request::is('account/producer/' . $producerAdminLink->getProducer()->id . '/#nodes') ? 'active' : '' }}" href="/account/producer/{{ $producerAdminLink->getProducer()->id }}/#nodes">- {{ trans('admin/user-nav.delivery_nodes') }}</a>
-                                    </li>
-                                    <li>
-                                        <a class="{{ Request::is('account/producer/' . $producerAdminLink->getProducer()->id . '/events') ? 'active' : '' }}" href="/account/producer/{{ $producerAdminLink->getProducer()->id }}/events">- {{ trans('admin/user-nav.events') }}</a>
                                     </li>
                                 </ul>
                             </li>

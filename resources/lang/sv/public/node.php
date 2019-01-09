@@ -3,10 +3,8 @@
 return [
     'add_to_cart' => 'Lägg till i varukorg',
     'avg_dist' => 'Snittsavstånd<br><span class="small">producent - nod</span>',
-    'calendar' => 'Nodkalender',
     'clear_date' => '(rensa datum)',
-    'event' => 'Evenemang',
-    'events' => 'Evenemang',
+    'contact' => 'Kontakta nodadmin på ',
     'filters' => 'Filter',
     'find_communication' => 'Hitta till vår kommunikationsgrupp',
     'find_producer_communication' => 'Hitta till vår kommunikationsgrupp för producenter',

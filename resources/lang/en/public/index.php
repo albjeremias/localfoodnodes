@@ -38,7 +38,6 @@ return [
     'subheader' => 'Check out our app - <a href="/app">Local Food App</a> - now available for your phone',
     'supported_by' => 'Supported by',
     'title' => 'Find Nodes',
-    'upcoming' => 'Upcoming events',
     'visit_node' => 'Visit node',
     'welcome_to' => 'Welcome to',
     'where' => 'Where: ',

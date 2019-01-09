@@ -31,7 +31,7 @@ class ResetPasswordController extends Controller
     public function sendLink(Request $request)
     {
         $validator = \Validator::make($request->all(), [
-            'email' => 'required|email'
+            'email' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -46,7 +46,7 @@ class ResetPasswordController extends Controller
         }
 
         return redirect()->back()->withErrors(
-            ['email' => trans($response)]
+            ['email' => trans('validation.' . $response)]
         );
     }
 

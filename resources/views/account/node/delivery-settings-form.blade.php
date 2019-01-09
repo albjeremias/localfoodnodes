@@ -40,7 +40,7 @@
                 @include('account.field-error', ['field' => 'delivery_startdate'])
             </label>
             <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                <span class="input-group-prepend"><i class="input-group-text fa fa-calendar"></i></span>
                 <input type="text" name="delivery_startdate" class="form-control picker date" id="delivery_startdate" placeholder="{{ trans('admin/node.delivery_startdate') }}" value="{{ $node->delivery_startdate ? $node->delivery_startdate->format('Y-m-d') : '' }}">
             </div>
         </div>
@@ -48,7 +48,7 @@
         <div class="form-group">
             <label for="delivery_time">{{ trans('admin/node.time') }} @include('account.field-error', ['field' => 'delivery_time'])</label>
             <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                <span class="input-group-prepend"><i class="input-group-text fa fa-clock-o"></i></span>
                 <input type="text" name="delivery_time" class="form-control picker time" id="delivery_time" placeholder="{{ trans('admin/node.time_placeholder') }}" value="{{ $node->delivery_time or '' }}">
             </div>
         </div>

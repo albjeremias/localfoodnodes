@@ -78,8 +78,6 @@ return [
     */
 
     'locale' => 'sv',
-
-    // Array with all the available locales
     'locales' => [
         'da' => 'Dansk',
         'en' => 'English',
@@ -87,19 +85,9 @@ return [
         'es' => 'Español',
         'nl' => 'Nederlands',
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Application Fallback Locale
-    |--------------------------------------------------------------------------
-    |
-    | The fallback locale determines the locale to use when the current one
-    | is not available. You may change the value to correspond to any of
-    | the language folders that are provided through your application.
-    |
-    */
-
     'fallback_locale' => 'en',
+
+    'zero_decimal_currencies' => ['MGA', 'BIF', 'CLP', 'PYG', 'DJF', 'RWF', 'GNF', 'UGX', 'JPY', 'VND', 'VUV', 'XAF', 'KMF', 'KRW', 'XOF', 'XPF'],
 
     /*
     |--------------------------------------------------------------------------

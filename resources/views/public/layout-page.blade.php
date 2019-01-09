@@ -10,18 +10,20 @@
         </style>
     @endif
 
-    <div class="container-fluid page-header">
-        <div class="container">
-            <div class="col-12 header-block">
-                <h1 class="bold">
-                    {{ $header }}
-                    @if (isset($subHeader))
-                        <div class="sub-header">{{ $subHeader }}</div>
-                    @endif
-                </h1>
+    @if (isset($header))
+        <div class="container-fluid page-header">
+            <div class="container">
+                <div class="col-12 header-block">
+                    <h1 class="bold">
+                        {{ $header }}
+                        @if (isset($subHeader))
+                            <div class="sub-header">{{ $subHeader }}</div>
+                        @endif
+                    </h1>
+                </div>
             </div>
         </div>
-    </div>
+    @endif
 
     @yield('page-content')
 @endsection

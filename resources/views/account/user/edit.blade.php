@@ -61,7 +61,17 @@
                                     <option value="{{ $langCode }}" {{ $langCode === $user->language ? 'selected' : '' }}>{{ $language }}</option>
                                 @endforeach
                             </select>
-                         </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="currency">{{ trans('admin/user.currency') }}</label>
+                            <select name="currency" id="currency" class="form-control">
+                                <option value="">{{ trans('admin/user.select_currency') }}</option>
+                                @foreach ($currencies as $currency)
+                                    <option value="{{ $currency->currency }}" {{ $currency->currency === $user->currency ? 'selected' : '' }}>{{ $currency->currency }} - {{ $currency->label }}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
                          <p>
                             {!! trans('admin/user.gdpr_consent_date', ['date' => $user->gdprConsent()->created_at]) !!}
@@ -69,11 +79,37 @@
                     </div>
                 </div>
 
-                @include('account.image-card', [
+                {{-- @include('account.image-card', [
                     'images' => $user->images(),
                     'deleteUrl' => '/account/image/{imageId}/delete',
                     'limit' => 1,
-                ])
+                ]) --}}
+
+                <div class="card">
+                    <div class="card-header">Membership payments</div>
+                    <div class="card-body">
+                        @if ($user->membershipPayments()->count() > 0)
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>{{ trans('admin/user.date') }}</th>
+                                        <th>{{ trans('admin/user.fee') }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($user->membershipPayments() as $payment)
+                                        <tr>
+                                            <td>{{ $payment->created_at }}</td>
+                                            <td>{{ $payment->amount }} {{ $payment->currency }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        @else
+                            {{ trans('admin/user.membership_no_history') }}
+                        @endif
+                    </div>
+                </div>
 
             </div>
         </div>

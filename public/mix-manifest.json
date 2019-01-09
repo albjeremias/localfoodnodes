@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "/js/admin.js": "/js/admin.js?id=98f94eb9478505b27f12",
     "/css/public.css": "/css/public.css?id=a2e3cc6a250aa26ae15e",
     "/css/account.css": "/css/account.css?id=d41d8cd98f00b204e980",
@@ -8,3 +9,13 @@
     "/js/economy-circulation.js": "/js/economy-circulation.js?id=e36ad2683f063c245c95",
     "/js/statistics.js": "/js/statistics.js?id=7623c51d765a887af206"
 }
+=======
+    "/js/admin-transaction-list.js": "/js/admin-transaction-list.js?id=73a85d2826f2ba32052d",
+    "/js/transactions.js": "/js/transactions.js?id=49b393d96f9db2d7a058",
+    "/js/economy-in-out.js": "/js/economy-in-out.js?id=9a4b222f61b5682c6c15",
+    "/js/economy-circulation.js": "/js/economy-circulation.js?id=4ff9ac94d9f73d694f13",
+    "/js/payment-widget.js": "/js/payment-widget.js?id=17ebc63fafb959b83f7a",
+    "/css/public.css": "/css/public.css?id=768dc038b8f15410638e",
+    "/css/account.css": "/css/account.css?id=9769c06a769b1c2148c0"
+}
+>>>>>>> master

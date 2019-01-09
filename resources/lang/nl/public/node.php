@@ -3,11 +3,8 @@
 return [
     'add_to_cart' => 'Toevoegen aan winkelwagen',
     'avg_dist' => 'Gemiddelde afstand <br><span class="small">producent - nod</span>',
-    'calendar' => 'Node kalender',
     'clear_date' => 'Wis datum',
     'contact' => 'Contact knooppunt beheerder over',
-    'event' => 'Gebeurtenis',
-    'events' => 'Gebeurtenissen',
     'filters' => 'Filters',
     'find_communication' => 'Vind onze communicatie groep',
     'find_producer_communication' => 'Vind onze producent communicatie groep',

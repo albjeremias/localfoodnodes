@@ -3,12 +3,12 @@
 return [
     'stripe' => [
         'test' => [
-            'secret_key' => 'sk_test_Di7ZR5kzuhfqnab7sUywmnYR',
-            'publicable_key' => 'pk_test_BMI2HybaV8NW3B2HZTuCfSmu'
+            'secret_key' => env('STRIPE_TEST_SECRET_KEY'),
+            'publicable_key' => env('STRIPE_TEST_PUBLICABLE_KEY')
         ],
         'live' => [
-            'secret_key' => 'sk_live_CWh2XjloO0dYg5gvaKTJfspF',
-            'publicable_key' => 'pk_live_eIdGWwePdByYH3DnwBdG7MPh'
+            'secret_key' => env('STRIPE_LIVE_SECRET_KEY'),
+            'publicable_key' => env('STRIPE_LIVE_PUBLICABLE_KEY')
         ],
     ]
 ];
