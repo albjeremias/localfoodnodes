@@ -1,11 +1,13 @@
 <?php
 
+Route::post('/users', 'Api\v1\Users\UsersController@create');
+
 Route::group(['middleware' => 'auth:api', 'prefix' => '/users'], function () {
     // Fetch data
     Route::get('/', 'Api\v1\Users\UsersController@users')->middleware(['scope:users-read-all']);
     Route::get('/self', 'Api\v1\Users\UsersController@self')->middleware(['scope:users-read-self']);
     Route::put('/', 'Api\v1\Users\UsersController@update')->middleware(['scope:users-modify']);
-    Route::post('/', 'Api\v1\Users\UsersController@create')->middleware(['scope:users-create']);
+
     Route::get('/nodes', 'Api\v1\Users\NodesController@nodes')->middleware(['scopes:users-nodes-read']);
     Route::post('/nodes/{nodeId}', 'Api\v1\Users\NodesController@followNode')->middleware(['scopes:users-nodes-modify']);
     Route::delete('/nodes/{nodeId}', 'Api\v1\Users\NodesController@unfollowNode')->middleware(['scopes:users-nodes-modify']);    Route::post('/push-token', 'Api\v1\Users\UsersController@pushToken')->middleware(['scope:users-modify']);

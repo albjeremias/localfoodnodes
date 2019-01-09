@@ -32,13 +32,17 @@ class UsersController extends BaseController
         if ($request->user()->tokenCan('users-read-self')) {
             return Auth::guard('api')->user();
         } else {
-            return response(['error' => 'unauthorized', 'message' => 'Unauthorized'], 403);
+            return response(['error' => 'unauthorized', 'message' => 'Unauthorized, wrong email or password.'], 403);
         }
     }
 
     public function create(Request $request)
     {
         $data = $request->all();
+
+        if ($data['language']) {
+            \App::setLocale($data['language']);
+        }
 
         $user = new User();
 
@@ -60,8 +64,8 @@ class UsersController extends BaseController
             return $user;
         } else {
             return response([
-                'error' => 'error_' . $errors->keys()[0],
-                'message' => 'error_' . $errors->keys()[0]
+                'error' => 'create_user_errors',
+                'message' => $errors->all()
             ], 400);
         }
     }
@@ -128,9 +132,9 @@ class UsersController extends BaseController
 
         $token = $request->input('stripeToken');
         $amount = $request->input('amount');
+        $currency = $request->input('currency');
 
-        // Todo: Enable currency support in app
-        $status = $user->processMembershipPayment($token, $amount, 'SEK');
+        $status = $user->processMembershipPayment($token, $amount, $currency, false);
 
         if ($status['error']) {
             return response($status['code'], 400);
