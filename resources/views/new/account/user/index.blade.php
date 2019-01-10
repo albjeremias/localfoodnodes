@@ -83,25 +83,13 @@
 
                         <div class="col-16">
                             <div class="white-box medium-min height-rmd-auto">
-                                <h4>{{ trans('admin/user.events') }}</h4>
+                                <h4>{{ trans('admin/user.producers_i_follow') }}</h4>
 
                                 <ul class="list-unstyled node-list mt-4">
                                     <li>
                                         <div class="row no-gutters">
-                                            <div class="col-2">
-                                                <i class="fa fa-asterisk icon-green" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="col">Grönsaksfest -
-                                                <small>25 Sep</small>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row no-gutters">
-                                            <div class="col-2">
-                                            </div>
-                                            <div class="col">Paprikaprovning -
-                                                <small>13 Juni</small>
+                                            <div class="col">
+                                                <small><span class="font-italic">Not yet available</span></small>
                                             </div>
                                         </div>
                                     </li>

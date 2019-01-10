@@ -232,6 +232,11 @@ td {
   line-height: 24px !important;
 }
 
+.icon-14em {
+  font-size: 1.4em !important;
+  line-height: 24px !important;
+}
+
 .icon-54 {
   @extend .icon;
   color: $black-54 !important;
@@ -374,11 +379,11 @@ thead {
   margin-bottom: 0.5rem;
   margin-top: 0.5rem;
   @extend .box-shadow;
+}
 
-  .bottom-link {
-    position: absolute;
-    bottom: 1rem;
-  }
+.bottom-link {
+  position: absolute;
+  bottom: 1rem;
 }
 
 .accent-light-box {
@@ -463,4 +468,11 @@ option:checked {
 
 .form-table tr td {
     vertical-align: middle;
+}
+
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }

@@ -117,6 +117,7 @@ return [
 	'close_delivery_spots' => 'Närliggande utlämningsplatser',
     'event' => 'Evenemang',
 	'nodes_i_follow' => 'Noder jag följer',
+	'producers_i_follow' => 'Producenter jag följer',
 
 	// -------- MY NODES --------
 	'sort_by_node' => 'Sortera efter nod',

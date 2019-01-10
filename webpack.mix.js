@@ -16,3 +16,5 @@ mix.js('resources/assets/js/vue/public/economy-circulation/economy-circulation.j
 mix.js('resources/assets/js/vue/public/transactions/transactions.js', 'public/js').version();
 mix.js('resources/assets/js/vue/public/statistics/statistics.js', 'public/js').version();
 
+mix.js('resources/assets/js/vue/new/index.js', 'public/js/new.js').version();
+

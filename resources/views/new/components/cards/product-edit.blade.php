@@ -31,12 +31,30 @@
 
     <div class="product-container px-3 py-1">
 
-        <h4 class="h10 line-clamp-1">{{ $product->name }}</h4>
+        <a href=""></a><h4 class="h10">{{ $product->name }}</h4>
 
-        <p>Kollinge torpargård</p>
+        @if($product->variants()->count() > 0)
+            <select class="custom-select">
+                @foreach($product->variants() as $index => $variant)
+                    <option {{ $index == 0 ? 'selected' : '' }}>{{ $variant->name }}</option>
+                @endforeach
+            </select>
+        @endif
 
-        <i class="fa fa-map-marker" aria-hidden="true"></i>
-        <span class="ml-2">2 km</span>
         <hr>
+
+        @include('new.components.forms.input', [
+            'name' => 'product-' . $product->id . '-stock',
+            'type' => 'number',
+            'class' => '',
+        ])
+
+        @include('new.components.forms.input', [
+            'name' => 'product-' . $product->id . '-price',
+            'type' => 'number',
+            'class' => '',
+        ])
+
+        <a href="/account/producer/{{ $producer->id }}/product/{{ $product->id }}">Editera</a>
     </div>
 </div>
