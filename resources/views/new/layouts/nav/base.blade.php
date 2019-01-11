@@ -23,23 +23,21 @@
 
                 <ul class="navbar-nav ml-auto mb-5 mb-lg-0 mt-3 mt-lg-0">
                     <!-- Visible links on mobile -->
-                    <li class="nav-item d-lg-none">
-                        <a class="nav-link" href="/login">{{ trans('public/nav.login') }}</a>
-                    </li>
-                    <li class="nav-item d-lg-none">
-                        <a class="nav-link" href="/account/user/create">{{ trans('public/nav.create') }}</a>
-                    </li>
+
 
                     <!-- Fast login hidden on mobile -->
+                    {{-- User is authed and is not using the transparent navbar --}}
                     @if (Auth::user() && !isset($transparent_nav))
-                        <li class="d-none d-lg-block">
+                        <li class="d-none d-lg-block my-auto px-0">
                             <a href="/account/user/edit" class="wc nav-link text-transform-none px-0">
-                                {{ trans('admin/user-nav.my_profile') }}
+                                <i class="fa fa-user-circle icon-38 icon-14em" aria-hidden="true"></i>
                             </a>
                         </li>
 
                         <li class="d-none d-lg-block my-auto px-4">
-                            <i class="fa fa-question-circle icon-38" aria-hidden="true"></i>
+                            <a href="#">
+                                <i class="fa fa-question-circle icon-38" aria-hidden="true"></i>
+                            </a>
                         </li>
 
                         <li class="d-none d-lg-block my-auto px-0">
@@ -47,7 +45,9 @@
                                 <i class="fa fa-sign-out icon-38" aria-hidden="true"></i>
                             </a>
                         </li>
-                    @else
+
+                    {{-- User is NOT authed and is using the transparent navbar --}}
+                    @elseif(!Auth::user() && isset($transparent_nav))
                         <li class="d-none d-lg-block">
                             <a href="/login" class="nav-link">
                                 <span class="wc hover-wbb pb-2">{{ trans('public/nav.login') }}</span>
@@ -69,6 +69,49 @@
                                     <a class="dropdown-item" href="/settings/locale/{{ $key }}">{{ $value }}</a>
                                 @endforeach
                             </div>
+                        </li>
+
+                        {{-- Mobile only --}}
+                        <li class="d-lg-none">
+                            <a class="nav-link wc" href="/login">{{ trans('public/nav.login') }}</a>
+                        </li>
+
+                        <li class="d-lg-none">
+                            <a class="nav-link wc" href="/account/user/create">{{ trans('public/nav.create') }}</a>
+                        </li>
+
+                    {{-- User is authed and is using the transparent navbar --}}
+                    @elseif(Auth::user() && isset($transparent_nav))
+
+                        <li class="d-none d-lg-block">
+                            <a href="/logout" class="nav-link">
+                                <span class="wc hover-wbb pb-2">{{ trans('admin/user-nav.logout') }}</span>
+                            </a>
+                        </li>
+
+                        <li class="d-none d-lg-block px-3">
+                            <a href="/account/user" class="btn btn-primary">
+                                {{ trans('public/nav.dashboard') }}
+                            </a>
+                        </li>
+
+                        <li class="dropdown d-none d-lg-block mr-2">
+                            <a href="#" class="nav-link dropdown-toggle wc" data-toggle="dropdown">
+                                {{ trans('public/nav.lang_swe') }}
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                @foreach (config('app.locales') as $key => $value)
+                                    <a class="dropdown-item" href="/settings/locale/{{ $key }}">{{ $value }}</a>
+                                @endforeach
+                            </div>
+                        </li>
+
+                        {{-- Mobile only --}}
+                        <li class="d-lg-none">
+                            <a class="nav-link wc" href="/account/user">{{ trans('public/nav.dashboard') }}</a>
+                        </li>
+                        <li class="d-lg-none">
+                            <a class="nav-link wc" href="/logout">{{ trans('admin/user-nav.logout') }}</a>
                         </li>
                     @endif
                 </ul>

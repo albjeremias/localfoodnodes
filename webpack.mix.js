@@ -13,5 +13,5 @@ mix.js('resources/assets/js/vue/payment-widget/payment-widget.js', 'public/js').
 mix.js('resources/assets/js/vue/economy-in-out/economy-in-out.js', 'public/js').version();
 mix.js('resources/assets/js/vue/economy-circulation/economy-circulation.js', 'public/js').version();
 mix.js('resources/assets/js/vue/transactions/transactions.js', 'public/js').version();
-
 mix.js('resources/assets/js/vue/admin-transaction-list/admin-transaction-list.js', 'public/js').version();
+mix.js('resources/assets/js/vue/new/index.js', 'public/js/new.js').version();

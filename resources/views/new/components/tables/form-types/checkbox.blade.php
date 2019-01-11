@@ -7,11 +7,11 @@
     *Required
 --}}
 
-<div id="checkbox-container-{{ $name }}" class="form-check">
+<div id="checkbox-container-{{ $name }}">
     <input
             name="{{ $name }}"
             {{ $disabled ? 'disabled' : '' }}
-            class="form-check-input"
+            class="d-block mx-auto"
             type="checkbox"
             value="1" {{ $checked ? 'checked' : '' }}
             id="checkbox-{{ $name }}">

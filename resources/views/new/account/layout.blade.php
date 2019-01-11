@@ -20,7 +20,6 @@
 <div class="page">
     @if (!isset($hideMenu))
         @include('new.layouts.nav.base')
-{{--        @include('account.user-nav-mobile')--}}
     @endif
     <div class="content {{ isset($hideMenu) ? 'no-menu' : '' }}">
         @include('shared.errors')
@@ -39,6 +38,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
         integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
         crossorigin="anonymous"></script>
+
+<script src="{{ mix('/js/new.js') }}"></script>
 
 <script src="/js/tinymce/tinymce.min.js"></script>
 <script>tinymce.init({

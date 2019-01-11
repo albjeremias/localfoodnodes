@@ -102,4 +102,5 @@ return [
 	// ---------------------------
 
     'save_producer' => 'Spara konto',
+    'my_producer'   => 'Mina produkter',
 ];

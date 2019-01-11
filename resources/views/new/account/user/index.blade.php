@@ -18,18 +18,18 @@
                             <div class="white-box little-min">
                                 <h4>{{ trans('admin/user.profile_info') }}</h4>
                                 <ul class="list-unstyled list-p">
-                                    <li>{{ Auth::user()->name }}</li>
+                                    <li>{{ $user->name }}</li>
                                     <li class="black-54">{{ Auth::user()->email }}</li>
                                 </ul>
 
                                 <div class="row mt-4">
                                     <div class="col-md-4">
-                                        <h3 class="m-0">1129</h3>
+                                        <h3 class="m-0">{{ $user->nodes()->count() }}</h3>
                                         <small>{{ trans('admin/user.followed_nodes') }}</small>
                                     </div>
 
                                     <div class="col-md-4">
-                                        <h3 class="m-0">41</h3>
+                                        <h3 class="m-0">{{ $user->producerAdminLinks()->count() }}</h3>
                                         <small>{{ trans('admin/user.producers') }}</small>
                                     </div>
 
@@ -77,31 +77,19 @@
                     <div class="row">
                         <div class="col-16">
                             <div class="white-box big-min height-rmd-auto">
-                                @include('new.components.nodes-following')
+                                @include('new.components.nodes-following', ['nodes' => $user->nodes()])
                             </div>
                         </div>
 
                         <div class="col-16">
                             <div class="white-box medium-min height-rmd-auto">
-                                <h4>{{ trans('admin/user.events') }}</h4>
+                                <h4>{{ trans('admin/user.producers_i_follow') }}</h4>
 
                                 <ul class="list-unstyled node-list mt-4">
                                     <li>
                                         <div class="row no-gutters">
-                                            <div class="col-2">
-                                                <i class="fa fa-asterisk icon-green" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="col">Grönsaksfest -
-                                                <small>25 Sep</small>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row no-gutters">
-                                            <div class="col-2">
-                                            </div>
-                                            <div class="col">Paprikaprovning -
-                                                <small>13 Juni</small>
+                                            <div class="col">
+                                                <small><span class="font-italic">Not yet available</span></small>
                                             </div>
                                         </div>
                                     </li>

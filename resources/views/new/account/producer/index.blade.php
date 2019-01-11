@@ -77,7 +77,8 @@
                     <div class="row">
                         <div class="col-16">
                             <div class="white-box big-min height-rmd-auto">
-                                @include('new.components.nodes-following')
+                                @include('new.components.nodes-following', ['nodes' => []])
+                                {{ trans('admin/producer.my_producer') }}
                             </div>
                         </div>
 

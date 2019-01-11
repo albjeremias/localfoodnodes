@@ -28,9 +28,10 @@
                     if (!isset($value['class'])) $value['class'] = false;
                     if (!isset($value['value'])) $value['value'] = false;
                     if (!isset($value['placeholder'])) $value['placeholder'] = false;
+                    if (!isset($value['td_class'])) $value['td_class'] = false;
                 @endphp
 
-                <td class="position-relative {{ $value['type'] == 'radio' ? 'vert-top' : '' }}">
+                <td class="position-relative {{ $value['td_class'] }}">
                     @switch($value['type'])
                         @case('checkbox')
                             @include('new.components.tables.form-types.checkbox', [
