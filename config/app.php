@@ -170,6 +170,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        Barryvdh\TranslationManager\ManagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
         LocalFoodNodes\LanguageTable\ServiceProvider::class,

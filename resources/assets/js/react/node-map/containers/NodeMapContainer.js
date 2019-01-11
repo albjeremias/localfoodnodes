@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import _ from 'lodash';
 
+import SearchResultComponent from '../components/SearchResultComponent';
+
 const rootElement = document.getElementById('node-map-component-root');
 const trans = JSON.parse(rootElement.dataset.trans);
 
@@ -16,6 +18,7 @@ class NodeMapContainer extends Component {
     constructor(props) {
         super(props);
 
+        this.debouncedSearch = this.debouncedSearch.bind(this);
         this.getNodePreview = this.getNodePreview.bind(this);
         this.onSelect = this.onSelect.bind(this);
 
@@ -227,6 +230,17 @@ class NodeMapContainer extends Component {
         );
     }
 
+    search(event) {
+        event.persist();
+        this.setState({searchString: event.target.value})
+        this.debouncedSearch(event);
+    }
+
+    debouncedSearch(event) {
+        const { dispatch } = this.props;
+        actions.searchGeo(dispatch, event.target.value);
+    }
+
     onSelect(place) {
         const { dispatch } = this.props;
 
@@ -255,7 +269,6 @@ class NodeMapContainer extends Component {
 
         return (
             <div className='map container-fluid'>
-                <h2 className='thin'>{trans.go_local}</h2>
                 <div className='row no-gutters map-search mb-5'>
                     <div className='col-12 col-md-6'>
                         <div className='input-group'>
@@ -265,7 +278,7 @@ class NodeMapContainer extends Component {
                         {searchResults}
                     </div>
                 </div>
-                return <div className='map-holder' ref='map' style={{height: '70vh'}}>{loader}</div>;
+                <div className='map-holder' ref='map' style={{height: '70vh'}}>{loader}</div>
             </div>
         );
     }

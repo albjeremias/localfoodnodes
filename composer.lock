@@ -1,53 +1,11 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "853da02cc1527f83eb097114d9052a1b",
+    "content-hash": "80d52afac1802d67a6a721e1a026341d",
     "packages": [
-        {
-            "name": "alymosul/exponent-server-sdk-php",
-            "version": "v1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Alymosul/exponent-server-sdk-php.git",
-                "reference": "5f34abd2517450f211d6edb15a3c002f091c9450"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Alymosul/exponent-server-sdk-php/zipball/5f34abd2517450f211d6edb15a3c002f091c9450",
-                "reference": "5f34abd2517450f211d6edb15a3c002f091c9450",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "ExponentPhpSDK\\": "lib"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Aly Suleiman",
-                    "email": "alymosul@gmail.com"
-                }
-            ],
-            "description": "Server-side library for working with Expo push notifications using PHP",
-            "keywords": [
-                "expo",
-                "exponent",
-                "notifications",
-                "push"
-            ],
-            "time": "2017-07-19T09:48:08+00:00"
-        },
         {
             "name": "aws/aws-sdk-php",
             "version": "3.56.4",
@@ -258,6 +216,60 @@
                 "webprofiler"
             ],
             "time": "2018-03-06T08:35:31+00:00"
+        },
+        {
+            "name": "barryvdh/laravel-translation-manager",
+            "version": "v0.5.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/barryvdh/laravel-translation-manager.git",
+                "reference": "7c42358804c44aca19c5de77080c42d841ed6856"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/barryvdh/laravel-translation-manager/zipball/7c42358804c44aca19c5de77080c42d841ed6856",
+                "reference": "7c42358804c44aca19c5de77080c42d841ed6856",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.5.x|5.6.x|5.7.x",
+                "illuminate/translation": "5.5.x|5.6.x|5.7.x",
+                "php": ">=7",
+                "symfony/finder": "~3.0|~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.5-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Barryvdh\\TranslationManager\\ManagerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Barryvdh\\TranslationManager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                }
+            ],
+            "description": "Manage Laravel Translations",
+            "keywords": [
+                "laravel",
+                "translations",
+                "translator"
+            ],
+            "time": "2018-11-15T08:56:31+00:00"
         },
         {
             "name": "defuse/php-encryption",
@@ -1094,7 +1106,7 @@
                 {
                     "name": "Luís Otávio Cobucci Oblonczyk",
                     "email": "lcobucci@gmail.com",
-                    "role": "Developer"
+                    "role": "developer"
                 }
             ],
             "description": "A simple library to work with JSON Web Token and JSON Web Signature",
@@ -1352,91 +1364,6 @@
                 "server"
             ],
             "time": "2017-12-23T23:33:42+00:00"
-        },
-        {
-            "name": "localfoodnodes/language-table",
-            "version": "0.1.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/localfoodnodes/language-table.git",
-                "reference": "58cd4c51cf7a71204588c9b286492ca9297c1df1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/localfoodnodes/language-table/zipball/58cd4c51cf7a71204588c9b286492ca9297c1df1",
-                "reference": "58cd4c51cf7a71204588c9b286492ca9297c1df1",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "LocalFoodNodes\\LanguageTable": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "David Ajnered",
-                    "email": "david@localfoodnodes.org",
-                    "homepage": "https://localfoodnodes.org",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Visualize language file diffs in Laravel to help maintain translations in big projects.",
-            "homepage": "https://github.com/localfoodnodes/language-table",
-            "keywords": [
-                "language",
-                "locale",
-                "translations"
-            ],
-            "time": "2017-12-08T19:02:20+00:00"
-        },
-        {
-            "name": "localfoodnodes/localfoodnodes-php-sdk",
-            "version": "0.1.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/localfoodnodes/localfoodnodes-php-sdk.git",
-                "reference": "8f20a652e6de932ec18cfc1aaf407d725848321b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/localfoodnodes/localfoodnodes-php-sdk/zipball/8f20a652e6de932ec18cfc1aaf407d725848321b",
-                "reference": "8f20a652e6de932ec18cfc1aaf407d725848321b",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/guzzle": "^6.0",
-                "php": ">=7.0.0"
-            },
-            "type": "sdk",
-            "autoload": {
-                "psr-0": {
-                    "LocalFoodNodes\\Sdk": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "David Ajnered",
-                    "email": "david@localfoodnodes.org",
-                    "homepage": "https://localfoodnodes.org",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Simple PHP SDK for Local Food Nodes API",
-            "homepage": "https://github.com/localfoodnodes/localfoodnodes-php-sdk",
-            "keywords": [
-                "api",
-                "sdk"
-            ],
-            "time": "2018-03-12T09:57:46+00:00"
         },
         {
             "name": "maximebf/debugbar",
@@ -3496,6 +3423,48 @@
     ],
     "packages-dev": [
         {
+            "name": "alymosul/exponent-server-sdk-php",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Alymosul/exponent-server-sdk-php.git",
+                "reference": "5f34abd2517450f211d6edb15a3c002f091c9450"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Alymosul/exponent-server-sdk-php/zipball/5f34abd2517450f211d6edb15a3c002f091c9450",
+                "reference": "5f34abd2517450f211d6edb15a3c002f091c9450",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ExponentPhpSDK\\": "lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aly Suleiman",
+                    "email": "alymosul@gmail.com"
+                }
+            ],
+            "description": "Server-side library for working with Expo push notifications using PHP",
+            "keywords": [
+                "expo",
+                "exponent",
+                "notifications",
+                "push"
+            ],
+            "time": "2017-07-19T09:48:08+00:00"
+        },
+        {
             "name": "doctrine/instantiator",
             "version": "1.1.0",
             "source": {
@@ -3643,6 +3612,91 @@
                 "test"
             ],
             "time": "2015-05-11T14:41:42+00:00"
+        },
+        {
+            "name": "localfoodnodes/language-table",
+            "version": "0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/localfoodnodes/language-table.git",
+                "reference": "58cd4c51cf7a71204588c9b286492ca9297c1df1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/localfoodnodes/language-table/zipball/58cd4c51cf7a71204588c9b286492ca9297c1df1",
+                "reference": "58cd4c51cf7a71204588c9b286492ca9297c1df1",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "LocalFoodNodes\\LanguageTable": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Ajnered",
+                    "email": "david@localfoodnodes.org",
+                    "homepage": "https://localfoodnodes.org",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Visualize language file diffs in Laravel to help maintain translations in big projects.",
+            "homepage": "https://github.com/localfoodnodes/language-table",
+            "keywords": [
+                "language",
+                "locale",
+                "translations"
+            ],
+            "time": "2017-12-08T19:02:20+00:00"
+        },
+        {
+            "name": "localfoodnodes/localfoodnodes-php-sdk",
+            "version": "0.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/localfoodnodes/localfoodnodes-php-sdk.git",
+                "reference": "8f20a652e6de932ec18cfc1aaf407d725848321b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/localfoodnodes/localfoodnodes-php-sdk/zipball/8f20a652e6de932ec18cfc1aaf407d725848321b",
+                "reference": "8f20a652e6de932ec18cfc1aaf407d725848321b",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.0",
+                "php": ">=7.0.0"
+            },
+            "type": "sdk",
+            "autoload": {
+                "psr-0": {
+                    "LocalFoodNodes\\Sdk": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Ajnered",
+                    "email": "david@localfoodnodes.org",
+                    "homepage": "https://localfoodnodes.org",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Simple PHP SDK for Local Food Nodes API",
+            "homepage": "https://github.com/localfoodnodes/localfoodnodes-php-sdk",
+            "keywords": [
+                "api",
+                "sdk"
+            ],
+            "time": "2018-03-12T09:57:46+00:00"
         },
         {
             "name": "mockery/mockery",
