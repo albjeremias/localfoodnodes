@@ -33,7 +33,7 @@
                 <a class="btn btn-secondary wc" @click="saveSettings()">Save</a>
             </div>
 
-            <a class="bottom-link rc" :href="'/account/producer/' + producer.id + '/product/' + product.id ">ADVANCED SETTING</a>
+            <a class="bottom-link rc" :href="'/account/producer/' + producer.id + '/product/' + product.id ">ADVANCED SETTINGS</a>
 
             <div class="custom-control custom-checkbox product-edit-active">
                 <input type="checkbox" :name="'checkbox-active-' + product.id" class="custom-control-input" :id="'checkbox-active-' + product.id">

@@ -13238,6 +13238,21 @@ return jQuery;
 
 /***/ }),
 
+/***/ "8Vet":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("FZ+f")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "8v14":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13816,6 +13831,15 @@ return jQuery;
 
 /***/ }),
 
+/***/ "BspF":
+/***/ (function(module, exports) {
+
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"product product-edit"},[_c('div',{staticClass:"product__img-container image bg-img-basket"},[_c('span',{staticClass:"product__img-container__quantity"},[_vm._v("KVAR")]),_vm._v(" "),_c('i',{staticClass:"product__img-container__share",attrs:{"aria-hidden":"true"}}),_vm._v(" "),_c('small',{staticClass:"product__img-container__tag"},[_vm._v(_vm._s(_vm.tag))])]),_vm._v(" "),_c('div',{staticClass:"product-container px-3 py-1"},[_c('h4',{staticClass:"h10 mt-1 line-clamp-1"},[_vm._v(_vm._s(_vm.product.name))]),_vm._v(" "),(_vm.variants.length > 0)?_c('select',{staticClass:"custom-select bb-38"},_vm._l((_vm.variants),function(variant,index){return _c('option',[_vm._v("\n                "+_vm._s(variant.name)+"\n            ")])}),0):_c('div',{staticClass:"divider d-flex"},[_c('small',{staticClass:"font-italic my-auto"},[_vm._v("This product don't have any variants")])]),_vm._v(" "),_c('hr',{staticClass:"mb-2"}),_vm._v(" "),_c('p',{staticClass:"mb-2 rc"},[_vm._v("Settings")]),_vm._v(" "),_c('div',{staticClass:"product-edit-form"},[_c('input',{staticClass:"form-control input-group w-25",attrs:{"type":"text","aria-describedby":"input-aria-name","name":"name","id":"form-input-stock","value":"","placeholder":"Stock","autocomplete":"off"}}),_vm._v(" "),_c('input',{staticClass:"form-control input-group w-25 mx-lg-1",attrs:{"type":"text","aria-describedby":"input-aria-name","name":"name","id":"form-input-price","value":"","placeholder":"Price","autocomplete":"off"}}),_vm._v(" "),_c('input',{staticClass:"form-control input-group w-25 mr-lg-1",attrs:{"type":"text","aria-describedby":"input-aria-name","name":"name","id":"form-input-deadline","value":"","placeholder":"Deadline","autocomplete":"off"}}),_vm._v(" "),_c('a',{staticClass:"btn btn-secondary wc",on:{"click":function($event){_vm.saveSettings()}}},[_vm._v("Save")])]),_vm._v(" "),_c('a',{staticClass:"bottom-link rc",attrs:{"href":'/account/producer/' + _vm.producer.id + '/product/' + _vm.product.id}},[_vm._v("ADVANCED SETTINGS")]),_vm._v(" "),_c('div',{staticClass:"custom-control custom-checkbox product-edit-active"},[_c('input',{staticClass:"custom-control-input",attrs:{"type":"checkbox","name":'checkbox-active-' + _vm.product.id,"id":'checkbox-active-' + _vm.product.id}}),_vm._v(" "),_c('label',{staticClass:"custom-control-label",attrs:{"for":'checkbox-active-' + _vm.product.id}},[_vm._v("Active")])])])])}
+var staticRenderFns = []
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+
+/***/ }),
+
 /***/ "C7av":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14095,15 +14119,6 @@ return jQuery;
 
 /***/ }),
 
-/***/ "DIxK":
-/***/ (function(module, exports) {
-
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"product product-edit"},[_c('div',{staticClass:"product__img-container image bg-img-basket"},[_c('span',{staticClass:"product__img-container__quantity"},[_vm._v("KVAR")]),_vm._v(" "),_c('i',{staticClass:"product__img-container__share",attrs:{"aria-hidden":"true"}}),_vm._v(" "),_c('small',{staticClass:"product__img-container__tag"},[_vm._v(_vm._s(_vm.tag))])]),_vm._v(" "),_c('div',{staticClass:"product-container px-3 py-1"},[_c('h4',{staticClass:"h10 mt-1 line-clamp-1"},[_vm._v(_vm._s(_vm.product.name))]),_vm._v(" "),(_vm.variants.length > 0)?_c('select',{staticClass:"custom-select bb-38"},_vm._l((_vm.variants),function(variant,index){return _c('option',[_vm._v("\n                "+_vm._s(variant.name)+"\n            ")])}),0):_c('div',{staticClass:"divider d-flex"},[_c('small',{staticClass:"font-italic my-auto"},[_vm._v("This product don't have any variants")])]),_vm._v(" "),_c('hr',{staticClass:"mb-2"}),_vm._v(" "),_c('p',{staticClass:"mb-2 rc"},[_vm._v("Settings")]),_vm._v(" "),_c('div',{staticClass:"product-edit-form"},[_c('input',{staticClass:"form-control input-group w-25",attrs:{"type":"text","aria-describedby":"input-aria-name","name":"name","id":"form-input-stock","value":"","placeholder":"Stock","autocomplete":"off"}}),_vm._v(" "),_c('input',{staticClass:"form-control input-group w-25 mx-lg-1",attrs:{"type":"text","aria-describedby":"input-aria-name","name":"name","id":"form-input-price","value":"","placeholder":"Price","autocomplete":"off"}}),_vm._v(" "),_c('input',{staticClass:"form-control input-group w-25 mr-lg-1",attrs:{"type":"text","aria-describedby":"input-aria-name","name":"name","id":"form-input-deadline","value":"","placeholder":"Deadline","autocomplete":"off"}}),_vm._v(" "),_c('a',{staticClass:"btn btn-secondary wc",on:{"click":function($event){_vm.saveSettings()}}},[_vm._v("Save")])]),_vm._v(" "),_c('a',{staticClass:"bottom-link rc",attrs:{"href":'/account/producer/' + _vm.producer.id + '/product/' + _vm.product.id}},[_vm._v("ADVANCED SETTING")]),_vm._v(" "),_c('div',{staticClass:"custom-control custom-checkbox product-edit-active"},[_c('input',{staticClass:"custom-control-input",attrs:{"type":"checkbox","name":'checkbox-active-' + _vm.product.id,"id":'checkbox-active-' + _vm.product.id}}),_vm._v(" "),_c('label',{staticClass:"custom-control-label",attrs:{"for":'checkbox-active-' + _vm.product.id}},[_vm._v("Active")])])])])}
-var staticRenderFns = []
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-
-/***/ }),
-
 /***/ "DOkx":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14350,20 +14365,6 @@ try {
 
 module.exports = g;
 
-
-/***/ }),
-
-/***/ "EPU0":
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__("eXrP");
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__("rjj0")("907fdd76", content, true, {});
 
 /***/ }),
 
@@ -52670,21 +52671,6 @@ module.exports = Cancel;
 
 /***/ }),
 
-/***/ "eXrP":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("FZ+f")(false);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/***/ }),
-
 /***/ "f4W3":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -58032,6 +58018,20 @@ module.exports = function dispatchRequest(config) {
 
 /***/ }),
 
+/***/ "y7d+":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("8Vet");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("rjj0")("3097b163", content, true, {});
+
+/***/ }),
+
 /***/ "yRTJ":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -58123,19 +58123,19 @@ module.exports = function dispatchRequest(config) {
 /***/ (function(module, exports, __webpack_require__) {
 
 function injectStyle (ssrContext) {
-  __webpack_require__("EPU0")
+  __webpack_require__("y7d+")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
 var __vue_script__ = __webpack_require__("oC02")
 /* template */
-var __vue_template__ = __webpack_require__("DIxK")
+var __vue_template__ = __webpack_require__("BspF")
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-362e22bc"
+var __vue_scopeId__ = "data-v-02d76da3"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
