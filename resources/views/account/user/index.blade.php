@@ -40,17 +40,33 @@
     </div>
 
     <div class="mb-5">
-        @include('account.user.membership-card')
-
         <div class="card">
             <div class="card-header">{{ $user->name }}</div>
             <div class="card-body">
                 <div>{{ $user->name }}</div>
                 <div>{{ $user->email }}</div>
                 <div>{{ $user->address }}</div>
-                <div>{{ $user->zip }}</div>
-                <div>{{ $user->city }}</div>
+                <div>{{ $user->zip }} {{ $user->city }}</div>
                 <div>{{ trans('admin/user.language') }}: <a href="/account/user/edit">{{ $user->getLanguageName() }}</a></div>
+                <div>{{ trans('admin/user.currency') }}: <a href="/account/user/edit">{{ $user->currency }}</a></div>
+
+                @if ($user->isMember())
+                    <div class="alert alert-success mt-3">{{ trans('admin/user.membership_paid', [
+                        'date' => $user->getLatestMembershipPayment()->getDateOneYearForward()->format('Y-m-d'),
+                    ]) }}
+                        <div class="mt-3">
+                            <a href="/membership" class="btn btn-success">Bli medlem</a>
+                        </div>
+                    </div>
+                @else
+                    <div class="alert alert-warning mt-3">
+                        {{ trans('admin/user.membership_unpaid') }}
+                        <div class="mt-3">
+                            <a href="/membership" class="btn btn-warning">Bli medlem</a>
+                        </div>
+                    </div>
+                @endif
+
             </div>
 
             <div class="card-footer d-flex justify-content-between">

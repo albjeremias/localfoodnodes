@@ -1,14 +1,12 @@
 <?php
 
-Route::get('/token', 'Admin\AdminController@getApiAccessToken'); // Only needed for file uploads...
-Route::any('/api-proxy', 'Admin\AdminController@apiProxy'); // Use /api-proxy for everything else
-
 Route::get('/', 'Admin\AdminController@index');
 Route::get('/users', 'Admin\AdminController@users');
-Route::get('/orders', 'Admin\AdminController@orders');
-Route::get('/economy', 'Admin\AdminController@economy');
-Route::get('/api', 'Admin\AdminController@api');
-Route::get('/translations', '\LocalFoodNodes\LanguageTable\Controller@index');
+Route::get('/users/{userId}/activate', 'Admin\AdminController@activateUser');
+Route::get('/economy/transactions', 'Admin\AdminController@transactions');
+Route::post('/economy/transactions', 'Admin\AdminController@uploadTransactionsFile');
+Route::put('/economy/transactions', 'Admin\AdminController@updateTransaction');
+// Route::get('/transactions/categories', 'Admin\AdminController@transactionCategories');
 
 // Email
 Route::group(['prefix' => '/email'], function () {

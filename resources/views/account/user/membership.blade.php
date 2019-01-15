@@ -6,13 +6,12 @@
     @include('account.page-header')
 
     <div class="row">
-        <div class="col-12">
+        <div class="col-xs-12 col-lg-8">
             <div class="card mb-5">
                 <div class="card-header">{{ trans('admin/user.membership') }}</div>
                 <div class="card-body">
                     {!! trans('public/pages/membership.body') !!}
                 </div>
-
 
                 @include('account.user.membership-form')
             </div>
@@ -32,7 +31,7 @@
                                 @foreach ($user->membershipPayments() as $payment)
                                     <tr>
                                         <td>{{ $payment->created_at }}</td>
-                                        <td>{{ $payment->amount }} SEK</td>
+                                        <td>{{ $payment->amount }} {{ $payment->currency }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

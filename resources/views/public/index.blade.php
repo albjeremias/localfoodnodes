@@ -106,7 +106,7 @@
             </h2>
 
             <div id="economy-circulation">
-                <economy-circulation translations="{{ json_encode(trans('public/economy')) }}"></economy-circulation>
+                <economy-circulation></economy-circulation>
             </div>
             <a href="/statistics">{{ trans('public/pages/statistics.more_link') }}</a>
         </div>
@@ -123,23 +123,6 @@
                 <div class="d-flex justify-content-center">
                     <div class="col-12 col-md-8">
                         <p>{{ trans('public/index.co_fund_paragraph') }}</p>
-
-                        <div class="metrics row mt-5">
-                            <div class="metric col-6">
-                                <i class="fa fa-user"></i>
-                                <div class="metric-inner">
-                                    <div class="value">{{ $members }}</div>
-                                    <div class="label">{{ trans('public/pages/membership.supporting') }}</div>
-                                </div>
-                            </div>
-                            <div class="metric col-6">
-                                <i class="fa fa-money"></i>
-                                <div class="metric-inner">
-                                    <div class="value">{{ $averageMembership }} SEK</div>
-                                    <div class="label">{{ trans('public/pages/membership.avg_fee') }}</div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -154,7 +137,7 @@
             <div class="row mb-5">
                 {!! trans('public/economy.economy_info') !!}
             </div>
-            <metrics translations="{{ json_encode(trans('public/economy')) }}"></metrics>
+            <metrics></metrics>
             <div class="text-center">
                 <a class="btn btn-success mt-5" href="/economy">{{ trans('public/economy.read_more_economy') }}</a>
                 <a class="d-block mt-2" href="/economy/transactions">{{ trans('public/economy.view_all_transactions') }}</a>

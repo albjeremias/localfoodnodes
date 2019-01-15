@@ -26,10 +26,11 @@ class AuthenticateAccount
             // Urls available for non-active users
             $urls = [
                 'account/user/activate',
-                'account/user/activate/*',
+                'account/user/activate/resend',
                 'account/user/gdpr',
             ];
 
+            // Redirect user to activation page if not active or not in array of allowed urls
             if (!$user->active && !(in_array($request->path(), $urls))) {
                 return redirect('/account/user/activate');
             } else {

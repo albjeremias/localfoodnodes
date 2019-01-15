@@ -6,12 +6,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Collection;
 use App\Mail\ResetPassword as ResetPasswordNotification;
 
-use Stripe\Stripe;
-use Stripe\Charge;
-
 use Mail;
 use App\Traits\Excludable;
 use App\User\UserMembershipPayment;
+use App\User\UserMembershipSubscription;
 
 class User extends \App\User\BaseUser
 {
@@ -30,7 +28,9 @@ class User extends \App\User\BaseUser
         'city' => '',
         'phone' => '',
         'language' => '',
+        'currency' => '',
         'active' => '',
+        'stripe_customer_id' => '',
     ];
 
     /**
@@ -47,6 +47,7 @@ class User extends \App\User\BaseUser
         'city',
         'phone',
         'language',
+        'currency',
         'active'
     ];
 
@@ -77,7 +78,6 @@ class User extends \App\User\BaseUser
             $user->nodeAdminLinks()->each->delete();
             $user->nodeAdminInvites()->each->delete();
             $user->producerAdminLinks()->each->delete();
-            $user->eventLinks()->each->delete();
             $user->images()->each->delete();
         });
     }
@@ -393,6 +393,14 @@ class User extends \App\User\BaseUser
     }
 
     /**
+     * Define relationship with membership payments.
+     */
+    public function membershipSubscription()
+    {
+        return $this->hasOne('App\User\UserMembershipSubscription')->first();
+    }
+
+    /**
      * Check if user is a member.
      *
      * Todo: implement
@@ -417,48 +425,129 @@ class User extends \App\User\BaseUser
     /**
      * Process payments.
      */
-    public function processMembershipPayment($token, $amount)
+    public function processMembershipPayment($token, $amount, $currency, $recurring = false)
     {
+        $successMessage = $this->name . ' (' . $this->email . ')' . ' payed ' . $amount . ' ' . $currency . ' to become a member.';
+
         try {
-            Stripe::setApiKey(config('payment.stripe.live.secret_key')); // Use .env
+            \Stripe\Stripe::setApiKey(config('payment.stripe.live.secret_key'));
 
             if (!is_numeric($amount)) {
                 throw new \Exception(trans('admin/messages.user_membership_amount_not_numeric'));
             }
 
-            $adjustedAmount = (int) $amount * 100;
+            // If not a zero decimal currency we multiply by 100
+            $adjustedAmount = $amount;
+            if (!in_array($currency, config('app.zero_decimal_currencies'))) {
+                $adjustedAmount = $amount * 100;
+            }
 
-            // If user pays less than 3SEK (stripe limit)
-            if ($amount < 3) {
-                UserMembershipPayment::create([
-                    'user_id' => $this->id,
-                    'amount' => $adjustedAmount
-                ]);
+            if ($recurring === 'monthly') {
+                $membershipSubscription = $this->membershipSubscription();
+                $productId = 'prod_Dlg5pEcdYz4TbL'; // Manually created, should only exist one
 
-                \App\Helpers\SlackHelper::message('notification', $this->name . ' (' . $this->email . ')' . ' payed ' . $amount . 'SEK to become a member.');
-                return ['error' => false, 'message' => $amount];
+                // Retreive or create customer
+                $customer = null;
+                if ($membershipSubscription && $membershipSubscription->customer_id) {
+                    $customer = \Stripe\Customer::retrieve($membershipSubscription->customer_id);
+                }
+
+                if (!$customer) {
+                    $customer = \Stripe\Customer::create([
+                        'email' => $this->email,
+                        'source'  => $token
+                    ]);
+                }
+
+                // Retreive or create plan
+                $plan = null;
+                if ($membershipSubscription && $membershipSubscription->plan_id) {
+                    $plan = \Stripe\Plan::retrieve($membershipSubscription->plan_id);
+                }
+
+                if (!$plan) {
+                    $plan = \Stripe\Plan::create([
+                        'currency' => $currency,
+                        'interval' => 'month',
+                        'product' => $productId,
+                        'nickname' => 'Monthly membership',
+                        'amount' => $adjustedAmount,
+                    ]);
+                }
+
+                // Retreive or create subscription
+                $subscription = null;
+                if ($membershipSubscription && $membershipSubscription->subscription_id) {
+                    $subscription = \Stripe\Subscription::retrieve($membershipSubscription->subscription_id);
+                }
+
+                if (!$subscription) {
+                    $subscription = \Stripe\Subscription::create([
+                        'customer' => $customer->id,
+                        'items' => [['plan' => $plan->id]],
+                    ]);
+                }
+
+                if (!$membershipSubscription) {
+                    // Create membership subscription record
+                    UserMembershipSubscription::create([
+                        'user_id' => $this->id,
+                        'customer_id' => $customer->id,
+                        'product_id' => $productId,
+                        'plan_id' => $plan->id,
+                        'subscription_id' => $subscription->id,
+                    ]);
+                }
             } else {
-                $charge = Charge::create(array(
-                    'amount' => $adjustedAmount,
-                    'currency' => 'sek',
+                // Create one time charge
+                \Stripe\Charge::create([
+                    'amount' => (int) $adjustedAmount,
+                    'currency' => $currency,
                     'source' => $token,
                     'description' => $this->name
-                ));
-
-                if ($charge['status'] === 'succeeded') {
-                    UserMembershipPayment::create([
-                        'user_id' => $this->id,
-                        'amount' => $adjustedAmount
-                    ]);
-
-                    \App\Helpers\SlackHelper::message('notification', $this->name . ' (' . $this->email . ')' . ' payed ' . $amount . 'SEK to become a member.');
-                    return ['error' => false, 'message' => $amount];
-                } else {
-                    return ['error' => true, 'message' => $charge['status']];
-                }
+                ]);
             }
+
+            UserMembershipPayment::create([
+                'user_id' => $this->id,
+                'amount' => $adjustedAmount,
+                'currency' => $currency,
+            ]);
+
+            \App\Helpers\SlackHelper::message('notification', $successMessage);
+
+            return ['error' => false, 'code' => null];
+        } catch (\Stripe\Error\Base $e) {
+            $error = $e->getJsonBody();
+            $errorCode = $error['error']['code'];
+
+            if ($errorCode === 'amount_too_small') {
+                // Create a payment even if payment was too small
+                UserMembershipPayment::create([
+                    'user_id' => $this->id,
+                    'amount' => $adjustedAmount,
+                    'currency' => $currency,
+                ]);
+
+                \App\Helpers\SlackHelper::message('notification', $successMessage);
+
+                return [
+                    'error' => false,
+                    'code' => $errorCode
+                ];
+            }
+
+            return [
+                'error' => true,
+                'code' => $errorCode,
+            ];
         } catch (\Exception $e) {
-            return ['error' => true, 'message' => $e->getMessage()];
+            \App\Helpers\SlackHelper::message('error', 'Stripe error: ' . $e->getMessage());
+
+            return [
+                'error' => true,
+                'code' => 'stripe_error_unknown_php',
+            ];
         }
     }
 
@@ -598,24 +687,6 @@ class User extends \App\User\BaseUser
     }
 
     /**
-     *Get event links.
-     */
-    public function eventLinks()
-    {
-        return $this->hasMany('App\Event\EventUserLink')->get();
-    }
-
-    /**
-     * Get a specific event link.
-     *
-     * @param int $eventId
-     */
-    public function eventLink($eventId)
-    {
-        return $this->eventLinks()->where('event_id', $eventId)->first();
-    }
-
-    /**
      * Get images.
      */
     public function images()
@@ -633,64 +704,6 @@ class User extends \App\User\BaseUser
     public function image($imageId)
     {
         return $this->images()->where('id', $imageId)->first();
-    }
-
-    /**
-     * [isEventAdmin description]
-     * @param  [type]  $ownerId   [description]
-     * @param  [type]  $ownerType [description]
-     * @return boolean            [description]
-     */
-    public function isEventAdmin($ownerId, $ownerType)
-    {
-        $isAdmin = false;
-
-        if ($ownerType === 'node' && $this->nodeAdminLink($ownerId)) {
-            $isAdmin = true;
-        } else if ($ownerType === 'producers' && $this->producerAdminLink($ownerId)) {
-            $isAdmin = true;
-        }
-
-        return $isAdmin;
-    }
-
-    /**
-     * [eventOwner description]
-     * @return [type] [description]
-     */
-    public function eventOwner()
-    {
-        $eventOwner = new Collection();
-
-        if ($this->producerAdminLinks()->count() > 0) {
-            $eventOwner->add($this->producerAdminLinks()->map(function($producerAdminLink) {
-                $producer = $producerAdminLink->getProducer();
-
-                return [
-                    'id' => $producer->id,
-                    'unique_key' => 'producer_' . $producer->id,
-                    'type' => 'producer',
-                    'name' => $producer->name,
-                    'object' => $producer
-                ];
-            }));
-        }
-
-        if ($this->nodeAdminLinks()->count() > 0) {
-            $eventOwner->add($this->nodeAdminLinks()->map(function($nodeAdminLink) {
-                $node = $nodeAdminLink->getNode();
-
-                return [
-                    'id' => $node->id,
-                    'unique_key' => 'node_' . $node->id,
-                    'type' => 'node',
-                    'name' => $node->name,
-                    'object' => $node
-                ];
-            }));
-        }
-
-        return $eventOwner->flatten(1);
     }
 
     /**

@@ -64,19 +64,6 @@
                         @endif
                     </div>
                 </div>
-
-                <div class="card image-card">
-                    <div class="card-header">{{ trans('public/producer.events') }}</div>
-                    <div class="card-body">
-                        @if ($producer->events()->count() > 0)
-                            @foreach ($producer->events() as $event)
-                                <a href="{{ $event->permalink()->url }}">{{ $event->name }}</a>
-                            @endforeach
-                        @else
-                            {{ $producer->name }} {{ trans('public/producer.no_events') }}.
-                        @endif
-                    </div>
-                </div>
             </div>
 
             <div class="col-12 col-lg-4">

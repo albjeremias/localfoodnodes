@@ -15,8 +15,9 @@ class CreateUserMembershipPaymentsTable extends Migration
     {
         Schema::create('user_membership_payments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('amount');
+            $table->integer('user_id')->required();
+            $table->integer('amount')->required();
+            $table->string('currency')->required();
             $table->timestamps();
         });
     }

@@ -20,11 +20,12 @@ return [
     'economy' => 'Ekonomi',
     'header' => 'Ekonomi',
     'income' => 'In',
-    'money_circulated' => 'Lokal pengacirkulation (SEK)',
+    'money_circulated' => 'Pengacirkulation',
     'orders' => 'Bokningar',
     'read_more_economy' => 'Läs mer om vår ekonomi',
     'ref' => 'Referens',
     'total' => 'totalt',
+    'transactions' => 'Transaktioner',
     'uncategorized' => 'Okategoriserat',
     'view_all_transactions' => 'Visa alla transaktioner',
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use GuzzleHttp\Client;
 
 use App\User\User;
 use App\User\UserMembershipPayment;
@@ -68,9 +69,32 @@ class PageController extends Controller
         return view('public.pages.team');
     }
 
-    public function statistics()
+    public function statistics(Request $request)
     {
-        return view('public.pages.statistics');
+        $currencyQuery = '';
+        if ($request->has('currency')) {
+            $currencyQuery = '?currency=' . $request->get('currency');
+        }
+
+        $client = new Client();
+        $res = $client->request('GET', 'https://api.localfoodnodes.org/v1.0/orders/amount/node' . $currencyQuery);
+        $orders = json_decode($res->getBody());
+
+        $res = $client->request('GET', 'https://api.localfoodnodes.org/v1.0/nodes/names');
+        $nodes = json_decode($res->getBody());
+
+        $res = $client->request('GET', 'https://localfoodnodes.org/api/currencies');
+        $currencies = json_decode($res->getBody());
+
+        $res = $client->request('GET', 'https://api.localfoodnodes.org/v1.0/currency/labels');
+        $currencyLabels = json_decode($res->getBody());
+
+        return view('public.pages.statistics', [
+            'orders' => $orders->data,
+            'nodes' => $nodes->data,
+            'currencies' => $currencies,
+            'currencyLabels' => $currencyLabels->data,
+        ]);
     }
 
     public function gdpr()

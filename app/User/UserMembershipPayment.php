@@ -14,6 +14,7 @@ class UserMembershipPayment extends BaseModel
     protected $validationRules = [
         'user_id' => 'required',
         'amount' => 'required',
+        'currency' => 'required',
     ];
 
     /**
@@ -24,6 +25,7 @@ class UserMembershipPayment extends BaseModel
     protected $fillable = [
         'user_id',
         'amount',
+        'currency',
     ];
 
     /**
@@ -49,12 +51,23 @@ class UserMembershipPayment extends BaseModel
         return $this->getDateOneYearForward()->diff($current)->days;
     }
 
+    /**
+     * Get amount.
+     *
+     * @param int $value
+     * @param boolean $raw
+     * @return int
+     */
     public function getAmountAttribute($value, $raw = false)
     {
         if ($raw) {
             return $value;
         } else {
-            return (int) $value / 100;
+            if (!in_array($this->currency, config('app.zero_decimal_currencies'))) {
+                return $value / 100;
+            }
+
+            return (int) $value;
         }
     }
 }

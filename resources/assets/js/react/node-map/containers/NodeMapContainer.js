@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import _ from 'lodash';
 
+import SearchResultComponent from '../components/SearchResultComponent';
+
 const rootElement = document.getElementById('node-map-component-root');
 const trans = JSON.parse(rootElement.dataset.trans);
 
@@ -16,6 +18,7 @@ class NodeMapContainer extends Component {
     constructor(props) {
         super(props);
 
+        this.debouncedSearch = this.debouncedSearch.bind(this);
         this.getNodePreview = this.getNodePreview.bind(this);
         this.onSelect = this.onSelect.bind(this);
 
@@ -227,6 +230,17 @@ class NodeMapContainer extends Component {
         );
     }
 
+    search(event) {
+        event.persist();
+        this.setState({searchString: event.target.value})
+        this.debouncedSearch(event);
+    }
+
+    debouncedSearch(event) {
+        const { dispatch } = this.props;
+        actions.searchGeo(dispatch, event.target.value);
+    }
+
     onSelect(place) {
         const { dispatch } = this.props;
 
@@ -247,8 +261,26 @@ class NodeMapContainer extends Component {
 
     render() {
         let loader = (this.props.fetching) ? this.getMapLoader() : null;
+        let searchResults = null;
 
-        return <div className='map-holder' ref='map' style={{height: '70vh'}}>{loader}</div>;
+        if (this.props.searchResults) {
+            searchResults = <SearchResultComponent data={this.props.searchResults} onSelect={this.onSelect}/>;
+        }
+
+        return (
+            <div className='map container-fluid'>
+                <div className='row no-gutters map-search mb-5'>
+                    <div className='col-12 col-md-6'>
+                        <div className='input-group'>
+                            <span className="input-group-prepend"><i className="input-group-text fa fa-search" /></span>
+                            <input value={this.state.searchString} type="text" className="form-control" placeholder={trans.find_node_near_you} onChange={this.search.bind(this)} />
+                        </div>
+                        {searchResults}
+                    </div>
+                </div>
+                <div className='map-holder' ref='map' style={{height: '70vh'}}>{loader}</div>
+            </div>
+        );
     }
 }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Account;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -99,8 +100,11 @@ class ProducerController extends Controller
     {
         $producer = new Producer();
         $producer->fill($request->old());
+        $currencies = Db::table('currencies')->where('enabled', true)->get();
+
         return view('new.account.producer.create', [
             'producer' => $producer,
+            'currencies' => $currencies,
             'breadcrumbs' => [
                 trans('admin/user-nav.create_producer') => ''
             ]
@@ -146,9 +150,11 @@ class ProducerController extends Controller
         $user = Auth::user();
         $producer = $user->producerAdminLink($producerId)->getProducer();
         $producer->fill($request->old());
+        $currencies = Db::table('currencies')->where('enabled', true)->get();
 
         return view('new.account.producer.edit', [
             'producer' => $producer,
+            'currencies' => $currencies,
             'breadcrumbs' => [
                 $producer->name => 'producer/' . $producer->id,
                 trans('admin/user-nav.edit') => ''

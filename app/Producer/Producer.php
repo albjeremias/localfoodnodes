@@ -5,13 +5,12 @@ namespace App\Producer;
 use Illuminate\Support\Facades\DB;
 
 use App\BaseModel;
-use App\Event\EventOwnerInterface;
 use App\Node\Node;
 use App\Node\NodeProducerBlacklist;
 use App\Order\OrderDate;
 use App\Helpers\DistanceHelper;
 
-class Producer extends BaseModel implements EventOwnerInterface
+class Producer extends BaseModel
 {
     protected $appends = ['location'];
 
@@ -29,7 +28,7 @@ class Producer extends BaseModel implements EventOwnerInterface
         'vat_identification_number' => '',
         'info' => 'required',
         'email' => 'required',
-        'currency' => '',
+        'currency' => 'required',
         'payment_info' => '',
         'link_homepage' =>'',
         'link_facebook' => '',
@@ -69,10 +68,8 @@ class Producer extends BaseModel implements EventOwnerInterface
             $producer->adminLinks()->each->delete();
             $producer->nodeLinks()->each->delete();
             $producer->products()->each->delete();
-            $producer->events()->each->delete();
             $producer->blacklists()->each->delete();
             $producer->cartDateItemLinks()->each->delete();
-            $producer->orderItems()->each->delete();
             $producer->permalink()->delete();
         });
 
@@ -344,40 +341,6 @@ class Producer extends BaseModel implements EventOwnerInterface
     }
 
     /**
-     * Get events.
-     */
-    public function events(\DateTime $date = null, $ignoreHidden = true)
-    {
-        $endOfToday = date('Y-m-d 23:59:59');
-        $events = $this->hasMany('App\Event\Event', 'owner_id')->where('owner_type', 'producer')->where('end_datetime', '>=', $endOfToday)->get();
-
-        if ($ignoreHidden) {
-            $events = $events->where('is_hidden', 0);
-        }
-
-        if ($date) {
-            $startDatetime = new \DateTime($date->format('Y-m-d'));
-            $startDatetime->modify('+86399 seconds'); // Until the last second of the date is a valid start date
-            $endDatetime = $date; // Valid end date is any time during the date
-
-            $events = $events->where('start_datetime', '<=', $startDatetime)->where('end_datetime', '>=', $endDatetime);
-        }
-
-        return $events;
-    }
-
-    /**
-     * Get specific event.
-     *
-     * @param int $eventId
-     * @return Event
-     */
-    public function event($eventId)
-    {
-        return $this->events()->where('id', $eventId)->first();
-    }
-
-    /**
      * Get images.
      */
     public function images()
@@ -414,22 +377,6 @@ class Producer extends BaseModel implements EventOwnerInterface
             + sin(deg2rad($this->location['lat']))
             * sin(deg2rad($lat))
         );
-    }
-
-    /**
-     * @return string
-     */
-    public function eventOwnerType()
-    {
-        return 'producer';
-    }
-
-    /**
-     * @return string
-     */
-    public function eventOwnerUrl()
-    {
-        return $this->eventOwnerType() . '/' . $this->id;
     }
 
     /**

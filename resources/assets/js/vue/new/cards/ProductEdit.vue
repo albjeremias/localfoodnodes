@@ -14,13 +14,13 @@
             <h4 class="h10 mt-1 line-clamp-1">{{ product.name }}</h4>
 
             <select v-if="variants.length > 0" class="custom-select bb-38">
-                <option v-for="(variant, index) in variants">
+                <option v-for="variant in variants" :key="variant.id">
                     {{ variant.name }}
                 </option>
             </select>
 
             <div v-else class="divider d-flex">
-                <small class="font-italic my-auto">This product don't have any variants</small>
+                <small class="font-italic my-auto">This product doesn't have any variants</small>
             </div>
 
             <hr class="mb-2">

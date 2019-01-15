@@ -1,7 +1,7 @@
 @extends('public.layout-page', [
     'header' => trans('public/economy.header'),
     'subHeader' => '',
-    'image' => '/images/money-ladder.jpg'
+    'image' => '/images/shutterstock_664170823.jpg'
 ])
 
 @section('title', trans('public/economy.title'))
@@ -15,7 +15,7 @@
                         {!! trans('public/economy.economy_page') !!}
                     </div>
                     <div class="card-body" id="frontpage-metrics">
-                        <metrics translations="{{ json_encode(trans('public/economy')) }}"></metrics>
+                        <metrics></metrics>
                         <div class="text-center">
                             <a class="d-block mt-2" href="/economy/transactions">{{ trans('public/economy.view_all_transactions') }}</a>
                         </div>

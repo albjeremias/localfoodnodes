@@ -188,6 +188,10 @@ class OrderItem extends \App\BaseModel
      */
     public function getVariant()
     {
+        if (!$this->variant) {
+            return null;
+        }
+
         return new ProductVariant($this->variant);
     }
 

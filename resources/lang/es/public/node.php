@@ -3,11 +3,8 @@
 return [
     'add_to_cart' => 'Añadir al carrito',
     'avg_dist' => 'La distancia media<br><span class="small">producent - nod</span>',
-    'calendar' => 'Calendario del nodo',
     'clear_date' => '(borrar las fechas)',
     'contact' => 'Contacta el administrador del nodo a través de ',
-    'event' => 'Evento',
-    'events' => 'Eventos',
     'filters' => 'Filtro',
     'find_communication' => 'Encontrar nuestro grupo de comunicación',
     'find_producer_communication' => 'Encontrar nuestro grupo de comunicación para productores',
