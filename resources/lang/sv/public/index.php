@@ -84,7 +84,6 @@ return [
     'found_your_local' => 'Hitta din lokala utlämningsplats',
     'index_seach' => 'Sök på platser, orter och städer',
 	'find_out_more' => 'Så funkar det',
-    'how_it_works_intro' => 'Vare sig du är producent eller konsument, Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem',
     'read_more' => 'Läs mer',
     'create_and_shop' => 'Skapa konto och börja handla lokalt',
     'not_found_local' => 'Hittade du ingen utlämningsplats nära dig',
@@ -114,6 +113,15 @@ return [
     'more_vision' => 'Läs mer om vår vision',
 
 
+	'faq' => 'FAQ',
+	'statistics' => 'Statistik',
+	'vision' => 'Vision',
+    'how_it_works_intro' => 'We wanted to create ways were local food producers and end-consumers could connect, without any middleman interference. We wanted to see first hand real life relations over real, in season food, thrive and flourish just all over. So, we created this tool, were you can find and pre-order real food, from the source and pick up locally. Or you can be that soruce, finding real people wanting your real produce, whitout any income loss. Welcome to explore Local Food Nodes, and being a part of re-localizing the food system. Together we are the change we want to see...',
+    'how_it_works_title' => 'Lets re-localize our food system',
+	'desire' => 'A desire to make food local again',
 
+	'first_hand' => 'First hand relations to farmers',
+	'food_sovereignty' => 'Increased food sovereignty',
+	'in_season' => 'Local and in season'
 
 ];

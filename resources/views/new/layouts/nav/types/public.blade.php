@@ -11,5 +11,13 @@
 </li>
 
 <li class="nav-item">
-    <a class="nav-link" href="/find-out-more"><span class="hover-wbb pb-2 wc">{{ trans('public/nav.find_out_more') }}</span></a>
+    <a class="nav-link" href="/find-out-more"><span class="hover-wbb pb-2 wc">{{ trans('public/index.vision') }}</span></a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/find-out-more"><span class="hover-wbb pb-2 wc">{{ trans('public/index.statistics') }}</span></a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/find-out-more"><span class="hover-wbb pb-2 wc">{{ trans('public/index.faq') }}</span></a>
 </li>
