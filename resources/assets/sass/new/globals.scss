@@ -175,6 +175,10 @@ td {
   background-image: $img-veg-table !important;
 }
 
+.bg-img-veg-wallpaper {
+  background-image: $img-veg-wallpaper !important;
+}
+
 // -------------------------
 // FONT COLORS
 // -------------------------
@@ -396,6 +400,13 @@ thead {
 .bottom-link {
   position: absolute;
   bottom: 1rem;
+  left: 1rem;
+}
+
+.bottom-link-right {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
 }
 
 .accent-light-box {
@@ -487,4 +498,32 @@ option:checked {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
+}
+
+.overflow-scroll {
+  overflow: scroll;
+}
+
+.text-shadow {
+  text-shadow: 1px 1px #00000075;
+}
+
+.input-buttom-r {
+  position: absolute;
+  right: 1rem;
+  bottom: 9px;
+}
+
+.slick-image {
+  height: 60px;
+  width: 60px;
+}
+
+.slick-container {
+  width: 90%;
+  @extend .m-auto, .pt-4;
+}
+
+.slick-prev:before, .slick-next:before {
+  color: #0000004d !important;
 }

@@ -36,17 +36,19 @@
 
     {{-- HOW DOES IT WORK --}}
     <section class="bg-main-primary pt-5">
-        <div class="container pt-5">
+        <div class="container pt-3">
             <div class="row wc">
-                <div class="col-lg-16 col-sm-16 text-center text-lg-left">
-                    <h2 class="mt-3 text-center">{{ trans('public/index.how_it_works_title') }}</h2>
-                    <p>
-                        {{ trans('public/index.how_it_works_intro') }}
-                        <a href="/find-out-more">
-                            {{ trans('public/index.read_more') }}
-                        </a>
-                    </p>
-                    <a class="btn btn-primary mt-lg-4 mb-3 text-center" href="#">Sign up</a>
+                <div class="col-lg-16 col-sm-16 text-lg-left">
+                    <div class="d-flex flex-wrap">
+                        <h2 class="mt-3 mx-auto">{{ trans('public/index.how_it_works_title') }}</h2>
+                        <p class="mb-0">
+                            {{ trans('public/index.how_it_works_intro') }}
+                            <a href="/find-out-more">
+                                {{ trans('public/index.read_more') }}
+                            </a>
+                        </p>
+                        <a class="btn btn-primary my-4 mx-auto" href="#">Sign up</a>
+                    </div>
                 </div>
 
                 <div class="col-lg col-sm-16 mt-5 mt-lg-0">

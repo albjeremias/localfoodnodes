@@ -16,7 +16,7 @@ window._ = require('lodash');
  */
 
 // Cards
-Vue.component('card-product-edit', require('./cards/ProductEdit'));
+Vue.component('card-product-edit', require('./cards/ProductEdit').default);
 
 const app = new Vue({
     el: '#new-vue-app',
