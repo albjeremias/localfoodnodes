@@ -77,15 +77,11 @@ return [
     |
     */
 
-    'locale' => 'sv',
+    'locale' => 'en',
     'locales' => [
-        'da' => 'Dansk',
         'en' => 'English',
         'sv' => 'Svenska',
-        'es' => 'Español',
-        'nl' => 'Nederlands',
     ],
-    'fallback_locale' => 'en',
 
     'zero_decimal_currencies' => ['MGA', 'BIF', 'CLP', 'PYG', 'DJF', 'RWF', 'GNF', 'UGX', 'JPY', 'VND', 'VUV', 'XAF', 'KMF', 'KRW', 'XOF', 'XPF'],
 
@@ -173,7 +169,6 @@ return [
         Barryvdh\TranslationManager\ManagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
-        LocalFoodNodes\LanguageTable\ServiceProvider::class,
     ],
 
     /*
@@ -226,5 +221,4 @@ return [
         'UnitsHelper' => App\Helpers\UnitsHelper::class,
         'Uuid' => Webpatser\Uuid\Uuid::class,
     ],
-
 ];

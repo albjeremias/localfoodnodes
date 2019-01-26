@@ -22,7 +22,7 @@ class AdminController extends Controller
     {
         $users = User::orderBy('active', 'created_at')->get()->reverse();
 
-        return view('account.admin.users', [
+        return view('new.admin.users', [
             'users' => $users,
             'breadcrumbs' => [
                 'Admin' => '',

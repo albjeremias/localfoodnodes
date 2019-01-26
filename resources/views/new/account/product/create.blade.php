@@ -15,7 +15,7 @@
         <div class="container py-5">
             <h2>{{ trans('admin/product.product') }}</h2>
 
-            <form action="/account/producer/{{ $producer->id }}/product/insert" method="post" enctype="multipart/form-data">
+            <form action="{{ route('account_product_insert', ['producerId' => $producer->id ]) }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
 
                 <input type="hidden" name="type" value="basic"/>

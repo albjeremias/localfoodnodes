@@ -1,15 +1,11 @@
 <li class="nav-item">
-    <a class="nav-link" href="/membership"><span class="hover-wbb pb-2 wc">{{ trans('public/nav.how_it_works') }}</span></a>
+    <a class="nav-link" href="{{ route('membership') }}"><span class="hover-wbb pb-2 wc">{{ __('Membership') }}</span></a>
 </li>
 
 <li class="nav-item">
-    <a class="nav-link" href="/membership"><span class="hover-wbb pb-2 wc">{{ trans('public/nav.membership_2') }}</span></a>
+    <a class="nav-link" href="{{ route('economy') }}"><span class="hover-wbb pb-2 wc">{{ __('Economy') }}</span></a>
 </li>
 
 <li class="nav-item">
-    <a class="nav-link" href="/economy"><span class="hover-wbb pb-2 wc">{{ trans('public/nav.economy_2') }}</span></a>
-</li>
-
-<li class="nav-item">
-    <a class="nav-link" href="/find-out-more"><span class="hover-wbb pb-2 wc">{{ trans('public/nav.find_out_more') }}</span></a>
+    <a class="nav-link" href="{{ route('findOutMore') }}"><span class="hover-wbb pb-2 wc">{{ __('Find out more') }}</span></a>
 </li>

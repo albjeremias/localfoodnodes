@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="{{ URL::asset('css/jquery.fancybox.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/slick.css') }}"/>
 </head>
-<body class="position-relative public {{ $viewName }} {{ Auth::check() && Auth::user()->active ? 'logged-in' : '' }}">
+<body class="position-relative public {{ Auth::check() && Auth::user()->active ? 'logged-in' : '' }}">
 <div id="fb-root"></div>
 <div class="page">
     @include('new.layouts.nav.base')

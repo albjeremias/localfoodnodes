@@ -1,4 +1,3 @@
-<?php $viewName = 'search' ?>
 @extends('new.public.layout',
 [
     'sub_nav' => 'explore',
