@@ -135,8 +135,7 @@ class ProductController extends Controller
             ]);
         }
 
-        // Load images so they are visible even it errors?
-        \Log::debug(var_export($request->input('images'), true));
+        // Load images so they are visible even it errors
         $images = null;
         if ($request->has('images')) {
             $images = Image::findMany($request->input('images'));

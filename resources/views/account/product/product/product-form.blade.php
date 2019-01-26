@@ -10,7 +10,7 @@
                         {{ trans('admin/product.product_name') }}
                         @include('account.field-error', ['field' => 'name'])
                     </label>
-                    <input type="text" name="name" class="form-control" id="name" placeholder="{{ trans('admin/product.product_name_placeholder') }}" value="{{ $product->name or '' }}">
+                    <input type="text" name="name" class="form-control" id="name" placeholder="{{ trans('admin/product.product_name_placeholder') }}" value="{{ $product->name ?? '' }}">
                 </div>
 
                 <div class="form-group">
@@ -18,7 +18,7 @@
                         {{ trans('admin/product.product_description') }}
                         @include('account.field-error', ['field' => 'info'])
                     </label>
-                    <textarea class="form-control wysiwyg" id="info" name="info" rows="5" placeholder="{{ trans('admin/product.product_description_placeholder') }}">{{ $product->info or '' }}</textarea>
+                    <textarea class="form-control wysiwyg" id="info" name="info" rows="5" placeholder="{{ trans('admin/product.product_description_placeholder') }}">{{ $product->info ?? '' }}</textarea>
                 </div>
 
                 <div class="form-group">
@@ -27,7 +27,7 @@
                             {{ trans('admin/product.enter_price_one_product') }}
                             @include('account.field-error', ['field' => 'price'])
                         </label>
-                        <input type="number" step="0.01" min="0" name="price" class="form-control" id="price" placeholder="{{ trans('admin/product.price') }}" value="{{ $product->price or '' }}">
+                        <input type="number" step="0.01" min="0" name="price" class="form-control" id="price" placeholder="{{ trans('admin/product.price') }}" value="{{ $product->price ?? '' }}">
                     </div>
                     @if ($product->variants()->count() > 0)
                         <div class="form-text">
@@ -41,7 +41,7 @@
                         {{ trans('admin/product.enter_vat') }} (%)
                         @include('account.field-error', ['field' => 'vat'])
                     </label>
-                    <input type="number" min="0" name="vat" class="form-control" id="vat" placeholder="{{ trans('admin/product.vat_placeholder') }}" value="{{ $product->vat or '' }}">
+                    <input type="number" min="0" name="vat" class="form-control" id="vat" placeholder="{{ trans('admin/product.vat_placeholder') }}" value="{{ $product->vat ?? '' }}">
                 </div>
 
                 <div class="form-group" id="price-unit">
@@ -62,7 +62,7 @@
                         @include('account.field-error', ['field' => 'package_amount'])
                     </label>
                     <div class="input-group">
-                        <input type="text" name="package_amount" class="form-control" id="price" placeholder="{{ trans('admin/product.estimate_package_amount') }}" value="{{ $product->package_amount or '' }}">
+                        <input type="text" name="package_amount" class="form-control" id="price" placeholder="{{ trans('admin/product.estimate_package_amount') }}" value="{{ $product->package_amount ?? '' }}">
                         <div class="input-group-append">
                             <span class="input-group-text" id="package-amount-unit"></span>
                         </div>

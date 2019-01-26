@@ -38,8 +38,10 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
-        // Todo: implement and test $this->shouldReport($exception)
-        app('sentry')->captureException($exception);
+        if (app()->bound('sentry') && $this->shouldReport($exception)){
+            app('sentry')->captureException($exception);
+        }
+
         parent::report($exception);
     }
 
@@ -90,11 +92,6 @@ class Handler extends ExceptionHandler
                     break;
             }
         }
-
-        // if ($exception instanceof NotFoundHttpException) {
-        //     $params = ['viewName' => '404'];
-        //     return response()->view('errors.404', $params, 404);
-        // }
 
         if ($exception instanceof TokenMismatchException) {
             $request->session()->flash('message', [trans('admin/messages.session_expired')]);

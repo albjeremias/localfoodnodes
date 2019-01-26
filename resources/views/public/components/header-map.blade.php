@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="/css/leaflet/leaflet.min.css" />
 <script id="map-js-api" src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 <script>
-    var lat = {{ $lat or 'null' }};
-    var lng = {{ $lng or 'null' }};
+    var lat = {{ $lat ?? 'null' }};
+    var lng = {{ $lng ?? 'null' }};
     var zoom = 14;
     if (!lat || !lng) {
         zoom = 2;

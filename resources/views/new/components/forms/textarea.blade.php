@@ -21,6 +21,6 @@
           @endif
 
           id="form-textarea-{{ $name }}"
-          rows="{{ $rows }}">{{ $old or '' }}
+          rows="{{ $rows }}">{{ $old ?? '' }}
 </textarea>
 

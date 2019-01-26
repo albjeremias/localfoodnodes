@@ -5,14 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="keywords" content="{{ trans('public/index.meta_keywords') }}">
-        <meta name="description" content="{!! $fbDescription or 'Local Food Nodes connects local food producers to local food consumers as well as strengthening those relationships that already exist. We enable direct transactions, resilient communities and regain control over what we eat and how it is produced. A desire to make food local again.' !!}">
+        <meta name="description" content="{!! $fbDescription ?? 'Local Food Nodes connects local food producers to local food consumers as well as strengthening those relationships that already exist. We enable direct transactions, resilient communities and regain control over what we eat and how it is produced. A desire to make food local again.' !!}">
 
         <!-- Facebook meta -->
-        <meta property="og:url" content="{{ $shareUrl or app('url')->to('/') }}">
+        <meta property="og:url" content="{{ $shareUrl ?? app('url')->to('/') }}">
         <meta property="og:type" content="website"/>
-        <meta property="og:title" content="{{ $shareTitle or 'Local Food Nodes' }}">
-        <meta property="og:description" content="{!! $shareDescription or 'Local Food Nodes connects local food producers to local food consumers as well as strengthening those relationships that already exist. We enable direct transactions, resilient communities and regain control over what we eat and how it is produced. A desire to make food local again.' !!}" />
-        <meta property="og:image" content="{{ $shareImage or URL::asset('images/facebook-share.jpg') }}">
+        <meta property="og:title" content="{{ $shareTitle ?? 'Local Food Nodes' }}">
+        <meta property="og:description" content="{!! $shareDescription ?? 'Local Food Nodes connects local food producers to local food consumers as well as strengthening those relationships that already exist. We enable direct transactions, resilient communities and regain control over what we eat and how it is produced. A desire to make food local again.' !!}" />
+        <meta property="og:image" content="{{ $shareImage ?? URL::asset('images/facebook-share.jpg') }}">
 
         <!-- Scripts -->
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>

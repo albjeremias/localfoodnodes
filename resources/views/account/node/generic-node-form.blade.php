@@ -8,21 +8,21 @@
                         {{ trans('admin/node.name_node') }}
                         @include('account.field-error', ['field' => 'name'])
                     </label>
-                    <input type="text" name="name" class="form-control" id="name" placeholder="{{ trans('admin/node.name_node') }}" value="{{ $node->name or '' }}">
+                    <input type="text" name="name" class="form-control" id="name" placeholder="{{ trans('admin/node.name_node') }}" value="{{ $node->name ?? '' }}">
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="email">
                         {{ trans('admin/node.email') }}
                         @include('account.field-error', ['field' => 'email'])
                     </label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="{{ trans('admin/node.email') }}" value="{{ $node->email or '' }}">
+                    <input type="email" name="email" class="form-control" id="email" placeholder="{{ trans('admin/node.email') }}" value="{{ $node->email ?? '' }}">
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="info">
                         {{ trans('admin/node.information') }}
                         @include('account.field-error', ['field' => 'info'])
                     </label>
-                    <textarea name="info" class="form-control wysiwyg" id="info" placeholder="{{ trans('admin/node.information_placeholder') }}" rows="5">{{ $node->info or '' }}</textarea>
+                    <textarea name="info" class="form-control wysiwyg" id="info" placeholder="{{ trans('admin/node.information_placeholder') }}" rows="5">{{ $node->info ?? '' }}</textarea>
                 </div>
 
                 <div class="row">
