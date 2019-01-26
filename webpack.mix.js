@@ -14,4 +14,8 @@ mix.js('resources/assets/js/vue/economy-in-out/economy-in-out.js', 'public/js').
 mix.js('resources/assets/js/vue/economy-circulation/economy-circulation.js', 'public/js').version();
 mix.js('resources/assets/js/vue/transactions/transactions.js', 'public/js').version();
 mix.js('resources/assets/js/vue/admin-transaction-list/admin-transaction-list.js', 'public/js').version();
-mix.js('resources/assets/js/vue/new/index.js', 'public/js/new.js').version();
+
+mix.js([
+    'resources/assets/js/vue/new/index.js',
+    'node_modules/slick-carousel/slick/slick.min.js'
+], 'public/js/new.js').version();

@@ -14,7 +14,7 @@
                 <div class="m-auto">
 
                     <h3>LOCAL FOOD NODES</h3>
-                    <h1 class="text-uppercase my-3">{{ trans('public/index.co_create') }}</h1>
+                    <h1 class="text-uppercase my-3">{{ trans('public/index.desire') }}</h1>
                     <h2>{{ trans('public/index.found_your_local') }}</h2>
 
                     <div class="input-group input-group-lg mx-auto mt-5">
@@ -36,32 +36,39 @@
 
     {{-- HOW DOES IT WORK --}}
     <section class="bg-main-primary pt-5">
-        <div class="container pt-5">
+        <div class="container pt-3">
             <div class="row wc">
-                <div class="col-lg-4 col-sm-16 text-center text-lg-left">
-                    <h2 class="mt-3">{{ trans('public/index.find_out_more') }}</h2>
-                    <p>{{ trans('public/index.how_it_works_intro') }}</p>
-                    <a class="btn btn-primary mt-lg-4" href="#">{{ trans('public/index.read_more') }}</a>
+                <div class="col-lg-16 col-sm-16 text-lg-left">
+                    <div class="d-flex flex-wrap">
+                        <h2 class="mt-3 mx-auto">{{ trans('public/index.how_it_works_title') }}</h2>
+                        <p class="mb-0">
+                            {{ trans('public/index.how_it_works_intro') }}
+                            <a href="/find-out-more">
+                                {{ trans('public/index.read_more') }}
+                            </a>
+                        </p>
+                        <a class="btn btn-primary my-4 mx-auto" href="#">Sign up</a>
+                    </div>
                 </div>
 
-                <div class="col-lg-4 col-sm-16 mt-5 mt-lg-0">
+                <div class="col-lg col-sm-16 mt-5 mt-lg-0">
                     @include('new.components.cards.simple', [
-                        'bg'   => 'basket',
-                        'text' => trans('public/index.create_and_shop')
+                        'bg'   => 'chickens',
+                        'text' => trans('public/index.first_hand')
                     ])
                 </div>
 
-                <div class="col-lg-4 col-sm-16">
+                <div class="col-lg col-sm-16">
                     @include('new.components.cards.simple', [
-                        'bg'   => 'party',
-                        'text' => trans('public/index.not_found_local')
+                        'bg'   => 'pickled',
+                        'text' => trans('public/index.food_sovereignty')
                     ])
                 </div>
 
-                <div class="col-lg-4 col-sm-16">
+                <div class="col-lg col-sm-16">
                     @include('new.components.cards.simple', [
-                        'bg'   => 'carrots',
-                        'text' => trans('public/index.food_producer')
+                        'bg'   => 'veg-table',
+                        'text' => trans('public/index.in_season')
                     ])
                 </div>
             </div>
@@ -72,6 +79,12 @@
             'anchor' => 'how-it-works'
         ])
     </section>
+
+    <sextion>
+        <div class="container text-center py-4">
+            <p>Local food impact</p>
+        </div>
+    </sextion>
 
     <section class="bg-accent-light-12 node-map">
         <div id="node-map-component-root" data-ip="{{ Request::ip() }}"
@@ -114,20 +127,6 @@
         ])
 
         @include('new.components.sections.medium-gradient', [
-            'image'          => 'party',
-            'heading'        => 'public/index.not_found_local',
-            'paragraph'      => 'public/index.not_found_local_paragraph',
-            'button_text'    => 'public/index.create_place',
-            'inverted'       => true,
-            'global'         => 'wh2',
-            'button'         => 'secondary',
-            'color'          => 'accent',
-            'sm_bg'          => 'bg-main-primary',
-            'button_swap'    => 'primary',
-            'anchor'         => 'register'
-        ])
-
-        @include('new.components.sections.medium-gradient', [
             'image'          => 'carrots',
             'heading'        => 'public/index.food_producer',
             'paragraph'      => 'public/index.food_producer_paragraph',
@@ -138,6 +137,20 @@
             'color'          => 'primary',
             'sm_bg'          => 'bg-main-accent',
             'button_swap'    => 'secondary',
+            'anchor'         => 'register'
+        ])
+
+        @include('new.components.sections.medium-gradient', [
+            'image'          => 'party',
+            'heading'        => 'public/index.not_found_local',
+            'paragraph'      => 'public/index.not_found_local_paragraph',
+            'button_text'    => 'public/index.create_place',
+            'inverted'       => true,
+            'global'         => 'wh2',
+            'button'         => 'secondary',
+            'color'          => 'accent',
+            'sm_bg'          => 'bg-main-primary',
+            'button_swap'    => 'primary',
             'anchor'         => 'register'
         ])
     </section>

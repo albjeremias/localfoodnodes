@@ -20,12 +20,14 @@ Route::group(['prefix' => '/checkout', 'middleware' => 'auth.account'], function
 });
 
 // Static pages
-Route::get('/find-out-more', 'PageController@findOutMore')->name('en_findOutMore');
+Route::get('/find-out-more', 'PageController@findOutMore')->name('en_find_out_more');
 Route::get('/membership', 'PageController@membership')->name('en_membership');
 Route::get('/economy', 'PageController@economy')->name('en_economy');
 Route::get('/economy/transactions', 'PageController@transactions')->name('en_economy_transaction');
 Route::get('/team', 'PageController@team')->name('en_team');
 Route::get('/statistics', 'PageController@statistics')->name('en_statistics');
+Route::get('/vision', 'PageController@vision')->name('en_vision');
+Route::get('/faq', 'PageController@vision')->name('en_faq');
 Route::get('/gdpr', 'PageController@gdpr')->name('en_gdpr');
 Route::get('/app', 'PageController@app')->name('en_app');
 

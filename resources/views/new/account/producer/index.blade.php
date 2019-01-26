@@ -16,37 +16,46 @@
                     <div class="row">
                         <div class="col-lg-9">
                             <div class="white-box little-min">
-                                <h4>{{ trans('admin/user.profile_info') }}</h4>
+                                <h4>{{ $producer->name }}</h4>
                                 <ul class="list-unstyled list-p">
                                     <li>{{ Auth::user()->name }}</li>
                                     <li class="black-54">{{ Auth::user()->email }}</li>
+                                    <li class="black-54">{{ $producer->address }}</li>
+                                    <li class="black-54">{{ $producer->zip }} {{ $producer->city }}</li>
                                 </ul>
 
                                 <div class="row mt-4">
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <h3 class="m-0">1129</h3>
-                                        <small>{{ trans('admin/user.followed_nodes') }}</small>
+                                        <small>Attended pickups</small>
                                     </div>
 
                                     <div class="col-md-4">
                                         <h3 class="m-0">41</h3>
-                                        <small>{{ trans('admin/user.producers') }}</small>
+                                        <small>Products sold</small>
                                     </div>
 
                                     <div class="col pl-md-5">
                                         <h3 class="m-0">13.5 km</h3>
-                                        <small>{{ trans('admin/user.average_distance') }}</small>
+                                        <small>Revenue</small>
                                     </div>
                                 </div>
 
                                 <a class="bottom-link text-uppercase rc" href="#">{{ trans('admin/user.edit_profile') }}</a>
+                                <span class="bottom-link-right" href="#">
+                                    <small class="font-italic" data-toggle="tooltip" data-placement="bottom" title="Producer creation date">
+                                        {{ \Carbon\Carbon::parse($producer->created_at)->toFormattedDateString() }}
+                                    </small>
+                                </span>
                             </div>
                         </div>
 
                         <div class="col-lg-7">
                             <div class="white-box little-min">
                                 <h4>{{ trans('admin/user.still_not_member') }}</h4>
-                                <p class="black-54">{{ trans('admin/user.membership_unpaid_link') }}</p>
+                                {{--<p class="black-54">{{ trans('admin/user.membership_unpaid_link') }}</p>--}}
+                                <small>Local Food Nodes is built on a gift based economy.
+                                    By donating a supporting membership fee, free of choice, you are part of financing the development of open digital tools, that supports enabling local and independent peoples driven food markets.</small>
 
                                 <a class="bottom-link text-uppercase rc" href="#">{{ trans('admin/user.membership') }}</a>
                             </div>
@@ -76,15 +85,28 @@
                 <div class="col-md-6 col-lg-5">
                     <div class="row">
                         <div class="col-16">
-                            <div class="white-box big-min height-rmd-auto">
-                                @include('new.components.nodes-following', ['nodes' => []])
-                                {{ trans('admin/producer.my_producer') }}
+                            <div class="producer-products-list-container">
+                                <h4>{{ trans('admin/producer.my_producer') }}</h4>
+                                <div class="overflow-scroll h-100">
+                                    <div class="producer-products-list">
+                                        <ul class="list-unstyled node-list mt-2 list-group">
+                                            @foreach($producer->products() as $product)
+                                                <a class="my-0 py-2 list-group-item-action" href="/account/producer/{{ $producer->id }}/product/{{ $product->id }}">
+                                                    <div class="products-list-image">
+                                                        <img src="{{ '/images/shutterstock_436974091.jpg' }}">
+                                                    </div>
+                                                    <small class="col black-87">{{ $product->name }}</small>
+                                                </a>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                         <div class="col-16">
                             <div class="white-box medium-min height-rmd-auto">
-                                <h4>{{ trans('admin/user.events') }}</h4>
+                                <h4>Connected nodes</h4>
 
                                 <ul class="list-unstyled node-list mt-4">
                                     <li>

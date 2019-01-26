@@ -12,3 +12,53 @@
   }
 }
 
+.producer-products-list-container {
+  @extend .big-min, .height-rmd-auto, .white-box;
+}
+
+.producer-products-list {
+  overflow: scroll;
+  height: 690px;
+
+  a:nth-of-type(odd){
+    background: rgba(0, 0, 0, 0.05);
+  }
+  a:nth-of-type(even){
+    //background: blue;
+  }
+  a:hover{
+    background: rgba(0, 0, 0, 0.10);
+  }
+
+  a {
+    @extend .pl-1;
+  }
+
+  .products-list-image {
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+
+    img {
+      height: 100%;
+      @extend .rounded-circle, .image, .w-100;
+    }
+  }
+}
+
+.my-products-background {
+  position: absolute;
+  height: 336px;
+  width: 100%;
+
+  @extend .bg-img-veg-wallpaper, .image, .box-shadow;
+}
+
+.my-products-background-overlay {
+  position: absolute;
+  top: 154px;
+  height: 337px;
+  width: 100%;
+  background-color: rgba(0,0,0,0.43);
+}
+

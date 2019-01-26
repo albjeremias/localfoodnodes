@@ -20,14 +20,16 @@ Route::group(['prefix' => '/checkout', 'middleware' => 'auth.account'], function
 });
 
 // Static pages
-Route::get('/las-mer', 'PageController@findOutMore')->name('sv_findOutMore');
+Route::get('/las-mer', 'PageController@findOutMore')->name('sv_find_out_more');
 Route::get('/medlemskap', 'PageController@membership')->name('sv_membership');
 Route::get('/ekonomi', 'PageController@economy')->name('sv_economy');
-Route::get('/economy/transactions', 'PageController@transactions');
-Route::get('/team', 'PageController@team');
-Route::get('/statistics', 'PageController@statistics');
-Route::get('/gdpr', 'PageController@gdpr');
-Route::get('/app', 'PageController@app');
+Route::get('/economy/transactions', 'PageController@transactions')->name('sv_economy_transactions');
+Route::get('/team', 'PageController@team')->name('sv_team');
+Route::get('/statistik', 'PageController@statistics')->name('statistics');
+Route::get('/vision', 'PageController@vision')->name('sv_vision');
+Route::get('/faq', 'PageController@vision')->name('sv_faq');
+Route::get('/gdpr', 'PageController@gdpr')->name('sv_gdpr');
+Route::get('/app', 'PageController@app')->name('sv_app');
 
 // Page - There routes must be in the bottom of this file because else they'll match every request
 Route::get('/{type}/{slug}/{subType?}/{subSlug?}', 'PermalinkController@route');

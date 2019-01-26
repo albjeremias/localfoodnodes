@@ -8,10 +8,8 @@ node_modules
 .sass-cache
 storage/oauth-private.key
 storage/oauth-public.key
+storage/framework/sessions
 Homestead.json
 Homestead.yaml
 npm-debug.log
 stats.json
-
-# Only available in 2.0
-packages

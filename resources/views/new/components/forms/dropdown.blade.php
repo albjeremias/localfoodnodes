@@ -2,32 +2,38 @@
     -Form Dropdown Component-
 
     *name        | string
-    *class       | string
-    *options     | array
     *value       | boolean
-    *val_key     | boolean
+    *options     | array
+    selected     | string
+    val_key      | boolean
+    class        | string
     label        | string
     placeholder  | string
 
     *Required
 --}}
 
+@php
+    $selected = isset($selected) ? $selected : false;
+    $val_key = $value && isset($val_key) ? $val_key : true ;
+@endphp
+
 @if(isset($label))
     <label for="form-dropwdown-{{ $name }}">{{ $label }}</label>
 @endif
 
-<select class="{{ $class }}" name="{{ $name }}">
+<select class="form-control {{ isset($class) ? $class : '' }}" name="{{ $name }}">
     @if(isset($placeholder))
         <option>{{ $placeholder }}</option>
     @endif
 
     @if(!$value)
         @foreach ($options as $option)
-            <option value="{{ $option }}">{{ $option }}</option>
+            <option {{ $selected == $option ? 'selected' : '' }} value="{{ $option }}">{{ $option }}</option>
         @endforeach
     @else
         @foreach ($options as $key => $value)
-            <option value="{{ $key }}">{{ $val_key ? $value : $key }}</option>
+            <option {{ $selected == $key ? 'selected' : '' }} value="{{ $key }}">{{ $val_key ? $value : $key }}</option>
         @endforeach
     @endif
 </select>

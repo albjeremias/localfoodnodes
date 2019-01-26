@@ -79,7 +79,7 @@ class NodeController extends Controller
             return $producerLink->getProducer()->email;
         });
 
-        return view('account.node.index', [
+        return view('new.account.node.index', [
             'node' => $node,
             'userEmails' => $userEmails,
             'producerEmails' => $producerEmails,
