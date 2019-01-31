@@ -1,3 +1,4 @@
+{{-- NOT BEING USED --}}
 <div class="slick-container">
     @for($i = 1; $i <= 10; $i++)
         <div class="">
@@ -8,5 +9,3 @@
         </div>
     @endfor
 </div>
-
-

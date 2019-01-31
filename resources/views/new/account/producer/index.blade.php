@@ -27,17 +27,17 @@
                                 <div class="row mt-4">
                                     <div class="col-md-6">
                                         <h3 class="m-0">1129</h3>
-                                        <small>Attended pickups</small>
+                                        <small>{{ __('Attended pickups') }}</small>
                                     </div>
 
                                     <div class="col-md-4">
                                         <h3 class="m-0">41</h3>
-                                        <small>Products sold</small>
+                                        <small>{{ __('Products sold') }}</small>
                                     </div>
 
                                     <div class="col pl-md-5">
                                         <h3 class="m-0">13.5 km</h3>
-                                        <small>Revenue</small>
+                                        <small>{{ __('Turnover') }}</small>
                                     </div>
                                 </div>
 
