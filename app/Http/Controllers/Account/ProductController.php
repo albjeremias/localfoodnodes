@@ -119,10 +119,29 @@ class ProductController extends Controller
 
             $request->session()->flash('message', [trans('admin/messages.product_created')]);
 
-            return redirect('/account/producer/' . $producer->id . '/product/' . $product->id . '/production');
+            // Attach images to product
+            if ($request->has('images')) {
+                foreach ($request->input('images') as $imageId) {
+                    $image = Image::find($imageId);
+                    $image->entity_type = 'product';
+                    $image->entity_id = $product->id;
+                    $image->save();
+                }
+            }
+
+            return redirect()->route('account_product_edit', [
+                'producerId' => $producer->id,
+                'productId' => $product->id
+            ]);
         }
 
-        return redirect()->back()->withInput()->withErrors($errors);
+        // Load images so they are visible even it errors
+        $images = null;
+        if ($request->has('images')) {
+            $images = Image::findMany($request->input('images'));
+        }
+
+        return redirect()->back()->withInput(['images' => $images])->withErrors($errors);
     }
 
     /**
@@ -140,7 +159,7 @@ class ProductController extends Controller
             return $nodeLink->getNode();
         });
 
-        return view('account.product.edit', [
+        return view('new.account.product.create', [
             'producer' => $producer,
             'product' => $product,
             'nodes' => $nodes,

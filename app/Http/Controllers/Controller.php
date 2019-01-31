@@ -21,15 +21,7 @@ class Controller extends BaseController
      */
     public function __construct()
     {
-        // Add body class based on view
-        $this->middleware(function ($request, $next) {
-            view()->composer('*', function($view) {
-                $view_name = str_replace('.', '-', $view->getName());
-                view()->share('viewName', $view_name);
-            });
-
-            return $next($request);
-        });
+        $this->setLang();
 
         // Check GDPR consent
         $this->middleware(function ($request, $next) {
@@ -51,13 +43,6 @@ class Controller extends BaseController
 
             return $next($request);
         });
-
-        // Set language
-        $this->middleware(function ($request, $next) {
-            $this->setLang($request, $next);
-
-            return $next($request);
-        });
     }
 
     /**
@@ -66,7 +51,7 @@ class Controller extends BaseController
      * @param Request $request
      * @param Closure $next
      */
-    private function setLang($request, $next)
+    protected function setLang()
     {
         \App::setLocale($this->getLang());
     }
@@ -80,30 +65,33 @@ class Controller extends BaseController
     {
         $request = \Request();
 
-        // If lang value is present in request store it
-        if ($request->has('lang') && array_key_exists($request->get('lang'), config('app.locales'))) {
-            $lang = $request->get('lang');
-        }
+        // IF: no language is set in the URL
+        //   IF: user is logged in
+        //     Use users language
+        //   ELSE:
+        //     Use site default lang
+        // ELSE:
+        //   Use URL language
 
-        // Use users chosen language
-        else if (Auth::check() && Auth::user()->active) {
-            $user = Auth::user();
-            $lang = $user->language;
-        }
-
-        // Use session if set
-        else if (\Session::get('locale')) {
-            $lang = \Session::get('locale');
-        }
-
-        // Use browser language setting
-        else if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
-            $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-        }
-
-        // Default app setting
-        else {
+        // No lang, redirect...
+        if (!$request->segment(1) || !array_key_exists($request->segment(1), config('app.locales'))) {
+            // ... to default lang
             $lang = config('app.locale');
+
+            // or to user specificied lang
+            if (Auth::check() && Auth::user()->active) {
+                $user = Auth::user();
+                $lang = $user->language;
+            }
+
+            // No lang, redirect to default lang
+            $query = str_replace($request->url(), '', $request->fullUrl());
+            return redirect('/' . $lang . '/' . $request->path() . $query);
+        }
+
+        // If lang value is present in request store it
+        if ($request->segment(1) && array_key_exists($request->segment(1), config('app.locales'))) {
+            $lang = $request->segment(1);
         }
 
         return $lang;

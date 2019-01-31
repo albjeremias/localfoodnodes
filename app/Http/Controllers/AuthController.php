@@ -13,7 +13,14 @@ use App\User\User;
 
 class AuthController extends Controller
 {
-    private $loginFallbackUrl = '/account/user';
+    private $loginFallbackUrl = null;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->loginFallbackUrl = route('login');
+    }
 
     /**
      * Login action.
@@ -30,7 +37,7 @@ class AuthController extends Controller
             return redirect($redirectUrl);
         }
 
-        return view('public.login');
+        return view('new.public.login');
     }
 
     /**
@@ -92,7 +99,7 @@ class AuthController extends Controller
             }
         }
 
-        $request->session()->flash('message', [trans('admin/messages.invalid_login')]);
-        return redirect('/login')->withInput();
+        $request->session()->flash('message', [__('Invalid login')]);
+        return redirect()->route('login')->withInput();
     }
 }

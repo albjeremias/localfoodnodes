@@ -9,25 +9,25 @@
 
 @php
     $node_navbar = [
-        ['name' => trans('public/nav.products'),  'link' => '/node/' . (isset($node_slug) ? $node_slug : ''), 'icon' => 'shopping-basket'],
-        ['name' => trans('public/nav.calendar'),  'link' => '#', 'icon' => 'calendar'],
-        ['name' => trans('public/nav.producers'), 'link' => '#', 'icon' => 'user-circle-o'],
-        ['name' => trans('public/nav.images'),    'link' => '#', 'icon' => 'picture-o'],
+        ['name' => __('Products'),  'link' => '/node/' . (isset($node_slug) ? $node_slug : ''), 'icon' => 'shopping-basket'],
+        ['name' => __('Calendar'),  'link' => '#', 'icon' => 'calendar'],
+        ['name' => __('Producers'), 'link' => '#', 'icon' => 'user-circle-o'],
+        ['name' => __('Images'),    'link' => '#', 'icon' => 'picture-o'],
     ];
 
     $account_navbar = [
-        ['name' => trans('public/nav.dashboard'),  'link' => '/account/user',         'icon' => 'th-large'],
-        ['name' => trans('public/nav.my_nodes'),   'link' => '/account/nodes',        'icon' => 'map-marker'],
-        ['name' => trans('public/nav.pick_ups'),   'link' => '/account/user/pickups', 'icon' => 'home'],
-        ['name' => trans('public/nav.my_profile'), 'link' => '/account/user/edit',    'icon' => 'user'],
+        ['name' => __('Dashboard'),  'link' => '/account/user',         'icon' => 'th-large'],
+        ['name' => __('My nodes'),   'link' => '/account/nodes',        'icon' => 'map-marker'],
+        ['name' => __('Pickups'),   'link' => '/account/user/pickups', 'icon' => 'home'],
+        ['name' => __('My profile'), 'link' => '/account/user/edit',    'icon' => 'user'],
     ];
 
     if(isset($active_producer_id)) :
         $producer_navbar = [
-            ['name' => trans('public/nav.dashboard'),           'link' => '/account/producer/' . $active_producer_id, 'icon' => 'th-large'],
-            ['name' => trans('admin/user-nav.create_product'),  'link' => '/account/producer/' . $active_producer_id . '/product/create', 'icon' => 'map-marker'],
-            ['name' => trans('admin/user-nav.products'),        'link' => '/account/producer/' . $active_producer_id . '/products', 'icon' => 'home'],
-            ['name' => trans('admin/user-nav.deliveries'),      'link' => '/account/producer/' . $active_producer_id . '/deliveries', 'icon' => 'user'],
+            ['name' => __('Dashboard'),           'link' => '/account/producer/' . $active_producer_id, 'icon' => 'th-large'],
+            ['name' => __('Create product'),  'link' => '/account/producer/' . $active_producer_id . '/product/create', 'icon' => 'map-marker'],
+            ['name' => __('Products'),        'link' => '/account/producer/' . $active_producer_id . '/products', 'icon' => 'home'],
+            ['name' => __('Deliveries'),      'link' => '/account/producer/' . $active_producer_id . '/deliveries', 'icon' => 'user'],
         ];
     endif;
 

@@ -29,6 +29,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton('url', function($app) {
+            $routes = $this->app['router']->getRoutes();
+            return new \App\Library\CustomUrlGenerator($routes, $this->app->make('request'));
+        });
+
         $this->app->singleton(CurrencyConverter::class, function($app) {
             return new CurrencyConverter();
         });

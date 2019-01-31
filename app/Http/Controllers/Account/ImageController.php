@@ -11,6 +11,52 @@ use App\Image\Image;
 class ImageController extends Controller
 {
     /**
+     * Upload image.
+     *
+     * @param Request $request
+     * @param string $entityType
+     * @param int $entityId
+     * @return void
+     */
+    public function upload(Request $request) {
+        $user = Auth::user();
+
+        $entityType = $request->input('entityType');
+        $entityId = $request->input('entityId');
+
+        $imageIds = [];
+        $failedImages = [];
+        if ($request->hasFile('image')) {
+            foreach ($request->file('image') as $file) {
+                try {
+                    $image = Image::create([
+                        'entity_id' => $entityId ?: null,
+                        'entity_type' => $entityType ?: null,
+                        'file' => $file,
+                        'sort' => 999
+                    ]);
+
+                    $imageIds[] = $image->id;
+                } catch (\Exception $e) {
+                    $failedImages[] = 'do something';
+                }
+            }
+        }
+
+        // Sort order cannot be set here
+
+        // if ($request->input('image_sort_order')) {
+        //     foreach ($request->input('image_sort_order') as $imageId => $sortOrder) {
+        //         $image = $user->image($imageId);
+        //         $image->sort = $sortOrder;
+        //         $image->save();
+        //     }
+        // }
+
+        return response()->json($imageIds, 200);
+    }
+
+    /**
      * Delete image.
      *
      * @param Request $request

@@ -49,7 +49,7 @@
             <label for="delivery_time">{{ trans('admin/node.time') }} @include('account.field-error', ['field' => 'delivery_time'])</label>
             <div class="input-group">
                 <span class="input-group-prepend"><i class="input-group-text fa fa-clock-o"></i></span>
-                <input type="text" name="delivery_time" class="form-control picker time" id="delivery_time" placeholder="{{ trans('admin/node.time_placeholder') }}" value="{{ $node->delivery_time or '' }}">
+                <input type="text" name="delivery_time" class="form-control picker time" id="delivery_time" placeholder="{{ trans('admin/node.time_placeholder') }}" value="{{ $node->delivery_time ?? '' }}">
             </div>
         </div>
     </div>

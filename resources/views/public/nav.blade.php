@@ -69,7 +69,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         @foreach (config('app.locales') as $key => $value)
-                            <a class="dropdown-item" href="/settings/locale/{{ $key }}">{{ $value }}</a>
+                            <a class="dropdown-item" href="/system/locale/{{ $key }}">{{ $value }}</a>
                         @endforeach
                     </div>
                 </li>

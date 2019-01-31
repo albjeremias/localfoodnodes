@@ -15,18 +15,18 @@ class PageController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        parent::__construct();
+    // public function __construct()
+    // {
+    //     parent::__construct();
 
-        $this->middleware(function ($request, $next) {
-            view()->composer('*', function($view) {
-                $view_name =  'page ' . str_replace('.', '-', $view->getName());
-                view()->share('viewName', $view_name);
-            });
-            return $next($request);
-        });
-    }
+    //     $this->middleware(function ($request, $next) {
+    //         view()->composer('*', function($view) {
+    //             $view_name =  'page ' . str_replace('.', '-', $view->getName());
+    //             view()->share('viewName', $view_name);
+    //         });
+    //         return $next($request);
+    //     });
+    // }
 
     public function findOutMore()
     {

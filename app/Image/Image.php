@@ -189,9 +189,7 @@ class Image extends BaseModel
     {
         $filename = $this->getBasename($size) . $this->getExtension();
 
-        // if (Storage::disk('s3')->exists($filename)) {
         return Storage::disk('s3')->url($filename);
-        // }
     }
 
     public function getUrlsAttribute()

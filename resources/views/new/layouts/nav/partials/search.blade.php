@@ -2,5 +2,5 @@
     <div class="input-group-prepend">
         <i class="pl-3 input-group-text fa fa-search my-auto d-flex h-100" aria-hidden="true"></i>
     </div>
-    <input type="text" class="form-control pr-5" placeholder="{{ trans('admin/user-nav.search') }}...">
+    <input type="text" class="form-control pr-5" placeholder="{{ __('Search') }}...">
 </div>

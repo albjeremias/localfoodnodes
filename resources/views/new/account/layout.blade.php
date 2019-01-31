@@ -14,7 +14,7 @@
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
-<body class="admin {{ $viewName }} logged-in">
+<body class="admin logged-in">
 <div class="page">
     @if (!isset($hideMenu))
         @include('new.layouts.nav.base')

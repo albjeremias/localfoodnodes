@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="container nm pt-2">
-        <form id="user-edit-form" action="/account/user/update" method="post" enctype="multipart/form-data">
+        <form id="user-edit-form" action="{{ route('account_user_update') }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
 
             <div class="row my-5">
@@ -19,52 +19,52 @@
                     {{-- Name --}}
                     <div class="form-group">
                         @include('new.components.forms.input', [
-                            'label'       => trans('admin/user.name'),
+                            'label'       => __('Name'),
                             'label_cap'   => true,
                             'name'        => 'name',
                             'type'        => 'text',
                             'class'       => 'form-control bb-38 bc',
-                            'placeholder' => trans('admin/user.name'),
-                            'value'       => $user->name
+                            'placeholder' => __('Name'),
+                            'm_value'       => $user->name
                         ])
                     </div>
 
                     {{-- Email --}}
                     <div class="form-group">
                         @include('new.components.forms.input', [
-                            'label'       => trans('admin/user.email'),
+                            'label'       => __('Email'),
                             'label_cap'   => true,
                             'name'        => 'email',
                             'type'        => 'email',
                             'class'       => 'form-control bb-38 bc',
-                            'placeholder' => trans('admin/user.email'),
-                            'value'       => $user->email
+                            'placeholder' => __('Email'),
+                            'm_value'       => $user->email
                         ])
                     </div>
 
                     {{-- Phone --}}
                     <div class="form-group">
                         @include('new.components.forms.input', [
-                            'label'       => trans('admin/user.phone'),
+                            'label'       => __('Phone'),
                             'label_cap'   => true,
                             'name'        => 'phone',
                             'type'        => 'phone',
                             'class'       => 'form-control bb-38 bc',
-                            'placeholder' => trans('admin/user.phone'),
-                            'value'       => $user->phone
+                            'placeholder' => __('Phone'),
+                            'm_value'       => $user->phone
                         ])
                     </div>
 
                     {{-- Address --}}
                     <div class="form-group">
                         @include('new.components.forms.input', [
-                            'label'       => trans('admin/user.address'),
+                            'label'       => __('Address'),
                             'label_cap'   => true,
                             'name'        => 'address',
                             'type'        => 'text',
                             'class'       => 'form-control bb-38 bc',
-                            'placeholder' => trans('admin/user.address'),
-                            'value'       => $user->address
+                            'placeholder' => __('Address'),
+                            'm_value'       => $user->address
                         ])
                     </div>
 
@@ -72,26 +72,26 @@
                     {{-- ZIP --}}
                     <div class="form-group col">
                         @include('new.components.forms.input', [
-                            'label'       => trans('admin/user.zip'),
+                            'label'       => __('Zip'),
                             'label_cap'   => true,
                             'name'        => 'zip',
                             'type'        => 'text',
                             'class'       => 'form-control bb-38 bc',
-                            'placeholder' => trans('admin/user.zip'),
-                            'value'       => $user->zip
+                            'placeholder' => __('Zip'),
+                            'm_value'       => $user->zip
                         ])
                     </div>
 
                     {{-- City --}}
                     <div class="form-group col">
                         @include('new.components.forms.input', [
-                            'label'       => trans('admin/user.city'),
+                            'label'       => __('City'),
                             'label_cap'   => true,
                             'name'        => 'city',
                             'type'        => 'text',
                             'class'       => 'form-control bb-38 bc',
-                            'placeholder' => trans('admin/user.city'),
-                            'value'       => $user->city
+                            'placeholder' => __('City'),
+                            'm_value'       => $user->city
                         ])
                     </div>
                     </div>
@@ -99,7 +99,7 @@
                     {{-- Language --}}
                     <div class="form-group">
                         @include('new.components.forms.dropdown', [
-                            'label'       => trans('admin/user.site_lang'),
+                            'label'       => __('Site lang'),
                             'name'        => 'language',
                             'class'       => 'custom-select bb-38 bc',
                             'options'     => config('app.locales'),
@@ -109,24 +109,25 @@
                     </div>
 
                     {{-- GDPR Concent --}}
-                    <p>{!! trans('admin/user.gdpr_consent_date', ['date' => $user->gdprConsent()->created_at]) !!}</p>
+                    <p>{!! __('GDPR consent date', ['date' => $user->gdprConsent()->created_at]) !!}</p>
                 </div>
 
                 <div class="col-md-6 offset-md-2">
 
                     {{-- Images --}}
-                    @include('account.image-card', [
+                    @include('new.components.upload.images', [
+                        'entityType' => 'user',
+                        'entityId' => $user->id ?: null,
                         'images' => $user->images(),
-                        'deleteUrl' => '/account/image/{imageId}/delete',
                         'limit' => 1,
                     ])
 
                     <div class="mt-5">
                         {{-- Save --}}
-                        <button type="submit" form="user-edit-form" class="btn btn-success">{{ trans('admin/user.save_user') }}</button>
+                        <button type="submit" form="user-edit-form" class="btn btn-success">{{ __('Save user') }}</button>
 
                         {{-- Delete --}}
-                        <a href="/account/user/delete/confirm" class="btn btn-danger float-right">{{ trans('admin/user.delete_user') }}</a>
+                        <a href="{{ route('account_user_delete_confirm') }}" class="btn btn-danger float-right">{{ __('Delete user') }}</a>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,8 @@
 <?php
 
+// Settings
+Route::get('/locale/{locale}', 'System\SystemController@changeLocale');
+
 Route::get('/info', 'System\SystemController@info');
 
 Route::get('/cron/notifications', 'System\CronController@notifications');

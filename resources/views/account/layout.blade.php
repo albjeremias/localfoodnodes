@@ -19,7 +19,7 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     </head>
-    <body class="admin {{ $viewName }} logged-in">
+    <body class="admin logged-in">
         <div class="page">
             @if (!isset($hideMenu))
                 @include('account.user-nav')

@@ -1,5 +1,3 @@
-<?php $viewName = 'Register' ?>
-
 @extends('new.public.layout',
 [
     'no_nav' => true,

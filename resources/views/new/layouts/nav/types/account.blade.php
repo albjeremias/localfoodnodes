@@ -24,7 +24,7 @@
                     <a class="dropdown-item" href="/account/producer/{{ $producerAdminLink->getProducer()->id }}">{{ $producerAdminLink->getProducer()->name }}</a>
                 @endforeach
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/account/producer/create">{{ trans('admin/user-nav.create_producer') }}</a>
+                <a class="dropdown-item" href="/account/producer/create">{{ __('Create producer') }}</a>
 
             </div>
     </li>
@@ -40,7 +40,7 @@
                 <a class="dropdown-item" href="/account/producer/{{ $producerAdminLink->getProducer()->id }}">{{ $producerAdminLink->getProducer()->name }}</a>
             @endforeach
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/account/producer/create">{{ trans('admin/user-nav.create_producer') }}</a>
+            <a class="dropdown-item" href="/account/producer/create">{{ __('Create producer') }}</a>
 
         </div>
 
@@ -48,7 +48,7 @@
 @elseif ($user->producerAdminLinks()->count() === 0)
     {{-- CREATE PRODUCER --}}
     <li class="nav-item">
-        <a class="nav-link black-54" href="/account/producer/create">{{ trans('admin/user-nav.create_producer') }}</a>
+        <a class="nav-link black-54" href="/account/producer/create">{{ __('Create producer') }}</a>
     </li>
 @endif
 
@@ -57,7 +57,7 @@
 
     <li class="nav-item dropdown">
         <a class="nav-link black-54 dropdown-toggle" href="#" id="navbarDropdownNodes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{ trans('admin/user-nav.node_administration') }}
+            {{ __('Node administration') }}
         </a>
 
         <div class="dropdown-menu" aria-labelledby="navbarDropdownNodes">
@@ -65,13 +65,13 @@
                 <a class="dropdown-item {{ Request::is('account/node/' . $nodeAdminLink->getNode()->id) ? 'active' : '' }}" href="/account/node/{{ $nodeAdminLink->getNode()->id }}">{{ $nodeAdminLink->getNode()->name }}</a>
             @endforeach
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/account/node/create">{{ trans('admin/user-nav.create_node') }}</a>
+            <a class="dropdown-item" href="/account/node/create">{{ __('Create node') }}</a>
         </div>
     </li>
 @else
     {{-- CREATE NODE --}}
     <li class="nav-item">
-        <a class="nav-link black-54" href="/account/node/create">{{ trans('admin/user-nav.create_node') }}</a>
+        <a class="nav-link black-54" href="/account/node/create">{{ __('Create node') }}</a>
     </li>
 @endif
 
@@ -80,5 +80,5 @@
 
 {{-- NODES --}}
 <li class="nav-item">
-    <a class="nav-link black-54" href="/explore">{{ trans('admin/user-nav.find_nodes') }}</a>
+    <a class="nav-link black-54" href="/explore">{{ __('Find nodes') }}</a>
 </li>

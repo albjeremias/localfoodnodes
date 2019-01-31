@@ -1,88 +1,96 @@
-<div class="d-flex justify-content-between">
-    <span>{{ trans('admin/image-card.image_optional') }}</span>
-    <span>{{ $images->count() }} / {{ $limit }}</span>
+<label>Images</label>
+<div class="dropzone" id="dropzone">
+    <div class="dropzone-previews" id="dropzone-previews"></div>
 </div>
-<div class="">
-    @if ($errors->has('image'))
-        <div class="mb-3">@include('account.field-error', ['field' => 'image'])</div>
+
+@if ($images)
+    @foreach ($images as $index => $image)
+        <input type="hidden" name="images[]" value="{{ $image->id }}" />
+    @endforeach
+@endif
+
+@if (old('images'))
+    @foreach (old('images') as $index => $image)
+        <input type="hidden" name="images[]" value="{{ $image->id }}" />
+    @endforeach
+@endif
+
+<script src="/js/vendor/dropzone.js"></script>
+<script>
+    // Set url
+    var uploadUrl = "{{ route('account_image_upload') }}";
+    @if ($entityType && $entityId)
+        uploadUrl += '?entityType={{ $entityType }}&entityId={{ $entityId }}';
     @endif
 
-    <div class="row images">
+    // Create image array
+    var images = [];
+    @if ($images)
         @foreach ($images as $index => $image)
-            <div class="col-3 image">
-                <div class="image-inner">
-                    <div class="action-bar">
-                        <a href="{{ str_replace('{imageId}', $image->id, $deleteUrl) }}"><i class="fa fa-trash"></i></a>
-                    </div>
-                    <input type="hidden" name="image_sort_order[{{ $image->id }}]">
-                    <img src="{{ $image->url('small') }}">
-                </div>
-            </div>
-        @endforeach
-
-        @if ($images->count() < $limit)
-            <script>
-                $(function () {
-                    $('#image').on('change', function (event) {
-                        var validMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
-
-                        var errors = false;
-                        for (var i = 0; i < this.files.length; i++) {
-                            var file = this.files[i];
-
-                            if (file.size > 10000000) {
-                                errors = true;
-                                $(document).trigger('notification', file.name + {!! json_encode(trans('admin/image-card.image_size_to_big')) !!});
-                            }
-
-                            if (validMimeTypes.indexOf(file.type) === -1) {
-                                errors = true;
-                                $(document).trigger('notification', file.name + {!! json_encode(trans('admin/image-card.image_not_valid_type')) !!});
-                            }
-                        }
-
-                        if (errors === true) {
-                            $('#image').val('');
-                            $('#upload-image-counter').html('');
-                        } else {
-                            var infoText = {!! json_encode(trans('admin/image-card.images_select_for_upload')) !!};
-                            var nbrOfImages = this.files.length;
-                            $('#upload-image-counter').html(nbrOfImages + infoText);
-                        }
-                    })
-                });
-            </script>
-            <div class="col-3">
-                <div class="upload">
-                    <b>{{ trans('admin/image-card.select_images_to_upload') }}</b>
-                    <input type="file" name="image[]" id="image" multiple>
-                    <div id="upload-image-counter"></div>
-                </div>
-            </div>
-        @endif
-    </div>
-</div>
-
-<!-- Sort order -->
-<script>
-    jQuery(document).ready(function ($) {
-        $(function () {
-            var setSortOrder = function (event, ui) {
-                $('.images .image').each(function (index, item) {
-                    $(item).find('input').val(index + '');
-                });
-
-                // Set profile image icon on first image
-                $('#main-image').remove();
-                $('.images .image').first().find('.action-bar').prepend('<i id="main-image" class="fa fa-picture-o" title="Main image"></i>');
-            }
-
-            $('.images').sortable({
-                update: setSortOrder,
-                cancel: ".upload"
+            images.push({
+                id: '{{ $image->id }}',
+                file: '{{ $image->file }}',
+                url: '{{ $image->url('small') }}',
+                deleteUrl: '{{ route("account_image_delete", ["imageId" => $image->id]) }}',
             });
-            $('.images').disableSelection();
-            setSortOrder();
+        @endforeach
+    @endif
+
+    @if (old('images'))
+        @foreach (old('images') as $index => $image)
+            images.push({
+                id: '{{ $image->id }}',
+                file: '{{ $image->file }}',
+                url: '{{ $image->url('small') }}',
+                deleteUrl: '{{ route("account_image_delete", ["imageId" => $image->id]) }}',
+            });
+        @endforeach
+    @endif
+
+    Dropzone.autoDiscover = false;
+    jQuery(document).ready(function() {
+        $('#dropzone').dropzone({
+            addRemoveLinks: true,
+            dictCancelUpload: '',
+            dictDefaultMessage: 'Drop images here to upload (max {{ $limit }})',
+            dictRemoveFile: 'Remove',
+            maxFiles: '{{ $limit}}',
+            method: 'POST',
+            paramName: 'image',
+            previewsContainer: '#dropzone-previews',
+            uploadMultiple: true,
+            url: uploadUrl,
+            init: function() {
+                var d = this;
+                images.forEach(function(image) {
+                    image.accepted = true;
+                    d.files.push(image);
+                    d.emit('addedfile', image);
+                    d.emit('thumbnail', image, image.url);
+                    d.emit('complete', image);
+                });
+
+                this.on('success', function(file, imageIds) {
+                    // Loop added images and add hidden input fields with the ids
+                    imageIds.forEach(function(id) {
+                        var element = document.createElement('input');
+                        element.setAttribute('id', id);
+                        element.setAttribute('name', 'images[]');
+                        element.setAttribute('type', 'hidden');
+                        element.setAttribute('value', id);
+
+                        document.getElementById('dropzone').appendChild(element);
+                    });
+                });
+
+                this.on('removedfile', function(image) {
+                    $.get(image.deleteUrl)
+                });
+
+                this.on('uploadprogress', function(file, progress, bytesSent) {
+                    console.log(progress, bytesSent);
+                });
+            },
         });
     });
 </script>

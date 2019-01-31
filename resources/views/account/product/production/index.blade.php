@@ -82,7 +82,7 @@
                                         {{ trans('admin/product.enter_total_csa_subscribers') }}
                                         @include('account.field-error', ['field' => 'csa_quantity'])
                                     </label>
-                                    <input type="number" min="0" name="csa_quantity" class="form-control" id="csa_quantity" placeholder="{{ trans('admin/product.number_of_csa_subscribers') }}" value="{{ $product->productions()->first()->quantity or '' }}">
+                                    <input type="number" min="0" name="csa_quantity" class="form-control" id="csa_quantity" placeholder="{{ trans('admin/product.number_of_csa_subscribers') }}" value="{{ $product->productions()->first()->quantity ?? '' }}">
                                 </div>
                             </div>
                         </div>
@@ -96,7 +96,7 @@
                                         {{ trans('admin/product.specify_number_products') }}
                                         @include('account.field-error', ['field' => 'weekly_quantity'])
                                     </label>
-                                    <input type="number" min="0" name="weekly_quantity" class="form-control" id="weekly_quantity" placeholder="{{ trans('admin/product.number_of_products') }}" value="{{ $product->productions()->first()->quantity or '' }}">
+                                    <input type="number" min="0" name="weekly_quantity" class="form-control" id="weekly_quantity" placeholder="{{ trans('admin/product.number_of_products') }}" value="{{ $product->productions()->first()->quantity ?? '' }}">
                                 </div>
                                 <div class="card-body">
                                     <p>{{ trans('admin/product.weekly_adjustment') }}</p>

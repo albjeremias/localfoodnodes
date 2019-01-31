@@ -218,7 +218,7 @@ class UserController extends Controller
             $request->session()->flash('message', [trans('admin/messages.user_account_created')]);
             $request->session()->flash('welcome_modal', true);
 
-            return redirect('/account/user');
+            return route('account_user');
         }
 
         return redirect('/account/user/create')->withInput()->withErrors($errors);
@@ -262,11 +262,12 @@ class UserController extends Controller
 
             $this->uploadImage($request, $user);
 
+            \App::setLocale($user->language);
             $request->session()->flash('message', [trans('admin/messages.user_account_updated')]);
-            return redirect('/account/user');
+            return redirect()->route('account_user_edit');
         }
 
-        return redirect('/account/user/edit')->withInput()->withErrors($errors);
+        return redirect()->route('account_user_edit')->withInput()->withErrors($errors);
     }
 
     /**

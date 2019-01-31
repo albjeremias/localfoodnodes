@@ -54,15 +54,22 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function accountRoutes()
     {
-        $options = [
-            'middleware' => ['web', 'auth.account'],
-            'namespace' => $this->namespace,
-            'prefix' => 'account',
-        ];
+        foreach (config('app.locales') as $langCode => $language) {
+            $prefix = [
+                'en' => 'en/account',
+                'sv' => 'sv/konto',
+            ];
 
-        Route::group($options, function ($router) {
-            require base_path('routes/account.php');
-        });
+            $options = [
+                'middleware' => ['web', 'auth.account'],
+                'namespace' => $this->namespace,
+                'prefix' => $prefix[$langCode],
+            ];
+
+            Route::group($options, function ($router) use ($langCode) {
+                require base_path('routes/' . $langCode . '/account.php');
+            });
+        }
     }
 
     /**
@@ -117,14 +124,17 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function authRoutes()
     {
-        $options = [
-            'middleware' => 'web',
-            'namespace' => $this->namespace,
-        ];
+        foreach (config('app.locales') as $langCode => $language) {
+            $options = [
+                'middleware' => 'web',
+                'namespace' => $this->namespace,
+                'prefix' => $langCode,
+            ];
 
-        Route::group($options, function ($router) {
-            require base_path('routes/auth.php');
-        });
+            Route::group($options, function ($router) use ($langCode) {
+                require base_path('routes/' . $langCode . '/auth.php');
+            });
+        }
     }
 
     /**
@@ -175,13 +185,16 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function publicRoutes()
     {
-        $options = [
-            'middleware' => 'web',
-            'namespace' => $this->namespace,
-        ];
+        foreach (config('app.locales') as $langCode => $language) {
+            $options = [
+                'middleware' => 'web',
+                'namespace' => $this->namespace,
+                'prefix' => $langCode,
+            ];
 
-        Route::group($options, function ($router) {
-            require base_path('routes/public.php');
-        });
+            Route::group($options, function ($router) use ($langCode) {
+                require base_path('routes/' . $langCode . '/public.php');
+            });
+        }
     }
 }

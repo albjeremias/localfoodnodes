@@ -6,11 +6,6 @@
     'sub_nav_active' => 1
 ])
 
-<?php
-$viewName = 'my-nodes';
-$user = Auth::user();
-?>
-
 @section('title', 'Mina noder')
 
 @section('content')
