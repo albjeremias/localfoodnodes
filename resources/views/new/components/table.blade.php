@@ -16,7 +16,7 @@
         <tr>
             @foreach($item as $value)
                 @if(isset($value['href']))
-                    <td><a href="{{ $value['href'] }}" class="{{ isset($value['class']) ? $value['class'] : '' }}">{{ $value['value'] }}</a></td>
+                    <td><a href="{{ $value['href'] }}" class="{{ isset($value['class']) ? $value['class'] : '' }} rc">{{ $value['value'] }}</a></td>
                 @elseif(isset($value['badge']))
                     <td class="">
                         <div class="{{ isset($value['class']) ? $value['class'] : '' }}">
