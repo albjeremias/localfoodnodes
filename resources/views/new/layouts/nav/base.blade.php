@@ -49,13 +49,13 @@
                     {{-- User is NOT authed and is using the transparent navbar --}}
                     @elseif(!Auth::user() && isset($transparent_nav))
                         <li class="d-none d-lg-block">
-                            <a href="/login" class="nav-link">
+                            <a href="{{ route('login') }}" class="nav-link">
                                 <span class="wc hover-wbb pb-2">{{ __('Login') }}</span>
                             </a>
                         </li>
 
                         <li class="d-none d-lg-block px-3">
-                            <a href="/register" class="btn btn-primary">
+                            <a href="{{ route('register') }}" class="btn btn-primary">
                                 {{ __('Create account') }}
                             </a>
                         </li>
@@ -73,11 +73,11 @@
 
                         {{-- Mobile only --}}
                         <li class="d-lg-none">
-                            <a class="nav-link wc" href="/login">{{ __('Login') }}</a>
+                            <a class="nav-link wc" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
 
                         <li class="d-lg-none">
-                            <a class="nav-link wc" href="/account/user/create">{{ __('Create') }}</a>
+                            <a class="nav-link wc" href="{{ route('register') }}">{{ __('Create') }}</a>
                         </li>
 
                     {{-- User is authed and is using the transparent navbar --}}
@@ -90,7 +90,7 @@
                         </li>
 
                         <li class="d-none d-lg-block px-3">
-                            <a href="/account/user" class="btn btn-primary">
+                            <a href="{{ route('account_user') }}" class="btn btn-primary">
                                 {{ __('Dashboard') }}
                             </a>
                         </li>
@@ -108,10 +108,10 @@
 
                         {{-- Mobile only --}}
                         <li class="d-lg-none">
-                            <a class="nav-link wc" href="/account/user">{{ __('Dashboard') }}</a>
+                            <a class="nav-link wc" href="{{ route('account_user') }}">{{ __('Dashboard') }}</a>
                         </li>
                         <li class="d-lg-none">
-                            <a class="nav-link wc" href="/logout">{{ __('Logout') }}</a>
+                            <a class="nav-link wc" href="{{ route('logout') }}">{{ __('Logout') }}</a>
                         </li>
                     @endif
                 </ul>

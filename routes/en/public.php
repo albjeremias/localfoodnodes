@@ -4,7 +4,7 @@
 Route::get('/', 'IndexController@index')->name('en_index');
 
 // Account create
-Route::get('/account/user/create/{type?}', 'Account\UserController@create')->name('en_account_user_create');
+Route::get('/register', 'Account\UserController@create')->name('en_register');
 Route::post('/account/user/insert', 'Account\UserController@insert')->name('en_account_user_insert');
 Route::get('/account/user/activate/token/{token}', 'Account\UserController@activateToken')->name('en_account_user_activate_token'); // Activate account even if user is not logged in
 Route::post('/account/user/membership/callback', 'Account\UserController@membershipCallback')->name('en_account_user_membership_callback'); // Need to be public with the new membership donation form

@@ -70,27 +70,18 @@ class Handler extends ExceptionHandler
             return redirect('/' . $lang . '/' . $request->path() . $query);
         }
 
+        // Handle HTTP exceptions
         if ($this->isHttpException($exception)) {
-            switch ($exception->getStatusCode()) {
-                // not authorized
-                case '403':
-                    return response()->view('errors.403', [], 403);
-                    break;
+            $statusCode = $exception->getStatusCode();
+            $customViews = ['403', '404'];
 
-                // not found
-                case '404':
-                    return response()->view('errors.404', [], 404);
-                    break;
-
-                // internal error
-                case '500':
-                    return response()->view('errors.500', [], 500);
-                    break;
-
-                default:
-                    return $this->renderHttpException($exception);
-                    break;
+            if (in_array($exception->getStatusCode(), $customViews)) {
+                return response()->view('new.errors.' . $statusCode, [], $statusCode);
+            } else {
+                return response()->view('new.errors.' . $statusCode[0] . 'xx', [], $statusCode);
             }
+
+            return $this->renderHttpException($exception);
         }
 
         if ($exception instanceof TokenMismatchException) {

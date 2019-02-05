@@ -1,0 +1,1 @@
+Fixa 5xx! Finns i new/errors/5xx.blade.php

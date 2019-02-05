@@ -1,0 +1,1 @@
+Fixa 4xx! Finns i new/errors/4xx.blade.php

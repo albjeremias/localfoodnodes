@@ -174,7 +174,7 @@ class UserController extends Controller
             $content = trans('public/create-account.' . $type);
         }
 
-        return view('public.user.create', [
+        return view('new.public.register', [
             'header' => $header,
             'content' => $content,
             'breadcrumbs' => [
@@ -520,7 +520,6 @@ class UserController extends Controller
      */
     public function membershipCallback(Request $request)
     {
-
         $token = $request->input('stripeToken');
         if (!$token) {
             return response()->json([

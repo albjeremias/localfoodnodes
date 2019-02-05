@@ -24,7 +24,7 @@
                 <div class="row mt-5">
                     <div class="col-16 text-right mb-5">
                         <small>{{ __('No account?') }}</small>
-                        <a href="{{ route('account_user_create') }}" class="ml-3 btn btn-info bb">{{ __('Create account') }}</a>
+                        <a href="{{ route('register') }}" class="ml-3 btn btn-info bb">{{ __('Create account') }}</a>
                     </div>
 
                     <div class="col-16 mt-5">

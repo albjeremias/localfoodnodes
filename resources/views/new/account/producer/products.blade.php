@@ -70,7 +70,7 @@
                         @foreach ($products->sortBy('name') as $product)
                                 <div class="col-16 col-lg-8 col-xl-5 mb-3">
                                     @php
-                                        $tag = trans('public/tags.' . $product->tags()[0]->tag);
+                                        $tag = trans('public/tags.');
                                     @endphp
                                     <card-product-edit
                                         :product="{{ json_encode($product) }}"

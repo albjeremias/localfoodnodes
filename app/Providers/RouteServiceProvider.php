@@ -54,19 +54,17 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function accountRoutes()
     {
-        foreach (config('app.locales') as $langCode => $language) {
-            $prefix = [
-                'en' => 'en/account',
-                'sv' => 'sv/konto',
-            ];
+        $prefix = [
+            'en' => 'en/account',
+            'sv' => 'sv/konto',
+        ];
 
-            $options = [
+        foreach (config('app.locales') as $langCode => $language) {
+            Route::group([
                 'middleware' => ['web', 'auth.account'],
                 'namespace' => $this->namespace,
                 'prefix' => $prefix[$langCode],
-            ];
-
-            Route::group($options, function ($router) use ($langCode) {
+            ], function ($router) use ($langCode) {
                 require base_path('routes/' . $langCode . '/account.php');
             });
         }
@@ -79,23 +77,32 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function apiRoutes()
     {
-        $publicApiOptions = [
-            'middleware' => 'api',
-            'namespace' => $this->namespace,
-            'prefix' => 'api',
-        ];
+        foreach (config('app.locales') as $langCode => $language) {
+            // Account API
+            Route::group([
+                'middleware' => ['web', 'auth.account'],
+                'namespace' => $this->namespace,
+                'prefix' => $langCode . '/api/account',
+            ], function ($router) {
+                require base_path('routes/api/account/routes.php');
+            });
 
-        Route::group($publicApiOptions, function ($router) {
-            require base_path('routes/public-api.php');
-        });
+            // Public API
+            Route::group([
+                'middleware' => 'api',
+                'namespace' => $this->namespace,
+                'prefix' => $langCode . '/api',
+            ], function ($router) {
+                require base_path('routes/api/public/routes.php');
+            });
+        }
 
-        $privateApiOptions = [
+        // Private API
+        Route::group([
             'namespace' => $this->namespace,
             'prefix' => 'api/v1',
-        ];
-
-        Route::group($privateApiOptions, function ($router) {
-            require base_path('routes/private-api.php');
+        ], function ($router) {
+            require base_path('routes/api/private/v1/routes.php');
         });
     }
 
@@ -186,13 +193,11 @@ class RouteServiceProvider extends ServiceProvider
     protected function publicRoutes()
     {
         foreach (config('app.locales') as $langCode => $language) {
-            $options = [
+            Route::group([
                 'middleware' => 'web',
                 'namespace' => $this->namespace,
                 'prefix' => $langCode,
-            ];
-
-            Route::group($options, function ($router) use ($langCode) {
+            ], function ($router) use ($langCode) {
                 require base_path('routes/' . $langCode . '/public.php');
             });
         }

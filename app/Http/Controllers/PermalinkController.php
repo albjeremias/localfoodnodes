@@ -69,6 +69,6 @@ class PermalinkController extends IndexController
      */
     private function errorPage404($request, $message, $data)
     {
-        return view('errors.404');
+        return view('new.errors.404');
     }
 }

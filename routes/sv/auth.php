@@ -1,5 +1,10 @@
 <?php
 
+// Route::view('/search', 'new.public.search');
+// Route::view('/login', 'new.public.login');
+// Route::view('/register', 'new.public.register');
+// Route::view('/account/nodes', 'new.account.user.nodes');
+
 // Auth
 Route::get('/logga-in', 'AuthController@login')->name('sv_login');
 Route::get('/logga-ut', 'AuthController@logout')->name('sv_logout');

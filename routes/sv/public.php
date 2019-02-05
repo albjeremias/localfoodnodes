@@ -4,7 +4,7 @@
 Route::get('/', 'IndexController@index')->name('sv_index');
 
 // Account create
-Route::get('/konto/skapa/{type?}', 'Account\UserController@create')->name('sv_account_user_create');
+Route::get('/registrera', 'Account\UserController@create')->name('sv_register');
 Route::post('/account/user/insert', 'Account\UserController@insert')->name('sv_account_user_insert');
 Route::get('/konto/aktivera/token/{token}', 'Account\UserController@activateToken')->name('sv_account_user_activate_token'); // Activate account even if user is not logged in
 Route::post('/account/user/membership/callback', 'Account\UserController@membershipCallback')->name('sv_account_user_membership_callback'); // Need to be public with the new membership donation form

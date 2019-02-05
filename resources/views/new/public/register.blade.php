@@ -16,7 +16,6 @@
 
                 <div class="login-quote wc pr-5">
                     <p><a class="text-uppercase">{{ trans('public/login.quote_name') }}</a></p>
-
                     <p>– “{{ trans('public/login.quote') }}”</p>
                 </div>
             </div>
