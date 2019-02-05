@@ -23,20 +23,22 @@
                 <small class="font-italic my-auto">This product doesn't have any variants</small>
             </div>
 
-            <hr class="mb-2">
-            <p class="mb-2 rc">Settings</p>
+            <div class="form-container">
+                <hr class="mb-2">
+                <p class="mb-2 rc">Settings</p>
 
-            <div class="product-edit-form">
-                <input type="text" aria-describedby="input-aria-name" name="name" class="form-control input-group w-25" id="form-input-stock" value="" placeholder="Stock" autocomplete="off">
-                <input type="text" aria-describedby="input-aria-name" name="name" class="form-control input-group w-25 mx-lg-1" id="form-input-price" value="" placeholder="Price" autocomplete="off">
-                <input type="text" aria-describedby="input-aria-name" name="name" class="form-control input-group w-25 mr-lg-1" id="form-input-deadline" value="" placeholder="Deadline" autocomplete="off">
-                <a class="btn btn-secondary wc" @click="saveSettings()">Save</a>
+                <div class="product-edit-form">
+                    <input type="text" aria-describedby="input-aria-name" name="name" class="form-control input-group w-25" id="form-input-stock" value="" placeholder="Stock" autocomplete="off">
+                    <input type="text" aria-describedby="input-aria-name" name="name" class="form-control input-group w-25 mx-lg-1" id="form-input-price" value="" placeholder="Price" autocomplete="off">
+                    <input type="text" aria-describedby="input-aria-name" name="name" class="form-control input-group w-25 mr-lg-1" id="form-input-deadline" value="" placeholder="Deadline" autocomplete="off">
+                    <a class="btn btn-secondary wc" @click="saveSettings()">Save</a>
+                </div>
             </div>
 
             <a class="bottom-link rc" :href="'/account/producer/' + producer.id + '/product/' + product.id ">ADVANCED SETTINGS</a>
 
             <div class="custom-control custom-checkbox product-edit-active">
-                <input type="checkbox" :name="'checkbox-active-' + product.id" class="custom-control-input" :id="'checkbox-active-' + product.id">
+                <input type="checkbox" :checked="product.is_hidden" @click="product.is_hidden = !product.is_hidden" :name="'checkbox-active-' + product.id" class="custom-control-input" :id="'checkbox-active-' + product.id">
                 <label class="custom-control-label" :for="'checkbox-active-' + product.id">Active</label>
             </div>
         </div>
@@ -49,16 +51,21 @@
 <script>
     export default {
         props: ['product', 'variants', 'images', 'tag', 'producer'],
+
         data: function() {
             return {
+                //
             }
         },
         mounted () {
-            // Do something useful with the data in the template
+            //
+        },
+        watch: {
+            // active: 'activateProduct'
         },
         methods: {
             saveSettings() {
-                console.log('save');
+                console.log(this.product.is_hidden);
             },
         }
     }

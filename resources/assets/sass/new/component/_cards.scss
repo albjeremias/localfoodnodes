@@ -49,7 +49,7 @@
 }
 
 .product.product-edit {
-  height: 410px;
+  height: 440px;
 
   .divider {
     height: 37.25px;
@@ -66,20 +66,6 @@
     position: absolute;
     bottom: 0.6rem;
     right: 1.6rem;
-
-    .custom-control-label::before {
-      top: 0rem;
-      left: -2rem;
-      width: 1.55rem;
-      height: 1.65rem;
-    }
-
-    .custom-control-label::after {
-      top: 0.2rem;
-      left: -1.8rem;
-      width: 1.2rem;
-      height: 1.2rem;
-    }
   }
 }
 
@@ -103,3 +89,4 @@
     @extend .rc;
   }
 }
+

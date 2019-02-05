@@ -1,6 +1,6 @@
 @extends('new.account.layout',
 [
-    'nav_title'      => trans('admin/user.nav_title'),
+    'nav_title'      => __('Deliveries'),
     'sub_nav'        => 'producer',
     'sub_nav_active' => 3,
     'nav_active'     => 1
@@ -14,7 +14,7 @@
             @if ($producer->orderDates()->count() > 0)
                 @foreach ($producer->orderDates() as $orderDate)
                     <div class="white-box mb-5">
-                        <h4 class="mt-1 rc pl-2">{{ trans('admin/user.pickup') }} {{ $orderDate->date('Y-m-d') }}</h4>
+                        <h4 class="mt-1 bc pl-2">{{ __('Deliveries') }} {{ $orderDate->date('Y-m-d') }}</h4>
 
                         @php
                             $items = [];
@@ -26,37 +26,41 @@
                         @php
                             $item = array(
                                 [
-                                'tr'    => trans('admin/producer.order'),
+                                'tr'    => __('Order'),
+                                'tr_class' => 'w-10',
                                 'value' => strtoupper($orderDateItemLink->ref),
                                 'href'  => '/account/producer/' . $producer->id . '/order/' . $orderDateItemLink->id
                                 ],
                                 [
-                                'tr'    => trans('admin/producer.product'),
+                                'tr'    => __('Product'),
                                 'tr_class' => 'w-25',
                                 'value' => $orderDateItemLink->getItem()->getName(),
                                 'href'  => '/account/producer/' . $producer->id . '/orders/product/' . $orderDateItemLink->getItem()->product['id']
                                 ],
                                 [
-                                'tr'    => trans('admin/producer.customer'),
+                                'tr'    => __('Customer'),
+                                'tr_class' => 'w-15 pr-0',
                                 'value' => $orderDateItemLink->getItem()->user['name'],
                                 'href'  => '/account/producer/' . $producer->id . '/orders/user/' . $orderDateItemLink->getItem()->user['id']
                                 ],
                                 [
-                                'tr'    => trans('admin/producer.quantity'),
+                                'tr'    => __('Quantity'),
                                 'value' => $orderDateItemLink->quantity,
                                 ],
                                 [
-                                'tr'    => trans('admin/producer.node'),
+                                'tr'    => __('Node'),
+                                'tr_class' => 'w-20',
                                 'value' => $orderDateItemLink->getItem()->node['name'],
                                 ],
                                 [
-                                'tr'    => trans('admin/producer.total_price'),
+                                'tr'    => __('Price'),
+                                'tr_class' => 'w-10',
                                 'value' => $orderDateItemLink->getPriceWithUnit()
                                 ],
                                 [
-                                'tr'    => trans('admin/producer.status'),
+                                'tr'    => __('Status'),
                                 'badge' => true,
-                                'value' => $orderDateItemLink->getItem()->getCurrentStatus(),
+                                'value' => 'Null',
                                 'class' => $orderDateItemLink->getItem()->getCurrentStatus()->getHtmlClass()
                                 ]
                             );

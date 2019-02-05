@@ -1,6 +1,6 @@
 @extends('new.account.layout',
 [
-    'nav_title' => trans('admin/user.nav_title'),
+    'nav_title' => __('My dashboard'),
     'sub_nav' => 'producer',
     'nav_active' => 1,
     'sub_nav_active' => 0,
@@ -27,21 +27,21 @@
                                 <div class="row mt-4">
                                     <div class="col-md-6">
                                         <h3 class="m-0">1129</h3>
-                                        <small>Attended pickups</small>
+                                        <small>{{ __('Attended pickups') }}</small>
                                     </div>
 
                                     <div class="col-md-4">
                                         <h3 class="m-0">41</h3>
-                                        <small>Products sold</small>
+                                        <small>{{ __('Products sold') }}</small>
                                     </div>
 
                                     <div class="col pl-md-5">
                                         <h3 class="m-0">13.5 km</h3>
-                                        <small>Revenue</small>
+                                        <small>{{ __('Turnover') }}</small>
                                     </div>
                                 </div>
 
-                                <a class="bottom-link text-uppercase rc" href="#">{{ trans('admin/user.edit_profile') }}</a>
+                                <a class="bottom-link text-uppercase rc" href="#">{{ __('Edit profile') }}</a>
                                 <span class="bottom-link-right" href="#">
                                     <small class="font-italic" data-toggle="tooltip" data-placement="bottom" title="Producer creation date">
                                         {{ \Carbon\Carbon::parse($producer->created_at)->toFormattedDateString() }}
@@ -52,23 +52,23 @@
 
                         <div class="col-lg-7">
                             <div class="white-box little-min">
-                                <h4>{{ trans('admin/user.still_not_member') }}</h4>
+                                <h4>{{ __('Still not a member?') }}</h4>
                                 {{--<p class="black-54">{{ trans('admin/user.membership_unpaid_link') }}</p>--}}
                                 <small>Local Food Nodes is built on a gift based economy.
                                     By donating a supporting membership fee, free of choice, you are part of financing the development of open digital tools, that supports enabling local and independent peoples driven food markets.</small>
 
-                                <a class="bottom-link text-uppercase rc" href="#">{{ trans('admin/user.membership') }}</a>
+                                <a class="bottom-link text-uppercase rc" href="#">{{ __('Membership') }}</a>
                             </div>
                         </div>
 
                         <div class="col-16">
                             <div class="white-box medium-min">
-                                <h4 class="position-absolute">{{ trans('admin/user.next_pickup') }}</h4>
+                                <h4 class="position-absolute">{{ __('Next pickup') }}</h4>
                                 <div class="row h-100">
                                     <div class="col-16 my-auto text-center">
                                         <i class="fa fa-shopping-basket icon-big" aria-hidden="true"></i>
-                                        <p class="mt-4">{{ trans('admin/user.no_deliveries') }}</p>
-                                        <a class="btn btn-primary mt-3" href="#">{{ trans('admin/user.find_deliveries') }}</a>
+                                        <p class="mt-4">{{ __('You don\'t have any upcoming deliveries') }}</p>
+                                        <a class="btn btn-primary mt-3" href="#">{{ __('Find nodes') }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
 
                         <div class="col-16">
                             <div class="white-box medium-min">
-                                <h4>{{ trans('admin/user.close_delivery_spots') }}</h4>
+                                <h4>{{ __('Nodes close to me') }}</h4>
                             </div>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                     <div class="row">
                         <div class="col-16">
                             <div class="producer-products-list-container">
-                                <h4>{{ trans('admin/producer.my_producer') }}</h4>
+                                <h4>{{ __('My products') }}</h4>
                                 <div class="overflow-scroll h-100">
                                     <div class="producer-products-list">
                                         <ul class="list-unstyled node-list mt-2 list-group">
