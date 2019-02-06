@@ -6,7 +6,7 @@
     @php
         $item = array(
             [
-                'tr'       => trans('admin/product.date'),
+                'tr'       => __('Date'),
                 'name'     => 'date-' . $place->id . '-' . $loop->index,
                 'value'    => $date,
                 'type'     => 'text',
@@ -15,7 +15,7 @@
                 'td_class' => 'w-15',
             ],
             [
-                'tr'       => trans('admin/product.name'),
+                'tr'       => __('Name'),
                 'name'     => 'name-' . $place->id . '-' . $loop->index,
                 'type'     => 'text',
                 'class'    => 'nb no-bg',
@@ -23,7 +23,7 @@
                 'value'    => $product->name,
             ],
             [
-                'tr'       => trans('admin/product.active'),
+                'tr'       => __('Active'),
                 'name'     => 'active-' . $place->id . '-' . $loop->index,
                 'checked'  => true,
                 'type'     => 'checkbox',
@@ -31,14 +31,14 @@
 
             ],
             [
-                'tr'    => trans('admin/product.stock'),
+                'tr'    => __('Stock'),
                 'name'  => 'stock-' . $place->id . '-' . $loop->index,
                 'value' => $product->isInStock($place->id, new DateTime($date)),
                 'type'  => 'text',
                 'td_class' => 'w-15'
             ],
             [
-                'tr'    => trans('admin/product.price'),
+                'tr'    => __('Price'),
                 'name'  => 'price-' . $place->id . '-' . $loop->index,
                 'value' => $product->price,
                 'type'  => 'text',
@@ -46,7 +46,7 @@
                 'td_class' => 'w-15'
             ],
             [
-                'tr'    => trans('admin/product.deadline'),
+                'tr'    => __('Deadline'),
                 'name'  => 'deadline-' . $place->id . '-' . $loop->index,
                 'value' => $product->deadline,
                 'type'  => 'text',

@@ -78,31 +78,32 @@ class RouteServiceProvider extends ServiceProvider
     protected function apiRoutes()
     {
         foreach (config('app.locales') as $langCode => $language) {
-            // Account API
+            // Account API -> API
             Route::group([
-                'middleware' => ['web', 'auth.account'],
+                'middleware' => ['api'], // Todo: add web middleware
                 'namespace' => $this->namespace,
                 'prefix' => $langCode . '/api/account',
             ], function ($router) {
                 require base_path('routes/api/account/routes.php');
             });
 
-            // Public API
+            // Utils API
             Route::group([
-                'middleware' => 'api',
+                'middleware' => ['api'],
                 'namespace' => $this->namespace,
                 'prefix' => $langCode . '/api',
             ], function ($router) {
-                require base_path('routes/api/public/routes.php');
+                require base_path('routes/api/utils/routes.php');
             });
         }
 
-        // Private API
+        // App API
         Route::group([
+            'middleware' => ['auth:api'], // Passport
             'namespace' => $this->namespace,
             'prefix' => 'api/v1',
         ], function ($router) {
-            require base_path('routes/api/private/v1/routes.php');
+            require base_path('routes/api/app/v1/routes.php');
         });
     }
 

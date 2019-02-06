@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => 'auth:api', 'prefix' => '/orders'], function () {
+Route::group(['prefix' => '/orders'], function () {
     Route::get('/', 'Api\v1\Orders\OrdersController@orders')->middleware(['scopes:orders-read-all']);
     Route::get('/item/{orderItemId}', 'Api\v1\Orders\OrdersController@orderItem')->middleware(['scopes:orders-read-all']);
     Route::get('/date/{orderDateId}', 'Api\v1\Orders\OrdersController@orderDate')->middleware(['scopes:orders-read-all']);

@@ -28,7 +28,7 @@
                             Du når alltid denna vy närsomhelst för varje enskild produkt i din produktvy.
                         </p>
                         <div class="d-flex">
-                            <a class="btn btn-primary mx-auto" href="{{ '/account/producer/' . $active_producer_id . '/products' }}">{{ trans('admin/user-nav.products') }}</a>
+                            <a class="btn btn-primary mx-auto" href="{{ '/account/producer/' . $active_producer_id . '/products' }}">{{ __('Back to products') }}</a>
                         </div>
                     </div>
                 </div>

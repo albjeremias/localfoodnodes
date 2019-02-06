@@ -78,16 +78,15 @@ class Handler extends ExceptionHandler
             if (in_array($exception->getStatusCode(), $customViews)) {
                 return response()->view('new.errors.' . $statusCode, [], $statusCode);
             } else {
-                return response()->view('new.errors.' . $statusCode[0] . 'xx', [], $statusCode);
+                return response()->view('new.errors.' . substr($statusCode, 0, 1) . 'xx', [], $statusCode);
             }
 
             return $this->renderHttpException($exception);
         }
 
+        // Token mismatch
         if ($exception instanceof TokenMismatchException) {
-            $request->session()->flash('message', [trans('admin/messages.session_expired')]);
-
-            return redirect()->route('login');
+            return response()->view('new.errors.419', [], 419);
         }
 
         return parent::render($request, $exception);
@@ -106,6 +105,6 @@ class Handler extends ExceptionHandler
             return response()->json(['error' => $exception->getMessage()], 401);
         }
 
-        return redirect()->guest('login');
+        return response()->view('new.errors.401', [], 401);
     }
 }

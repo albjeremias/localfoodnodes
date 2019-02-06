@@ -1,0 +1,1 @@
+Token mismatch exception - Session has expired. Visas i fall användaren har blivit utloggad eller om CSRF token saknas.

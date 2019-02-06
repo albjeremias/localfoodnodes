@@ -26,8 +26,6 @@ class ProductsController extends ApiBaseController
             return $product->id;
         });
 
-        // return $productIds;
-
         // Get product ids matching node and date filter
         if ($nodeId) {
             $linkQuery = ProductNodeDeliveryLink::where('node_id', $nodeId)->whereIn('product_id', $productIds);
@@ -59,15 +57,77 @@ class ProductsController extends ApiBaseController
         return $products;
     }
 
-    // POST /api/account/producer/{producerId}/product/{productId}
-    // {
-    //     variantId,
-    //     deadline,
-    //     stock,
-    //     price
-    // }
+    // POST /api/account/producer/{producerId}/products/{productId}
+    public function updateProduct(Request $request, $producerId, $productId)
+    {
+        if (!$request->has('data')) {
+            return response()->json('Data is missing.', 400);
+        }
 
+        $user = Auth::user();
+        $producer = $user->producerAdminLink($producerId)->getProducer();
+        $product = $producer->product($productId);
 
-    // POST /api/account/producer/{producerId}/products/activate
+        foreach ($request->input('data') as $field => $value) {
+            $product->{$field} = $value;
+        }
 
+        // Update variants too
+
+        $product->save();
+
+        return $product;
+    }
+
+    // POST /api/account/producer/{producerId}/products/visible
+    public function setAllProductsVisible(Request $request, $producerId, $productId)
+    {
+        $user = Auth::user();
+        $producer = $user->producerAdminLink($producerId)->getProducer();
+
+        return $producer->products->map(function($product) {
+            $product->is_hidden = false;
+            $product->save();
+
+            return $product;
+        });
+    }
+
+    // POST /api/account/producer/{producerId}/products/hidden
+    public function setAllProductsHidden(Request $request, $producerId, $productId)
+    {
+        $user = Auth::user();
+        $producer = $user->producerAdminLink($producerId)->getProducer();
+
+        return $producer->products->map(function($product) {
+            $product->is_hidden = true;
+            $product->save();
+
+            return $product;
+        });
+    }
+
+    // POST /api/account/producer/{producerId}/products/{productId}/visible
+    public function setProductVisible(Request $request, $producerId, $productId)
+    {
+        $user = Auth::user();
+        $producer = $user->producerAdminLink($producerId)->getProducer();
+        $product = $producer->product($productId);
+        $product->is_hidden = false;
+        $product->save();
+
+        return $product;
+    }
+
+    // POST /api/account/producer/{producerId}/products/{productId}/hidden
+    public function setProductHidden(Request $request, $producerId, $productId)
+    {
+        $user = Auth::user();
+        $producer = $user->producerAdminLink($producerId)->getProducer();
+        $product = $producer->product($productId);
+        $product->is_hidden = true;
+        $product->save();
+
+        return $product;
+    }
 }
