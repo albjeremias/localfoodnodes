@@ -117,11 +117,11 @@
     {{-- Payment Info --}}
     <div class="form-group">
         @include('new.components.forms.textarea', [
-            'label'       => trans('admin/product.product_payment_info'),
+            'label'       => __('Product payment and pickup info'),
             'name'        => 'payment_info',
             'class'       => 'form-control bb-38',
             'rows'        => 3,
-            'placeholder' => trans('admin/product.product_payment_info_placeholder'),
+            'placeholder' => __('Product specific information about payment and pickup'),
         ])
     </div>
 
@@ -141,7 +141,7 @@
         'name'        => 'deadline',
         'type'        => 'number',
         'class'       => 'form-control',
-        'append'      => trans('admin/product.days'),
+        'append'      => __('days'),
         'placeholder' => '0',
         'min'         => 0
     ])

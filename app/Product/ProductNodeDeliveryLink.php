@@ -25,6 +25,10 @@ class ProductNodeDeliveryLink extends \App\BaseModel
         'product_id',
         'node_id',
         'date',
+        'active',
+        'stock',
+        'price',
+        'deadline',
     ];
 
     /**
@@ -36,6 +40,10 @@ class ProductNodeDeliveryLink extends \App\BaseModel
         'product_id' => 'required|integer',
         'node_id' => 'required|integer',
         'date' => 'date',
+        'active',
+        'stock',
+        'price',
+        'deadline',
     ];
 
     /**
@@ -201,6 +209,8 @@ class ProductNodeDeliveryLink extends \App\BaseModel
      */
     private function getOrderDateItemLinks()
     {
+        $orderDateItemLinkIds = new Collection();
+
         $orderQuery = DB::table('order_date_item_links')
         ->leftJoin('order_items', 'order_items.id', '=', 'order_date_item_links.order_item_id')
         ->leftJoin('order_dates', 'order_dates.id', '=', 'order_date_item_links.order_date_id')

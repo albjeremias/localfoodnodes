@@ -3,27 +3,27 @@
         $form_table = array(
             [
                 'name'    => 'stock',
-                'text'    => trans('admin/product.stock'),
+                'text'    => __('Stock'),
                 'checked' => $product->productions()->count() > 0 ? true : false,
                 'type'    => 'checkbox',
             ],
             [
                 'name'     => 'amount',
                 'type'     => 'number',
-                'text'     => trans('admin/product.quantity'),
+                'text'     => __('Quantity'),
                 'disabled' => $product->productions()->count() < 0 ? true : false,
                 'class'    => 'w-50'
             ],
             [
                 'name'     => 'recurring',
-                'text'     => trans('admin/product.recurring'),
+                'text'     => __('Recurring'),
                 'checked'  => false,
                 'disabled' => $product->productions()->count() < 0 ? true : false,
                 'type'     => 'checkbox'
             ],
             [
                 'name'     => 'csa',
-                'text'     => 'CSA',
+                'text'     => __('CSA'),
                 'checked'  => false,
                 'disabled' => $product->productions()->count() < 0 ? true : false,
                 'type'     => 'checkbox'

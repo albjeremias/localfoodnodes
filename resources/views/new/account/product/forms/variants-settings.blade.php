@@ -2,20 +2,20 @@
     $form_table = array(
         [
             'name'    => 'variants',
-            'text'    => trans('admin/product.use_variants'),
+            'text'    => __('Use variants'),
             'checked' => count($product->productVariants()) > 0 ? true : false,
             'type'    => 'checkbox',
         ],
         [
             'name'     => 'shared-stock',
-            'text'     => trans('admin/product.shared_variants_stock'),
+            'text'     => __('Shared variant stock'),
             'checked'  => false,
             'disabled' => count($product->productVariants()) < 0 ? true : false,
             'type'     => 'checkbox'
         ],
         [
             'name'     => 'product_content_specified',
-            'text'     => trans('admin/product.product_content_specified_in'),
+            'text'     => __('Content specified in'),
             'options'  => UnitsHelper::getVariantUnits(),
             'value'    => true,
             'val_key'  => true,

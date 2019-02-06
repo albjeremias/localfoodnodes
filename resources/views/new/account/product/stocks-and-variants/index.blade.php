@@ -11,7 +11,7 @@
     <div class="nm bg-shell">
         <div class="container pt-2">
             <div class="white-box">
-                <h5 class="rc mb-4">{{ trans('admin/product.stock') }}</h5>
+                <h5 class="rc mb-4">{{ __('Stock') }}</h5>
                 <form>
                     @include('new.account.product.forms.stock')
                     @include('new.components.forms.submit')
@@ -19,13 +19,13 @@
             </div>
 
             <div class="white-box">
-                <h5 class="rc mb-4">{{ trans('admin/product.variants') }}</h5>
+                <h5 class="rc mb-4">{{ __('Variants') }}</h5>
                 @include('new.account.product.forms.variants-settings')
 
                 @if(count($product->productVariants()) > 0)
                     @include('new.account.product.forms.variants')
                 @else
-                    <p>{{ trans('admin/product.no_variants') }}</p>
+                    <p>{{ __('No variants') }}</p>
                     @include('new.account.product.forms.new-variant')
                 @endif
                 @include('new.components.forms.submit')

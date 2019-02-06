@@ -13,27 +13,27 @@ class UnitsHelper
     {
         return collect([
             // Items
-            'pieces' => trans_choice('units.pieces', 2),
-            'bag' => trans_choice('units.bag', 2),
-            'bottle' => trans_choice('units.bottle', 2),
-            'jar' => trans_choice('units.jar', 2),
+            'pieces' => trans_choice('piece|pieces', 2),
+            'bag' => trans_choice('bag|bags', 2),
+            'bottle' => trans_choice('bottle|bottles', 2),
+            'jar' => trans_choice('jar|jars', 2),
 
             // Weight
-            'kg' => trans('units.kg'),
-            'hg' => trans('units.hg'),
-            'g' => trans('units.g'),
-            'lb' => trans('units.pound'),
-            'oz' => trans('units.oz'),
-            'gr' => trans('units.gr'),
+            'kg' => __('kg'),
+            'hg' => __('hg'),
+            'g' => __('g'),
+            'lb' => __('pound'),
+            'oz' => __('oz'),
+            'gr' => __('gr'),
 
             // Volume
-            'l' => trans('units.l'),
-            'dl' => trans('units.dl'),
-            'cl' => trans('units.cl'),
-            'ml' => trans('units.ml'),
-            'floz' => trans('units.floz'),
-            'pint' => trans('units.pint'),
-            'gallon' => trans('units.gallon'),
+            'l' => __('l'),
+            'dl' => __('dl'),
+            'cl' => __('cl'),
+            'ml' => __('ml'),
+            'floz' => __('floz'),
+            'pint' => __('pint'),
+            'gallon' => __('gallon'),
         ]);
     }
 

@@ -11,7 +11,8 @@
     <div class="nm bg-shell">
         <div class="container pt-2">
             {{-- Nodes --}}
-            <div class="white-box">
+            <form class="white-box" method="post" action="{{ route('account_product_deliveries_update', ['producerId' => $producer->id, 'productId' => $product->id]) }}">
+                @csrf()
                 <div id="accordion">
                     <h5 class="rc mb-4">{{ __('Nodes') }}</h5>
                     @foreach($nodes as $node)
@@ -21,7 +22,8 @@
                         ])
                     @endforeach
                 </div>
-            </div>
+                @include('new.components.forms.submit')
+            </form>
 
             {{-- Farm delivery --}}
             <div class="white-box">

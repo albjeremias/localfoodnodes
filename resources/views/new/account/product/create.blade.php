@@ -13,7 +13,7 @@
     <div class="nms">
 
         <div class="container py-5">
-            <h2>{{ trans('admin/product.product') }}</h2>
+            <h2>{{ __('Product') }}</h2>
 
             <form action="{{ route('account_product_insert', ['producerId' => $producer->id ]) }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}

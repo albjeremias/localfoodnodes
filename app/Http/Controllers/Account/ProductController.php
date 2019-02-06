@@ -398,15 +398,17 @@ class ProductController extends Controller
     {
         $product->deliveryLinks(null, null, true)->each->delete(); // We re-add everything below
 
-        if ($request->has('delivery_dates')) {
-            $deliveryDates = $request->input('delivery_dates');
-
-            foreach ($request->input('delivery_dates') as $nodeId => $dates) {;
-                foreach ($dates as $date) {
+        if ($request->has('dates')) {
+            foreach ($request->input('dates') as $nodeId => $dates) {
+                foreach ($dates as $date => $data) {
                     $linkData = [
                         'product_id' => $product->id,
                         'node_id' => $nodeId,
                         'date' => $date,
+                        'active' => isset($data['active']),
+                        'stock' => $data['stock'] ?? $product->stock,
+                        'price' => $data['price'] ?? $product->price,
+                        'deadline' => $data['deadline'] ?? $product->deadline,
                     ];
 
                     ProductNodeDeliveryLink::create($linkData);

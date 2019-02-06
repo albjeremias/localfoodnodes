@@ -4,10 +4,11 @@
 
 @foreach($dates as $date)
     @php
+        $deliveryLink = $product->deliveryLink($place->id, $date, true);
         $item = array(
             [
                 'tr'       => __('Date'),
-                'name'     => 'date-' . $place->id . '-' . $loop->index,
+                'name'     => '',
                 'value'    => $date,
                 'type'     => 'text',
                 'class'    => 'nb font-weight-bold no-bg text-center',
@@ -15,41 +16,32 @@
                 'td_class' => 'w-15',
             ],
             [
-                'tr'       => __('Name'),
-                'name'     => 'name-' . $place->id . '-' . $loop->index,
-                'type'     => 'text',
-                'class'    => 'nb no-bg',
-                'disabled' => true,
-                'value'    => $product->name,
-            ],
-            [
                 'tr'       => __('Active'),
-                'name'     => 'active-' . $place->id . '-' . $loop->index,
-                'checked'  => true,
+                'name'     => 'dates[' . $place->id . '][' . $date . '][active]',
+                'checked'  => $deliveryLink->active,
                 'type'     => 'checkbox',
                 'tr_class' => 'text-center'
-
             ],
             [
                 'tr'    => __('Stock'),
-                'name'  => 'stock-' . $place->id . '-' . $loop->index,
-                'value' => $product->isInStock($place->id, new DateTime($date)),
-                'type'  => 'text',
+                'name'  => 'dates[' . $place->id . '][' . $date . '][stock]',
+                'value' => $deliveryLink->stock ?? $product->isInStock($place->id, new DateTime($date)),
+                'type'  => 'number',
                 'td_class' => 'w-15'
             ],
             [
                 'tr'    => __('Price'),
-                'name'  => 'price-' . $place->id . '-' . $loop->index,
-                'value' => $product->price,
-                'type'  => 'text',
+                'name'  => 'dates[' . $place->id . '][' . $date . '][price]',
+                'value' => $deliveryLink->price ?? $product->price,
+                'type'  => 'number',
                 'class' => 'input-stock-fields',
                 'td_class' => 'w-15'
             ],
             [
                 'tr'    => __('Deadline'),
-                'name'  => 'deadline-' . $place->id . '-' . $loop->index,
-                'value' => $product->deadline,
-                'type'  => 'text',
+                'name'  => 'dates[' . $place->id . '][' . $date . '][deadline]',
+                'value' => $deliveryLink->deadline ?? $product->deadline,
+                'type'  => 'number',
                 'td_class' => 'w-15'
             ]
         );

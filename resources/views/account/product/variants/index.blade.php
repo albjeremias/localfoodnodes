@@ -56,7 +56,7 @@
                             </table>
                         </div>
                     @else
-                        {{ trans('admin/product.no_variants') }}
+                        {{ __('No variants') }}
                     @endif
                 </div>
                 <div class="card-footer">
