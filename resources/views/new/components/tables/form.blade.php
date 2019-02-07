@@ -36,6 +36,7 @@
                         @case('checkbox')
                             @include('new.components.tables.form-types.checkbox', [
                                 'name'     => $value['name'],
+                                'value'    => $value['value'],
                                 'checked'  => $value['checked'],
                                 'disabled' => $value['disabled']
                             ])
@@ -44,6 +45,7 @@
                         @case('radio')
                             @include('new.components.tables.form-types.radio', [
                                 'name'     => $value['name'],
+                                'value'    => $value['value'],
                                 'checked'  => $value['checked'],
                                 'disabled' => $value['disabled'],
                             ])

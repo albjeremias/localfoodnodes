@@ -7,45 +7,46 @@
         @php
             $item = array(
                 [
-                    'tr'    => trans('admin/product.image'),
-                    'name'  => 'variant-image-' . $loop->index,
+                    'tr'    => __('Image'),
+                    'name'  => 'image',
                     'value' => 'https://local-food-nodes.s3.eu-central-1.amazonaws.com/201810161102_img_4010_jpeg_small.jpeg',
                     'type'  => 'image',
                     'class' => 'rounded-circle',
                     'tr_class' => 'text-center'
                 ],
                 [
-                    'tr'       => trans('admin/product.name'),
-                    'name'     => 'variant-name-' . $loop->index,
+                    'tr'       => __('Name'),
+                    'name'     => 'variants[' . $variant->id . '][name]',
                     'value'    => $variant->name,
                     'type'     => 'text',
                     'class'    => 'w-100',
                     'tr_class' => 'w-35'
                 ],
                 [
-                    'tr'        => trans('admin/product.main_variant'),
-                    'name'      => 'variant-main',
+                    'tr'        => __('Main variant'),
+                    'name'      => 'main_variant',
+                    'value'     => $variant->id,
                     'type'      => 'radio',
                     'checked'   => $variant->main_variant,
                     'tr_class' => 'text-center'
                 ],
                 [
-                    'tr'    => trans('admin/product.amount_per_package'),
-                    'name'  => 'variant-amount-' . $loop->index,
+                    'tr'    => __('Amount per package'),
+                    'name'  => 'variants[' . $variant->id . '][package_amount]',
                     'value' => $variant->package_amount,
                     'type'  => 'number',
                     'tr_class' => 'w-25'
                 ],
                 [
-                    'tr'    => trans('admin/product.stock'),
-                    'name'  => 'variant-stock-' . $loop->index,
+                    'tr'    => __('Stock'),
+                    'name'  => 'variants[' . $variant->id . '][quantity]',
                     'value' => $variant->getProductionQuantity(),
                     'type'  => 'number',
                     'class' => 'input-stock-fields',
                 ],
                 [
-                    'tr'    => trans('admin/product.price'),
-                    'name'  => 'variant-price-' . $loop->index,
+                    'tr'    => __('Price'),
+                    'name'  => 'variants[' . $variant->id . '][price]',
                     'value' => $variant->price,
                     'type'  => 'number'
                 ]
@@ -59,15 +60,15 @@
     @php
         $new_item = array(
             [
-                'tr'    => trans('admin/product.image'),
-                'name'  => 'new-variant-image',
+                'tr'    => __('Image'),
+                'name'  => 'image',
                 'value' => 'https://local-food-nodes.s3.eu-central-1.amazonaws.com/201810161102_img_4010_jpeg_small.jpeg',
                 'type'  => 'image',
                 'class' => 'rounded-circle',
             ],
             [
-                'tr'          => trans('admin/product.name'),
-                'name'        => 'new-variant-name',
+                'tr'          => __('Name'),
+                'name'        => 'variants[new][name]',
                 'value'       => '',
                 'type'        => 'text',
                 'class'       => 'w-100',
@@ -75,29 +76,29 @@
                 'placeholder' => 'Add new variant...'
             ],
             [
-                'tr'       => trans('admin/product.main_variant'),
-                'name'     => 'new-variant-main',
+                'tr'       => __('Main variant'),
+                'name'     => 'variants[new][main_variant]',
                 'type'     => 'radio',
                 'checked'  => false,
                 'disabled' => true,
             ],
             [
-                'tr'    => trans('admin/product.amount_per_package'),
-                'name'  => 'new-variant-amount',
-                'value' => '',
+                'tr'    => __('Amount per package'),
+                'name'  => 'variants[new][package_amount]',
+                'value' => $product->package_amount ?? 0,
                 'type'  => 'number'
             ],
             [
-                'tr'    => trans('admin/product.stock'),
-                'name'  => 'new-variant-stock',
-                'value' => '',
+                'tr'    => __('Stock'),
+                'name'  => 'variants[new][quantity]',
+                'value' => $product->quantity,
                 'type'  => 'number',
                 'class' => 'input-stock-fields',
             ],
             [
-                'tr'    => trans('admin/product.price'),
-                'name'  => 'new-variant-price',
-                'value' => '',
+                'tr'    => __('Price'),
+                'name'  => 'variants[new][price]',
+                'value' => $product->price,
                 'type'  => 'number'
             ]
         );

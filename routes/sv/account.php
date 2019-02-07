@@ -87,13 +87,8 @@ Route::group(['prefix' => '/producent/{producerId}/produkt'], function () {
     Route::post('/{productId}/valj-forpackningsenhet', 'Account\ProductController@setPackageUnit')->name('sv_account_product_set_package_unit');
 
     // Variants
-    Route::get('/{productId}/varianter', 'Account\ProductVariantController@index')->name('sv_account_product_variants');
-    Route::get('/{productId}/variant/skapa', 'Account\ProductVariantController@create')->name('sv_account_product_variant_create');
-    Route::post('/{productId}/variant/insert', 'Account\ProductVariantController@insert')->name('sv_account_product_variant_insert');
-    Route::get('/{productId}/variant/{variantId}/redigera', 'Account\ProductVariantController@edit')->name('sv_account_product_variant_edit');
-    Route::post('/{productId}/variant/{variantId}/uppdatera', 'Account\ProductVariantController@update')->name('sv_account_product_variant_update');
-    Route::get('/{productId}/variant/{variantId}/ta-bort', 'Account\ProductVariantController@delete')->name('sv_account_product_variant_delete');
-    Route::get('/{productId}/variant/{variantId}/valj-huvudvariant', 'Account\ProductVariantController@setMainVariant')->name('sv_account_product_variant_set_main_variant');
+    Route::get('/{productId}/varianter', 'Account\ProductVariantController@index')->name('en_account_product_variants');
+    Route::post('/{productId}/varianter', 'Account\ProductVariantController@createAndUpdate')->name('en_account_product_variants_create_and_update');
 
     // Production
     Route::get('/{productId}/produktion', 'Account\ProductProductionController@index')->name('sv_account_product_production');

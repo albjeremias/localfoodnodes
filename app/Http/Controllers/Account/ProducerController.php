@@ -100,13 +100,13 @@ class ProducerController extends Controller
     {
         $producer = new Producer();
         $producer->fill($request->old());
-        $currencies = Db::table('currencies')->where('enabled', true)->get();
+        $currencies = Db::table('currencies')->where('enabled', true)->get()->pluck('currency');
 
         return view('new.account.producer.create', [
             'producer' => $producer,
             'currencies' => $currencies,
             'breadcrumbs' => [
-                trans('admin/user-nav.create_producer') => ''
+                __('Create producer') => ''
             ]
         ]);
     }
@@ -150,14 +150,14 @@ class ProducerController extends Controller
         $user = Auth::user();
         $producer = $user->producerAdminLink($producerId)->getProducer();
         $producer->fill($request->old());
-        $currencies = Db::table('currencies')->where('enabled', true)->get();
+        $currencies = Db::table('currencies')->where('enabled', true)->get()->pluck('currency');
 
         return view('new.account.producer.edit', [
             'producer' => $producer,
             'currencies' => $currencies,
             'breadcrumbs' => [
                 $producer->name => 'producer/' . $producer->id,
-                trans('admin/user-nav.edit') => ''
+                __('Edit') => ''
             ]
         ]);
     }

@@ -406,9 +406,9 @@ class ProductController extends Controller
                         'node_id' => $nodeId,
                         'date' => $date,
                         'active' => isset($data['active']),
-                        'stock' => $data['stock'] ?? $product->stock,
-                        'price' => $data['price'] ?? $product->price,
-                        'deadline' => $data['deadline'] ?? $product->deadline,
+                        'quantity' => $data['quantity'] != $product->stock ? $data['quantity'] : null, // product->stock not working
+                        'price' => ($data['price'] && $data['price'] != $product->price) ? $data['price'] : null,
+                        'deadline' => $data['deadline'] != $product->deadline ? $data['deadline'] : null,
                     ];
 
                     ProductNodeDeliveryLink::create($linkData);

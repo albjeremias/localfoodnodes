@@ -13,7 +13,7 @@
             {{ $disabled ? 'disabled' : '' }}
             class="d-block mx-auto"
             type="radio"
-            value="1"
+            value="{{ $value ?? '1' }}"
             {{ $checked ? 'checked' : '' }}
             id="checkbox-{{ $name }}">
 </div>

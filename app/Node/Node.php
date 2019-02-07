@@ -311,7 +311,7 @@ class Node extends BaseModel
         $deliveryDates = new Collection();
         $nextDelivery = $this->getNextDelivery($product);
         $endDelivery = new \DateTime($nextDelivery->format('Y-m-d'));
-        $endDelivery->modify('+1 year');
+        $endDelivery->modify('+3 months');
         $deliveryInterval = $this->delivery_interval;
 
         // Month intervals needs some modification

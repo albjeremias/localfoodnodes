@@ -12,7 +12,8 @@
         <div class="container pt-2">
             <div class="white-box">
                 <h5 class="rc mb-4">{{ __('Stock') }}</h5>
-                <form>
+                <form method="POST" action="">
+                    @csrf()
                     @include('new.account.product.forms.stock')
                     @include('new.components.forms.submit')
                 </form>
@@ -20,15 +21,18 @@
 
             <div class="white-box">
                 <h5 class="rc mb-4">{{ __('Variants') }}</h5>
-                @include('new.account.product.forms.variants-settings')
+                <form method="POST" action="{{ route('account_product_variants_create_and_update', ['producerId' => $producer->id, 'productId' => $product->id]) }}">
+                    @csrf()
+                    @include('new.account.product.forms.variants-settings')
 
-                @if(count($product->productVariants()) > 0)
-                    @include('new.account.product.forms.variants')
-                @else
-                    <p>{{ __('No variants') }}</p>
-                    @include('new.account.product.forms.new-variant')
-                @endif
-                @include('new.components.forms.submit')
+                    @if(count($product->productVariants()) > 0)
+                        @include('new.account.product.forms.variants')
+                    @else
+                        <p>{{ __('No variants') }}</p>
+                        @include('new.account.product.forms.new-variant')
+                    @endif
+                    @include('new.components.forms.submit')
+                </form>
             </div>
         </div>
     </div>

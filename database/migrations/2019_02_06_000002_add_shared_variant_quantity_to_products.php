@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRekoTable extends Migration
+class AddSharedVariantQuantityToProducts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateRekoTable extends Migration
      */
     public function up()
     {
-        Schema::create('reko', function (Blueprint $table) {
-            $table->engine = 'MyISAM';
-            $table->increments('id');
-            $table->string('name')->required();
-            $table->string('link')->required();
+        Schema::table('products', function(Blueprint $table) {
+            $table->boolean('shared_variant_quantity')->after('deadline')->nullable();
         });
     }
 
@@ -28,6 +25,8 @@ class CreateRekoTable extends Migration
      */
     public function down()
     {
-        Schema::drop('reko');
+        Schema::table('products', function(Blueprint $table) {
+            $table->dropColumn('shared_variant_quantity');
+        });
     }
 }

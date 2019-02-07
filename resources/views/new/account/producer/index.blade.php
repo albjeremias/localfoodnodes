@@ -41,7 +41,7 @@
                                     </div>
                                 </div>
 
-                                <a class="bottom-link text-uppercase rc" href="#">{{ __('Edit profile') }}</a>
+                                <a class="bottom-link text-uppercase rc" href="{{ route('account_producer_edit', ['producerId' => $producer->id]) }}">{{ __('Edit profile') }}</a>
                                 <span class="bottom-link-right" href="#">
                                     <small class="font-italic" data-toggle="tooltip" data-placement="bottom" title="Producer creation date">
                                         {{ \Carbon\Carbon::parse($producer->created_at)->toFormattedDateString() }}

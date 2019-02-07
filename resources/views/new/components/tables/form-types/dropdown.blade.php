@@ -16,13 +16,13 @@
         <option>{{ $placeholder }}</option>
     @endif
 
-    @if(!$value)
+    @if(!$m_value)
         @foreach ($options as $option)
-            <option value="{{ $option }}">{{ $option }}</option>
+            <option value="{{ $option }}" {{ $option === $m_value ? 'selected' : '' }}>{{ $option }}</option>
         @endforeach
     @else
         @foreach ($options as $key => $value)
-            <option value="{{ $key }}">{{ $val_key ? $value : $key }}</option>
+            <option value="{{ $key }}" {{ $value === $m_value ? 'selected' : '' }}>{{ $val_key ? $value : $key }}</option>
         @endforeach
     @endif
 </select>

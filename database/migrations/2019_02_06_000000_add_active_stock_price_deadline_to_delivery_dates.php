@@ -15,7 +15,7 @@ class AddActiveStockPriceDeadlineToDeliveryDates extends Migration
     {
         Schema::table('product_node_delivery_links', function(Blueprint $table) {
             $table->boolean('active')->nullable();
-            $table->integer('stock')->nullable();
+            $table->integer('quantity')->nullable();
             $table->float('price')->nullable();
             $table->integer('deadline')->nullable();
         });
@@ -30,7 +30,7 @@ class AddActiveStockPriceDeadlineToDeliveryDates extends Migration
     {
         Schema::table('product_node_delivery_links', function(Blueprint $table) {
             $table->dropColumn('active');
-            $table->dropColumn('stock');
+            $table->dropColumn('quantity');
             $table->dropColumn('price');
             $table->dropColumn('deadline');
         });

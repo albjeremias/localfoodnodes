@@ -53,7 +53,7 @@
                             'name'     => $item['name'],
                             'disabled' => $item['disabled'],
                             'options'  => $item['options'],
-                            'value'    => $item['value'],
+                            'm_value'  => $item['value'],
                             'val_key'  => $item['val_key'],
                         ])
                     @break

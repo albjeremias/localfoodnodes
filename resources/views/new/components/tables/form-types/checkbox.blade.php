@@ -13,6 +13,6 @@
             {{ $disabled ? 'disabled' : '' }}
             class="d-block mx-auto"
             type="checkbox"
-            value="1" {{ $checked ? 'checked' : '' }}
+            value="{{ $value ?? '1' }}" {{ $checked ? 'checked' : '' }}
             id="checkbox-{{ $name }}">
 </div>

@@ -16,16 +16,24 @@
                 'td_class' => 'w-15',
             ],
             [
+                'tr'       => __('Name'),
+                'name'     => 'name',
+                'type'     => 'text',
+                'class'    => 'nb no-bg',
+                'disabled' => true,
+                'value'    => $product->name,
+            ],
+            [
                 'tr'       => __('Active'),
                 'name'     => 'dates[' . $place->id . '][' . $date . '][active]',
-                'checked'  => $deliveryLink->active,
+                'checked'  => $deliveryLink->active ?? true,
                 'type'     => 'checkbox',
                 'tr_class' => 'text-center'
             ],
             [
                 'tr'    => __('Stock'),
-                'name'  => 'dates[' . $place->id . '][' . $date . '][stock]',
-                'value' => $deliveryLink->stock ?? $product->isInStock($place->id, new DateTime($date)),
+                'name'  => 'dates[' . $place->id . '][' . $date . '][quantity]',
+                'value' => $deliveryLink->quantity ?? $product->isInStock($place->id, new DateTime($date)),
                 'type'  => 'number',
                 'td_class' => 'w-15'
             ],

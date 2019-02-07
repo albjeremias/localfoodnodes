@@ -22,11 +22,11 @@
             @include('new.account.producer.form')
 
             <div class="container mb-5">
-            <button type="submit" class="btn btn-success">{{ trans('admin/producer.save_producer') }}</button>
+            <button type="submit" class="btn btn-success">{{ __('Save producer') }}</button>
             @if ($producer->adminLinks()->count() > 1)
-                <a href="/account/producer/{{ $producer->id }}/leave" class="btn btn-warning">{{ trans('admin/producer.leave_producer') }}</a>
+                <a href="{{ route('account_producer_leave', ['producerId' => $producer->id]) }}" class="btn btn-warning">{{ __('Leave producer') }}</a>
             @else
-                <a href="/account/producer/{{ $producer->id }}/delete/confirm" class="btn btn-danger">{{ trans('admin/producer.delete_producer') }}</a>
+                <a href="{{ route('account_producer_delete_confirm', ['producerId' => $producer->id]) }}" class="btn btn-danger">{{ __('Delete producer') }}</a>
             @endif
             </div>
         </form>

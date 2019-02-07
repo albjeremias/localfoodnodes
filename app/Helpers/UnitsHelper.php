@@ -45,12 +45,12 @@ class UnitsHelper
     public static function getPriceUnits()
     {
         return collect([
-            'product' => trans_choice('admin/product.product', 1),
-            'kg' => trans('admin/product.kg'),
-            'hg' => trans('admin/product.hg'),
-            'lb' => trans('units.lb'),
-            'oz' => trans('units.oz'),
-            'gr' => trans('units.gr'),
+            'product' => trans_choice('product|products', 1),
+            'kg' => __('kg'),
+            'hg' => __('hg'),
+            'lb' => __('lb'),
+            'oz' => __('oz'),
+            'gr' => __('gr'),
         ]);
     }
 
@@ -67,43 +67,6 @@ class UnitsHelper
             'l', 'dl', 'cl', 'ml',
             'lb', 'oz', 'gr',
             'floz', 'pint', 'gallon',
-        ]);
-    }
-
-    /**
-     * Get currencies.
-     *
-     * @return Collection
-     */
-    public static function getCurrencies()
-    {
-        return collect([
-            'CAD',
-            'CHF',
-            'CNY',
-            'CZK',
-            'DKK',
-            'EUR',
-            'GBP',
-            'HKD',
-            'HUF',
-            'IDR',
-            'INR',
-            'ISK',
-            'JPY',
-            'KRW',
-            'MAD',
-            'MXN',
-            'NOK',
-            'PLN',
-            'RUB',
-            'SAR',
-            'SEK',
-            'SGD',
-            'THB',
-            'TRY',
-            'USD',
-            'ZAR',
         ]);
     }
 }

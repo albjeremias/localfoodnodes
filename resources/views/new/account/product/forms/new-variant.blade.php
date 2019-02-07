@@ -4,15 +4,15 @@
 
         $new_item = array(
             [
-                'tr'    => trans('admin/product.image'),
-                'name'  => 'new-variant-image',
+                'tr'    => __('Image'),
+                'name'  => 'image',
                 'value' => 'https://local-food-nodes.s3.eu-central-1.amazonaws.com/201810161102_img_4010_jpeg_small.jpeg',
                 'type'  => 'image',
                 'class' => 'rounded-circle',
             ],
             [
-                'tr'          => trans('admin/product.name'),
-                'name'        => 'new-variant-name',
+                'tr'          => __('Name'),
+                'name'        => 'variants[new][name]',
                 'value'       => '',
                 'type'        => 'text',
                 'class'       => 'w-100',
@@ -20,29 +20,29 @@
                 'placeholder' => 'Add new variant...'
             ],
             [
-                'tr'       => trans('admin/product.main_variant'),
-                'name'     => 'new-variant-main',
+                'tr'       => __('Main variant'),
+                'name'     => 'main_variant',
                 'type'     => 'radio',
                 'checked'  => false,
                 'disabled' => true,
             ],
             [
-                'tr'    => trans('admin/product.amount_per_package'),
-                'name'  => 'new-variant-amount',
-                'value' => '',
+                'tr'    => __('Amount per package'),
+                'name'  => 'variants[new][package_amount]',
+                'value' => $product->package_amount,
                 'type'  => 'number'
             ],
             [
-                'tr'    => trans('admin/product.stock'),
-                'name'  => 'new-variant-stock',
-                'value' => '',
+                'tr'    => __('Stock'),
+                'name'  => 'variants[new][quantity]',
+                'value' => $product->quantity,
                 'type'  => 'number',
                 'class' => 'input-stock-fields',
             ],
             [
-                'tr'    => trans('admin/product.price'),
-                'name'  => 'new-variant-price',
-                'value' => '',
+                'tr'    => __('Price'),
+                'name'  => 'variants[new][price]',
+                'value' => $product->price,
                 'type'  => 'number'
             ]
         );

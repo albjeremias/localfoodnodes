@@ -60,6 +60,10 @@ class ProductVariant extends BaseModel
      */
     public function getProductionQuantity()
     {
+        if (!$this->package_amount) {
+            return 0;
+        }
+
         $smallestCommonDenominator = $this->getProduct()->getProductionQuantity() / $this->package_amount;
         $quantity = $smallestCommonDenominator * $this->getProduct()->mainVariant()->package_amount;
 

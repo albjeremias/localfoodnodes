@@ -87,12 +87,7 @@ Route::group(['prefix' => '/producer/{producerId}/product'], function () {
 
     // Variants
     Route::get('/{productId}/variants', 'Account\ProductVariantController@index')->name('en_account_product_variants');
-    Route::get('/{productId}/variant/create', 'Account\ProductVariantController@create')->name('en_account_product_variant_create');
-    Route::post('/{productId}/variant/insert', 'Account\ProductVariantController@insert')->name('en_account_product_variant_insert');
-    Route::get('/{productId}/variant/{variantId}/edit', 'Account\ProductVariantController@edit')->name('en_account_product_variant_edit');
-    Route::post('/{productId}/variant/{variantId}/update', 'Account\ProductVariantController@update')->name('en_account_product_variant_update');
-    Route::get('/{productId}/variant/{variantId}/delete', 'Account\ProductVariantController@delete')->name('en_account_product_variant_delete');
-    Route::get('/{productId}/variant/{variantId}/set-main-variant', 'Account\ProductVariantController@setMainVariant')->name('en_account_product_variant_set_main_variant');
+    Route::post('/{productId}/variants', 'Account\ProductVariantController@createAndUpdate')->name('en_account_product_variants_create_and_update');
 
     // Production
     Route::get('/{productId}/production', 'Account\ProductProductionController@index')->name('en_account_product_production');

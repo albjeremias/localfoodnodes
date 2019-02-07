@@ -104,97 +104,6 @@ class ProductVariantController extends Controller
     }
 
     /**
-     * Variants view.
-     *
-     * @param Request $request
-     * @param int $productId
-     */
-    public function create(Request $request, $producerId, $productId)
-    {
-        $user = Auth::user();
-        $producer = $user->producerAdminLink($producerId)->getProducer();
-        $product = $producer->product($productId);
-        $variant = new ProductVariant();
-        $variant->fill($request->old());
-
-        return view('account/product.variants.create', [
-            'product' => $product,
-            'variant' => $variant,
-            'breadcrumbs' => [
-                $producer->name => 'producer/' . $producer->id,
-                trans('admin/user-nav.products') => 'producer/' . $producer->id . '/products',
-                $product->name => 'producer/' . $producer->id . '/product/' . $product->id . '/edit',
-                trans('admin/user-nav.variants') => 'producer/' . $producer->id . '/product/' . $product->id . '/variants',
-                trans('admin/user-nav.create_variant') => ''
-            ]
-        ]);
-    }
-
-    /**
-     * Create variant.
-     *
-     * @param Product $product
-     * @param array $data
-     * @param MessageBag &$allErrors
-     * @return MessageBag $allErrors
-     */
-    public function insert(Request $request, $producerId, $productId)
-    {
-        $user = Auth::user();
-        $producer = $user->producerAdminLink($producerId)->getProducer();
-        $product = $producer->product($productId);
-
-        $data = $request->all();
-
-        // Set first created variant automatically to main variant.
-        if ($product->variants()->count() === 0) {
-            $data['main_variant'] = 1;
-        }
-
-        $variant = new ProductVariant();
-
-        $errors = $variant->validate($data);
-        if ($errors->isEmpty()) {
-            $variant->fill($variant->sanitize($data));
-            $variant->save();
-
-            $request->session()->flash('message', [trans('admin/messages.variant_created')]);
-            return redirect('/account/producer/' . $producer->id . '/product/' . $product->id . '/variants');
-        }
-
-        return redirect()->back()->withInput()->withErrors($errors);
-    }
-
-    /**
-     * Variants view.
-     *
-     * @param Request $request
-     * @param int $productId
-     */
-    public function edit(Request $request, $producerId, $productId, $variantId)
-    {
-        $user = Auth::user();
-        $producer = $user->producerAdminLink($producerId)->getProducer();
-        $product = $producer->product($productId);
-        $variant = $product->variant($variantId);
-
-        $variant->fill($request->old());
-
-        return view('account/product.variants.edit', [
-            'producer' => $producer,
-            'product' => $product,
-            'variant' => $variant,
-            'breadcrumbs' => [
-                $producer->name => 'producer/' . $producer->id,
-                trans('admin/user-nav.products') => 'producer/' . $producer->id . '/products',
-                $product->name => 'producer/' . $producer->id . '/product/' . $product->id . '/edit',
-                trans('admin/user-nav.variants') => 'producer/' . $producer->id . '/product/' . $product->id . '/variants',
-                $variant->name => ''
-            ]
-        ]);
-    }
-
-    /**
      * Update variant.
      *
      * @param Product $product
@@ -202,64 +111,43 @@ class ProductVariantController extends Controller
      * @param MessageBag &$allErrors
      * @return MessageBag $allErrors
      */
-    public function update(Request $request, $producerId, $productId, $variantId)
+    public function createAndUpdate(Request $request, $producerId, $productId)
     {
         $user = Auth::user();
         $producer = $user->producerAdminLink($producerId)->getProducer();
         $product = $producer->product($productId);
-        $variant = $product->variant($variantId);
 
-        $errors = $variant->validate($variant->sanitize($request->all()));
-        if ($errors->isEmpty()) {
-            $variant->fill($variant->sanitize($request->all()));
-            $variant->save();
-
-            $request->session()->flash('message', [trans('admin/messages.variant_updated')]);
-            return redirect('/account/producer/' . $producer->id . '/product/' . $product->id . '/variants');
+        // Variant settings
+        if ($request->has('package_unit')) {
+            $product->package_unit = $request->input('package_unit');
         }
 
-        return redirect()->back()->withInput()->withErrors($errors);
-    }
+        $product->shared_variant_quantity = $request->has('shared_variant_quantity');
+        $product->save();
 
-    /**
-     * Delete product variant.
-     *
-     * @param Request $request
-     * @param int $productId
-     * @param int $variantId
-     */
-    public function delete(Request $request, $producerId, $productId, $variantId)
-    {
-        $user = Auth::user();
-        $producer = $user->producerAdminLink($producerId)->getProducer();
-        $product = $producer->product($productId);
-        $productVariant = $product->variant($variantId);
-        $productVariant->delete();
+        // Variants
+        if ($request->input('variants')) {
+            foreach ($request->input('variants') as $variantId => $data) {
+                $data['product_id'] = $product->id;
 
-        $request->session()->flash('message', [trans('admin/messages.variant_deleted')]);
-        return redirect()->back();
-    }
+                if ($variantId === 'new') {
+                    $productVariant = new ProductVariant();
+                    $errors = $productVariant->validate($productVariant->sanitize($data));
 
-    /**
-     * Update variant.
-     *
-     * @param Product $product
-     * @param array $data
-     * @param MessageBag &$allErrors
-     * @return MessageBag $allErrors
-     */
-    public function setMainVariant(Request $request, $producerId, $productId, $variantId)
-    {
-        $user = Auth::user();
-        $producer = $user->producerAdminLink($producerId)->getProducer();
-        $product = $producer->product($productId);
+                    if ($errors->isEmpty()) {
+                        $productVariant->fill($data);
+                        $productVariant->save();
+                    }
+                } else if ($variant = $product->variant($variantId)) {
+                    foreach ($data as $field => $value) {
+                        $variant->{$field} = $value;
+                    }
 
-        foreach ($product->variants() as $variant) {
-            $variant->main_variant = ((int) $variant->id === (int) $variantId) ? 1 : 0;
-            $variant->save();
+                    $variant->main_variant = ($variant->id == $request->input('main_variant'));
+                    $variant->save();
+                }
+            }
         }
-
-        $request->session()->flash('message', [trans('admin/messages.variant_updated')]);
 
         return redirect()->back();
     }

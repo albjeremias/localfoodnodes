@@ -8,8 +8,6 @@ class Product extends \App\BaseModel
 {
     protected $appends = ['productionType', 'infoRaw'];
 
-    // private $variants;
-
     /**
      * Validation rules.
      *
@@ -25,7 +23,8 @@ class Product extends \App\BaseModel
         'package_amount' => 'numeric',
         'is_hidden' => '',
         'deadline' => 'integer',
-        'payment_info' => ''
+        'payment_info' => '',
+        'shared_variant_quantity' => '',
     ];
 
     /**
@@ -43,7 +42,8 @@ class Product extends \App\BaseModel
         'package_amount',
         'is_hidden',
         'deadline',
-        'payment_info'
+        'payment_info',
+        'shared_variant_quantity',
     ];
 
     /**

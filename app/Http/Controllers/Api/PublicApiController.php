@@ -9,7 +9,6 @@ use Illuminate\Support\Collection;
 use App\System\Parsers\TransactionParser\Transaction;
 use App\System\Utils\CurrencyConverter;
 use App\Node\Node;
-use App\Node\Reko;
 use App\Helpers\MapHelper;
 
 class PublicApiController extends ApiBaseController

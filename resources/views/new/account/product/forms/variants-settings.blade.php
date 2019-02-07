@@ -7,17 +7,17 @@
             'type'    => 'checkbox',
         ],
         [
-            'name'     => 'shared-stock',
+            'name'     => 'shared_variant_quantity',
             'text'     => __('Shared variant stock'),
-            'checked'  => false,
+            'checked'  => $product->shared_variant_quantity,
             'disabled' => count($product->productVariants()) < 0 ? true : false,
             'type'     => 'checkbox'
         ],
         [
-            'name'     => 'product_content_specified',
+            'name'     => 'package_unit',
             'text'     => __('Content specified in'),
             'options'  => UnitsHelper::getVariantUnits(),
-            'value'    => true,
+            'value'    => $product->package_unit,
             'val_key'  => true,
             'disabled' => count($product->productVariants()) < 0 ? true : false,
             'type'     => 'dropdown'
