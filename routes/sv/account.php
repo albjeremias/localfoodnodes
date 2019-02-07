@@ -57,7 +57,11 @@ Route::group(['prefix' => '/producent'], function () {
     Route::get('/{producerId}/ta-bort/godkann', 'Account\ProducerController@deleteConfirm')->name('sv_account_producer_delete_confirm');
     Route::get('/{producerId}/lamna', 'Account\ProducerController@leave')->name('sv_account_producer_lesve');
     Route::get('/{producerId}/produkter', 'Account\ProducerController@products')->name('sv_account_producer_products');
-    Route::get('/{producerId}/utlamning', 'Account\ProducerController@deliveries')->name('sv_account_producer_deliveries');
+
+	Route::get('/{producerId}/kanaler', 'Account\ProducerController@channels')->name('sv_account_producer_channels');
+	Route::get('/{producerId}/slutfor', 'Account\ProducerController@finish')->name('sv_account_producer_finish');
+
+	Route::get('/{producerId}/utlamning', 'Account\ProducerController@deliveries')->name('sv_account_producer_deliveries');
     Route::get('/{producerId}/utlamning/{orderDateId}/picklist', 'Account\ProducerController@picklist')->name('sv_account_producer_delivery_picklist');
     Route::get('/{producerId}/bestallning/anvandare/{userId}', 'Account\OrderController@userOrders')->name('sv_account_producer_orders_user');
     Route::get('/{producerId}/bestallning/produkt/{productId}', 'Account\OrderController@productOrders')->name('sv_account_producer_orders_product');

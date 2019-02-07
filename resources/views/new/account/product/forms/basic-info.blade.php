@@ -127,11 +127,24 @@
 
     {{-- Public --}}
     <div class="form-group">
-        @include('new.components.forms.checkbox', [
-            'name'   => 'is_hidden',
-            'text'   => __('Hide from store'),
-            'checked' => $product->is_hidden == 1 ? true : false
-        ])
+        <div class="form-check mt-4 custom-control custom-checkbox">
+            <input name="is_hidden" class="custom-control-input" type="checkbox" id="checkbox-is-hidden" {{ $product->is_hidden ? 'checked' : '' }}>
+            <label class="custom-control-label" for="checkbox-is-hidden">
+                {{ __('Hide product from store') }}
+            </label>
+        </div>
+
+    {{-- Detached --}}
+        <div class="form-check custom-control custom-checkbox">
+            <input name="detached" class="custom-control-input" type="checkbox" value="" id="checkbox-detached">
+            <label class="custom-control-label" for="checkbox-detached">
+                {{ __('Detach product') }}
+                @include('new.components.info', [
+                    'text' => __('By using the detached feature you make it possible for costumers to order this product without it connected to specific pick up-spot or date. Delivery is done in other manual ways of suitable choice.'),
+                    'placement' => 'right'
+                ])
+            </label>
+        </div>
     </div>
 
     {{-- Payment Deadline --}}

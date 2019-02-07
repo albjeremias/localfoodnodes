@@ -57,6 +57,10 @@ Route::group(['prefix' => '/producer'], function () {
     Route::get('/{producerId}/delete/confirm', 'Account\ProducerController@deleteConfirm')->name('en_account_producer_delete_confirm');
     Route::get('/{producerId}/leave', 'Account\ProducerController@leave')->name('en_account_producer_lesve');
     Route::get('/{producerId}/products', 'Account\ProducerController@products')->name('en_account_producer_products');
+
+	Route::get('/{producerId}/channels', 'Account\ProducerController@channels')->name('en_account_producer_channels');
+	Route::get('/{producerId}/finish', 'Account\ProducerController@finish')->name('en_account_producer_finish');
+
     Route::get('/{producerId}/deliveries', 'Account\ProducerController@deliveries')->name('en_account_producer_deliveries');
     Route::get('/{producerId}/delivery/{orderDateId}/picklist', 'Account\ProducerController@picklist')->name('en_account_producer_delivery_picklist');
     Route::get('/{producerId}/orders/user/{userId}', 'Account\OrderController@userOrders')->name('en_account_producer_orders_user');

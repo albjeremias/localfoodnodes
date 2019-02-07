@@ -136,7 +136,7 @@ class ProducerController extends Controller
             ProducerAdminLink::create(['producer_id' => $producer->id, 'user_id' => $user->id, 'active' => 1]);
 
             $request->session()->flash('message', [trans('admin/messages.producer_created')]);
-            return redirect('/account/producer/' . $producer->id . '/edit');
+            return redirect('/account/producer/' . $producer->id . '/channels');
         }
 
         return redirect('/account/producer/create?terms=approved')->withInput()->withErrors($errors);
@@ -232,7 +232,16 @@ class ProducerController extends Controller
         return redirect('/account/user');
     }
 
-    /**
+    public function channels($producer_id) {
+    	return view('new.account.producer.channels', ['producer' => Producer::find($producer_id)]);
+    }
+
+	public function finish($producer_id) {
+		return view('new.account.producer.create.finish', ['producer' => Producer::find($producer_id)]);
+	}
+
+
+	/**
      * Upload image.
      *
      * @param Request $request

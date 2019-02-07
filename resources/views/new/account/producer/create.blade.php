@@ -14,7 +14,6 @@
             <form action="/account/producer/insert" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 @include('new.account.producer.form')
-                <button type="submit" class="btn btn-secondary mt-3 float-right">{{ trans('admin/producer.save_producer') }}</button>
             </form>
         @else
             @include('new.account.producer.terms')

@@ -73,7 +73,7 @@
 
         <div class="row justify-content-center">
             <div class="col-16">
-                <div class="custom-control custom-checkbox products-active-all">
+                <div class="custom-control custom-checkbox custom-checkbox-lg products-active-all">
                     <input type="checkbox" v-model="allProductActive" name="" class="custom-control-input" id="activate-all">
                     <label class="custom-control-label" for="activate-all">Activate all products</label>
                 </div>

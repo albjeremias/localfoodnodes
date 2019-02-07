@@ -3,10 +3,10 @@
     'active' => 1,
     'steps'  =>
         [
-            trans('public/register.step_1'),
-            trans('public/register.step_2'),
-            trans('public/register.step_3'),
-            trans('public/register.step_4')
+            __('Read terms'),
+            __('Create account'),
+            __('Sale channels'),
+            __('Create products')
         ]
 ])
 
@@ -182,6 +182,7 @@
                 ])
             </div>
         </div>
+        @include('new.components.forms.submit')
     </div>
 </div>
 

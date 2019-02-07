@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "4d29001e5f43857a7a19cc9f592e4d6c",
@@ -60,23 +60,22 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.87.3",
+            "version": "3.87.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "5f9caa48b7871ff24231898c01f51580a83f59b9"
+                "reference": "77bbcf213972b7e9ddf4fd101ef5f521adac9f7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/5f9caa48b7871ff24231898c01f51580a83f59b9",
-                "reference": "5f9caa48b7871ff24231898c01f51580a83f59b9",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/77bbcf213972b7e9ddf4fd101ef5f521adac9f7f",
+                "reference": "77bbcf213972b7e9ddf4fd101ef5f521adac9f7f",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-pcre": "*",
                 "ext-simplexml": "*",
-                "ext-spl": "*",
                 "guzzlehttp/guzzle": "^5.3.3|^6.2.1",
                 "guzzlehttp/promises": "~1.0",
                 "guzzlehttp/psr7": "^1.4.1",
@@ -139,7 +138,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-02-04T22:38:14+00:00"
+            "time": "2019-02-06T23:17:08+00:00"
         },
         {
             "name": "barryvdh/laravel-cors",

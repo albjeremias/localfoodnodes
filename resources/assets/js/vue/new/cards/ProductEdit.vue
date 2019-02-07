@@ -37,7 +37,7 @@
 
             <a class="bottom-link rc" :href="'/account/producer/' + producer.id + '/product/' + product.id ">ADVANCED SETTINGS</a>
 
-            <div class="custom-control custom-checkbox product-edit-active">
+            <div class="custom-control custom-checkbox custom-checkbox-lg product-edit-active">
                 <input type="checkbox" :checked="product.is_hidden" @click="product.is_hidden = !product.is_hidden" :name="'checkbox-active-' + product.id" class="custom-control-input" :id="'checkbox-active-' + product.id">
                 <label class="custom-control-label" :for="'checkbox-active-' + product.id">Active</label>
             </div>
