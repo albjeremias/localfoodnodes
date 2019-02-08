@@ -8,7 +8,8 @@
 
         <div class="col-md-8">
             <div class="white-box little-min">
-                <h4 class="position-absolute">Dates</h4>
+                <h4 class="position-absolute">Deliveries</h4>
+                <info :text="info.deliveries.text" :placement="info.deliveries.placement" :class="info.deliveries.class"></info>
 
                 <div class="d-flex h-100">
                     <div class="my-auto w-100">
@@ -75,7 +76,7 @@
             <div class="col-16">
                 <div class="custom-control custom-checkbox custom-checkbox-lg products-active-all">
                     <input type="checkbox" v-model="allProductActive" name="" class="custom-control-input" id="activate-all">
-                    <label class="custom-control-label" for="activate-all">Activate all products</label>
+                    <label class="custom-control-label" for="activate-all">Make all products available</label>
                 </div>
             </div>
 
@@ -96,17 +97,19 @@
 </style>
 
 <script>
-    import ProductEdit from './../cards/ProductEdit';
+    import ProductEdit from './../../cards/ProductEdit';
+    import Info from './../../components/info';
 
     export default {
         props: ['producer', 'products'],
         data: function() {
             return {
-                allProductActive: false
+                allProductActive: false,
+                info: {}
             }
         },
-        mounted () {
-            // Do something useful with the data in the template
+        beforeMount () {
+            this.infoSort()
         },
         watch: {
             allProductActive: 'activateAllProducts'
@@ -115,9 +118,19 @@
             activateAllProducts() {
                 console.log(this.allProductActive);
             },
+            fetchNodes() {
+                // /{langCode}/api/account/producers/{producerId}/nodes
+            },
+            infoSort() {
+                this.info.deliveries = {
+                    placement: 'right',
+                    text: 'Select delivery location then delivery date for which you will administer your products.',
+                    class: '',
+                }
+            }
         },
         components: {
-            ProductEdit,
+            ProductEdit, Info
         }
     }
 </script>

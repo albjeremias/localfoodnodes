@@ -18,7 +18,7 @@ window._ = require('lodash');
 // Cards
 Vue.component('card-product-edit', require('./cards/ProductEdit').default);
 
-Vue.component('products-administration-index', require('./products-administration/ProductsAdminIndex').default);
+Vue.component('products-administration-index', require('./modules/products-administration/ProductsAdminIndex').default);
 
 const app = new Vue({
     el: '#products-administration',

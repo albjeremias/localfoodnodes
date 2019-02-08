@@ -95,10 +95,11 @@ class ProductVariantController extends Controller
             'product' => $product,
             'producer' => $producer,
             'breadcrumbs' => [
-                $producer->name => 'producer/' . $producer->id,
-                trans('admin/user-nav.products') => 'producer/' . $producer->id . '/products',
-                $product->name => 'producer/' . $producer->id . '/product/' . $product->id . '/edit',
-                trans('admin/user-nav.variants') => ''
+	            $product->name => [
+		            'link' => '/account/producer/' . $producer->id . '/product/' . $product->id . '/edit',
+		            'icon' => ''
+	            ],
+	            __('Stock and variants') => ['']
             ]
         ]);
     }

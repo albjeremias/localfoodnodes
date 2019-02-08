@@ -10,6 +10,7 @@
 @section('content')
     <div class="nm bg-shell">
         <div class="container pt-2">
+            @include('new.components.breadcrumbs', ['crumbs' => $breadcrumbs])
             {{-- Nodes --}}
             <div class="white-box">
                 <div id="accordion">
