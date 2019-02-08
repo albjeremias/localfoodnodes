@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col-lg-9">
                             <div class="white-box little-min">
-                                <h4>{{ trans('admin/user.profile_info') }}</h4>
+                                <h4>{{ __('Profile info') }}</h4>
                                 <ul class="list-unstyled list-p">
                                     <li>{{ $user->name }}</li>
                                     <li class="black-54">{{ Auth::user()->email }}</li>
@@ -25,41 +25,41 @@
                                 <div class="row mt-4">
                                     <div class="col-md-4">
                                         <h3 class="m-0">{{ $user->nodes()->count() }}</h3>
-                                        <small>{{ trans('admin/user.followed_nodes') }}</small>
+                                        <small>{{ __('Followed nodes') }}</small>
                                     </div>
 
                                     <div class="col-md-4">
                                         <h3 class="m-0">{{ $user->producerAdminLinks()->count() }}</h3>
-                                        <small>{{ trans('admin/user.producers') }}</small>
+                                        <small>{{ __('Producers') }}</small>
                                     </div>
 
                                     <div class="col pl-md-5">
                                         <h3 class="m-0">13.5 km</h3>
-                                        <small>{{ trans('admin/user.average_distance') }}</small>
+                                        <small>{{ __('Average distance') }}</small>
                                     </div>
                                 </div>
 
-                                <a class="bottom-link text-uppercase rc" href="#">{{ trans('admin/user.edit_profile') }}</a>
+                                <a class="bottom-link text-uppercase rc" href="#">{{ __('Edit profile') }}</a>
                             </div>
                         </div>
 
                         <div class="col-lg-7">
                             <div class="white-box little-min">
-                                <h4>{{ trans('admin/user.still_not_member') }}</h4>
-                                <p class="black-54">{{ trans('admin/user.membership_unpaid_link') }}</p>
+                                <h4>{{ __('Not a member') }}</h4>
+                                <p class="black-54">{{ __('Membership unpaid') }}</p>
 
-                                <a class="bottom-link text-uppercase rc" href="#">{{ trans('admin/user.membership') }}</a>
+                                <a class="bottom-link text-uppercase rc" href="#">{{ __('Membership') }}</a>
                             </div>
                         </div>
 
                         <div class="col-16">
                             <div class="white-box medium-min">
-                                <h4 class="position-absolute">{{ trans('admin/user.next_pickup') }}</h4>
+                                <h4 class="position-absolute">{{ __('Next pickup') }}</h4>
                                 <div class="row h-100">
                                     <div class="col-16 my-auto text-center">
                                         <i class="fa fa-shopping-basket icon-big" aria-hidden="true"></i>
-                                        <p class="mt-4">{{ trans('admin/user.no_deliveries') }}</p>
-                                        <a class="btn btn-primary mt-3" href="#">{{ trans('admin/user.find_deliveries') }}</a>
+                                        <p class="mt-4">{{ __('No deliveries') }}</p>
+                                        <a class="btn btn-primary mt-3" href="#">{{ __('Find deliveries') }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +67,7 @@
 
                         <div class="col-16">
                             <div class="white-box medium-min">
-                                <h4>{{ trans('admin/user.close_delivery_spots') }}</h4>
+                                <h4>{{ __('Nearby delivery locations') }}</h4>
                             </div>
                         </div>
                     </div>
@@ -83,13 +83,13 @@
 
                         <div class="col-16">
                             <div class="white-box medium-min height-rmd-auto">
-                                <h4>{{ trans('admin/user.producers_i_follow') }}</h4>
+                                <h4>{{ __('Producers I follow') }}</h4>
 
                                 <ul class="list-unstyled node-list mt-4">
                                     <li>
                                         <div class="row no-gutters">
                                             <div class="col">
-                                                <small><span class="font-italic">Not yet available</span></small>
+                                                <small><span class="font-italic">{{ __('Not yet available') }}</span></small>
                                             </div>
                                         </div>
                                     </li>

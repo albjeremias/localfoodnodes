@@ -30,53 +30,53 @@ class ProductVariantController extends Controller
         /**
          * Check if requested producer account exist, or if user has permission.
          */
-        $this->middleware(function ($request, $next) {
-            $user = Auth::user();
+        // $this->middleware(function ($request, $next) {
+        //     $user = Auth::user();
 
-            // Producer
-            $producerId = $request->route('producerId');
-            $producerAdminLink = $user->producerAdminLink($producerId);
-            $errorMessage = trans('admin/messages.request_no_producer');
+        //     // Producer
+        //     $producerId = $request->route('producerId');
+        //     $producerAdminLink = $user->producerAdminLink($producerId);
+        //     $errorMessage = trans('admin/messages.request_no_producer');
 
-            if (!$producerAdminLink) {
-                $request->session()->flash('error', [$errorMessage]);
-                return redirect('/account/user');
-            }
+        //     if (!$producerAdminLink) {
+        //         $request->session()->flash('error', [$errorMessage]);
+        //         return redirect('/account/user');
+        //     }
 
-            $producer = $producerAdminLink->getProducer();
+        //     $producer = $producerAdminLink->getProducer();
 
-            if (!$producer) {
-                $request->session()->flash('error', [$errorMessage]);
-                return redirect('/account/user');
-            }
+        //     if (!$producer) {
+        //         $request->session()->flash('error', [$errorMessage]);
+        //         return redirect('/account/user');
+        //     }
 
-            // Product
-            $productId = $request->route('productId');
-            $product = $producer->product($productId);
-            $errorMessage = trans('admin/messages.request_no_product');
+        //     // Product
+        //     $productId = $request->route('productId');
+        //     $product = $producer->product($productId);
+        //     $errorMessage = trans('admin/messages.request_no_product');
 
-            if (!$product) {
-                $request->session()->flash('error', [$errorMessage]);
-                return redirect('/account/producer/' . $producer->id);
-            }
+        //     if (!$product) {
+        //         $request->session()->flash('error', [$errorMessage]);
+        //         return redirect('/account/producer/' . $producer->id);
+        //     }
 
-            // Variant
-            $variantId = $request->route('variantId');
-            $errorMessage = trans('admin/messages.request_no_variant');
+        //     // Variant
+        //     $variantId = $request->route('variantId');
+        //     $errorMessage = trans('admin/messages.request_no_variant');
 
-            // No variant id so nothing to check, continue to controller action
-            if (!$variantId) {
-                return $next($request);
-            }
+        //     // No variant id so nothing to check, continue to controller action
+        //     if (!$variantId) {
+        //         return $next($request);
+        //     }
 
-            $variant = $product->variant($variantId);
-            if (!$variant) {
-                $request->session()->flash('error', [$errorMessage]);
-                return redirect('/account/producer/' . $producer->id . '/product/' . $product->id . '/variants');
-            }
+        //     $variant = $product->variant($variantId);
+        //     if (!$variant) {
+        //         $request->session()->flash('error', [$errorMessage]);
+        //         return redirect('/account/producer/' . $producer->id . '/product/' . $product->id . '/variants');
+        //     }
 
-            return $next($request);
-        });
+        //     return $next($request);
+        // });
     }
 
     /**
@@ -104,14 +104,14 @@ class ProductVariantController extends Controller
     }
 
     /**
-     * Update variant.
+     * Update and create variants.
      *
-     * @param Product $product
-     * @param array $data
-     * @param MessageBag &$allErrors
-     * @return MessageBag $allErrors
+     * @param Request $request
+     * @param int $producerId
+     * @param int $productId
+     * @return void
      */
-    public function createAndUpdate(Request $request, $producerId, $productId)
+    public function updateVariants(Request $request, $producerId, $productId)
     {
         $user = Auth::user();
         $producer = $user->producerAdminLink($producerId)->getProducer();
@@ -148,6 +148,42 @@ class ProductVariantController extends Controller
                 }
             }
         }
+
+        return redirect()->back();
+    }
+
+    /**
+     * Update stock.
+     *
+     * @param Request $request
+     * @param int $producerId
+     * @param int $productId
+     * @return void
+     */
+    public function updateStock(Request $request, $producerId, $productId)
+    {
+        $user = Auth::user();
+        $producer = $user->producerAdminLink($producerId)->getProducer();
+        $product = $producer->product($productId);
+
+        // Set flag on product
+        $product->has_stock = $request->has('has_stock');
+
+        if ($request->has('has_stock')) {
+            $product->stock_quantity = $request->input('stock_quantity');
+            if ($request->has('recurring')) {
+                $product->stock_type = 'recurring'; // weekly
+            } else if ($request->has('csa')) {
+                $product->stock_type = 'csa'; // csa
+            } else {
+                $product->stock_type = 'fixed'; // Occasional
+            }
+        } else {
+            $product->stock_quantity = null;
+            $product->stock_type = null;
+        }
+
+        $product->save();
 
         return redirect()->back();
     }

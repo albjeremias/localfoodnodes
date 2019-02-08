@@ -12,7 +12,7 @@
         <div class="container pt-2">
             <div class="white-box">
                 <h5 class="rc mb-4">{{ __('Stock') }}</h5>
-                <form method="POST" action="">
+                <form method="post" action="{{ route('account_product_stock_update', ['producerId' => $producer->id, 'productId' => $product->id]) }}">
                     @csrf()
                     @include('new.account.product.forms.stock')
                     @include('new.components.forms.submit')
@@ -21,7 +21,7 @@
 
             <div class="white-box">
                 <h5 class="rc mb-4">{{ __('Variants') }}</h5>
-                <form method="POST" action="{{ route('account_product_variants_create_and_update', ['producerId' => $producer->id, 'productId' => $product->id]) }}">
+                <form method="post" action="{{ route('account_product_variants_update', ['producerId' => $producer->id, 'productId' => $product->id]) }}">
                     @csrf()
                     @include('new.account.product.forms.variants-settings')
 

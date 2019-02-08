@@ -11,7 +11,7 @@
 
     <div class="nms">
         @if (app('request')->input('terms') === "approved")
-            <form action="/account/producer/insert" method="post" enctype="multipart/form-data">
+            <form action="{{ route('account_producer_insert') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 @include('new.account.producer.form')
             </form>

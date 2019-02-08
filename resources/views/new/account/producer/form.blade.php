@@ -120,12 +120,10 @@
         </div>
 
         <div class="col-md-6 offset-md-1">
+            <div class="form-group mb-5">
             <h4>{{ __('Images') }}</h4>
-
-            <p>{{ __('Upload images') }}</p>
-            <div class="form-row mb-5">
                 @include('new.components.upload.images', [
-                    'entityType' => 'product',
+                    'entityType' => 'producer',
                     'entityId' => $producer->id ?: null,
                     'images' => $producer->images(),
                     'limit' => 4,

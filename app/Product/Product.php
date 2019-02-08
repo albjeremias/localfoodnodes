@@ -24,6 +24,9 @@ class Product extends \App\BaseModel
         'is_hidden' => '',
         'deadline' => 'integer',
         'payment_info' => '',
+        'has_stock' => '',
+        'stock_type' => '',
+        'stock_quantity' => 'integer',
         'shared_variant_quantity' => '',
     ];
 
@@ -43,7 +46,19 @@ class Product extends \App\BaseModel
         'is_hidden',
         'deadline',
         'payment_info',
+        'has_stock',
+        'stock_type',
+        'stock_quantity',
         'shared_variant_quantity',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'is_stock' => 'boolean',
     ];
 
     /**
@@ -54,7 +69,6 @@ class Product extends \App\BaseModel
 
         static::deleting(function($product) {
             $product->variants()->each->delete();
-            $product->productions()->each->delete();
             $product->deliveryLinks()->each->delete();
             $product->tags()->each->delete();
             $product->permalink()->delete();
@@ -89,59 +103,6 @@ class Product extends \App\BaseModel
     public function producer()
     {
         return $this->producerRelationship()->first();
-    }
-
-    /**
-     * Define product relationship with productions.
-     */
-    public function productionsRelationship()
-    {
-        return $this->hasMany('App\Product\ProductProduction');
-    }
-
-    /**
-     * Get productions.
-     */
-    public function productions()
-    {
-        return $this->productionsRelationship()->orderBy('date')->get();
-    }
-
-    /**
-     * Define product relationship with production adjustments.
-     */
-    public function productionAdjustments()
-    {
-        return $this->hasMany('App\Product\ProductProductionAdjustment')->get();
-    }
-
-    /**
-     * Get production adjustment.
-     *
-     * @param int $year
-     * @param int $week
-     * @return ProductProductionAdjustment
-     */
-    public function productionAdjustment($year, $week)
-    {
-        return $this->productionAdjustments()->where('year', $year)->where('week', $week)->first();
-    }
-
-    /**
-     * Get product adjustment quantity.
-     *
-     * @param int $year
-     * @param int $week
-     * @return int|null
-     */
-    public function productionAdjustmentQuantity($year, $week)
-    {
-        $productionAdjustment = $this->productionAdjustment($year, $week);
-        if ($productionAdjustment) {
-            return $productionAdjustment->quantity;
-        } else {
-            return null;
-        }
     }
 
     /**
@@ -424,9 +385,9 @@ class Product extends \App\BaseModel
     {
         $type = null;
 
-        if ($this->productions() && $this->productions()->count() > 0) {
-            $type = $this->productions()->first()->type;
-        }
+        // if ($this->productions() && $this->productions()->count() > 0) {
+        //     $type = $this->productions()->first()->type;
+        // }
 
         return $type;
     }

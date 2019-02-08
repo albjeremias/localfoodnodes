@@ -14,7 +14,7 @@
             @if ($user->orderDates()->count() > 0)
                 @foreach ($user->orderDates() as $orderDate)
                     <div class="white-box mb-5">
-                        <h4 class="mt-1 rc pl-2">{{ trans('admin/user.pickup') }} {{ $orderDate->date('Y-m-d') }}</h4>
+                        <h4 class="mt-1 rc pl-2">{{ __('Pickup') }} {{ $orderDate->date('Y-m-d') }}</h4>
 
                         @php
                             $items = [];
@@ -24,38 +24,38 @@
                             @php
                                 $item = array(
                                     [
-                                        'tr'    => trans('admin/user.order'),
+                                        'tr'    => __('Order'),
                                         'value' => $orderDateItemLink->ref,
                                         'href'  => '/account/user/order/' . $orderDateItemLink->id
                                     ],
                                     [
-                                        'tr'    => trans('admin/user.product'),
+                                        'tr'    => __('Product'),
                                         'tr_class' => 'w-25',
                                         'value' => $orderDateItemLink->getItem()->getName(),
                                         'href'  => '/account/user/orders/product/' . $orderDateItemLink->getItem()->product_id
                                     ],
                                     [
-                                        'tr'    => trans('admin/user.quantity'),
+                                        'tr'    => __('Quantity'),
                                         'value' => $orderDateItemLink->quantity,
                                     ],
                                     [
-                                        'tr'    => trans('admin/user.producer'),
+                                        'tr'    => __('Producer'),
                                         'tr_class' => 'w-25',
                                         'value' => $orderDateItemLink->getItem()->producer['name'],
                                         'href'  => '/account/user/orders/producer/' . $orderDateItemLink->producer_id
                                     ],
                                     [
-                                        'tr'    => trans('admin/user.node'),
+                                        'tr'    => __('Node'),
                                         'tr_class' => 'w-20',
                                         'value' => $orderDateItemLink->getItem()->node['name'],
                                     ],
                                     [
-                                        'tr'    => trans('admin/user.price'),
+                                        'tr'    => __('Price'),
                                         'tr_class' => 'w-15',
                                         'value' => $orderDateItemLink->getPriceWithUnit()
                                     ],
                                     [
-                                        'tr'    => trans('admin/user.status'),
+                                        'tr'    => __('Status'),
                                         'tr_class' => 'pt-2',
                                         'badge' => true,
                                         'value' => $orderDateItemLink->getItem()->getCurrentStatus(),
@@ -74,7 +74,7 @@
                     </div>
                 @endforeach
             @else
-                {{ trans('admin/user.no_orders') }}
+                {{ __('No orders') }}
             @endif
         </div>
     </div>

@@ -115,6 +115,7 @@
                 <div class="col-md-6 offset-md-2">
 
                     {{-- Images --}}
+                    <h4>Images</h4>
                     @include('new.components.upload.images', [
                         'entityType' => 'user',
                         'entityId' => $user->id ?: null,

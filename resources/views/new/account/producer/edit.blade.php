@@ -9,7 +9,7 @@
 
 @section('content')
     <div class="nms">
-        <form action="/account/producer/{{ $producer->id }}/update" method="post" enctype="multipart/form-data">
+        <form action="{{ route('account_producer_update', ['producerId' => $producer->id]) }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
 
             @include('new.components.forms.input', [
@@ -21,14 +21,15 @@
             ])
             @include('new.account.producer.form')
 
-            <div class="container mb-5">
+
+            {{-- <div class="container mb-5">
             <button type="submit" class="btn btn-success">{{ __('Save producer') }}</button>
             @if ($producer->adminLinks()->count() > 1)
                 <a href="{{ route('account_producer_leave', ['producerId' => $producer->id]) }}" class="btn btn-warning">{{ __('Leave producer') }}</a>
             @else
                 <a href="{{ route('account_producer_delete_confirm', ['producerId' => $producer->id]) }}" class="btn btn-danger">{{ __('Delete producer') }}</a>
             @endif
-            </div>
+            </div> --}}
         </form>
     </div>
 @endsection

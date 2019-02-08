@@ -14,7 +14,6 @@ use App\Producer\Producer;
 use App\Producer\ProducerNodeLink;
 use App\Product\Product;
 use App\Product\ProductNodeDeliveryLink;
-use App\Product\ProductProduction;
 
 use App\Product\ProductFilter;
 

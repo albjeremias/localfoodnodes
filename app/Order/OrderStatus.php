@@ -76,6 +76,6 @@ class OrderStatus extends \App\BaseModel
      */
     public function __toString()
     {
-        return trans('admin/order-statuses.' . $this->status);
+        return __($this->status);
     }
 }

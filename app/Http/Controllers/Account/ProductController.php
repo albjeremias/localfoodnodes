@@ -4,23 +4,18 @@ namespace App\Http\Controllers\Account;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\MessageBag;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\User\User;
 use App\Producer\Producer;
-use App\Producer\ProducerNodeLink;
-use App\Node\NodeDelivery;
 use App\Product\Product;
 use App\Product\ProductNodeDeliveryLink;
 use App\Product\ProductTag;
 use App\Product\ProductFilter;
 use App\Image\Image;
-use \App\Notification;
 
 class ProductController extends Controller
 {
@@ -73,6 +68,45 @@ class ProductController extends Controller
             return $next($request);
         });
     }
+
+    /**
+     * Index action.
+     *
+     * @param Request $request
+     * @param int $producerId
+     * @param int $productId
+     */
+    public function index(Request $request, $producerId, $productId)
+    {
+        $user = Auth::user();
+        $producer = $user->producerAdminLink($producerId)->getProducer();
+        $product = $producer->product($productId);
+
+        $orderQuantity = DB::table('order_items')
+        ->join('order_date_item_links', 'order_date_item_links.order_item_id', 'order_items.id')
+        ->select(DB::raw('SUM(order_date_item_links.quantity) AS order_quantity'))
+        ->where('order_items.product_id', $product->id)
+        ->value('order_quantity');
+
+        $orderQuantity = $orderQuantity ?: 0;
+
+        if ($request->old('prodution_type')) {
+            $product->production_type = $request->old('production_type');
+        }
+
+        return view('new.account.product.overview.index', [
+            'producer' => $producer,
+            'product' => $product,
+            'orderQuantity' => $orderQuantity,
+            'breadcrumbs' => [
+                $producer->name => 'producer/' . $producer->id,
+                trans('admin/user-nav.products') => 'producer/' . $producer->id . '/products',
+                $product->name => 'producer/' . $producer->id . '/product/' . $product->id . '/edit',
+                trans('admin/user-nav.create_production') => ''
+            ]
+        ]);
+    }
+
 
     /**
      * Product create action.

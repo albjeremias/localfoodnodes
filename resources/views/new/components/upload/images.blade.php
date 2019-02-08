@@ -1,4 +1,3 @@
-<label>Images</label>
 <div class="dropzone" id="dropzone">
     <div class="dropzone-previews" id="dropzone-previews"></div>
 </div>
@@ -85,10 +84,6 @@
 
                 this.on('removedfile', function(image) {
                     $.get(image.deleteUrl)
-                });
-
-                this.on('uploadprogress', function(file, progress, bytesSent) {
-                    console.log(progress, bytesSent);
                 });
             },
         });

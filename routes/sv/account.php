@@ -90,22 +90,17 @@ Route::group(['prefix' => '/producent/{producerId}/produkt'], function () {
     Route::get('/{productId}/ta-bort/godkann', 'Account\ProductController@deleteConfirm')->name('sv_account_product_delete_confirm');
     Route::post('/{productId}/valj-forpackningsenhet', 'Account\ProductController@setPackageUnit')->name('sv_account_product_set_package_unit');
 
-    // Variants
-    Route::get('/{productId}/varianter', 'Account\ProductVariantController@index')->name('en_account_product_variants');
-    Route::post('/{productId}/varianter', 'Account\ProductVariantController@createAndUpdate')->name('en_account_product_variants_create_and_update');
+    // Overview
+    Route::get('/{productId}', 'Account\ProductController@index')->name('sv_account_product');
 
-    // Production
-    Route::get('/{productId}/produktion', 'Account\ProductProductionController@index')->name('sv_account_product_production');
-    Route::get('/{productId}/produktion/{productionId}/ta-bort', 'Account\ProductProductionController@deleteProduction')->name('sv_account_product_production_delete');
-    Route::post('/{productId}/produktion/uppdatera', 'Account\ProductProductionController@update')->name('sv_account_product_production_update');
+    // Stock and variants
+    Route::get('/{productId}/saldo-och-varianter', 'Account\ProductVariantController@index')->name('sv_account_product_stock_and_variants');
+    Route::post('/{productId}/varianter', 'Account\ProductVariantController@updateVariants')->name('sv_account_product_variants_update');
+    Route::post('/{productId}/saldo', 'Account\ProductVariantController@updateStock')->name('sv_account_product_stock_update');
 
     // Deliveries
     Route::get('/{productId}/utlamningar', 'Account\ProductController@editDeliveries')->name('sv_account_product_deliveries');
     Route::post('/{productId}/utlamningar/uppdatera', 'Account\ProductController@updateDeliveries')->name('sv_account_product_deliveries_update');
-
-    // Overview
-	Route::get('/{productId}', 'Account\ProductProductionController@index')->name('sv_account_product');
-
 });
 
 // Image

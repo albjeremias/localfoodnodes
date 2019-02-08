@@ -53,22 +53,22 @@ class ProductVariant extends BaseModel
         return $this->hasOne('App\Product\Product', 'id', 'product_id')->first();
     }
 
-    /**
-     * Get production quantity.
-     *
-     * @return int
-     */
-    public function getProductionQuantity()
-    {
-        if (!$this->package_amount) {
-            return 0;
-        }
+    // /**
+    //  * Get production quantity.
+    //  *
+    //  * @return int
+    //  */
+    // public function getProductionQuantity()
+    // {
+    //     if (!$this->package_amount) {
+    //         return 0;
+    //     }
 
-        $smallestCommonDenominator = $this->getProduct()->getProductionQuantity() / $this->package_amount;
-        $quantity = $smallestCommonDenominator * $this->getProduct()->mainVariant()->package_amount;
+    //     $smallestCommonDenominator = $this->getProduct()->getProductionQuantity() / $this->package_amount;
+    //     $quantity = $smallestCommonDenominator * $this->getProduct()->mainVariant()->package_amount;
 
-        return floor($quantity);
-    }
+    //     return floor($quantity);
+    // }
 
     /**
      * Get package amount.

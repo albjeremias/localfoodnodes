@@ -89,22 +89,17 @@ Route::group(['prefix' => '/producer/{producerId}/product'], function () {
     Route::get('/{productId}/delete/confirm', 'Account\ProductController@deleteConfirm')->name('en_account_product_delete_confirm');
     Route::post('/{productId}/set-package-unit', 'Account\ProductController@setPackageUnit')->name('en_account_product_set_package_unit');
 
-    // Variants
-    Route::get('/{productId}/variants', 'Account\ProductVariantController@index')->name('en_account_product_variants');
-    Route::post('/{productId}/variants', 'Account\ProductVariantController@createAndUpdate')->name('en_account_product_variants_create_and_update');
+    // Overview
+    Route::get('/{productId}', 'Account\ProductController@index')->name('en_account_product');
 
-    // Production
-    Route::get('/{productId}/production', 'Account\ProductProductionController@index')->name('en_account_product_production');
-    Route::get('/{productId}/production/{productionId}/delete', 'Account\ProductProductionController@deleteProduction')->name('en_account_product_production_delete');
-    Route::post('/{productId}/production/update', 'Account\ProductProductionController@update')->name('en_account_product_production_update');
+    // Stock and variants
+    Route::get('/{productId}/stock-and-variants', 'Account\ProductVariantController@index')->name('en_account_product_stock_and_variants');
+    Route::post('/{productId}/variants', 'Account\ProductVariantController@updateVariants')->name('en_account_product_variants_update');
+    Route::post('/{productId}/stock', 'Account\ProductVariantController@updateStock')->name('en_account_product_stock_update');
 
     // Deliveries
     Route::get('/{productId}/deliveries', 'Account\ProductController@editDeliveries')->name('en_account_product_deliveries');
     Route::post('/{productId}/deliveries/update', 'Account\ProductController@updateDeliveries')->name('en_account_product_deliveries_update');
-
-    // Overview
-	Route::get('/{productId}', 'Account\ProductProductionController@index')->name('en_account_product');
-
 });
 
 // Image

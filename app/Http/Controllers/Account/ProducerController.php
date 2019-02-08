@@ -149,7 +149,7 @@ class ProducerController extends Controller
     {
         $user = Auth::user();
         $producer = $user->producerAdminLink($producerId)->getProducer();
-        $producer->fill($request->old());
+        // $producer->fill($request->old());
         $currencies = Db::table('currencies')->where('enabled', true)->get()->pluck('currency');
 
         return view('new.account.producer.edit', [
@@ -169,7 +169,7 @@ class ProducerController extends Controller
     {
         $user = Auth::user();
         $data = $request->all();
-        $producer = $user->producerAdminLink($data['id'])->getProducer();
+        $producer = $user->producerAdminLink($producerId)->getProducer();
 
         $errors = $producer->validate($data);
         if ($errors->isEmpty()) {
@@ -182,9 +182,19 @@ class ProducerController extends Controller
             $this->uploadImage($request, $producer);
 
             $request->session()->flash('message', [trans('admin/messages.producer_updated')]);
+
+            return redirect()->route('account_producer_edit', [
+                'producerId' => $producer->id,
+            ]);
         }
 
-        return redirect()->back()->withInput()->withErrors($errors);
+        // Load images so they are visible even it errors
+        $images = null;
+        if ($request->has('images')) {
+            $images = Image::findMany($request->input('images'));
+        }
+
+        return redirect()->back()->withInput(['images' => $images])->withErrors($errors);
     }
 
     /**
