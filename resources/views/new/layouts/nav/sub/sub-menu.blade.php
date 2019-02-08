@@ -18,16 +18,15 @@
     $account_navbar = [
         ['name' => __('Dashboard'),  'link' => '/account/user',         'icon' => 'th-large'],
         ['name' => __('My nodes'),   'link' => '/account/nodes',        'icon' => 'map-marker'],
-        ['name' => __('Pickups'),   'link' => '/account/user/pickups', 'icon' => 'home'],
+        ['name' => __('Pickups'),    'link' => '/account/user/pickups', 'icon' => 'home'],
         ['name' => __('My profile'), 'link' => '/account/user/edit',    'icon' => 'user'],
     ];
 
     if(isset($active_producer_id)) :
         $producer_navbar = [
-            ['name' => __('Dashboard'),           'link' => '/account/producer/' . $active_producer_id, 'icon' => 'th-large'],
-            ['name' => __('Create product'),  'link' => '/account/producer/' . $active_producer_id . '/product/create', 'icon' => 'map-marker'],
-            ['name' => __('Products'),        'link' => '/account/producer/' . $active_producer_id . '/products', 'icon' => 'home'],
-            ['name' => __('Deliveries'),      'link' => '/account/producer/' . $active_producer_id . '/deliveries', 'icon' => 'user'],
+            ['name' => __('Dashboard'),  'link' => '/account/producer/' . $active_producer_id, 'icon' => 'th-large'],
+            ['name' => __('Products'),   'link' => '/account/producer/' . $active_producer_id . '/products', 'icon' => 'home'],
+            ['name' => __('Deliveries'), 'link' => '/account/producer/' . $active_producer_id . '/deliveries', 'icon' => 'user'],
         ];
     endif;
 

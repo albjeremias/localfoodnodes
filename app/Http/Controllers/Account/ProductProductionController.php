@@ -98,12 +98,6 @@ class ProductProductionController extends Controller
             'producer' => $producer,
             'product' => $product,
             'orderQuantity' => $orderQuantity,
-            'breadcrumbs' => [
-                $producer->name => 'producer/' . $producer->id,
-                trans('admin/user-nav.products') => 'producer/' . $producer->id . '/products',
-                $product->name => 'producer/' . $producer->id . '/product/' . $product->id . '/edit',
-                trans('admin/user-nav.create_production') => ''
-            ]
         ]);
     }
 

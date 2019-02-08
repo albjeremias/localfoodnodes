@@ -43,7 +43,7 @@
       top: 15px;
       right: 15px;
       color: white;
-      @extend .fa, .fa-share, .icon;
+      @extend .fa, .fa-share-alt, .icon;
     }
   }
 }
@@ -64,8 +64,8 @@
 
   .product-edit-active {
     position: absolute;
-    bottom: 0.6rem;
-    right: 1.6rem;
+    bottom: 1rem;
+    left: 2.1rem;
   }
 }
 

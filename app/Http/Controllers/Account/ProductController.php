@@ -364,10 +364,11 @@ class ProductController extends Controller
             'product' => $product,
             'nodes' => $nodes,
             'breadcrumbs' => [
-                $producer->name => 'producer/' . $producer->id,
-                trans('admin/user-nav.products') => 'producer/' . $producer->id . '/products',
-                $product->name => 'producer/' . $producer->id . '/product/' . $product->id . '/edit',
-                trans('admin/user-nav.delivery_dates') => ''
+	            $product->name => [
+		            'link' => '/account/producer/' . $producer->id . '/product/' . $product->id . '/edit',
+		            'icon' => ''
+	            ],
+	            __('Delivery dates') => ['']
             ]
         ]);
     }

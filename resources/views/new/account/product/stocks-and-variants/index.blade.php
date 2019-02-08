@@ -2,7 +2,7 @@
 [
     'nav_title'      => trans('admin/user.nav_title'),
     'sub_nav'        => 'producer',
-    'sub_nav_active' => 2,
+    'sub_nav_active' => 1,
     'nav_active'     => 1
 ])
 
@@ -10,6 +10,7 @@
 @section('content')
     <div class="nm bg-shell">
         <div class="container pt-2">
+            @include('new.components.breadcrumbs', ['crumbs' => $breadcrumbs])
             <div class="white-box">
                 <h5 class="rc mb-4">{{ __('Stock') }}</h5>
                 <form method="POST" action="">

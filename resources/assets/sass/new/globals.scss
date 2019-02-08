@@ -130,6 +130,20 @@ td {
   background-color: transparent;
 }
 
+.logo-black-lfn {
+  background-image: $logo-black-lfn;
+  width: 24px;
+  height: 24px;
+  @extend .image;
+}
+
+.logo-black-classic-lfn {
+  background-image: $logo-black-classic-lfn;
+  width: 24px;
+  height: 24px;
+  @extend .image;
+}
+
 
 // -------------------------
 // BACKGROUND IMAGES
@@ -585,4 +599,13 @@ option:checked {
 .slick-container.slick-initialized {
   visibility: visible;
   opacity: 1;
+}
+
+.transparent-circle-icon-bg {
+  background-color: black;
+  @extend .rounded-circle;
+}
+
+.dashboard-upcoming-deliveries {
+  height: 360px;
 }
