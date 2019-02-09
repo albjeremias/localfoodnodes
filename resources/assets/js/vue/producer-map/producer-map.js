@@ -1,3 +1,4 @@
+window.Vue = require('vue');
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -9,8 +10,8 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
-Vue.component('admin-transaction-list', require('./Page.vue'));
+Vue.component('producer-map', require('./ProducerMap').default);
 
 const app = new Vue({
-    el: '#admin-transaction-list',
+    el: '#producer-map',
 });

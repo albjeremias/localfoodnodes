@@ -14849,15 +14849,19 @@ a.text-raspberry:focus {
   position: relative;
 }
 
-.leaflet-cluster-marker {
-  background: #a51e00;
-  border-radius: 100%;
-  color: #fff;
-  font-weight: bold;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  width: 50px;
+.leaflet-cluster-marker,
+.leaflet-marker {
+  font-size: 32px;
+}
+
+.leaflet-cluster-marker.selected,
+.leaflet-marker.selected {
+  color: green;
+}
+
+.leaflet-cluster-marker.added,
+.leaflet-marker.added {
+  color: red;
 }
 
 .map-marker {
@@ -15482,7 +15486,9 @@ section.medium-gradient .inverted-accent {
 }
 
 .dropzone {
-  border: 1px solid #9e9e9e;
+  background: #fafafa;
+  border: 1px dashed #9e9e9e;
+  border-radius: 3px;
   padding: 1rem;
 }
 

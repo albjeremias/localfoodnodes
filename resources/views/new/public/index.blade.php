@@ -80,11 +80,11 @@
         ])
     </section>
 
-    <sextion>
+    <section>
         <div class="container text-center py-4">
             <p>Local food impact</p>
         </div>
-    </sextion>
+    </section>
 
     <section class="bg-accent-light-12 node-map">
         <div id="node-map-component-root" data-ip="{{ Request::ip() }}"

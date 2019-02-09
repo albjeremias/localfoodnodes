@@ -70,11 +70,6 @@ Route::group(['prefix' => '/producer'], function () {
     Route::get('/{producerId}/invite/accept', 'Account\ProducerController@acceptInvite')->name('en_account_producer_invite_accept');
     Route::get('/{producerId}/invite/{userId}/cancel', 'Account\ProducerController@cancelInvite')->name('en_account_producer_invite_cancel');
 
-    // Producer node map
-    Route::get('/{producerId}/map/nodes', 'Account\ProducerController@mapGetNodes')->name('en_account_producer_map_nodes');
-    Route::post('/{producerId}/map/node/add', 'Account\ProducerController@mapAddNode')->name('en_account_producer_map_nodes_add');
-    Route::post('/{producerId}/map/node/remove', 'Account\ProducerController@mapRemoveNode')->name('en_account_producer_map_node_remove');
-
     // Producer order
     Route::get('/{producerId}/order/{orderItemId}/status/{status}', 'Account\OrderController@changeOrderStatus')->name('en_account_producer_order_status');
 });

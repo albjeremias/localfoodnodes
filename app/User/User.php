@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Collection;
 use App\Mail\ResetPassword as ResetPasswordNotification;
 
+use Laravel\Passport\HasApiTokens;
+
 use Mail;
 use App\Traits\Excludable;
 use App\User\UserMembershipPayment;
@@ -13,7 +15,7 @@ use App\User\UserMembershipSubscription;
 
 class User extends \App\User\BaseUser
 {
-    use Excludable;
+    use HasApiTokens, Excludable;
 
     protected $with = ['membershipPaymentsRelationship'];
 

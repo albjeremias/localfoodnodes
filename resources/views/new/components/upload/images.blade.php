@@ -51,7 +51,7 @@
         $('#dropzone').dropzone({
             addRemoveLinks: true,
             dictCancelUpload: '',
-            dictDefaultMessage: 'Drop images here to upload (max {{ $limit }})',
+            dictDefaultMessage: 'Drop images to upload (max {{ $limit }})',
             dictRemoveFile: 'Remove',
             maxFiles: '{{ $limit}}',
             method: 'POST',

@@ -68,13 +68,7 @@ Route::group(['prefix' => '/producent'], function () {
     Route::get('/{producerId}/bestallning/{orderId}', 'Account\OrderController@order')->name('sv_account_producer_order');
     Route::post('/{producerId}/inbjudan/skicka', 'Account\ProducerController@sendAdminInvite')->name('sv_account_producer_invite_send');
     Route::get('/{producerId}/inbjudan/acceptera', 'Account\ProducerController@acceptInvite')->name('sv_account_producer_invite_accept');
-    Route::get('/{producerId}/inbjudan/{userId}/avbrytt', 'Account\ProducerController@cancelInvite')->name('sv_account_producer_invite_cancel');
-    // Route::get('/{producerId}/bild/{imageId}/ta-bort', 'Account\ProducerController@deleteImage')->name('sv_account_producer_image_delete');
-
-    // Producer node map
-    Route::get('/{producerId}/karta/noder', 'Account\ProducerController@mapGetNodes')->name('sv_account_producer_map_nodes');
-    Route::post('/{producerId}/karta/noder/lagg-till', 'Account\ProducerController@mapAddNode')->name('sv_account_producer_map_nodes_add');
-    Route::post('/{producerId}/karta/noder/ta-bort', 'Account\ProducerController@mapRemoveNode')->name('sv_account_producer_map_node_remove');
+    Route::get('/{producerId}/inbjudan/{userId}/avbryt', 'Account\ProducerController@cancelInvite')->name('sv_account_producer_invite_cancel');
 
     // Producer order
     Route::get('/{producerId}/bestallning/{orderItemId}/status/{status}', 'Account\OrderController@changeOrderStatus')->name('sv_account_producer_order_status');

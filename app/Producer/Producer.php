@@ -20,7 +20,7 @@ class Producer extends BaseModel
      * @var array
      */
     protected $validationRules = [
-        'name' => 'required|integer',
+        'name' => 'required',
         'address' => 'required',
         'zip' => 'required',
         'city' => 'required',

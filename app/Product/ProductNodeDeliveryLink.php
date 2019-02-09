@@ -14,7 +14,7 @@ class ProductNodeDeliveryLink extends \App\BaseModel
 {
     public $timestamps = false;
 
-    protected $with = ['productRelationship', 'nodeRelationship'];
+    protected $with = ['nodeRelationship'];
 
     /**
      * The attributes that are mass assignable.
@@ -53,7 +53,7 @@ class ProductNodeDeliveryLink extends \App\BaseModel
      */
     public function productRelationship()
     {
-        return $this->hasOne('App\Product\Product', 'id', 'product_id')->with(['productionsRelationship']);
+        return $this->hasOne('App\Product\Product', 'id', 'product_id');
     }
 
     /**

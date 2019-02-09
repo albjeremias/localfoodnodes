@@ -167,6 +167,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\TranslationManager\ManagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
         Sentry\Laravel\ServiceProvider::class,
     ],
 

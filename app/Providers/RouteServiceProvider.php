@@ -80,7 +80,7 @@ class RouteServiceProvider extends ServiceProvider
         foreach (config('app.locales') as $langCode => $language) {
             // Account API -> API
             Route::group([
-                'middleware' => ['api'], // Todo: add web middleware
+                'middleware' => ['auth:api'],
                 'namespace' => $this->namespace,
                 'prefix' => $langCode . '/api/account',
             ], function ($router) {

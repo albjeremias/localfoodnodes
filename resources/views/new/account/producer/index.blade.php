@@ -127,12 +127,6 @@
                                 @endif
                             </div>
                         </div>
-
-                        <div class="col-16">
-                            <div class="white-box medium-min">
-                                <h4>{{ __('Nodes close to me') }}</h4>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -163,39 +157,21 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-16">
-                            <div class="white-box medium-min height-rmd-auto">
-                                <h4>Connected nodes</h4>
-
-                                <ul class="list-unstyled node-list mt-4">
-                                    <li>
-                                        <div class="row no-gutters">
-                                            <div class="col-2">
-                                                <div class="logo-black-classic-lfn" aria-hidden="true"></div>
-                                            </div>
-                                            <div class="col">Grönsaksfest -
-                                                <small>25 Sep</small>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row no-gutters">
-                                            <div class="col-2">
-                                                <div class="logo-black-classic-lfn" aria-hidden="true"></div>
-                                            </div>
-                                            <div class="col">Grönsaksfest -
-                                                <small>25 Sep</small>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
                     </div>
+                </div>
+            </div>
+            <div class="white-box">
+                <h4>{{ __('Nodes close to me') }}</h4>
+                <div id="producer-map">
+                    <producer-map producer-id="{{ $producer->id}}"></producer-map>
                 </div>
             </div>
         </div>
     </div>
+
+    <link rel="stylesheet" href="/css/leaflet/leaflet.min.css" />
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.0/dist/leaflet.markercluster.js"></script>
+    <script src="{{ mix('/js/producer-map.js') }}"></script>
 @endsection
 
