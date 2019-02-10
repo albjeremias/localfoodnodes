@@ -11,7 +11,7 @@ use App\System\Utils\CurrencyConverter;
 use App\Node\Node;
 use App\Helpers\MapHelper;
 
-class PublicApiController extends ApiBaseController
+class UtilsApiController extends ApiBaseController
 {
     /**
      * Translations endpoint.
@@ -81,6 +81,30 @@ class PublicApiController extends ApiBaseController
         return response()->json([
             'nodes' => $nodes,
         ]);
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function mapMetrics(Request $request)
+    {
+        return [
+            'users' => [
+                'count' => \App\User\User::all()->count(),
+                'label' => __('Users'),
+            ],
+            'producers' => [
+                'count' => \App\Producer\Producer::all()->count(),
+                'label' => __('Producers'),
+            ],
+            'nodes' => [
+                'count' => \App\Node\Node::all()->count(),
+                'label' => __('Nodes'),
+            ]
+        ];
     }
 
     /**

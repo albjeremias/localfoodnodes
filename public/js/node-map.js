@@ -1791,17 +1791,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['lang'],
   data: function data() {
     return {
       map: null,
+      metrics: null,
       nodes: [],
-      selectedNode: null
+      selectedNode: null,
+      searchResults: null
     };
   },
   mounted: function mounted() {
     this.fetchNodes();
+    this.fetchMetrics();
   },
   watch: {
     nodes: function nodes(_nodes) {
@@ -1867,12 +1905,20 @@ __webpack_require__.r(__webpack_exports__);
       }).catch(function (error) {
         console.log(error);
       });
-      ;
+    },
+    fetchMetrics: function fetchMetrics() {
+      var _this3 = this;
+
+      axios.get("".concat(this.lang, "/api/mapMetrics")).then(function (metrics) {
+        _this3.metrics = metrics.data;
+      }).catch(function (error) {
+        console.log(error);
+      });
     },
     createMap: function createMap() {
       this.map = L.map(this.$refs.map, {
         attributionControl: false,
-        // todo: how to center?
+        // @Todo: how to center?!!!!!!!!
         center: {
           lat: 56,
           lng: 13
@@ -1901,6 +1947,48 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.selectedNode = null;
+    },
+    search: function search(event) {
+      var _this4 = this;
+
+      axios({
+        url: 'https://nominatim.openstreetmap.org/search',
+        method: 'get',
+        params: {
+          q: event.target.value,
+          format: 'json',
+          addressdetails: 1,
+          featuretype: 'settlement'
+        }
+      }).then(function (searchResults) {
+        _this4.searchResults = searchResults.data;
+      });
+    },
+    debounce: function debounce(func, wait, immediate) {
+      var timeout;
+      return function () {
+        var context = this,
+            args = arguments;
+
+        var later = function later() {
+          timeout = null;
+
+          if (!immediate) {
+            func.apply(context, args);
+          }
+        };
+
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+
+        if (callNow) {
+          func.apply(context, args);
+        }
+      };
+    },
+    selectSearchResult: function selectSearchResult(lat, lng) {
+      this.map.panTo(new L.LatLng(lat, lng));
     }
   }
 });
@@ -1919,7 +2007,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.leaflet-container {\n    height: 500px;\n}\n.leaflet-control-attribution,\n.leaflet-control-attribution a {\n    color: #333 !important;\n    font-size: 10px !important;\n    font-weight: normal !important;\n}\n.leaflet-control a {\n    line-height: 30px !important;\n}\n.map-container {\n    position: relative;\n}\n.map-container .sidebar {\n    background: #fff;\n    height: calc(100% - 2rem);\n    position: absolute;\n    top: 0.5rem;\n    right: 1rem; /* padding of white box */\n    z-index: 999;\n    /* -webkit-transition: right 1s;\n    transition: right 1s; */\n}\n\n", ""]);
+exports.push([module.i, "\n.leaflet-container {\n    height: 500px;\n}\n.leaflet-control-attribution,\n.leaflet-control-attribution a {\n    color: #333 !important;\n    font-size: 10px !important;\n    font-weight: normal !important;\n}\n.leaflet-control a {\n    line-height: 30px !important;\n}\n.map-container {\n    position: relative;\n}\n.map-container .sidebar {\n    background: #fff;\n    height: calc(100% - 2rem);\n    position: absolute;\n    top: 0.5rem;\n    right: 1rem; /* padding of white box */\n    z-index: 999;\n    /* -webkit-transition: right 1s;\n    transition: right 1s; */\n}\n", ""]);
 
 // exports
 
@@ -3072,6 +3160,81 @@ var render = function() {
     { staticClass: "map-container" },
     [
       _c("div", { ref: "map" }, [_vm._v("Loading...")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "map-site-info p-3 d-none d-xl-block" }, [
+        _vm.metrics
+          ? _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col" }, [
+                _c("h4", { staticClass: "m-0" }, [
+                  _vm._v(_vm._s(_vm.metrics.users.count))
+                ]),
+                _vm._v(" "),
+                _c("small", [_vm._v(_vm._s(_vm.metrics.users.label))])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col px-5" }, [
+                _c("h4", { staticClass: "m-0" }, [
+                  _vm._v(_vm._s(_vm.metrics.nodes.count))
+                ]),
+                _vm._v(" "),
+                _c("small", [_vm._v(_vm._s(_vm.metrics.nodes.label))])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col" }, [
+                _c("h4", { staticClass: "m-0" }, [
+                  _vm._v(_vm._s(_vm.metrics.producers.count))
+                ]),
+                _vm._v(" "),
+                _c("small", [_vm._v(_vm._s(_vm.metrics.producers.label))])
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("input", {
+            attrs: { type: "text", placeholder: "Search locations" },
+            on: { keyup: _vm.search }
+          })
+        ]),
+        _vm._v(" "),
+        _vm.searchResults
+          ? _c("div", { staticClass: "row" }, [
+              _c(
+                "ul",
+                _vm._l(_vm.searchResults, function(result) {
+                  return _c(
+                    "li",
+                    {
+                      key: result.place_id,
+                      on: {
+                        click: function($event) {
+                          _vm.selectSearchResult(result.lat, result.lon)
+                        }
+                      }
+                    },
+                    [
+                      _c("div", [
+                        _vm._v(_vm._s(result.display_name.split(",")[0]))
+                      ]),
+                      _vm._v(" "),
+                      _c("small", [
+                        _vm._v(
+                          _vm._s(
+                            result.display_name
+                              .split(",")
+                              .splice(1)
+                              .join(", ")
+                          )
+                        )
+                      ])
+                    ]
+                  )
+                }),
+                0
+              )
+            ])
+          : _vm._e()
+      ]),
       _vm._v(" "),
       _c("transition", [
         _vm.selectedNode

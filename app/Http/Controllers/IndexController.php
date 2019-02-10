@@ -27,8 +27,6 @@ class IndexController extends Controller
      */
     public function index(Request $request)
     {
-        $metrics = $this->getFrontpageMetrics();
-
         $users = User::with(['membershipPaymentsRelationship'])->get();
         $members = $users->filter(function($user) {
             return $user->isMember(true);
@@ -43,7 +41,6 @@ class IndexController extends Controller
         $averageMembershipPayments = $members === 0 ? 0 : $totalMembershipPayments / $totalPayingMembers;
 
         return view('new.public.index', [
-            'metrics' => $metrics,
             'members' => $members,
             'averageMembership' => round($averageMembershipPayments)
         ]);
@@ -153,20 +150,6 @@ class IndexController extends Controller
             'product' => $product,
             'producer' => $producer
         ] + $shareMeta);
-    }
-
-    /**
-     * Get frontpage metrics.
-     *
-     * @return array
-     */
-    private function getFrontpageMetrics()
-    {
-        return [
-            'userCount' => User::all()->count(),
-            'producerCount' => Producer::all()->count(),
-            'nodeCount' => Node::all()->count(),
-        ];
     }
 
     public function findOutMore()

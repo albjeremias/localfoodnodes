@@ -89,25 +89,6 @@
         <div id="node-map">
             <node-map lang="{{ app()->getLocale() }}"></node-map>
         </div>
-
-        <div class="map-site-info p-3 d-none d-xl-block">
-            <div class="row">
-                <div class="col">
-                    <h4 class="m-0">{{ $metrics['userCount'] }}</h4>
-                    <small>{{ __('Users') }}</small>
-                </div>
-
-                <div class="col px-5">
-                    <h4 class="m-0">{{ $metrics['nodeCount'] }}</h4>
-                    <small>{{ __('Nodes') }}</small>
-                </div>
-
-                <div class="col">
-                    <h4 class="m-0">{{ $metrics['producerCount'] }}</h4>
-                    <small>{{ __('Producers') }}</small>
-                </div>
-            </div>
-        </div>
     </section>
 
     {{-- GRADIENTS --}}

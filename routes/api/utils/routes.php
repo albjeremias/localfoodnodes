@@ -1,9 +1,10 @@
 <?php
 
-Route::get('/translations', 'Api\PublicApiController@translations');
-Route::get('/currencies', 'Api\PublicApiController@currencies');
-Route::get('/nodes', 'Api\PublicApiController@nodes');
+Route::get('/translations', 'Api\UtilsApiController@translations');
+Route::get('/currencies', 'Api\UtilsApiController@currencies');
+Route::get('/nodes', 'Api\UtilsApiController@nodes');
+Route::get('/mapMetrics', 'Api\UtilsApiController@mapMetrics');
 
 Route::group(['prefix' => '/economy'], function () {
-    Route::get('/transactions', 'Api\PublicApiController@transactions');
+    Route::get('/transactions', 'Api\UtilsApiController@transactions');
 });

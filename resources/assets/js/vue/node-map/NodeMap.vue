@@ -1,6 +1,42 @@
 <template>
     <div class="map-container">
         <div ref="map">Loading...</div>
+        <div class="map-site-info p-3 d-none d-xl-block">
+            <!-- Metrics -->
+            <div v-if="metrics" class="row">
+                <div class="col">
+                    <h4 class="m-0">{{ metrics.users.count }}</h4>
+                    <small>{{ metrics.users.label }}</small>
+                </div>
+
+                <div class="col px-5">
+                    <h4 class="m-0">{{ metrics.nodes.count }}</h4>
+                    <small>{{ metrics.nodes.label }}</small>
+                </div>
+
+                <div class="col">
+                    <h4 class="m-0">{{ metrics.producers.count }}</h4>
+                    <small>{{ metrics.producers.label }}</small>
+                </div>
+            </div>
+
+            <!-- Search -->
+            <div class="row">
+                <input v-on:keyup="search" type="text" placeholder="Search locations" />
+            </div>
+
+            <!-- Search results -->
+            <div v-if="searchResults" class="row">
+                <ul>
+                    <li v-for="result in searchResults" v-bind:key="result.place_id" v-on:click="selectSearchResult(result.lat, result.lon)">
+                        <div>{{ result.display_name.split(',')[0] }}</div>
+                        <small>{{ result.display_name.split(',').splice(1).join(', ') }}</small>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Node info sidebar -->
         <transition>
             <div v-if="selectedNode" class="white-box sidebar"> <!-- v-bind:class="{ visible: selectedNode }" -->
                 <h4>{{ selectedNode.name }}</h4>
@@ -41,7 +77,6 @@
         /* -webkit-transition: right 1s;
         transition: right 1s; */
     }
-
 </style>
 
 <script>
@@ -50,12 +85,15 @@
         data: function() {
             return {
                 map: null,
+                metrics: null,
                 nodes: [],
                 selectedNode: null,
+                searchResults: null,
             }
         },
         mounted() {
             this.fetchNodes();
+            this.fetchMetrics();
         },
         watch: {
             nodes: function(nodes) {
@@ -114,13 +152,25 @@
                 })
                 .catch(function (error) {
                     console.log(error);
-                });;
+                });
+            },
+
+            fetchMetrics() {
+                axios.get(`${this.lang}/api/mapMetrics`)
+                .then(metrics => {
+                    this.metrics = metrics.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
             },
 
             createMap() {
                 this.map = L.map(this.$refs.map, {
                     attributionControl: false,
-                    // todo: how to center?
+
+                    // @Todo: how to center?!!!!!!!!
+
                     center: {
                         lat: 56,
                         lng: 13,
@@ -153,6 +203,47 @@
                 }
 
                 this.selectedNode = null;
+            },
+
+            search(event) {
+                axios({
+                    url: 'https://nominatim.openstreetmap.org/search',
+                    method: 'get',
+                    params: {
+                        q: event.target.value,
+                        format: 'json',
+                        addressdetails: 1,
+                        featuretype: 'settlement'
+                    }
+                })
+                .then(searchResults => {
+                    this.searchResults = searchResults.data;
+                });
+            },
+
+            debounce(func, wait, immediate) {
+                let timeout;
+
+                return function() {
+                    let context = this, args = arguments;
+                    let later = function() {
+                        timeout = null;
+                        if (!immediate) {
+                            func.apply(context, args);
+                        }
+                    };
+                    let callNow = immediate && !timeout;
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+
+                    if (callNow) {
+                        func.apply(context, args);
+                    }
+                };
+            },
+
+            selectSearchResult(lat, lng) {
+                this.map.panTo(new L.LatLng(lat, lng));
             }
         },
     }
