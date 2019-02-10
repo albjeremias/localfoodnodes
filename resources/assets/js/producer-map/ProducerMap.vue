@@ -137,10 +137,7 @@
                     this.user = user.data;
                     this.userNodes = userNodes.data;
                     this.createMap();
-                }))
-                .catch(function (error) {
-                    console.log(error);
-                });;
+                }));
             },
 
             createMap() {

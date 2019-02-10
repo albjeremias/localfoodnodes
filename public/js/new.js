@@ -45964,7 +45964,7 @@ var render = function() {
         _vm._l(_vm.products, function(product) {
           return _c(
             "div",
-            { staticClass: "col-16 col-lg-8 col-xl-5 mb-3" },
+            { key: product.id, staticClass: "col-16 col-lg-8 col-xl-5 mb-3" },
             [
               _c("card-product-edit", {
                 attrs: {

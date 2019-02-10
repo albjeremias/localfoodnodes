@@ -149,9 +149,6 @@
                 .then(nodes => {
                     this.nodes = nodes.data.nodes;
                     this.createMap();
-                })
-                .catch(function (error) {
-                    console.log(error);
                 });
             },
 
@@ -159,9 +156,6 @@
                 axios.get(`${this.lang}/api/mapMetrics`)
                 .then(metrics => {
                     this.metrics = metrics.data;
-                })
-                .catch(function (error) {
-                    console.log(error);
                 });
             },
 

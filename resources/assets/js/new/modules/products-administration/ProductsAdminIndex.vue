@@ -80,7 +80,7 @@
                 </div>
             </div>
 
-            <div v-for="product in products" class="col-16 col-lg-8 col-xl-5 mb-3">
+            <div v-for="product in products" v-bind:key="product.id" class="col-16 col-lg-8 col-xl-5 mb-3">
                 <card-product-edit
                         :product="product"
                         :producer="producer"

@@ -14,6 +14,7 @@ deploy_staging:
     - sudo chown -R www-data $TARGET_DIR/$CI_PROJECT_NAME
     - sudo chgrp -R www-data $TARGET_DIR/$CI_PROJECT_NAME
     - php artisan migrate
+    - npm install
   only:
     - staging
 

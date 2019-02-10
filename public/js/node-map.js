@@ -1902,8 +1902,6 @@ __webpack_require__.r(__webpack_exports__);
         _this2.nodes = nodes.data.nodes;
 
         _this2.createMap();
-      }).catch(function (error) {
-        console.log(error);
       });
     },
     fetchMetrics: function fetchMetrics() {
@@ -1911,8 +1909,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("".concat(this.lang, "/api/mapMetrics")).then(function (metrics) {
         _this3.metrics = metrics.data;
-      }).catch(function (error) {
-        console.log(error);
       });
     },
     createMap: function createMap() {
