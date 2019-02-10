@@ -31,5 +31,7 @@ Route::get('/faq', 'PageController@vision')->name('sv_faq');
 Route::get('/gdpr', 'PageController@gdpr')->name('sv_gdpr');
 Route::get('/app', 'PageController@app')->name('sv_app');
 
-// Page - There routes must be in the bottom of this file because else they'll match every request
-Route::get('/{type}/{slug}/{subType?}/{subSlug?}', 'PermalinkController@route');
+
+Route::get('/nod/{slug}', 'IndexController@node')->name('sv_node');
+Route::get('/nod/{slug}/producent/{subSlug?}', 'IndexController@nodeProducer')->name('sv_node_producer');
+Route::get('/nod/{slug}/produkt/{subSlug?}', 'IndexController@nodeProduct')->name('sv_node_product');

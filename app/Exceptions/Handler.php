@@ -54,19 +54,18 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        // No lang, redirect...
+        // Before handling a 404, make sure laguange is set.
         if (!$request->segment(1) || !array_key_exists($request->segment(1), config('app.locales'))) {
-            // ... to default lang
+            // Default is to redirect to default lang
             $lang = config('app.locale');
 
-            // or to user specificied lang
+            // If user is logged in we can redirect to the users specificied langauge
             if (Auth::check() && Auth::user()->active) {
                 $user = Auth::user();
                 $lang = $user->language;
             }
 
-            // No lang, redirect to default lang
-            $query = str_replace($request->url(), '',$request->fullUrl());
+            $query = str_replace($request->url(), '', $request->fullUrl());
             return redirect('/' . $lang . '/' . $request->path() . $query);
         }
 

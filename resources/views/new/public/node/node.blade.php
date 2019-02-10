@@ -23,7 +23,7 @@
 
                     <ul class="list-inline pt-2">
                         <li class="list-inline-item mr-4">
-                            <a class="btn btn-primary" href="#">{{ trans('public/node.join') }}</a>
+                            <a class="btn btn-primary" href="#">{{ __('Join') }}</a>
                         </li>
 
                         <li class="list-inline-item mr-4 d-block d-md-inline-block mt-2 mt-md-0">
@@ -33,7 +33,7 @@
 
                         <li class="list-inline-item">
                             <i class="fa fa-clock-o" aria-hidden="true"></i>
-                            {{ trans('public/index.' . $node->delivery_weekday) }},
+                            {{ __($node->delivery_weekday) }},
                             {{ $node->delivery_time }},
                             {{ $node->delivery_interval }}
                         </li>
@@ -47,11 +47,11 @@
                 <div class="row mt-4">
                     <div class="col-16 col-xl-10">
                         <div class="filter">
-                            <h4 class="mb-0">{{ trans('public/node.order_products') }}</h4>
-                            <small>{{ trans('public/node.mark_to_filter') }}</small>
+                            <h4 class="mb-0">{{ __('Products') }}</h4>
+                            <small>{{ __('Select filter') }}</small>
 
                             <div class="mt-3">
-                                <a href="#" class="badge badge-info bc bb">{{ trans('public/node.mark_all') }}</a>
+                                <a href="#" class="badge badge-info bc bb">{{ __('All') }}</a>
                                 @foreach ($tags as $label => $tag)
                                     @if ($tag['active'])
                                         <a href="{{ $tag['url'] }}" class="badge badge-danger"><small class="rc">{{ $label }}</small></a>
@@ -65,34 +65,34 @@
 
                     <div class="col-16 col-xl-6 mt-5 mt-xl-0">
                         <div class="info">
-                            <h4 class="mb-0">{{ trans('public/node.information') }}</h4>
-                            <small>{{ trans('public/node.about') }} {{ $node->name }}</small>
+                            <h4 class="mb-0">{{ __('Information') }}</h4>
+                            <small>{{ __('About') }} {{ $node->name }}</small>
 
                             <div class="row mt-3">
                                 <div class="col-16 col-sm-4 col-lg-3 col-xl-4">
                                     <h4 class="mb-0">1129</h4>
-                                    <small>{{ trans('public/node.users') }}</small>
+                                    <small>{{ __('Users') }}</small>
                                 </div>
 
                                 <div class="col-16 col-sm-4 col-lg-3 col-xl-4">
                                     <h4 class="mb-0">41</h4>
-                                    <small>{{ trans('public/node.producers') }}</small>
+                                    <small>{{ __('Producers') }}</small>
                                 </div>
 
                                 <div class="col-16 col-sm-8 col-lg-3 col-xl-8">
                                     <h4 class="mb-0">13.5 km</h4>
-                                    <small>{{ trans('public/node.average_distance') }}</small>
+                                    <small>{{ __('Average distance') }}</small>
                                 </div>
                             </div>
 
                             <p class="mt-4">
                                 <i class="fa fa-facebook-square icon" aria-hidden="true"></i>
-                                <span class="ml-3">{{ trans('public/node.find_our') }} <a href="#">{{ trans('public/node.communication_group') }}</a></span>
+                                <span class="ml-3">{{ __('Find our') }} <a href="#">{{ __('communication group') }}</a></span>
                             </p>
 
                             <p>
                                 <i class="fa fa-envelope icon" aria-hidden="true"></i>
-                                <span class="ml-3">{{ trans('public/node.contact') }} <a href="#">zaunders@gmail.com</a></span>
+                                <span class="ml-3">{{ __('Contact') }} <a href="#">zaunders@gmail.com</a></span>
                             </p>
                         </div>
                     </div>
@@ -105,7 +105,7 @@
                 <i class="fa fa-calendar icon" aria-hidden="true"></i>
                 <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
-                    {{ trans('public/node.choose_date') }}
+                    {{ __('Choose date') }}
                 </button>
                 <div class="dropdown-menu">
 

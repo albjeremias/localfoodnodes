@@ -1969,8 +1969,8 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   components: {
-    'costs-graph': __webpack_require__(/*! ./CostsGraph */ "./resources/assets/js/vue/economy-in-out/CostsGraph.vue"),
-    'income-graph': __webpack_require__(/*! ./IncomeGraph */ "./resources/assets/js/vue/economy-in-out/IncomeGraph.vue")
+    'costs-graph': __webpack_require__(/*! ./CostsGraph */ "./resources/assets/js/vue/economy-in-out/CostsGraph.vue").default,
+    'income-graph': __webpack_require__(/*! ./IncomeGraph */ "./resources/assets/js/vue/economy-in-out/IncomeGraph.vue").default
   },
   mounted: function mounted() {
     var _this = this;
@@ -31437,7 +31437,7 @@ if (token) {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
-Vue.component('metrics', __webpack_require__(/*! ./Metrics.vue */ "./resources/assets/js/vue/economy-in-out/Metrics.vue"));
+Vue.component('metrics', __webpack_require__(/*! ./Metrics.vue */ "./resources/assets/js/vue/economy-in-out/Metrics.vue").default);
 var app = new Vue({
   el: '#economy-in-out'
 });

@@ -88,14 +88,6 @@ class Permalink extends BaseModel
      */
     public function getUrlAttribute()
     {
-        return '/' . $this->entity_type . '/' . $this->slug;
-    }
-
-    /**
-     * Get url without preceding slash for use with Request::is.
-     */
-    public function getUrlWithoutSlashAttribute()
-    {
-        return $this->entity_type . '/' . $this->slug;
+        return route($this->entity_type, ['slug' => $this->slug]);
     }
 }

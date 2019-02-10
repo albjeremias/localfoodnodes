@@ -70,7 +70,6 @@
         },
         watch: {
             nodes: function(nodes) {
-                console.log('WATCH!', nodes);
                 let markers = L.markerClusterGroup({
                     iconCreateFunction: function(cluster) {
                         return L.divIcon({

@@ -11,7 +11,7 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
-Vue.component('economy-circulation', require('./TotalOrdersMoneyChart.vue'));
+Vue.component('economy-circulation', require('./TotalOrdersMoneyChart.vue').default);
 
 const app = new Vue({
     el: '#economy-circulation',

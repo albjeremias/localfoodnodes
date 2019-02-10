@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1736,10 +1736,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/vue/economy-circulation/TotalOrdersMoneyChart.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/vue/economy-circulation/TotalOrdersMoneyChart.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/vue/node-map/NodeMap.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/vue/node-map/NodeMap.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1791,91 +1791,126 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['translations'],
+  props: ['lang'],
   data: function data() {
     return {
-      currency: 'EUR',
-      currencies: null,
-      data: {
-        circulation: null,
-        count: null,
-        products: null
-      },
-      trans: {}
+      map: null,
+      nodes: [],
+      selectedNode: null
     };
   },
   mounted: function mounted() {
-    var _this = this;
-
-    axios.get('/api/translations?lang=' + window.lang + '&keys=metrics').then(function (response) {
-      _this.trans = response.data.data;
-    });
-    axios.get('https://api.localfoodnodes.org/v1.0/orders/amount?currency=' + this.currency).then(function (response) {
-      _this.data.circulation = response.data.data;
-    });
-    axios.get('https://api.localfoodnodes.org/v1.0/orders/count').then(function (response) {
-      _this.data.count = response.data.data;
-    });
-    axios.get('https://api.localfoodnodes.org/v1.0/orders/products').then(function (response) {
-      _this.data.products = response.data.data;
-    });
-    axios.get('/api/currencies').then(function (response) {
-      _this.currencies = response.data;
-    });
+    this.fetchNodes();
   },
-  methods: {
-    changeCurrency: function changeCurrency(currency) {
-      var _this2 = this;
+  watch: {
+    nodes: function nodes(_nodes) {
+      var _this = this;
 
-      axios.get('https://api.localfoodnodes.org/v1.0/orders/amount?currency=' + currency).then(function (response) {
-        _this2.data.circulation = response.data.data;
-        _this2.currency = currency;
+      var markers = L.markerClusterGroup({
+        iconCreateFunction: function iconCreateFunction(cluster) {
+          return L.divIcon({
+            html: '<i class="fa fa-map-pin leaflet-cluster-marker"></i',
+            iconAnchor: [16, 16]
+          });
+        },
+        showCoverageOnHover: false,
+        spiderLegPolylineOptions: {
+          opacity: 0
+        }
       });
+      markers.clearLayers();
+
+      var _loop = function _loop(i) {
+        var node = _nodes[i];
+        var markerIcon = L.divIcon({
+          html: '<i class="fa fa-map-marker leaflet-marker"></i>',
+          iconAnchor: [16, 32]
+        });
+        var marker = L.marker([node.location.lat, node.location.lng], {
+          icon: markerIcon
+        });
+        marker.on('click', function (event) {
+          if (_this.selectedNode && node.id === _this.selectedNode.id) {
+            _this.resetSelectedNode();
+          } else {
+            _this.resetSelectedNode(); // Set selected marker icon
+
+
+            var selectedIcon = L.divIcon({
+              html: '<i class="fa fa-map-marker leaflet-marker selected"></i>',
+              iconAnchor: [16, 32]
+            });
+            event.target.setIcon(selectedIcon);
+            _this.selectedNode = node;
+            $(marker._icon).addClass('selected');
+          }
+        }, _this);
+        markers.addLayer(marker);
+      };
+
+      for (var i = 0; i < _nodes.length; i++) {
+        _loop(i);
+      }
+
+      this.map.addLayer(markers);
     }
   },
-  computed: {
-    loading: function loading() {
-      return this.data.count && this.data.products && this.data.circulation ? false : true;
+  methods: {
+    fetchNodes: function fetchNodes() {
+      var _this2 = this;
+
+      axios.get("".concat(this.lang, "/api/nodes")).then(function (nodes) {
+        _this2.nodes = nodes.data.nodes;
+
+        _this2.createMap();
+      }).catch(function (error) {
+        console.log(error);
+      });
+      ;
+    },
+    createMap: function createMap() {
+      this.map = L.map(this.$refs.map, {
+        attributionControl: false,
+        // todo: how to center?
+        center: {
+          lat: 56,
+          lng: 13
+        },
+        maxZoom: 12,
+        scrollWheelZoom: false,
+        zoom: 8,
+        zoomControl: false
+      });
+      L.control.zoom({
+        position: 'bottomleft'
+      }).addTo(this.map);
+      var mapboxUrl = 'https://api.mapbox.com/styles/v1/davidajnered/cjbhze779dawz2sp6vvsw4ktq/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGF2aWRham5lcmVkIiwiYSI6ImNpenZxcWhoMzAwMGcyd254dGU4YzNkMjQifQ.DJncF9-KJ5RQAozfIwlKDw';
+      var tileLayer = L.tileLayer(mapboxUrl, {
+        attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
+      });
+      tileLayer.addTo(this.map);
+    },
+    resetSelectedNode: function resetSelectedNode(node) {
+      var selectedMarker = document.getElementsByClassName('leaflet-marker selected');
+
+      if (selectedMarker.length > 0) {
+        selectedMarker[0].classList.remove('selected');
+      }
+
+      this.selectedNode = null;
     }
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/vue/economy-circulation/TotalOrdersMoneyChart.vue?vue&type=style&index=0&id=5ffa3765&scoped=true&lang=css&":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/vue/economy-circulation/TotalOrdersMoneyChart.vue?vue&type=style&index=0&id=5ffa3765&scoped=true&lang=css& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/vue/node-map/NodeMap.vue?vue&type=style&index=0&lang=css&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/vue/node-map/NodeMap.vue?vue&type=style&index=0&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1884,7 +1919,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.metrics[data-v-5ffa3765] {\n    display: flex;\n    justify-content: center;\n}\n.metric[data-v-5ffa3765] {\n    align-items: center;\n    background: #d6c69b;\n    border-radius: 100%;\n    color: #fff;\n    display: flex;\n    height: 200px;\n    justify-content: center;\n    margin: 1rem;\n    width: 200px;\n}\n.metric-inner[data-v-5ffa3765] {\n    align-items: center;\n    background: #d6c69b;\n    border: 2px dashed #fff;\n    border-radius: 100%;\n    display: flex;\n    flex-direction: column;\n    height: 190px;\n    justify-content: center;\n    padding-top: 15px;\n    text-align: center;\n    width: 190px;\n}\n.metric-inner .value[data-v-5ffa3765] {\n    font-size: 24px;\n    font-weight: bold;\n}\n.metric-inner .label[data-v-5ffa3765] {\n    font-weight: bold;\n    margin-top: 5px;\n}\n", ""]);
+exports.push([module.i, "\n.leaflet-container {\n    height: 500px;\n}\n.leaflet-control-attribution,\n.leaflet-control-attribution a {\n    color: #333 !important;\n    font-size: 10px !important;\n    font-weight: normal !important;\n}\n.leaflet-control a {\n    line-height: 30px !important;\n}\n.map-container {\n    position: relative;\n}\n.map-container .sidebar {\n    background: #fff;\n    height: calc(100% - 2rem);\n    position: absolute;\n    top: 0.5rem;\n    right: 1rem; /* padding of white box */\n    z-index: 999;\n    /* -webkit-transition: right 1s;\n    transition: right 1s; */\n}\n\n", ""]);
 
 // exports
 
@@ -2403,15 +2438,15 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/vue/economy-circulation/TotalOrdersMoneyChart.vue?vue&type=style&index=0&id=5ffa3765&scoped=true&lang=css&":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/vue/economy-circulation/TotalOrdersMoneyChart.vue?vue&type=style&index=0&id=5ffa3765&scoped=true&lang=css& ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/vue/node-map/NodeMap.vue?vue&type=style&index=0&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/vue/node-map/NodeMap.vue?vue&type=style&index=0&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../../../node_modules/css-loader??ref--7-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--7-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./TotalOrdersMoneyChart.vue?vue&type=style&index=0&id=5ffa3765&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/vue/economy-circulation/TotalOrdersMoneyChart.vue?vue&type=style&index=0&id=5ffa3765&scoped=true&lang=css&");
+var content = __webpack_require__(/*! !../../../../../node_modules/css-loader??ref--7-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--7-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./NodeMap.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/vue/node-map/NodeMap.vue?vue&type=style&index=0&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -3017,10 +3052,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/vue/economy-circulation/TotalOrdersMoneyChart.vue?vue&type=template&id=5ffa3765&scoped=true&":
-/*!********************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/vue/economy-circulation/TotalOrdersMoneyChart.vue?vue&type=template&id=5ffa3765&scoped=true& ***!
-  \********************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/vue/node-map/NodeMap.vue?vue&type=template&id=6a0cc4f7&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/vue/node-map/NodeMap.vue?vue&type=template&id=6a0cc4f7& ***!
+  \*******************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3032,120 +3067,40 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row justify-content-center mt-5" }, [
-    _c("div", { staticClass: "col-12 mb-5" }, [
-      _c("i", {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.loading,
-            expression: "loading"
-          }
-        ],
-        staticClass: "fa fa-spinner fa-spin loader"
-      }),
+  return _c(
+    "div",
+    { staticClass: "map-container" },
+    [
+      _c("div", { ref: "map" }, [_vm._v("Loading...")]),
       _vm._v(" "),
-      _c(
-        "div",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: !_vm.loading,
-              expression: "!loading"
-            }
-          ],
-          staticClass: "row metrics"
-        },
-        [
-          _c("div", { staticClass: "metric" }, [
-            _c("div", { staticClass: "metric-inner" }, [
-              _c("div", { staticClass: "value" }, [
-                _vm._v(_vm._s(_vm.data.products))
-              ]),
+      _c("transition", [
+        _vm.selectedNode
+          ? _c("div", { staticClass: "white-box sidebar" }, [
+              _c("h4", [_vm._v(_vm._s(_vm.selectedNode.name))]),
               _vm._v(" "),
-              _c("div", { staticClass: "label" }, [
-                _vm._v(_vm._s(this.trans.unique_products))
+              _c("div", { staticClass: "row no-gutters" }, [
+                _c("div", { staticClass: "col" }, [
+                  _c("div", [_vm._v(_vm._s(_vm.selectedNode.name))]),
+                  _vm._v(" "),
+                  _c("small", [
+                    _c(
+                      "a",
+                      {
+                        attrs: {
+                          href: _vm.selectedNode.permalink_relationship.url
+                        }
+                      },
+                      [_vm._v("Visit node")]
+                    )
+                  ])
+                ])
               ])
             ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "metric" }, [
-            _c("div", { staticClass: "metric-inner" }, [
-              _c("div", { staticClass: "value" }, [
-                _vm._v(_vm._s(_vm.data.count))
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "label" }, [
-                _vm._v(_vm._s(this.trans.items_sold))
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "metric" }, [
-            _c("div", { staticClass: "metric-inner" }, [
-              _c("div", { staticClass: "value" }, [
-                _vm._v(
-                  _vm._s(parseInt(_vm.data.circulation).toLocaleString("sv")) +
-                    " " +
-                    _vm._s(_vm.currency)
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "label" }, [
-                _vm._v(_vm._s(this.trans.money_circulated))
-              ])
-            ])
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "dropdown" }, [
-        _c(
-          "span",
-          {
-            staticClass: "dropdown-toggle",
-            attrs: { id: "dropdownMenuButton", "data-toggle": "dropdown" }
-          },
-          [
-            _vm._v(
-              "\n                " +
-                _vm._s(this.trans.change_currency) +
-                ": " +
-                _vm._s(this.currency) +
-                "\n            "
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "dropdown-menu",
-            attrs: { "aria-labelledby": "dropdownMenuButton" }
-          },
-          _vm._l(this.currencies, function(currency) {
-            return _c(
-              "span",
-              {
-                key: currency.id,
-                staticClass: "dropdown-item",
-                on: {
-                  click: function($event) {
-                    _vm.changeCurrency(currency.currency)
-                  }
-                }
-              },
-              [_vm._v(_vm._s(currency.currency) + " " + _vm._s(currency.label))]
-            )
-          }),
-          0
-        )
+          : _vm._e()
       ])
-    ])
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -14376,18 +14331,18 @@ module.exports = g;
 
 /***/ }),
 
-/***/ "./resources/assets/js/vue/economy-circulation/TotalOrdersMoneyChart.vue":
-/*!*******************************************************************************!*\
-  !*** ./resources/assets/js/vue/economy-circulation/TotalOrdersMoneyChart.vue ***!
-  \*******************************************************************************/
+/***/ "./resources/assets/js/vue/node-map/NodeMap.vue":
+/*!******************************************************!*\
+  !*** ./resources/assets/js/vue/node-map/NodeMap.vue ***!
+  \******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _TotalOrdersMoneyChart_vue_vue_type_template_id_5ffa3765_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TotalOrdersMoneyChart.vue?vue&type=template&id=5ffa3765&scoped=true& */ "./resources/assets/js/vue/economy-circulation/TotalOrdersMoneyChart.vue?vue&type=template&id=5ffa3765&scoped=true&");
-/* harmony import */ var _TotalOrdersMoneyChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TotalOrdersMoneyChart.vue?vue&type=script&lang=js& */ "./resources/assets/js/vue/economy-circulation/TotalOrdersMoneyChart.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _TotalOrdersMoneyChart_vue_vue_type_style_index_0_id_5ffa3765_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TotalOrdersMoneyChart.vue?vue&type=style&index=0&id=5ffa3765&scoped=true&lang=css& */ "./resources/assets/js/vue/economy-circulation/TotalOrdersMoneyChart.vue?vue&type=style&index=0&id=5ffa3765&scoped=true&lang=css&");
+/* harmony import */ var _NodeMap_vue_vue_type_template_id_6a0cc4f7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NodeMap.vue?vue&type=template&id=6a0cc4f7& */ "./resources/assets/js/vue/node-map/NodeMap.vue?vue&type=template&id=6a0cc4f7&");
+/* harmony import */ var _NodeMap_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NodeMap.vue?vue&type=script&lang=js& */ "./resources/assets/js/vue/node-map/NodeMap.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _NodeMap_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NodeMap.vue?vue&type=style&index=0&lang=css& */ "./resources/assets/js/vue/node-map/NodeMap.vue?vue&type=style&index=0&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -14398,75 +14353,75 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _TotalOrdersMoneyChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _TotalOrdersMoneyChart_vue_vue_type_template_id_5ffa3765_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _TotalOrdersMoneyChart_vue_vue_type_template_id_5ffa3765_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _NodeMap_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _NodeMap_vue_vue_type_template_id_6a0cc4f7___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _NodeMap_vue_vue_type_template_id_6a0cc4f7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "5ffa3765",
+  null,
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/vue/economy-circulation/TotalOrdersMoneyChart.vue"
+component.options.__file = "resources/assets/js/vue/node-map/NodeMap.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/vue/economy-circulation/TotalOrdersMoneyChart.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************!*\
-  !*** ./resources/assets/js/vue/economy-circulation/TotalOrdersMoneyChart.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************/
+/***/ "./resources/assets/js/vue/node-map/NodeMap.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/assets/js/vue/node-map/NodeMap.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TotalOrdersMoneyChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./TotalOrdersMoneyChart.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/vue/economy-circulation/TotalOrdersMoneyChart.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TotalOrdersMoneyChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NodeMap_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./NodeMap.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/vue/node-map/NodeMap.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NodeMap_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/vue/economy-circulation/TotalOrdersMoneyChart.vue?vue&type=style&index=0&id=5ffa3765&scoped=true&lang=css&":
-/*!****************************************************************************************************************************************!*\
-  !*** ./resources/assets/js/vue/economy-circulation/TotalOrdersMoneyChart.vue?vue&type=style&index=0&id=5ffa3765&scoped=true&lang=css& ***!
-  \****************************************************************************************************************************************/
+/***/ "./resources/assets/js/vue/node-map/NodeMap.vue?vue&type=style&index=0&lang=css&":
+/*!***************************************************************************************!*\
+  !*** ./resources/assets/js/vue/node-map/NodeMap.vue?vue&type=style&index=0&lang=css& ***!
+  \***************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TotalOrdersMoneyChart_vue_vue_type_style_index_0_id_5ffa3765_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader??ref--7-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--7-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./TotalOrdersMoneyChart.vue?vue&type=style&index=0&id=5ffa3765&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/vue/economy-circulation/TotalOrdersMoneyChart.vue?vue&type=style&index=0&id=5ffa3765&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TotalOrdersMoneyChart_vue_vue_type_style_index_0_id_5ffa3765_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TotalOrdersMoneyChart_vue_vue_type_style_index_0_id_5ffa3765_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TotalOrdersMoneyChart_vue_vue_type_style_index_0_id_5ffa3765_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TotalOrdersMoneyChart_vue_vue_type_style_index_0_id_5ffa3765_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TotalOrdersMoneyChart_vue_vue_type_style_index_0_id_5ffa3765_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NodeMap_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader??ref--7-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--7-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./NodeMap.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/vue/node-map/NodeMap.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NodeMap_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NodeMap_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NodeMap_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NodeMap_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NodeMap_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/vue/economy-circulation/TotalOrdersMoneyChart.vue?vue&type=template&id=5ffa3765&scoped=true&":
-/*!**************************************************************************************************************************!*\
-  !*** ./resources/assets/js/vue/economy-circulation/TotalOrdersMoneyChart.vue?vue&type=template&id=5ffa3765&scoped=true& ***!
-  \**************************************************************************************************************************/
+/***/ "./resources/assets/js/vue/node-map/NodeMap.vue?vue&type=template&id=6a0cc4f7&":
+/*!*************************************************************************************!*\
+  !*** ./resources/assets/js/vue/node-map/NodeMap.vue?vue&type=template&id=6a0cc4f7& ***!
+  \*************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TotalOrdersMoneyChart_vue_vue_type_template_id_5ffa3765_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./TotalOrdersMoneyChart.vue?vue&type=template&id=5ffa3765&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/vue/economy-circulation/TotalOrdersMoneyChart.vue?vue&type=template&id=5ffa3765&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TotalOrdersMoneyChart_vue_vue_type_template_id_5ffa3765_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NodeMap_vue_vue_type_template_id_6a0cc4f7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./NodeMap.vue?vue&type=template&id=6a0cc4f7& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/vue/node-map/NodeMap.vue?vue&type=template&id=6a0cc4f7&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NodeMap_vue_vue_type_template_id_6a0cc4f7___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TotalOrdersMoneyChart_vue_vue_type_template_id_5ffa3765_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NodeMap_vue_vue_type_template_id_6a0cc4f7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/assets/js/vue/economy-circulation/economy-circulation.js":
-/*!****************************************************************************!*\
-  !*** ./resources/assets/js/vue/economy-circulation/economy-circulation.js ***!
-  \****************************************************************************/
+/***/ "./resources/assets/js/vue/node-map/node-map.js":
+/*!******************************************************!*\
+  !*** ./resources/assets/js/vue/node-map/node-map.js ***!
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14481,21 +14436,21 @@ if (token) {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
-Vue.component('economy-circulation', __webpack_require__(/*! ./TotalOrdersMoneyChart.vue */ "./resources/assets/js/vue/economy-circulation/TotalOrdersMoneyChart.vue").default);
+Vue.component('node-map', __webpack_require__(/*! ./NodeMap */ "./resources/assets/js/vue/node-map/NodeMap.vue").default);
 var app = new Vue({
-  el: '#economy-circulation'
+  el: '#node-map'
 });
 
 /***/ }),
 
-/***/ 2:
-/*!**********************************************************************************!*\
-  !*** multi ./resources/assets/js/vue/economy-circulation/economy-circulation.js ***!
-  \**********************************************************************************/
+/***/ 6:
+/*!************************************************************!*\
+  !*** multi ./resources/assets/js/vue/node-map/node-map.js ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/davidajnered/Sites/localfoodnodes/resources/assets/js/vue/economy-circulation/economy-circulation.js */"./resources/assets/js/vue/economy-circulation/economy-circulation.js");
+module.exports = __webpack_require__(/*! /Users/davidajnered/Sites/localfoodnodes/resources/assets/js/vue/node-map/node-map.js */"./resources/assets/js/vue/node-map/node-map.js");
 
 
 /***/ })

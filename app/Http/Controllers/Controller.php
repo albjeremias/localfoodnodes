@@ -51,9 +51,9 @@ class Controller extends BaseController
      * @param Request $request
      * @param Closure $next
      */
-    protected function setLang()
+    protected function getLang()
     {
-        \App::setLocale($this->getLang());
+        return $this->setLang();
     }
 
     /**
@@ -61,30 +61,21 @@ class Controller extends BaseController
      *
      * @return string
      */
-    public function getLang()
+    public function setLang()
     {
         $request = \Request();
 
-        // IF: no language is set in the URL
-        //   IF: user is logged in
-        //     Use users language
-        //   ELSE:
-        //     Use site default lang
-        // ELSE:
-        //   Use URL language
-
-        // No lang, redirect...
+        // No language is set so we make sure there's always a language
         if (!$request->segment(1) || !array_key_exists($request->segment(1), config('app.locales'))) {
-            // ... to default lang
+            // Default is to redirect to default lang
             $lang = config('app.locale');
 
-            // or to user specificied lang
+            // If user is logged in we can redirect to the users specificied langauge
             if (Auth::check() && Auth::user()->active) {
                 $user = Auth::user();
                 $lang = $user->language;
             }
 
-            // No lang, redirect to default lang
             $query = str_replace($request->url(), '', $request->fullUrl());
             return redirect('/' . $lang . '/' . $request->path() . $query);
         }
@@ -93,6 +84,8 @@ class Controller extends BaseController
         if ($request->segment(1) && array_key_exists($request->segment(1), config('app.locales'))) {
             $lang = $request->segment(1);
         }
+
+        \App::setLocale($lang);
 
         return $lang;
     }

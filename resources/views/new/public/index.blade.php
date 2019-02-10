@@ -21,8 +21,7 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text"><i class="fa fa-search"></i></div>
                         </div>
-                        <input type="text" class="form-control" id="search_input"
-                               placeholder="{{ trans('public/index.found_your_local') }}">
+                        <input type="text" class="form-control" id="search_input" placeholder="{{ trans('public/index.found_your_local') }}">
                     </div>
 
                     <p class="mt-3">
@@ -87,24 +86,25 @@
     </section>
 
     <section class="bg-accent-light-12 node-map">
-        <div id="node-map-component-root" data-ip="{{ Request::ip() }}"
-             data-user-location="{{ json_encode($user->location) }}"
-             data-trans="{{ json_encode(trans('public/index')) }}"></div>
+        <div id="node-map">
+            <node-map lang="{{ app()->getLocale() }}"></node-map>
+        </div>
+
         <div class="map-site-info p-3 d-none d-xl-block">
             <div class="row">
                 <div class="col">
                     <h4 class="m-0">{{ $metrics['userCount'] }}</h4>
-                    <small>{{ trans('public/index.map_users') }}</small>
+                    <small>{{ __('Users') }}</small>
                 </div>
 
                 <div class="col px-5">
                     <h4 class="m-0">{{ $metrics['nodeCount'] }}</h4>
-                    <small>{{ trans('public/index.map_nodes') }}</small>
+                    <small>{{ __('Nodes') }}</small>
                 </div>
 
                 <div class="col">
                     <h4 class="m-0">{{ $metrics['producerCount'] }}</h4>
-                    <small>{{ trans('public/index.map_producers') }}</small>
+                    <small>{{ __('Producers') }}</small>
                 </div>
             </div>
         </div>
@@ -160,7 +160,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 offset-lg-3">
-                    <h4 class="pb-4">{{ trans('public/index.membership') }}</h4>
+                    <h4 class="pb-4">{{ __('Membership') }}</h4>
                     <h2 class="text-uppercase">{{ trans('public/index.co_fund_heading') }}</h2>
                     <P class="mb-0">{{ trans('public/index.co_fund_subheading') }}</P>
 
@@ -173,6 +173,11 @@
                             @include('new.components.statistics.average-fee')
                         </div>
                     </div>
+
+                    <div id="economy-circulation">
+                        <economy-circulation></economy-circulation>
+                    </div>
+
                     <p class="w-75 text-center mx-auto">{{ trans('public/index.co_fund_paragraph_short') }}</p>
 
                     <p class="rc text-uppercase mt-4">{{ trans('public/index.co_fund_read_more') }}</p>
@@ -185,10 +190,14 @@
     {{-- ECONOMY --}}
     <section class="medium bg-accent-light-24 text-center">
         <div class="container">
-            <h4 class="py-5">{{ trans('public/index.economy') }}</h4>
-            <metrics translations="{{ json_encode(trans('public/economy')) }}"></metrics>
-            <p>{{ trans('public/index.transparency_short') }}</p>
-            <span class="rc text-uppercase">{{ trans('public/index.read_more_economy') }}</span>
+            <h4 class="py-5">{{ __('Economy') }}</h4>
+
+            <div id="economy-in-out">
+                <metrics></metrics>
+            </div>
+
+            <p>{{ __('Local Food Nodes is building on full transparency economy. All transactions are open to see and reported here with regular updates. Go to our economy page for more detailed information regarding our economic stand points, and on how we work inclusively and create posibilitys for co-deciding in how money will flow and be distributed trough the platform.') }}</p>
+            <span class="rc text-uppercase">{{ trans('Read more about our economy') }}</span>
         </div>
 {{--        @include('new.components.arrow', ['dark' => true, 'classes' => 'pb-3 pt-2', 'anchor' => 'how-it-works'])--}}
     </section>
@@ -263,4 +272,6 @@
     <script src="https://unpkg.com/leaflet@1.3.0/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>
     <script src="/js/node-map.js"></script>
+    <script src="/js/economy-circulation.js"></script>
+    <script src="/js/economy-in-out.js"></script>
 @endsection

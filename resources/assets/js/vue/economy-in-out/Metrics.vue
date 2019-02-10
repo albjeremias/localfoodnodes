@@ -59,8 +59,8 @@
             }
         },
         components: {
-            'costs-graph': require('./CostsGraph'),
-            'income-graph': require('./IncomeGraph'),
+            'costs-graph': require('./CostsGraph').default,
+            'income-graph': require('./IncomeGraph').default,
         },
         mounted() {
             axios.get('/api/translations?lang=' + window.lang + '&keys=metrics')

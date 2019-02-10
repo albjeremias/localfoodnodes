@@ -7,22 +7,47 @@ use Illuminate\Support\Facades\DB;
 trait Excludable
 {
     /**
-     * Exclude column from query.
+     * Set language middleware.
      *
-     * @param [type] $query   [description]
-     * @param [type] $columns [description]
-     * @return [type]          [description]
+     * @param Request $request
+     * @param Closure $next
      */
-    public function scopeExclude($query, $columns)
+    protected function setLang()
     {
-        $tableColumns = $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
-        $tableColumns = array_diff($tableColumns, (array) $columns);
+        \App::setLocale($this->getLang());
+    }
 
-        // Modify location query to work with geo spatial
-        if (($index = array_search('location', $tableColumns)) !== false) {
-            $tableColumns[$index] =  DB::raw('astext(location) as location');
+    /**
+     * Get current language.
+     *
+     * @return string
+     */
+    public function getLang()
+    {
+        $request = \Request();
+
+        // No language set
+        if (!$request->segment(1) || !array_key_exists($request->segment(1), config('app.locales'))) {
+            // Default is to redirect to default lang
+            $lang = config('app.locale');
+
+            // If user is logged in we can redirect to the users specificied langauge
+            if (Auth::check() && Auth::user()->active) {
+                $user = Auth::user();
+                $lang = $user->language;
+            }
+
+            View::share('lang', $lang);
+
+            $query = str_replace($request->url(), '', $request->fullUrl());
+            return redirect('/' . $lang . '/' . $request->path() . $query);
         }
 
-        return $query->select($tableColumns);
+        // If lang value is present in request store it
+        if ($request->segment(1) && array_key_exists($request->segment(1), config('app.locales'))) {
+            $lang = $request->segment(1);
+        }
+
+        return $lang;
     }
 }

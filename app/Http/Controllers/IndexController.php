@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Collection;
 
 use App\Http\Requests;
+use App\Permalink;
 use App\Node\Node;
 use App\User\User;
 use App\User\UserMembershipPayment;
@@ -51,8 +52,9 @@ class IndexController extends Controller
     /**
      * Show content of a node and connected producers
      */
-    public function node(Request $request, $nodeId)
+    public function node(Request $request, $slug)
     {
+        $nodeId = Permalink::where('slug', $slug)->where('entity_type', 'node')->get()->pluck('entity_id');
         $node = Node::where('id', $nodeId)->with('producerLinksRelationship', 'productNodeDeliveryLinksRelationship')->first();
 
         if ($node->is_hidden) {

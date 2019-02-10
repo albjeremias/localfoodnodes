@@ -1,11 +1,12 @@
 {
     "/js/admin-transaction-list.js": "/js/admin-transaction-list.js?id=e678d6021242bedfd6c2",
-    "/js/economy-circulation.js": "/js/economy-circulation.js?id=48f23e8f58712096d62c",
-    "/js/economy-in-out.js": "/js/economy-in-out.js?id=8b688bede9a45335a96b",
-    "/js/new.js": "/js/new.js?id=a30a708f5cb1cd48da58",
+    "/js/economy-circulation.js": "/js/economy-circulation.js?id=b32f5756e54d9ca5e153",
+    "/js/economy-in-out.js": "/js/economy-in-out.js?id=42a1529f3975da1a2e39",
+    "/js/new.js": "/js/new.js?id=15472c3397015db750d0",
+    "/js/node-map.js": "/js/node-map.js?id=aecb98b8d622dc63ad8a",
     "/js/payment-widget.js": "/js/payment-widget.js?id=bda93d75cadb23cd804d",
-    "/css/public.css": "/css/public.css?id=2c97f63d9ce24f5ad4f8",
+    "/css/public.css": "/css/public.css?id=6d76b56e05454c90a427",
     "/css/account.css": "/css/account.css?id=d41d8cd98f00b204e980",
-    "/js/producer-map.js": "/js/producer-map.js?id=06c6d014a6f26b54eb56",
+    "/js/producer-map.js": "/js/producer-map.js?id=7e984533cb4d2e1fa4eb",
     "/js/transactions.js": "/js/transactions.js?id=fc94d748417a25537e2b"
 }
