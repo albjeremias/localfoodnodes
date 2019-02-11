@@ -8,6 +8,7 @@ deploy_staging:
   script:
     - composer install
     - npm install
+    - npm run production
     - sudo mkdir -p $TARGET_DIR/$CI_PROJECT_NAME
     - sudo rsync -azr --delete --exclude .git/ --exclude-from .rsyncignore $CI_PROJECT_DIR $TARGET_DIR
     - sudo chmod 777 -R $TARGET_DIR/$CI_PROJECT_NAME/storage
