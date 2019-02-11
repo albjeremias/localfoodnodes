@@ -48,7 +48,6 @@ class ProductFilter
             'beer' => __('Beer'),
             'beverage' => __('Beverage'),
             'bread' => __('Bread'),
-            'csa' => __('CSA'),
             'dairy_cheese' => __('Dairy and cheese'),
             'eggs' => __('Eggs'),
             'fish' => __('Fish'),

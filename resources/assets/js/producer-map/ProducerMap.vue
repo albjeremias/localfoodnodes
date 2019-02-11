@@ -47,7 +47,7 @@
         height: calc(100% - 2rem);
         padding: 1rem;
         position: absolute;
-        top: 1rem;
+        top: 0.5rem;
         right: 1rem;
         z-index: 999;
     }
