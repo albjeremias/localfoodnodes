@@ -6,7 +6,6 @@ mix.options({
 
 // Styles
 mix.sass('resources/assets/sass/public.sass', 'public/css').version();
-mix.sass('resources/assets/sass/account.sass', 'public/css').version();
 
 // Vue
 mix.js('resources/assets/js/payment-widget/payment-widget.js', 'public/js').version();

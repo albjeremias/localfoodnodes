@@ -15532,6 +15532,123 @@ section.medium-gradient .inverted-accent {
   display: none;
 }
 
+.payment-widget .StripeElement {
+  background-color: white;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid #c5c5bc;
+  border-radius: 3px;
+  transition: box-shadow 150ms ease;
+}
+
+.payment-widget .StripeElement--invalid {
+  border-color: #f5c6cb;
+}
+
+.payment-widget #card-errors {
+  display: none;
+}
+
+.payment-widget .payment-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+
+.payment-widget .payment-form-wrapper form {
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.24);
+}
+
+.payment-widget .payment-form-wrapper form label {
+  font-weight: bold;
+  display: block;
+}
+
+.payment-widget .payment-form-wrapper form label.error {
+  color: #bf360c;
+}
+
+.payment-widget .payment-form-wrapper form .form-check-label {
+  font-weight: normal;
+}
+
+.payment-widget .payment-form-wrapper form button[type=submit] {
+  border-radius: 20px;
+  padding: 0.5rem 1.46rem;
+}
+
+.payment-widget .payment-form-wrapper form input[type=radio] {
+  display: none;
+}
+
+.payment-widget .payment-form-wrapper form input + label .btn {
+  background: #e0e0e0;
+  border: 0;
+  border-radius: 20px;
+  color: rgba(0, 0, 0, 0.87);
+  padding: 0.6rem 1.4rem;
+  width: 80px;
+}
+
+.payment-widget .payment-form-wrapper form input + label .btn span {
+  font-size: 75%;
+  font-weight: bold;
+}
+
+.payment-widget .payment-form-wrapper form input + label .btn:hover {
+  background: #c7c6c6;
+}
+
+.payment-widget .payment-form-wrapper form input:checked + label .btn {
+  background-color: #efcec4;
+  color: #bf360c;
+}
+
+.payment-widget .payment-form-wrapper form .form-sections > * {
+  padding: 1rem 2rem 0;
+}
+
+.payment-widget .payment-form-wrapper form .form-sections > *:last-child {
+  padding-bottom: 1rem;
+  padding-top: 2rem;
+}
+
+.payment-widget .payment-form-wrapper form .form-section.amount .info {
+  background: #ec2c22;
+  background: linear-gradient(to top, #ffa600, #bf360c);
+  border-radius: 3px;
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+.payment-widget .payment-form-wrapper form .form-section.amount .info span {
+  font-size: 24px;
+  line-height: 24px;
+}
+
+.payment-widget .payment-form-wrapper form .form-section.amount .amounts {
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 174px;
+}
+
+.payment-widget .payment-form-wrapper form .form-section.submit .signup-form {
+  display: none;
+}
+
+.payment-widget .payment-form-wrapper form .recurring-options {
+  display: flex;
+}
+
+.payment-widget .payment-form-wrapper form .recurring-options input + label .btn {
+  width: auto;
+}
+
 /* Slider */
 
 .slick-slider {

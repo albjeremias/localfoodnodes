@@ -1,0 +1,127 @@
+.payment-widget {
+  .StripeElement {
+      background-color: white;
+      padding: .375rem .75rem;
+      border: 1px solid #c5c5bc;
+      border-radius: 3px;
+      -webkit-transition: box-shadow 150ms ease;
+      transition: box-shadow 150ms ease;
+  }
+
+  .StripeElement--invalid {
+      border-color: #f5c6cb;
+  }
+
+  #card-errors {
+      display: none;
+  }
+
+  .payment-form-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-bottom: 30px;
+
+    form {
+      background: #fff;
+      border-radius: 3px;
+      box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.24);
+
+      label {
+        font-weight: bold;
+        display: block;
+
+        &.error {
+          color: $main-primary;
+        }
+      }
+
+      .form-check-label {
+        font-weight: normal;
+      }
+
+      button[type=submit] {
+          border-radius: 20px;
+          padding: .5rem 1.46rem;
+      }
+
+      input[type=radio] {
+        display: none;
+      }
+
+      input + label .btn {
+        background: #e0e0e0;
+        border: 0;
+        border-radius: 20px;
+        color: rgba(0, 0, 0, 0.87);
+        padding: .6rem 1.4rem;
+        width: 80px;
+      }
+
+      input + label .btn span {
+        font-size: 75%;
+        font-weight: bold;
+      }
+
+      input + label .btn:hover {
+        background: #c7c6c6;
+      }
+
+      input:checked + label .btn {
+        background-color: #efcec4;
+        color: #bf360c;
+      }
+
+      .form-sections {
+        > * {
+          padding: 1rem 2rem 0;
+
+          &:last-child {
+            padding-bottom: 1rem;
+            padding-top: 2rem;
+          }
+        }
+      }
+
+      .form-section {
+        &.amount {
+          .info {
+            background: #ec2c22;
+            background: -webkit-gradient(linear, left bottom, left top, from(#ffa600), to($main-primary));
+            background: linear-gradient(to top, #ffa600, $main-primary);
+            border-radius: 3px;
+            color: #fff;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            text-align: center;
+
+            span {
+              font-size: 24px;
+              line-height: 24px;
+            }
+          }
+
+          .amounts {
+            display: flex;
+            flex-wrap: wrap;
+            min-width: 174px;
+          }
+        }
+
+        &.submit {
+          .signup-form {
+            display: none;
+          }
+        }
+      }
+
+      .recurring-options {
+          display: flex;
+      }
+      .recurring-options input + label .btn {
+          width: auto;
+      }
+    }
+  }
+}

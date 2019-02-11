@@ -1,7 +1,7 @@
 <div class="container py-5">
     <div class="row my-5">
         <div class="col-14 text-center m-auto">
-            <h2>{{ trans('public/index.be_part_of') }}</h2>
+            <h2>{{ __('Be a part of Local Food Nodes') }}</h2>
 
             <form class="row py-3">
                 <div class="col-lg col-sm-8">
@@ -9,7 +9,7 @@
                         'name'  => 'name',
                         'type'  => 'text',
                         'class' => 'form-control-lg input-group',
-                        'placeholder' => trans('public/index.your_name')
+                        'placeholder' => __('Your name')
                     ])
                 </div>
 
@@ -18,7 +18,7 @@
                         'name'  => 'email',
                         'type'  => 'email',
                         'class' => 'form-control-lg input-group',
-                        'placeholder' => trans('public/index.your_email')
+                        'placeholder' => __('Your email')
                     ])
                 </div>
 
@@ -27,7 +27,7 @@
                         'name'  => 'password',
                         'type'  => 'password',
                         'class' => 'form-control-lg input-group',
-                        'placeholder' => trans('public/index.create_pw')
+                        'placeholder' => __('Create password')
                     ])
                 </div>
 
@@ -35,7 +35,7 @@
                     @include('new.components.forms.dropdown', [
                         'name'        => 'language',
                         'class'       => 'custom-select text-uppercase',
-                        'placeholder' => trans('public/nav.lang_swe'),
+                        'placeholder' => __('Language'),
                         'options'     => config('app.locales'),
                         'value'       => true,
                         'val_key'     => false,
@@ -43,12 +43,12 @@
                 </div>
 
                 <div class="col-lg-4 col-xl mt-4 mt-lg-0">
-                    <button type="submit" class="btn-lg btn-secondary text-uppercase">{{ trans('public/index.create_user') }}</button>
+                    <button type="submit" class="btn-lg btn-secondary text-uppercase">{{ __('Create account') }}</button>
                 </div>
             </form>
 
             <small>
-                {{ trans('public/index.accept_terms') }} <a class="rc" href="#">{{ trans('public/index.terms') }}</a>
+                {{ __('Accept terms') }} <a class="rc" href="#">{{ __('terms') }}</a>
             </small>
         </div>
     </div>
