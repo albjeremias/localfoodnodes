@@ -1,6 +1,6 @@
 @extends('new.account.layout',
 [
-    'nav_title' => trans('admin/user.nav_title'),
+    'nav_title' => __('Dashboard'),
     'sub_nav' => 'account',
     'nav_active' => 0,
     'sub_nav_active' => 0
@@ -39,16 +39,15 @@
                                     </div>
                                 </div>
 
-                                <a class="bottom-link text-uppercase rc" href="#">{{ __('Edit profile') }}</a>
+                                <a class="bottom-link text-uppercase rc" href="{{ route('account_user_edit') }}">{{ __('Edit profile') }}</a>
                             </div>
                         </div>
 
                         <div class="col-lg-7">
                             <div class="white-box little-min">
-                                <h4>{{ __('Not a member') }}</h4>
-                                <p class="black-54">{{ __('Membership unpaid') }}</p>
-
-                                <a class="bottom-link text-uppercase rc" href="#">{{ __('Membership') }}</a>
+                                <a href="{{ route('membership') }}" class="rc"><h4>{{ __('Still not a member?') }}</h4></a>
+                                <small>{{ _('Local Food Nodes is built on a gift based economy. By donating a supporting membership fee, free of choice, you are part of financing the development of open digital tools, that supports enabling local and independent peoples driven food markets.') }}</small>
+                                <a class="bottom-link text-uppercase rc" href="{{ route('membership') }}">{{ __('Membership') }}</a>
                             </div>
                         </div>
 

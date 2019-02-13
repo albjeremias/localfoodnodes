@@ -283,7 +283,7 @@ class Producer extends BaseModel
      */
     public function nodeLinks()
     {
-        return $this->hasMany('App\Producer\ProducerNodeLink')->get();
+        return $this->hasMany('App\Producer\ProducerNodeLink')->orderBy('id')->get();
     }
 
     /**

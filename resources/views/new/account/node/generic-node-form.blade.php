@@ -1,11 +1,11 @@
 @extends('new.account.layout',
 [
-    'bread_type'   => trans('public/nav.admin'),
-    'bread_result' => trans('public/nav.create_producer'),
+    'bread_type'   => __('Admin'),
+    'bread_result' => __('Create node'),
     'nav_active'   => 1
 ])
 
-@section('title', trans('public/register.title_producer'))
+@section('title', $node->name ?? __('Create node'))
 
 @section('content')
 
@@ -15,10 +15,10 @@
             'active' => 1,
             'steps'  =>
                 [
-                    trans('admin/node.n_hdiw_item_1'),
-                    trans('admin/node.n_hdiw_item_2'),
-                    trans('admin/node.n_hdiw_item_3'),
-                    trans('admin/node.n_hdiw_item_4'),
+                    __('Approve terms'),
+                    __('Create node'),
+                    __('admin/node.n_hdiw_item_3'),
+                    __('admin/node.n_hdiw_item_4'),
                 ]
         ])
 
@@ -30,11 +30,11 @@
                     <div class="form-row">
                         <div class="form-group col-8">
                             @include('new.components.forms.input', [
-                                'label' => trans('admin/node.address'),
+                                'label' => __('Address'),
                                 'name'  => 'address',
                                 'type'  => 'text',
                                 'class' => 'form-control',
-                                'placeholder' => trans('admin/node.address'),
+                                'placeholder' => __('Address'),
                                 'm_value' => $node->address
                             ])
                         </div>
@@ -42,11 +42,11 @@
                         {{-- ZIP --}}
                         <div class="form-group col-8 col-md-4">
                             @include('new.components.forms.input', [
-                                'label' => trans('admin/node.zip'),
+                                'label' => __('Zip code'),
                                 'name'  => 'zip',
                                 'type'  => 'text',
                                 'class' => 'form-control',
-                                'placeholder' => trans('admin/node.zip'),
+                                'placeholder' => __('Zip code'),
                                 'm_value' => $node->zip
                             ])
                         </div>
@@ -54,11 +54,11 @@
                         {{-- City --}}
                         <div class="form-group col-8 col-md-4">
                             @include('new.components.forms.input', [
-                                'label' => trans('admin/node.city'),
+                                'label' => __('City'),
                                 'name'  => 'city',
                                 'type'  => 'text',
                                 'class' => 'form-control',
-                                'placeholder' => trans('admin/node.city'),
+                                'placeholder' => __('City'),
                                 'm_value' => $node->city
                             ])
                         </div>
@@ -69,11 +69,11 @@
                     {{-- Name --}}
                     <div class="form-group">
                         @include('new.components.forms.input', [
-                            'label' => trans('admin/node.name_your_node'),
+                            'label' => __('Node name'),
                             'name'  => 'name',
                             'type'  => 'text',
                             'class' => 'form-control',
-                            'placeholder' => trans('admin/node.name_your_node'),
+                            'placeholder' => __('Node name'),
                             'm_value' => $node->name
                         ])
                     </div>
@@ -85,16 +85,16 @@
 
                 <div class="offset-1 col-md-6">
 
-                    <h5 class="mb-3">{{ trans('admin/node.optional_data') }}</h5>
+                    <h5 class="mb-3">{{ __('Optional data') }}</h5>
 
                     {{-- Email --}}
                     <div class="form-group">
                         @include('new.components.forms.input', [
-                            'label' => trans('admin/node.email'),
+                            'label' => __('Email'),
                             'name'  => 'email',
                             'type'  => 'text',
                             'class' => 'form-control',
-                            'placeholder' => trans('admin/node.email'),
+                            'placeholder' => __('Email'),
                             'm_value' => $node->email
                         ])
                     </div>
@@ -102,11 +102,11 @@
                     {{-- Description --}}
                     <div class="form-group">
                         @include('new.components.forms.textarea', [
-                            'label'       => trans('admin/node.information'),
+                            'label'       => __('Information'),
                             'name'        => 'info',
                             'class'       => 'form-control bb-38 wysiwyg',
                             'rows'        => 3,
-                            'placeholder' => trans('admin/node.information'),
+                            'placeholder' => __('Information'),
                         ])
                     </div>
 
@@ -114,18 +114,18 @@
                         <label class="form-check-label ml-4">
                             <input class="form-check-input" name="is_hidden" type="hidden" value="0" />
                             <input class="form-check-input" name="is_hidden" type="checkbox" value="1" {{ $node->is_hidden == 1 ? 'checked' : '' }} />
-                            {{ trans('admin/node.hide_from_map') }}
+                            {{ __('Hide on map') }}
                         </label>
                     </div>
 
                     {{-- Communication Consumers Link --}}
                     <div class="form-group">
                         @include('new.components.forms.input', [
-                            'label' => trans('admin/node.facebook_page'),
+                            'label' => __('Facebook page'),
                             'name'  => 'link_facebook',
                             'type'  => 'text',
                             'class' => 'form-control',
-                            'placeholder' => trans('admin/node.facebook_page_placeholder'),
+                            'placeholder' => __('https://'),
                             'm_value' => $node->link_facebook
                         ])
                     </div>
@@ -133,11 +133,11 @@
                     {{-- Communication Producers Link --}}
                     <div class="form-group">
                         @include('new.components.forms.input', [
-                            'label' => trans('admin/node.facebook_page_producers'),
+                            'label' => __('Facebook page for producers'),
                             'name'  => 'link_facebook_producers',
                             'type'  => 'text',
                             'class' => 'form-control',
-                            'placeholder' => trans('admin/node.facebook_page_placeholder'),
+                            'placeholder' => __('https://'),
                             'm_value' => $node->link_facebook_producers
                         ])
                     </div>

@@ -1,57 +1,22 @@
 <template>
     <div class="map-container">
-        <div ref="map">Loading...</div>
+        <div ref="map"></div>
         <div class="white-box sidebar">
-            <h4>Connected nodes</h4>
-            <ul class="list-unstyled node-list">
-                <li v-for="node in userNodes" v-bind:key="node.id">
-                    <div class="row no-gutters">
-                        <div class="col">
-                            <div>{{ node.name }}</div>
-                            <small><span v-on:click="removeNode(node)">Remove</span></small>
-                        </div>
-                    </div>
+            <h4>Your delivery locations</h4>
+            <ul class="list-unstyled list-group">
+                <li v-for="node in userNodes" v-bind:key="node.id" class="list-group-item" :class="{active: node.selected}">
+                    <div>{{ node.name }}</div>
+                    <small><span v-on:click="removeNode(node)"><i class="fa fa-minus-circle"></i> Remove from list</span></small>
                 </li>
 
-                <li v-if="selectedNode">
-                    <div class="row no-gutters">
-                        <div class="col">
-                            <div>{{ selectedNode.name }}</div>
-                            <small><span v-on:click="addNode(selectedNode)">Confirm add</span> or <span v-on:click="cancelNode">cancel</span></small>
-                        </div>
-                    </div>
+                <li v-if="selectedNode" class="list-group-item active">
+                    <div>{{ selectedNode.name }}</div>
+                    <small><span v-on:click="addNode(selectedNode)"><i class="fa fa-plus-circle"></i> Add to list</span> or <span v-on:click="cancelNode">cancel</span></small>
                 </li>
             </ul>
         </div>
     </div>
 </template>
-
-<style>
-    .leaflet-container {
-        height: 500px;
-    }
-    .leaflet-control-attribution,
-    .leaflet-control-attribution a {
-        color: #333 !important;
-        font-size: 10px !important;
-        font-weight: normal !important;
-    }
-    .leaflet-control a {
-        line-height: 30px !important;
-    }
-    .map-container {
-        position: relative;
-    }
-    .map-container .sidebar {
-        background: #fff;
-        height: calc(100% - 2rem);
-        padding: 1rem;
-        position: absolute;
-        top: 0.5rem;
-        right: 1rem;
-        z-index: 999;
-    }
-</style>
 
 <script>
     export default {
@@ -73,7 +38,7 @@
                 let markers = L.markerClusterGroup({
                     iconCreateFunction: function(cluster) {
                         return L.divIcon({
-                            html: '<i class="fa fa-map-pin leaflet-cluster-marker"></i',
+                            html: '<i class="fas fa-map-marker map-marker map-cluster-marker"><span>' + cluster.getChildCount() + '</span></i>',
                             iconAnchor: [16, 16],
                         });
                     },
@@ -85,38 +50,50 @@
 
                 for (let i = 0; i < nodes.length; i++) {
                     let node = nodes[i];
-                    let classes = ['leaflet-marker'];
+                    let classes = ['fas', 'fa-map-marker-alt', 'map-marker'];
 
                     let added = this.userNodes.some(userNode => {
                         return userNode.id === node.id;
                     });
 
-                    if (added) {
-                        classes.push('added');
-                    }
+                    // if (added) {
+                    //     classes.push('added');
+                    // }
 
-                    if (this.selectedNode && this.selectedNode.id === node.id) {
-                        classes.push('selected');
-                    }
+                    // if (this.selectedNode && this.selectedNode.id === node.id) {
+                    //     classes.push('selected');
+                    // }
 
                     let markerIcon = L.divIcon({
-                        html: '<i class="fa fa-map-marker ' + classes.join(' ') + '"></i>',
+                        html: '<i class="' + classes.join(' ') + '"></i>',
                         iconAnchor: [16, 32],
                     });
 
                     let marker = L.marker([node.location.lat, node.location.lng], { icon: markerIcon });
                     marker.on('click', (event) => {
-                        this.resetSelectedNode();
+                        // Reset selections??
 
-                        // Set selected marker icon
-                        let selectedIcon = L.divIcon({
-                            html: '<i class="fa fa-map-marker leaflet-marker selected"></i>',
-                            iconAnchor: [16, 32],
+                        // Check id node is already added to userNodes
+                        // and highlight the node in sidebar
+                        let alreadySelected = this.userNodes.some(userNode => {
+                            return userNode.id === node.id;
                         });
-                        event.target.setIcon(selectedIcon);
 
-                        this.selectedNode = node;
-                        $(marker._icon).addClass('selected');
+                        if (alreadySelected) {
+                            // Set selected on node to highlight in sidebar
+                            let index = this.userNodes.findIndex(userNode => {
+                                return userNode.id === node.id;
+                            });
+
+                            this.userNodes[index].selected = !this.userNodes[index].selected;
+                        } else if (this.selectedNode && node.id === this.selectedNode.id) {
+                            // If node is already selected (selectedNode) we reset and remove it from the sidebar since it's not permanently added
+                            this.resetSelectedNode();
+                        } else {
+                            // Set selected node
+                            this.resetSelectedNode();
+                            this.selectedNode = node;
+                        }
                     }, this);
 
                     markers.addLayer(marker);
@@ -135,7 +112,12 @@
                 .then(axios.spread((allNodes, user, userNodes) => {
                     this.nodes = allNodes.data.nodes;
                     this.user = user.data;
-                    this.userNodes = userNodes.data;
+                    this.userNodes = userNodes.data.map(userNode => {
+                        userNode.selected = false;
+                        return userNode;
+                    });
+
+
                     this.createMap();
                 }));
             },
@@ -182,11 +164,13 @@
                 this.resetSelectedNode();
             },
 
-            resetSelectedNode(node) {
+            resetSelectedNode() {
                 let selectedMarker = document.getElementsByClassName('leaflet-marker selected');
                 if (selectedMarker.length > 0) {
                     selectedMarker[0].classList.remove('selected');
                 }
+
+                this.selectedNode = null;
             }
         },
     }

@@ -1,8 +1,8 @@
 @extends('new.account.layout',
 [
-    'nav_title' => trans('admin/user.nav_title'),
-    'sub_nav' => 'producer',
-    'nav_active' => 1,
+    'nav_title' => trans('Node'),
+    'sub_nav' => 'Node',
+    'nav_active' => 2,
     'sub_nav_active' => 0,
 ])
 
@@ -25,21 +25,21 @@
                                 <div class="row mt-4">
                                     <div class="col-md-4">
                                         <h3 class="m-0">1129</h3>
-                                        <small>{{ trans('admin/user.followed_nodes') }}</small>
+                                        <small>{{ __('Followed nodes') }}</small>
                                     </div>
 
                                     <div class="col-md-4">
                                         <h3 class="m-0">41</h3>
-                                        <small>{{ trans('admin/user.producers') }}</small>
+                                        <small>{{ __('Producers') }}</small>
                                     </div>
 
                                     <div class="col pl-md-5">
                                         <h3 class="m-0">13.5 km</h3>
-                                        <small>{{ trans('admin/user.average_distance') }}</small>
+                                        <small>{{ __('Average distance') }}</small>
                                     </div>
                                 </div>
 
-                                <a class="bottom-link text-uppercase rc" href="#">{{ trans('admin/user.edit_profile') }}</a>
+                                <a class="bottom-link text-uppercase rc" href="{{ route('account_node_edit', ['nodeId' => $node->id]) }}">{{ __('Edit profile') }}</a>
                             </div>
                         </div>
 
@@ -79,34 +79,6 @@
                             <div class="white-box big-min height-rmd-auto">
                                 @include('new.components.nodes-following', ['nodes' => []])
                                 {{ trans('admin/producer.my_producer') }}
-                            </div>
-                        </div>
-
-                        <div class="col-16">
-                            <div class="white-box medium-min height-rmd-auto">
-                                <h4>{{ trans('admin/user.events') }}</h4>
-
-                                <ul class="list-unstyled node-list mt-4">
-                                    <li>
-                                        <div class="row no-gutters">
-                                            <div class="col-2">
-                                                <i class="fa fa-asterisk icon-green" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="col">Grönsaksfest -
-                                                <small>25 Sep</small>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row no-gutters">
-                                            <div class="col-2">
-                                            </div>
-                                            <div class="col">Paprikaprovning -
-                                                <small>13 Juni</small>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                     </div>

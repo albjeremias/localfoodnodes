@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
     <link rel="stylesheet" href="{{ mix('css/public.css') }}">
-    <link rel="stylesheet" href="{{ mix('css/account.css') }}">
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"

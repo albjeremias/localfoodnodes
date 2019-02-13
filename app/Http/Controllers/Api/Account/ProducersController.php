@@ -47,8 +47,6 @@ class ProducersController extends ApiBaseController
     {
         $user = Auth::user();
         $producer = $user->producerAdminLink($producerId)->getProducer();
-        \Log::debug(var_export($producer->id, true));
-        \Log::debug(var_export($nodeId, true));
 
         // Remove producer node link
         $producerNodeLink = ProducerNodeLink::where('producer_id', $producer->id)->where('node_id', $nodeId)->first();

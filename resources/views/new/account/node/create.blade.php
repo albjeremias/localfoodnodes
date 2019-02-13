@@ -1,16 +1,16 @@
 @extends('new.account.layout',
 [
-    'bread_type'   => trans('public/nav.admin'),
-    'bread_result' => trans('public/nav.create_producer'),
+    'bread_type'   => __('Node'),
+    'bread_result' => __('Create node'),
     'nav_active'   => 1
 ])
 
-@section('title', trans('public/register.title_producer'))
+@section('title', __('Create node'))
 
 @section('content')
 
     <div class="nms">
-        @if (app('request')->input('terms') === "approved")
+        @if ($approved === true || app('request')->input('terms') === "approved")
             <form action="/account/producer/insert" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 @include('new.account.node.generic-node-form')

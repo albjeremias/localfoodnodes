@@ -99,6 +99,18 @@
       height: 200px;
     }
   }
+
+  .map-container {
+    .sidebar {
+      margin-top: 0;
+      position: unset;
+    }
+
+    .map-site-metrics {
+      margin-bottom: 0;
+      position: unset;
+    }
+  }
 }
 
 // -------------------------------------

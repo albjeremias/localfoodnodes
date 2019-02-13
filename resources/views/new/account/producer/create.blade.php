@@ -1,7 +1,7 @@
 @extends('new.account.layout',
 [
-    'bread_type'   => trans('public/nav.admin'),
-    'bread_result' => trans('public/nav.create_producer'),
+    'bread_type'   => __('Producer'),
+    'bread_result' => __('Create producer account'),
     'nav_active'   => 1
 ])
 

@@ -1,9 +1,8 @@
 <template>
     <div class="map-container">
-        <div ref="map">Loading...</div>
-        <div class="map-site-info p-3 d-none d-xl-block">
+        <div class="white-box map-site-metrics">
             <!-- Metrics -->
-            <div v-if="metrics" class="row">
+            <div v-if="metrics && !searchResults" class="row">
                 <div class="col">
                     <h4 class="m-0">{{ metrics.users.count }}</h4>
                     <small>{{ metrics.users.label }}</small>
@@ -21,24 +20,25 @@
             </div>
 
             <!-- Search -->
-            <div class="row">
-                <input v-on:keyup="search" type="text" placeholder="Search locations" />
+            <div class="input-group" :class="{ 'mt-3': metrics, 'mb-3': searchResults }">
+                <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fa fa-search"></i></div>
+                </div>
+                <input v-model="searchString" type="text" class="form-control" placeholder="Search locations" />
             </div>
 
             <!-- Search results -->
-            <div v-if="searchResults" class="row">
-                <ul>
-                    <li v-for="result in searchResults" v-bind:key="result.place_id" v-on:click="selectSearchResult(result.lat, result.lon)">
-                        <div>{{ result.display_name.split(',')[0] }}</div>
-                        <small>{{ result.display_name.split(',').splice(1).join(', ') }}</small>
-                    </li>
-                </ul>
-            </div>
+            <ul class="list-unstyled">
+                <li v-for="result in searchResults" :key="result.place_id" v-on:click="selectSearchResult(result.lat, result.lon)">
+                    <div>{{ result.display_name.split(',')[0] }}</div>
+                    <small>{{ result.display_name.split(',').splice(1).join(', ') }}</small>
+                </li>
+            </ul>
         </div>
 
         <!-- Node info sidebar -->
         <transition>
-            <div v-if="selectedNode" class="white-box sidebar"> <!-- v-bind:class="{ visible: selectedNode }" -->
+            <div v-if="selectedNode" class="white-box sidebar">
                 <h4>{{ selectedNode.name }}</h4>
                 <div class="row no-gutters">
                     <div class="col">
@@ -48,36 +48,10 @@
                 </div>
             </div>
         </transition>
+
+        <div ref="map"></div>
     </div>
 </template>
-
-<style>
-    .leaflet-container {
-        height: 500px;
-    }
-    .leaflet-control-attribution,
-    .leaflet-control-attribution a {
-        color: #333 !important;
-        font-size: 10px !important;
-        font-weight: normal !important;
-    }
-    .leaflet-control a {
-        line-height: 30px !important;
-    }
-    .map-container {
-        position: relative;
-    }
-    .map-container .sidebar {
-        background: #fff;
-        height: calc(100% - 2rem);
-        position: absolute;
-        top: 0.5rem;
-        right: 1rem; /* padding of white box */
-        z-index: 999;
-        /* -webkit-transition: right 1s;
-        transition: right 1s; */
-    }
-</style>
 
 <script>
     export default {
@@ -89,6 +63,8 @@
                 nodes: [],
                 selectedNode: null,
                 searchResults: null,
+                searchString: '',
+                debouncedSearch: this.debounce(this.search, 300),
             }
         },
         mounted() {
@@ -100,7 +76,7 @@
                 let markers = L.markerClusterGroup({
                     iconCreateFunction: function(cluster) {
                         return L.divIcon({
-                            html: '<i class="fa fa-map-pin leaflet-cluster-marker"></i',
+                            html: '<i class="fas fa-map-marker map-marker map-cluster-marker"><span>' + cluster.getChildCount() + '</span></i>',
                             iconAnchor: [16, 16],
                         });
                     },
@@ -112,9 +88,10 @@
 
                 for (let i = 0; i < nodes.length; i++) {
                     let node = nodes[i];
+                    let classes = ['fas', 'fa-map-marker-alt', 'map-marker'];
 
                     let markerIcon = L.divIcon({
-                        html: '<i class="fa fa-map-marker leaflet-marker"></i>',
+                        html: '<i class="' + classes.join(' ') + '"></i>',
                         iconAnchor: [16, 32],
                     });
 
@@ -124,13 +101,6 @@
                             this.resetSelectedNode();
                         } else {
                             this.resetSelectedNode();
-
-                            // Set selected marker icon
-                            let selectedIcon = L.divIcon({
-                                html: '<i class="fa fa-map-marker leaflet-marker selected"></i>',
-                                iconAnchor: [16, 32],
-                            });
-                            event.target.setIcon(selectedIcon);
 
                             this.selectedNode = node;
                             $(marker._icon).addClass('selected');
@@ -142,6 +112,10 @@
 
                 this.map.addLayer(markers);
             },
+
+            searchString(searchString) {
+                this.debouncedSearch(searchString);
+            }
         },
         methods: {
             fetchNodes() {
@@ -199,22 +173,6 @@
                 this.selectedNode = null;
             },
 
-            search(event) {
-                axios({
-                    url: 'https://nominatim.openstreetmap.org/search',
-                    method: 'get',
-                    params: {
-                        q: event.target.value,
-                        format: 'json',
-                        addressdetails: 1,
-                        featuretype: 'settlement'
-                    }
-                })
-                .then(searchResults => {
-                    this.searchResults = searchResults.data;
-                });
-            },
-
             debounce(func, wait, immediate) {
                 let timeout;
 
@@ -226,6 +184,7 @@
                             func.apply(context, args);
                         }
                     };
+
                     let callNow = immediate && !timeout;
                     clearTimeout(timeout);
                     timeout = setTimeout(later, wait);
@@ -234,6 +193,27 @@
                         func.apply(context, args);
                     }
                 };
+            },
+
+            search(searchString) {
+                if (!searchString) {
+                    this.searchResults = null;
+                } else {
+                    return axios({
+                        url: 'https://nominatim.openstreetmap.org/search',
+                        method: 'get',
+                        params: {
+                            addressdetails: 1,
+                            featuretype: 'settlement',
+                            format: 'json',
+                            limit: 5,
+                            q: searchString,
+                        }
+                    })
+                    .then(searchResults => {
+                        this.searchResults = searchResults.data;
+                    });
+                }
             },
 
             selectSearchResult(lat, lng) {

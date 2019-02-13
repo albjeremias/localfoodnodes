@@ -1,6 +1,6 @@
 @extends('new.account.layout',
 [
-    'nav_title' => trans('admin/user.nav_title'),
+    'nav_title' => __('Pickups'),
     'sub_nav' => 'account',
     'nav_active' => 0,
     'sub_nav_active' => 2
@@ -14,7 +14,7 @@
             @if ($user->orderDates()->count() > 0)
                 @foreach ($user->orderDates() as $orderDate)
                     <div class="white-box mb-5">
-                        <h4 class="mt-1 rc pl-2">{{ __('Pickup') }} {{ $orderDate->date('Y-m-d') }}</h4>
+                        <h4 class="mt-1 pl-2">{{ __('Pickup') }} {{ $orderDate->date('Y-m-d') }}</h4>
 
                         @php
                             $items = [];

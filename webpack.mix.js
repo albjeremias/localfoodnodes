@@ -1,8 +1,5 @@
 let mix = require('laravel-mix');
 mix.disableSuccessNotifications();
-mix.options({
-    uglify: false,
-});
 
 // Styles
 mix.sass('resources/assets/sass/public.sass', 'public/css').version();

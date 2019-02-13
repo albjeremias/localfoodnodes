@@ -13,7 +13,6 @@
     "axios": "^0.16.2",
     "bootstrap": "^4.2.1",
     "cross-env": "^5.2.0",
-    "font-awesome": "^4.7.0",
     "jquery": "^3.1.1",
     "laravel-mix": "^4.0.13",
     "lodash": "^4.17.11",
@@ -23,6 +22,7 @@
     "webpack": "^4.28.1"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.7.2",
     "resolve-url-loader": "2.3.1",
     "sass": "^1.15.3",
     "sass-loader": "7.*",

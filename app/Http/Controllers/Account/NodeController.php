@@ -99,9 +99,10 @@ class NodeController extends Controller
         $node->fill($request->old());
 
         return view('new.account.node.create', [
+            'approved' => false,
             'node' => $node,
             'breadcrumbs' => [
-                trans('admin/user-nav.create_node') => ''
+                __('Create node') => ''
             ]
         ]);
     }
@@ -144,7 +145,8 @@ class NodeController extends Controller
         $user = Auth::user();
         $node = $user->nodeAdminLink($nodeId)->getNode();
 
-        return view('account.node.edit', [
+        return view('new.account.node.create', [
+            'approved' => true,
             'node' => $node,
             'breadcrumbs' => [
                 $node->name => 'node/' . $node->id,

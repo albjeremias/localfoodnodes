@@ -1,6 +1,6 @@
 @extends('new.account.layout',
 [
-    'nav_title'      => trans('admin/user.nav_title'),
+    'nav_title'      => __('Products'),
     'sub_nav'        => 'producer',
     'sub_nav_active' => 1,
     'nav_active'     => 1

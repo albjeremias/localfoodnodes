@@ -1,6 +1,6 @@
 @extends('new.account.layout',
 [
-    'nav_title' => __('My dashboard'),
+    'nav_title' => __('Dashboard'),
     'sub_nav' => 'producer',
     'nav_active' => 1,
     'sub_nav_active' => 0,
@@ -52,12 +52,9 @@
 
                         <div class="col-lg-7">
                             <div class="white-box little-min">
-                                <a href="#" class="rc"><h4>{{ __('Still not a member?') }}</h4></a>
-                                {{--<p class="black-54">{{ trans('admin/user.membership_unpaid_link') }}</p>--}}
-                                <small>Local Food Nodes is built on a gift based economy.
-                                    By donating a supporting membership fee, free of choice, you are part of financing the development of open digital tools, that supports enabling local and independent peoples driven food markets.</small>
-
-                                <a class="bottom-link text-uppercase rc" href="#">{{ __('Membership') }}</a>
+                                <a href="{{ route('membership') }}" class="rc"><h4>{{ __('Still not a member?') }}</h4></a>
+                                <small>{{ _('Local Food Nodes is built on a gift based economy. By donating a supporting membership fee, free of choice, you are part of financing the development of open digital tools, that supports enabling local and independent peoples driven food markets.') }}</small>
+                                <a class="bottom-link text-uppercase rc" href="{{ route('membership') }}">{{ __('Membership') }}</a>
                             </div>
                         </div>
 
@@ -161,7 +158,7 @@
                 </div>
             </div>
             <div class="white-box">
-                <h4>{{ __('Nodes close to me') }}</h4>
+                <h4>{{ __('Delivery locations') }}</h4>
                 <div id="producer-map">
                     <producer-map producer-id="{{ $producer->id}}"></producer-map>
                 </div>

@@ -394,13 +394,11 @@ thead {
   border: none !important;
 }
 
-.map-site-info {
-  background-color: white;
+.map-site-metrics {
   left: 1rem;
   position: absolute;
   top: 1rem;
   z-index: 999;
-  @extend .box-shadow;
 }
 
 .white-box {
@@ -485,7 +483,7 @@ option:checked {
     border-color: white;
 }
 
-.nav-acount-active {
+.nav-account-active {
   background-color: $main-accent;
   border-radius: 20px;
 }

@@ -1,0 +1,74 @@
+// Reset
+.leaflet-container {
+  .leaflet-div-icon {
+      background: transparent;
+      border: 0;
+  }
+
+  .leaflet-control-zoom {
+      a {
+          line-height: 30px;
+      }
+  }
+
+  .leaflet-popup-content-wrapper {
+      background: transparent;
+      box-shadow: none;
+  }
+}
+
+// Custom
+.leaflet-container {
+  height: 500px;
+}
+.leaflet-control-attribution,
+.leaflet-control-attribution a {
+  color: #333 !important;
+  font-size: 10px !important;
+  font-weight: normal !important;
+}
+.leaflet-control a {
+  line-height: 30px !important;
+}
+.map-container {
+  background: $dark-38;
+  min-height: 500px;
+  position: relative;
+
+  .sidebar {
+    background: #fff;
+    height: calc(100% - 2rem);
+    padding: 1rem;
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    z-index: 999;
+  }
+}
+
+.map-marker {
+  align-items: center;
+  display: flex;
+  font-size: 32px;
+  height: 32px;
+  justify-content: center;
+  width: 32px;
+
+  &.map-cluster-marker {
+    span {
+      color: #fff;
+      font-family: 'montserrat';
+      font-size: 12px;
+      position: absolute;
+      top: 7px;
+    }
+  }
+
+  &.selected {
+    color: green;
+  }
+
+  &.added {
+    color: red;
+  }
+}
