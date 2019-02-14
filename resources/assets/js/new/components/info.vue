@@ -1,10 +1,10 @@
 <template>
     <i
         class="ml-2 fa fa-info-circle"
-       :class="classes"
+       :class="infoClass"
        data-toggle="tooltip"
-       :data-placement="placement"
-       :title="text">
+       :data-placement="infoPlacement"
+       :title="infoText">
     </i>
 </template>
 
@@ -13,13 +13,13 @@
 
 <script>
     export default {
-        props: ['text', 'placement', 'class'],
+        props: ['text', 'placement', 'iconClass'],
 
         data: function() {
             return {
-                text: this.text,
-                placement: this.placement,
-                classes: this.class
+                infoText: this.text,
+                infoPlacement: this.placement,
+                infoClass: this.iconClass
             }
         },
     }
