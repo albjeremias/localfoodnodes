@@ -29,6 +29,7 @@ if (token) {
 Vue.component('card-product-edit', require('./cards/ProductEdit').default);
 
 Vue.component('products-administration-index', require('./modules/products-administration/ProductsAdminIndex').default);
+// Vue.component('consumer-product', require('./modules/ConsumerProduct').default);
 
 const app = new Vue({
     el: '#products-administration',

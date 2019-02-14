@@ -36,14 +36,14 @@ class ProductsController extends ApiBaseController
 
             $productIds = $linkQuery->get()->pluck('product_id')->unique();
 
-            return $productIds;
+//            return $productIds;
 
             $products = Product::with([
                 'producerRelationship',
                 'productVariantsRelationship',
                 'imageRelationship'
             ])->where('producer_id', $producer->id)
-            ->whereIn('id', $productsId)
+            ->whereIn('id', $productIds)
             ->get();
         } else {
             $products = Product::with([

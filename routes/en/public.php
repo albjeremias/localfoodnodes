@@ -35,3 +35,5 @@ Route::get('/node/{slug}', 'IndexController@node')->name('en_node');
 Route::get('/node/{slug}/producer/{subSlug?}', 'IndexController@nodeProducer')->name('en_node_producer');
 Route::get('/node/{slug}/product/{subSlug?}', 'IndexController@nodeProduct')->name('en_node_product');
 
+Route::get('/product/{productId}', 'IndexController@publicSpecificProduct')->name('en_public_product');
+

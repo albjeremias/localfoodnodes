@@ -152,6 +152,12 @@ class IndexController extends Controller
         ] + $shareMeta);
     }
 
+    public function publicSpecificProduct($id)
+    {
+    	$product = Product::where('id', $id)->first();
+    	return view('new.public.product', ['product' => $product]);
+    }
+
     public function findOutMore()
     {
         return view('public.pages.find-out-more');

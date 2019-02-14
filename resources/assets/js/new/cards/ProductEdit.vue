@@ -38,7 +38,7 @@
             </div>
 
             <div class="custom-control custom-checkbox custom-checkbox-lg product-edit-active">
-                <input type="checkbox" :checked="product.is_hidden" @click="product.is_hidden = !product.is_hidden" :name="'checkbox-active-' + product.id" class="custom-control-input" :id="'checkbox-active-' + product.id">
+                <input type="checkbox" :checked="product.is_hidden" @click="toggleProductVisibility(product.id)" :name="'checkbox-active-' + product.id" class="custom-control-input" :id="'checkbox-active-' + product.id">
                 <label class="custom-control-label" :for="'checkbox-active-' + product.id">Make available</label>
                 <info :text="info.available.text" :placement="info.available.placement" :icon-class="info.available.class"></info>
             </div>
@@ -73,6 +73,14 @@
         methods: {
             saveSettings() {
                 console.log(this.product.is_hidden);
+            },
+            toggleProductVisibility(productID) {
+                axios.post('/api/account/producers/' + this.producer.id + '/products/' + productID + '/toggle-visibility', this.info).then((response) => {
+
+                }).catch((error) => {
+                    this.errors = error.response.data
+                    console.log(error);
+                });
             },
             infoSort() {
                 this.info.available = {

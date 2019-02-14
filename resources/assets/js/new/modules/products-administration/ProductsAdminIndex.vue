@@ -17,7 +17,7 @@
 
                             <!--Select location-->
                             <span class="dropdown-toggle w-100 select-location" href="#" role="button" id="select-location" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Select location
+                                {{ selectLocationLabel }}
                             </span>
 
                             <div class="dropdown-menu dropdown-form-menu" aria-labelledby="select-location">
@@ -37,7 +37,7 @@
                         <!-- Select date -->
                         <div class="dropdown show dropdown-form d-inline-flex mt-3">
                             <span class="dropdown-toggle w-100 select-location" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Select date
+                                {{ selectDateLabel }}
                             </span>
 
                             <div class="dropdown-menu dropdown-form-menu" aria-labelledby="dropdownMenuLink">
@@ -118,10 +118,29 @@
         mounted() {
           // console.log(this.producer);
         },
+        computed: {
+            selectLocationLabel() {
+              if (this.selectedNode) {
+                  return this.selectedNode.name;
+              } else {
+                  return 'Select location';
+              }
+            },
+            selectDateLabel() {
+                if (this.selectedDate) {
+                    return this.selectedDate;
+                } else {
+                    return 'Select date';
+                }
+            },
+        },
         watch: {
             allProductActive: 'activateAllProducts',
             selectedNode: function () {
                 this.fetchDeliveryDates();
+            },
+            selectedDate: function () {
+                this.fetchProductsByDate();
             }
         },
         methods: {
@@ -138,6 +157,13 @@
             fetchDeliveryDates() {
                 axios.get('/api/account/nodes/' + this.selectedNode.id + '/deliveries').then((response) => {
                     this.nodeDeliveryDates = response.data;
+                }).catch((error) => {
+                    console.log(error);
+                });
+            },
+            fetchProductsByDate() {
+                axios.get('/api/account/producers/' + this.producer.id +'/products?nodeId=' + this.selectedNode.id +'&date=' + this.selectedDate).then((response) => {
+                    console.log(response.data);
                 }).catch((error) => {
                     console.log(error);
                 });
