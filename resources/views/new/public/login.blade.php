@@ -16,7 +16,6 @@
 
                 <div class="login-quote wc pr-5">
                     <p><a class="text-uppercase">{{ __('Johanna Andersson, Dalby') }}</a></p>
-
                     <p>– “{{ __('Innan du kan boka din mat behöver du bli stödmedlem, sedan kommer producenten med dina varor till utlämningensplatsen...') }}”</p>
                 </div>
             </div>

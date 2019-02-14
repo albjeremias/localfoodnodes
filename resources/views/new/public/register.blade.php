@@ -3,7 +3,7 @@
     'no_nav' => true,
 ])
 
-@section('title', trans('public/register.title_register'))
+@section('title', __('Register'))
 
 @section('content')
 
@@ -15,34 +15,34 @@
                 </a>
 
                 <div class="login-quote wc pr-5">
-                    <p><a class="text-uppercase">{{ trans('public/login.quote_name') }}</a></p>
-                    <p>– “{{ trans('public/login.quote') }}”</p>
+                    <p><a class="text-uppercase">{{ __('Johanna Andersson, Dalby') }}</a></p>
+                    <p>– “{{ __('Innan du kan boka din mat behöver du bli stödmedlem, sedan kommer producenten med dina varor till utlämningensplatsen...') }}”</p>
                 </div>
             </div>
             <div class="col-md-8 offset-md-1">
                 <div class="row mt-5">
                     <div class="col-16 text-right mb-5">
-                        <small>{{ trans('public/register.have_account') }}</small>
-                        <a href="/login" class="ml-3 btn btn-info bb">{{ trans('public/register.login') }}</a>
+                        <small>{{ __('Have an account?') }}</small>
+                        <a href="/login" class="ml-3 btn btn-info bb">{{ __('Login') }}</a>
                     </div>
 
                     <div class="col-16 mt-5">
-                        <h3>{{ trans('public/register.start_free') }}</h3>
-                        <p class="black-54">{{ trans('public/register.login_fb_or_create') }}</p>
+                        <h3>{{ __('Create your account for free') }}</h3>
+                        <p class="black-54">{{ __('Create your account with Facebook or account credentials') }}</p>
 
                         <a href="" class="btn btn-facebook w-100 mt-5">
                             <i class="fa fa-facebook-official mr-2 icon wc" aria-hidden="true"></i>
-                            {{ trans('public/register.login_fb') }}
+                            {{ __('Register with Facebook') }}
                         </a>
 
-                        <p class="text-center mt-4 black-54">{{ trans('public/register.or_create_account') }}</p>
+                        <p class="text-center mt-4 black-54">{{ __('Create account') }}</p>
 
                         <form action="/account/user/insert" method="post">
                             {{ csrf_field() }}
 
                             <div class="form-group pt-3">
                                 @include('new.components.forms.input', [
-                                    'label'       => trans('public/register.email'),
+                                    'label'       => __('Email'),
                                     'label_cap'   => true,
                                     'name'        => 'email',
                                     'type'        => 'email',
@@ -53,7 +53,7 @@
 
                             <div class="form-group pt-3">
                                 @include('new.components.forms.input', [
-                                    'label'       => trans('public/register.name'),
+                                    'label'       => __('Name'),
                                     'label_cap'   => true,
                                     'name'        => 'name',
                                     'type'        => 'text',
@@ -64,39 +64,30 @@
 
                             <div class="form-group pt-3">
                                 @include('new.components.forms.input', [
-                                    'label'       => trans('public/register.pw'),
+                                    'label'       => __('Password'),
                                     'label_cap'   => true,
                                     'name'        => 'password',
                                     'type'        => 'password',
                                     'class'       => 'form-control-lg w-100 bb-38',
-                                    'placeholder' => '5+ ' . trans('public/register.characters')
+                                    'placeholder' => '8+ ' . __('characters')
                                 ])
                             </div>
 
                             <div class="form-group">
-                                <label>
-                                    @include('account.field-error', ['field' => 'gdpr'])
-                                </label>
 
                                 <div class="form-check">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="checkbox" name="gdpr">
-                                        <small>{{ trans('admin/user.gdpr_checkbox') }}</small>
+                                        <small>{{ __('Approve our privacy policy and terms') }}</small>
                                     </label>
                                 </div>
                             </div>
 
                             <div class="d-flex justify-content-center pt-3">
                                 <button type="submit" class="box-shadow btn-lg btn-primary text-uppercase">
-                                    {{ trans('public/register.create_account') }}
+                                    {{ __('Create account') }}
                                 </button>
                             </div>
-
-                            <div class="w-100 text-center mt-4">
-                                <small class="text-center">{{ trans('public/register.accept_terms') }}
-                                </small>
-                            </div>
-
 
                         </form>
                     </div>
