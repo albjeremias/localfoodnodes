@@ -128,7 +128,7 @@
                         <button type="submit" form="user-edit-form" class="btn btn-success">{{ __('Save user') }}</button>
 
                         {{-- Delete --}}
-                        <a href="{{ route('account_user_delete_confirm') }}" class="btn btn-danger float-right">{{ __('Delete user') }}</a>
+                        <a href="{{ route('account_user_delete') }}" class="btn btn-danger float-right">{{ __('Delete user') }}</a>
                     </div>
                 </div>
             </div>

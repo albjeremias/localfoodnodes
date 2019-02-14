@@ -8,15 +8,14 @@ Route::group(['prefix' => '/anvandare'], function () {
     Route::get('/redigera', 'Account\UserController@edit')->name('sv_account_user_edit');
     Route::post('/updatera', 'Account\UserController@update')->name('sv_account_user_update');
     Route::get('/ta-bort', 'Account\UserController@delete')->name('sv_account_user_delete');
-    Route::get('/ta-bort/godkann', 'Account\UserController@deleteConfirm')->name('sv_account_user_delete_confirm');
     Route::get('/losenord/redigera', 'Account\UserController@editPassword')->name('sv_account_user_password_edit');
     Route::post('/losenord/uppdatera', 'Account\UserController@updatePassword')->name('sv_account_user_password_update');
     Route::get('/utlamning', 'Account\UserController@pickups')->name('sv_account_user_pickups');
     Route::get('/bestallning/producent/{producerId}', 'Account\UserController@producerOrders')->name('sv_account_user_orders_producer');
     Route::get('/bestallning/produkt/{productId}', 'Account\UserController@productOrders')->name('sv_account_user_orders_product');
-    // What?
-    Route::get('/gdpr/ta-bort/godkann', 'Account\UserController@gdprDeleteConfirm')->name('sv_account_user_gdpr_delete_confirm');
-    Route::get('/gdpr', 'Account\UserController@gdpr')->name('sv_account_user_gdpr');
+
+    Route::get('/gdpr/godkann', 'Account\UserController@gdpr')->name('sv_account_user_gdpr_confirm');
+    Route::view('/gdpr', 'new.account.user.gdpr')->name('sv_account_user_gdpr');
 
     Route::get('/bestallning/{orderItemId}', 'Account\UserController@order')->name('sv_account_user_order');
     Route::get('/bestallning/{orderItemId}/ta-bort', 'Account\UserController@deleteOrderItem')->name('sv_account_user_order_delete');

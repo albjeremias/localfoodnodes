@@ -8,14 +8,13 @@ Route::group(['prefix' => '/user'], function () {
     Route::get('/edit', 'Account\UserController@edit')->name('en_account_user_edit');
     Route::post('/update', 'Account\UserController@update')->name('en_account_user_update');
     Route::get('/delete', 'Account\UserController@delete')->name('en_account_user_delete');
-    Route::get('/delete/confirm', 'Account\UserController@deleteConfirm')->name('en_account_user_delete_confirm');
     Route::get('/password/edit', 'Account\UserController@editPassword')->name('en_account_user_password_edit');
     Route::post('/password/update', 'Account\UserController@updatePassword')->name('en_account_user_password_update');
     Route::get('/pickups', 'Account\UserController@pickups')->name('en_account_user_pickups');
     Route::get('/orders/producer/{producerId}', 'Account\UserController@producerOrders')->name('en_account_user_orders_producer');
     Route::get('/orders/product/{productId}', 'Account\UserController@productOrders')->name('en_account_user_orders_product');
-    // What?
-    Route::get('/gdpr/delete/confirm', 'Account\UserController@gdprDeleteConfirm')->name('en_account_user_gdpr_delete_confirm');
+
+    Route::get('/gdp/confirm', 'Account\UserController@gdprConfirm')->name('en_account_user_gdpr_confirm');
     Route::get('/gdpr', 'Account\UserController@gdpr')->name('en_account_user_gdpr');
 
     Route::get('/order/{orderItemId}', 'Account\UserController@order')->name('en_account_user_order');

@@ -271,18 +271,25 @@ class UserController extends Controller
     }
 
     /**
-     * Confirm delete action.
+     * User delete action.
      */
-    public function deleteConfirm(Request $request)
+    public function delete(Request $request)
     {
         $user = Auth::user();
 
-        return view('account.user.confirm-delete', [
-            'breadcrumbs' => [
-                $user->name => 'user',
-                trans('admin/user-nav.delete') => ''
-            ]
-        ]);
+        if ($request->has('confirmed')) {
+            Auth::logout();
+            $user->delete();
+            $request->session()->flash('message', [trans('admin/messages.user_account_deleted')]);
+            return redirect('/');
+        } else {
+            return view('new.account.user.delete', [
+                'breadcrumbs' => [
+                    $user->name => 'user',
+                    trans('admin/user-nav.delete') => ''
+                ]
+            ]);
+        }
     }
 
     /**
@@ -291,34 +298,19 @@ class UserController extends Controller
     public function gdpr(Request $request)
     {
         $user = Auth::user();
+        return view('new.account.user.gdpr', [
+            'uswer' => $user,
+        ]);
+    }
+    /**
+     * Approve gdpr.
+     */
+    public function gdprConfirm(Request $request)
+    {
+        $user = Auth::user();
         GdprConsent::create(['user_id' => $user->id, 'name' => $user->name]);
 
         return redirect('/account/user');
-    }
-
-
-    /**
-     * Confirm delete action.
-     */
-    public function gdprDeleteConfirm(Request $request)
-    {
-        $user = Auth::user();
-
-        return view('account.user.gdpr-confirm-delete');
-    }
-
-    /**
-     * User delete action.
-     */
-    public function delete(Request $request)
-    {
-        $user = Auth::user();
-        Auth::logout();
-
-        $user->delete();
-        $request->session()->flash('message', [trans('admin/messages.user_account_deleted')]);
-
-        return redirect('/');
     }
 
     /**

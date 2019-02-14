@@ -27,10 +27,11 @@ class Controller extends BaseController
         $this->middleware(function ($request, $next) {
             $user = Auth::user();
 
-            $validRoutes = ['logout', 'account/user/delete', 'account/user/gdpr/delete/confirm', 'account/user/gdpr'];
-            $isValidRoute = in_array($request->path(), $validRoutes);
+            $validRouteNames = ['logout', 'account_user_delete', 'account_user_gdpr_delete_confirm', 'account_user_gdpr', 'account_user_gdpr_confirm'];
+            $isValidRoute = in_array(substr($request->route()->getName(), 3), $validRouteNames);
+
             if (!$isValidRoute && ($user && !$user->gdprConsent())) {
-                return new Response(view('account.user.gdpr-consent'));
+                return redirect(route('account_user_gdpr'));
             }
 
             return $next($request);
