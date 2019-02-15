@@ -20,7 +20,7 @@
   @extend .box-shadow;
 
   &__img-container {
-    height: 176px;
+    height: 160px;
     position: relative;
 
     &__quantity {
@@ -50,6 +50,15 @@
 
 .product.product-edit {
   height: 440px;
+
+  .visibility-overlay {
+    position: absolute;
+    height: 100%;
+    width: 95%;
+    background-color: #000000c7;
+    z-index: 1;
+    display: flex;
+  }
 
   .divider {
     height: 37.25px;

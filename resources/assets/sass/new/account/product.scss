@@ -15,3 +15,33 @@
   overflow: scroll;
   @extend .bbb;
 }
+
+
+#overview {
+
+  .overview-box {
+    padding: 1rem 1.5rem;
+    height: 150px;
+    @extend .box-shadow;
+    background-color: #fff;
+  }
+
+  .product-stats {
+    padding: 1rem 1.5rem;
+    height: 150px;
+    @extend .box-shadow;
+    background-color: #fff;
+  }
+}
+
+.product-background {
+  position: absolute;
+  height: 336px;
+  width: 100%;
+}
+
+.product-info {
+  padding-top: 110px;
+}
+
+
