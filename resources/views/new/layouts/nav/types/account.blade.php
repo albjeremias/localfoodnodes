@@ -1,9 +1,7 @@
 {{-- PLACEHOLDER - Will be replaced when we store selected producer in session. @NOTE David --}}
-@foreach ($user->producerAdminLinks() as $producerAdminLink)
     @php
-        $active_producer_name = $producerAdminLink->getProducer()->name;
+        $active_producer_name = $user->producerAdminLinks()[0]->getProducer()->name;
     @endphp
-@endforeach
 
 {{-- MY PANEL --}}
 <li class="nav-item">
@@ -81,9 +79,6 @@
         <a class="nav-link black-54" href="/account/node/create">{{ __('Create node') }}</a>
     </li>
 @endif
-
-
-
 
 {{-- NODES --}}
 <li class="nav-item">

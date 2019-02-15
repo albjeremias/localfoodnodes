@@ -8,6 +8,16 @@
 window.Vue = require('vue');
 window.moment = require('moment');
 window._ = require('lodash');
+window.axios = require('axios');
+
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+let token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -19,6 +29,7 @@ window._ = require('lodash');
 Vue.component('card-product-edit', require('./cards/ProductEdit').default);
 
 Vue.component('products-administration-index', require('./modules/products-administration/ProductsAdminIndex').default);
+// Vue.component('consumer-product', require('./modules/ConsumerProduct').default);
 
 const app = new Vue({
     el: '#products-administration',

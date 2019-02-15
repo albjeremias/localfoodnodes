@@ -40,7 +40,7 @@
                 [
                     'tr'    => __('Stock'),
                     'name'  => 'variants[' . $variant->id . '][quantity]',
-                    'value' => $variant->getProductionQuantity(),
+                    'value' => '',
                     'type'  => 'number',
                     'class' => 'input-stock-fields',
                 ],

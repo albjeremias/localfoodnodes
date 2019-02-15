@@ -373,6 +373,10 @@ thead {
   border-right: 2.5px solid $black-12 !important;
 }
 
+.bbb {
+  border-bottom: 2.5px solid $black-12 !important;
+}
+
 .no-bullets {
   list-style: none;
   @extend .pl-0;
@@ -513,6 +517,13 @@ option:checked {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
   overflow: hidden;
 }
 

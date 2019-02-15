@@ -9,3 +9,9 @@
 .product-intro h2 {
   color: #bf360c;
 }
+
+.delivery-dates-container {
+  max-height: 450px;
+  overflow: scroll;
+  @extend .bbb;
+}

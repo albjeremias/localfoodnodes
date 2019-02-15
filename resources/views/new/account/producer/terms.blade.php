@@ -3,16 +3,16 @@
     'active' => 0,
     'steps'  =>
         [
-            __('Read terms'),
-            __('Create account'),
-            __('Sale channels'),
-            __('Create products')
+            __('Terms'),
+            __('Create producer'),
+            __('Sales channels'),
+            __('Finish')
         ]
 ])
 
 <div class="bg-accent-light-24">
     <div class="container py-5">
-        <div class="row pb-5 terms_intro">
+        <div class="row py-4 terms_intro">
             <div class="col-xl-8">
                 {{ __('Whoop, we salute you great food producer, saviours of the world. Before setting up your producer account you need to read and agree to these terms of use. Make sure you fully understand them. Then hit agree and you are set to go.') }}
             </div>
@@ -48,9 +48,9 @@
             {{ __('') }}
         </div>
 
-        <div class="col text-right my-5">
-            <a class="rc text-uppercase mr-4" href="#">{{ __('Cancel') }}</a>
-            <a class="btn btn-secondary" href="/account/producer/create?terms=approved">{{ __('Accept') }}</a>
+        <div class="d-flex w-100">
+            <button type="submit" class="btn btn-primary">{{  __('Cancel') }}</button>
+            <a class="btn btn-secondary ml-auto" href="/account/producer/create?terms=approved">{{ __('Accept') }}</a>
         </div>
     </div>
 </div>

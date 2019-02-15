@@ -9,7 +9,7 @@
         <div class="col-md-8">
             <div class="white-box little-min">
                 <h4 class="position-absolute">Deliveries</h4>
-                <info :text="info.deliveries.text" :placement="info.deliveries.placement" :class="info.deliveries.class"></info>
+                <info :text="info.deliveries.text" :placement="info.deliveries.placement" :icon-class="info.deliveries.class"></info>
 
                 <div class="d-flex h-100">
                     <div class="my-auto w-100">
@@ -17,12 +17,12 @@
 
                             <!--Select location-->
                             <span class="dropdown-toggle w-100 select-location" href="#" role="button" id="select-location" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Select location
+                                {{ selectLocationLabel }}
                             </span>
 
                             <div class="dropdown-menu dropdown-form-menu" aria-labelledby="select-location">
                                 <a class="dropdown-item" href="#">Nodes</a>
-                                <a class="dropdown-item" href="#"><small>-En nod</small></a>
+                                <a v-for="node in nodes" @click="selectedNode = node" class="dropdown-item" href="#"><small>-{{ node.name }}</small></a>
 
                                 <a class="dropdown-item" href="#">Ad Hocs</a>
                                 <a class="dropdown-item" href="#"><small class="rc text-uppercase font-weight-bold">-Add new</small></a>
@@ -37,12 +37,11 @@
                         <!-- Select date -->
                         <div class="dropdown show dropdown-form d-inline-flex mt-3">
                             <span class="dropdown-toggle w-100 select-location" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Select date
+                                {{ selectDateLabel }}
                             </span>
 
                             <div class="dropdown-menu dropdown-form-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="#">1992-05-29</a>
-                                <a class="dropdown-item" href="#">2019-01-15</a>
+                                <a v-for="date in nodeDeliveryDates" @click="selectedDate = date" class="dropdown-item" href="#">{{ date }}</a>
 
                                 <a class="dropdown-item" href="#"><small class="rc text-uppercase font-weight-bold">-Add new date</small></a>
                             </div>
@@ -105,21 +104,69 @@
         data: function() {
             return {
                 allProductActive: false,
-                info: {}
+                info: {},
+                nodes: [],
+                nodeDeliveryDates: [],
+                selectedNode: false,
+                selectedDate: false,
             }
         },
         beforeMount () {
             this.infoSort()
+            this.fetchNodes()
+        },
+        mounted() {
+          // console.log(this.producer);
+        },
+        computed: {
+            selectLocationLabel() {
+              if (this.selectedNode) {
+                  return this.selectedNode.name;
+              } else {
+                  return 'Select location';
+              }
+            },
+            selectDateLabel() {
+                if (this.selectedDate) {
+                    return this.selectedDate;
+                } else {
+                    return 'Select date';
+                }
+            },
         },
         watch: {
-            allProductActive: 'activateAllProducts'
+            allProductActive: 'activateAllProducts',
+            selectedNode: function () {
+                this.fetchDeliveryDates();
+            },
+            selectedDate: function () {
+                this.fetchProductsByDate();
+            }
         },
         methods: {
             activateAllProducts() {
                 console.log(this.allProductActive);
             },
             fetchNodes() {
-                // /{langCode}/api/account/producers/{producerId}/nodes
+                axios.get('/api/account/producers/' + this.producer.id + '/nodes').then((response) => {
+                    this.nodes = response.data;
+                }).catch((error) => {
+                    console.log(error);
+                });
+            },
+            fetchDeliveryDates() {
+                axios.get('/api/account/nodes/' + this.selectedNode.id + '/deliveries').then((response) => {
+                    this.nodeDeliveryDates = response.data;
+                }).catch((error) => {
+                    console.log(error);
+                });
+            },
+            fetchProductsByDate() {
+                axios.get('/api/account/producers/' + this.producer.id +'/products?nodeId=' + this.selectedNode.id +'&date=' + this.selectedDate).then((response) => {
+                    console.log(response.data);
+                }).catch((error) => {
+                    console.log(error);
+                });
             },
             infoSort() {
                 this.info.deliveries = {

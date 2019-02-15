@@ -356,6 +356,11 @@ thead {
   border-right: 2.5px solid rgba(0, 0, 0, 0.12) !important;
 }
 
+.bbb,
+.delivery-dates-container {
+  border-bottom: 2.5px solid rgba(0, 0, 0, 0.12) !important;
+}
+
 .no-bullets {
   list-style: none;
 }
@@ -499,6 +504,12 @@ option:checked {
 .line-clamp-1 {
   display: -webkit-box;
   -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
   overflow: hidden;
 }
 
@@ -17956,6 +17967,11 @@ section.medium-gradient .inverted-accent {
 
 .product-intro h2 {
   color: #bf360c;
+}
+
+.delivery-dates-container {
+  max-height: 450px;
+  overflow: scroll;
 }
 
 @media (min-width: 1600px) {
