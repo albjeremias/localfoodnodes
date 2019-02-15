@@ -6,7 +6,7 @@
             <div class="col-2">
                 <i class="fa fa-asterisk icon-green" aria-hidden="true"></i>
             </div>
-            <a href="#">
+            <a href="{{ $node->permalink()->url }}">
                 <small class="col black-87">{{ $node->name }}</small>
             </a>
         </div>

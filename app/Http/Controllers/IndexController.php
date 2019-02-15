@@ -66,7 +66,7 @@ class IndexController extends Controller
         $products = $node->products();
 
         $productFilter = new ProductFilter($products, $request);
-        $filteredProducts = $productFilter->filterDate($nodeId)->filterTags()->filterVisibility()->get();
+//        $filteredProducts = $productFilter->filterDate($nodeId)->filterTags()->filterVisibility()->get();
 
         $date = null;
         if ($request->has('date')) {
@@ -82,7 +82,7 @@ class IndexController extends Controller
 
         return view('new.public.node.node', [
             'node' => $node,
-            'products' => $filteredProducts->sortBy('name')->values(),
+            'products' => Product::all()->take(10),
             'date' => $date,
             'tags' => $productFilter->getTagFilter($request),
         ] + $shareMeta);
