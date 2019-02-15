@@ -1,1 +1,1 @@
-<button type="submit" class="btn btn-secondary">Save</button>
+<button type="submit" class="btn btn-secondary ml-auto">{{ __('Save and continue') }}</button>

@@ -3,10 +3,10 @@
     'active' => 1,
     'steps'  =>
         [
-            __('Read terms'),
-            __('Create account'),
-            __('Sale channels'),
-            __('Create products')
+            __('Terms'),
+            __('Create producer'),
+            __('Sales channels'),
+            __('Finish')
         ]
 ])
 
@@ -15,7 +15,7 @@
 
     <div class="row mt-4">
         <div class="col-md-9">
-            <h4>{{ __('Producer info') }}</h4>
+            <h4>{{ __('Producer info') }}<span class="rc">*</span></h4>
 
             {{-- Farm/Business name --}}
             <div class="form-row mt-4">
@@ -92,7 +92,7 @@
 
                 {{-- Currency --}}
                 <div class="form-group col-md-7">
-                    <h4>{{ __('Payment info') }}</h4>
+                    <h4>{{ __('Payment info') }}<span class="rc">*</span></h4>
 
                     @include('new.components.forms.dropdown', [
                         'label'       => __('Currency'),
@@ -112,7 +112,7 @@
                         'name'  => 'payment_info',
                         'type'  => 'text',
                         'class' => 'form-control',
-                        'placeholder' => __('Payment info for all orders'),
+                        'placeholder' => __('General payment info. (Can be specified for each product on product level)'),
                         'm_value' => $producer->payment_info ?? ''
                     ])
                 </div>
@@ -180,7 +180,10 @@
                 ])
             </div>
         </div>
-        @include('new.components.forms.submit')
+        <div class="d-flex w-100">
+            <button type="submit" class="btn btn-primary">{{  __('Back') }}</button>
+            @include('new.components.forms.submit')
+        </div>
     </div>
 </div>
 
