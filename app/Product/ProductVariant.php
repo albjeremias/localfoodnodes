@@ -16,7 +16,8 @@ class ProductVariant extends BaseModel
         'name' => 'required|max:255',
         'price' => 'required|numeric',
         'package_amount' => 'required|numeric|min:0.01',
-        'main_variant' => 'boolean',
+        // 'main_variant' => 'boolean',
+        'quantity' => 'numeric'
     ];
 
     /**
@@ -30,6 +31,7 @@ class ProductVariant extends BaseModel
         'price',
         'package_amount',
         'main_variant',
+        'quantity',
     ];
 
     /**

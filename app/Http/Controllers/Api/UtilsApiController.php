@@ -10,6 +10,7 @@ use App\System\Parsers\TransactionParser\Transaction;
 use App\System\Utils\CurrencyConverter;
 use App\Node\Node;
 use App\Helpers\MapHelper;
+use App\Helpers\UnitsHelper;
 
 class UtilsApiController extends ApiBaseController
 {
@@ -105,6 +106,11 @@ class UtilsApiController extends ApiBaseController
                 'label' => __('Nodes'),
             ]
         ];
+    }
+
+    public function packageUnits()
+    {
+        return UnitsHelper::getVariantUnits();
     }
 
     /**

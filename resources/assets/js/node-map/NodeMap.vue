@@ -127,7 +127,7 @@
             },
 
             fetchMetrics() {
-                axios.get(`${this.lang}/api/mapMetrics`)
+                axios.get(`${this.lang}/api/map-metrics`)
                 .then(metrics => {
                     this.metrics = metrics.data;
                 });
