@@ -8,44 +8,10 @@
 
 @section('title', 'Dashboard')
 @section('content')
-    <div class="nm bg-shell">
-        <div class="container pt-2">
-            @include('new.components.breadcrumbs', ['crumbs' => $breadcrumbs])
-            <div class="white-box">
-                <h5 class="rc mb-4">{{ __('Stock') }}</h5>
-                <form method="post" action="{{ route('account_product_stock_update', ['producerId' => $producer->id, 'productId' => $product->id]) }}">
-                    @csrf()
-                    @include('new.account.product.forms.stock')
-                    @include('new.components.forms.submit')
-                </form>
-            </div>
-
-            <div class="white-box">
-                <h5 class="rc mb-4">{{ __('Variants') }}</h5>
-                <form method="post" action="{{ route('account_product_variants_update', ['producerId' => $producer->id, 'productId' => $product->id]) }}">
-                    @csrf()
-                    @include('new.account.product.forms.variants-settings')
-
-                    @if(count($product->productVariants()) > 0)
-                        @include('new.account.product.forms.variants')
-                    @else
-                        <p>{{ __('No variants') }}</p>
-                        @include('new.account.product.forms.new-variant')
-                    @endif
-                    @include('new.components.forms.submit')
-                </form>
-            </div>
-        </div>
+    <div id="stock-and-variants">
+        <stock-and-variants lang="{{ app()->getLocale() }}" producer-id="{{ $producer->id }}" product-id="{{ $product->id }}"></stock-and-variants>
     </div>
-
-    <script>
-        $(document).ready(function () {
-            $('#checkbox-variants').change(function () {
-                $('#checkbox-shared-stock').prop('disabled', function(i, v) { return !v; });
-                $('#dropdown-product_content_specified').prop('disabled', function(i, v) { return !v; });
-            });
-        });
-    </script>
+    <script src="{{ mix('js/stock-and-variants.js') }}"></script>
 @endsection
 
 

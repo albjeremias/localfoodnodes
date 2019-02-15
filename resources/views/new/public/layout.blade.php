@@ -69,6 +69,6 @@
     ga('send', 'pageview');
 
 </script>
-<script src="https://embed.small.chat/T0Z3AQJK1G5Q08NBRS.js"></script>
+{{-- <script src="https://embed.small.chat/T0Z3AQJK1G5Q08NBRS.js"></script> --}}
 </body>
 </html>

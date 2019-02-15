@@ -1,11 +1,12 @@
 {
-    "/js/admin-transaction-list.js": "/js/admin-transaction-list.js?id=5df5f7351de9805fa567",
+    "/js/admin-transaction-list.js": "/js/admin-transaction-list.js?id=9b2f4a4fc971a12d47e1",
+    "/css/public.css": "/css/public.css?id=fc8ef59b69ca65d4ac9d",
     "/js/economy-circulation.js": "/js/economy-circulation.js?id=7359143df49331577d83",
     "/js/economy-in-out.js": "/js/economy-in-out.js?id=922a49d5f64f5e95a1a9",
-    "/js/new.js": "/js/new.js?id=02770e590fd56231a7ca",
-    "/js/node-map.js": "/js/node-map.js?id=58b0ee70a7382d8578f3",
-    "/js/payment-widget.js": "/js/payment-widget.js?id=dcf59cff362dd8582f3c",
-    "/css/public.css": "/css/public.css?id=fc8ef59b69ca65d4ac9d",
-    "/js/producer-map.js": "/js/producer-map.js?id=d01379360cd35166c2c4",
+    "/js/new.js": "/js/new.js?id=23b281f88df41af88e09",
+    "/js/node-map.js": "/js/node-map.js?id=d3281932ec29cf07df96",
+    "/js/payment-widget.js": "/js/payment-widget.js?id=2fd5fff8b7319ae19c7c",
+    "/js/producer-map.js": "/js/producer-map.js?id=161b18146c965ec6c29f",
+    "/js/stock-and-variants.js": "/js/stock-and-variants.js?id=b9a40839c523eb56c7ab",
     "/js/transactions.js": "/js/transactions.js?id=271ad0c816cb58a37499"
 }
