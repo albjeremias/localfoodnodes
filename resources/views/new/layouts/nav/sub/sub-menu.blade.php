@@ -1,11 +1,9 @@
 {{-- EXTEND NAVBAR TO SHOW ACCOUNT NAVBAR --}}
 
 {{-- PLACEHOLDER - Will be replaced when we store selected producer in session. @NOTE David --}}
-@foreach ($user->producerAdminLinks() as $producerAdminLink)
-    @php
-        $active_producer_id = $producerAdminLink->getProducer()->id;
-    @endphp
-@endforeach
+@php
+    $active_producer_id = $user->producerAdminLinks()[0]->getProducer()->id;
+@endphp
 
 @php
     $node_navbar = [
