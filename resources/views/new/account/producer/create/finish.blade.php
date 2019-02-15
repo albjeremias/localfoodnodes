@@ -26,8 +26,11 @@
             <div class="container py-5">
                 <div class="row py-4 terms_intro text-center">
                     <div class="col-xl-16">
-                        <h2>{{ __('Härligt och bra jobbat!') }}</h2>
-                        Du har nu ett producentkonto på Local Food Nodes som du kostnadsfritt kan använda fritt för att sälja dina produkter direkt till konsument, helt utan mellanhänder.
+                        <h2>{{ __('Nice work!') }}</h2>
+                        {{ __('You now have a producer account for') }} {{  $producer->name }}
+                        {{ __('at Local Food Nodes. An accont that you freely can use to sell and administer your
+                            products, straight to local end-consumers, without any middleman, and without any
+                            revenue-loss using the platform.') }}
                     </div>
                 </div>
             </div>
@@ -39,12 +42,11 @@
                 <h2 class=" mb-3">{{ __('Tell the world!') }}</h2>
 
                 <p>
-                    Berätta för dina följare att du blivit LFN-producent.
-                    Kopiera länken och klistar in där det passar dig.
+                    {{ __('Share link below and post it where ever it suits you, telling your friends and followers you now have') }} {{ $producer->name  }} {{ __('set up at Local Food Nodes.') }}
                 </p>
 
                 <div class="d-flex">
-                    <div class="p-3 w-75 mx-auto" style="border: #bf360c dashed 1px;">
+                    <div class="p-3 w-75 mx-auto" style="border: #bf360c dashed 1px; border-radius: 10px">
                         <div class="d-flex">
                             @foreach($producer->images() as $image)
                                 <div class="mx-auto mt-1 mb-3" style="width: 50px">
@@ -57,15 +59,20 @@
                             {{ $producer->name }}
                             {{ __('is now registered at Local Food Nodes, the open source platform for prime local food, without any middlemen.
                                     Just great local food, from farmer to locals.
-                                    Welcome to visit our farm page at local food nodes  and find out about us, our products and where to we deliver.
+                                    Welcome to visit') }} {{ $producer->name }} {{ __('at Local Food Nodes and find out about us, our products and where to we deliver.
                                     #letsgolocal') }}
                         </p>
-                        <button class="btn btn-sm btn-outline-secondary">{{ __('Copy link') }}</button>
+                        <button class="btn btn-sm btn-outline-secondary"><i class="fa fa-share-alt mr-2" aria-hidden="true"></i>{{ __('Share') }} {{ $producer->name }}</button>
+
+                        {{--<a class="list-inline-item btn btn-white bb bottom-link-right">--}}
+                            {{----}}
+                            {{--Share product list--}}
+                        {{--</a>--}}
                     </div>
                 </div>
 
                 <h4 class="mt-5 mb-3">{{  __('Choose where you want to go now') }}</h4>
-                <a href="/account/producer/{{ $producer->id }}/channels" class="btn btn-secondary">{{ __('Visit your farm page') }}</a>
+                <a href="/account/producer/{{ $producer->id }}/channels" class="btn btn-secondary">{{ __('Visit') }} {{ $producer->name }}</a>
                 <a href="/account/producer/{{ $producer->id }}" class="btn btn-secondary mx-3">{{ __('Dashboard') }}</a>
                 <a href="/account/producer/{{ $producer->id }}/product/create" class="btn btn-secondary">{{ __('Create a product') }}</a>
                 <div class="text-center">

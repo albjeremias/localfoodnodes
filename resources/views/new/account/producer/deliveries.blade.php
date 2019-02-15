@@ -11,8 +11,12 @@
 @section('content')
     <div class="bg-shell">
         <div class="container nm pt-3">
+            <div class="d-flex">
+                <h2 class="d-inline-block">Upcoming</h2>
+                <a href="#" class="btn btn-secondary box-shadow my-auto ml-auto">{{ __('Switch to Expired') }}</a>
+            </div>
             @if ($producer->orderDates()->count() > 0)
-                @foreach ($producer->orderDates() as $orderDate)
+                @foreach ($producer->orderDates()->reverse() as $orderDate)
                     <div class="white-box mb-5">
                         <h4 class="mt-1 bc pl-2">{{ __('Deliveries') }} {{ $orderDate->date('Y-m-d') }}</h4>
                         @php

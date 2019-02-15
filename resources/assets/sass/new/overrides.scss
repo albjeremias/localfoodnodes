@@ -32,6 +32,7 @@ $danger:        $raspberry;
 $warning:       $secondary-red;
 $dark:          $black-38;
 $raspberry:     $raspberry;
+$white:         #fafafa;
 
 $theme-colors: ();
 $theme-colors: map-merge((
@@ -45,6 +46,7 @@ $theme-colors: map-merge((
         "dark":       $dark,
         "facebook":   $fb,
         "raspberry":  $raspberry,
+        "white":      $white,
 ), $theme-colors);
 
 // --------- FONTS ---------

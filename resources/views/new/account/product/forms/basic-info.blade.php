@@ -160,7 +160,7 @@
     ])
     </div>
 
-    <button type="submit" class="btn btn-secondary mt-3 float-right">{{ _('Save product') }}</button>
+    <button type="submit" class="btn btn-secondary mt-3 float-right">{{ _('Create product') }}</button>
 </div>
 
 {{-- Right Section --}}

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-16 d-flex pb-4">
             <h2 class="d-inline h1 mb-0 bc">Products administration</h2>
-            <a :href="'/account/producer/'+producer.id+'/product/create'" class="btn btn-primary ml-auto d-inline-flex">Create new product</a>
+            <a :href="'/account/producer/'+producer.id+'/product/create'" class="btn btn-primary ml-auto d-inline-flex box-shadow">Create new product</a>
         </div>
 
 
@@ -66,8 +66,11 @@
                     </div>
                 </div>
 
-                <input type="text" class="form-control form-control-sm input-buttom-r w-75" readonly value="https://lfn.org/bla">
-                <a href="#" class="bottom-link text-uppercase rc">Copy link</a>
+                <!--<a href="#" class="bottom-link text-uppercase rc">Copy link</a>-->
+                <a class="list-inline-item btn btn-white bb bottom-link-right">
+                    <i class="fa fa-share-alt mr-2" aria-hidden="true"></i>
+                    Share product list
+                </a>
             </div>
         </div>
 
@@ -79,7 +82,7 @@
                 </div>
             </div>
 
-            <div v-for="product in products" v-bind:key="product.id" class="col-16 col-lg-8 col-xl-5 mb-3">
+            <div v-for="product in products" v-bind:key="product.id" class="col-16 col-lg-8 col-xl-4 mb-3">
                 <card-product-edit
                         :product="product"
                         :producer="producer"
