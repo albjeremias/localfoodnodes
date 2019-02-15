@@ -16,7 +16,7 @@ class ProductVariant extends BaseModel
         'name' => 'required|max:255',
         'price' => 'required|numeric',
         'package_amount' => 'required|numeric|min:0.01',
-        // 'main_variant' => 'boolean',
+        'main_variant' => 'boolean',
         'quantity' => 'numeric'
     ];
 
@@ -100,6 +100,19 @@ class ProductVariant extends BaseModel
         }
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function getPriceAttribute($price)
+    {
+        if ($this->main_variant) {
+            return $this->getProduct()->price;
+        }
+
+        return $price;
+    }
 
     /**
      * Get price with unit.
@@ -124,6 +137,20 @@ class ProductVariant extends BaseModel
         }
 
         return '<h3 class="price">' . $prefix . $this->price . '</h3><div class="unit">' . $this->getUnit() . '</div>';
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function getQuantityAttribute($quantity)
+    {
+        if ($this->main_variant) {
+            return $this->getProduct()->stock_quantity;
+        }
+
+        return $quantity;
     }
 
     /**

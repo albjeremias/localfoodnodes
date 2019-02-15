@@ -70,12 +70,13 @@
                                 <th scope="col">Image</th>
                                 <th scope="col" class="w-35">Name</th>
                                 <th scope="col">Main</th>
-                                <th scope="col">Amount per package</th>
-                                <th scope="col">Stock</th>
+                                <th scope="col">{{ variants.package_unit.charAt(0).toUpperCase() + variants.package_unit.slice(1) }} per package</th>
+                                <th scope="col">Stock <span v-if="variants.shared_variant_quantity">(calculated)</span></th>
                                 <th scope="col">Price</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- Added variants -->
                             <tr v-for="(variant, index) in variants.variants" :key="'existing-' + index">
                                 <td class="position-relative">
                                     <img src="https://local-food-nodes.s3.eu-central-1.amazonaws.com/201810161102_img_4010_jpeg_small.jpeg" class="rounded-circle form-table-image">
@@ -90,31 +91,33 @@
                                     <input type="number" min="0" step="1" class="form-control form-control-sm" v-model="variants.variants[index]['package_amount']">
                                 </td>
                                 <td class="position-relative">
-                                    <input type="number" min="0" step="1" class="form-control form-control-sm" v-model="variants.variants[index]['quantity']">
+                                    <input type="number" min="0" step="1" class="form-control form-control-sm" v-model="variants.variants[index]['quantity']" :disabled="variants.shared_variant_quantity">
                                 </td>
                                 <td class="position-relative">
-                                    <input type="number" min="0" step="1" class="form-control form-control-sm" v-model="variants.variants[index]['price']">
+                                    <input type="number" min="0" step="1" class="form-control form-control-sm" v-model="variants.variants[index]['price']" :disabled="variant.id === variants.main_variant">
                                 </td>
                                 <td><span v-on:click="deleteVariant(variant)">Remove</span></td>
                             </tr>
-                            <tr v-for="(variant, index) in variants.newVariants" :key="'new-' + index">
+
+                            <!-- New variants -->
+                            <tr v-for="(variant, index) in variants.newVariants" :key="variant.id">
                                 <td class="position-relative">
                                     <img src="https://local-food-nodes.s3.eu-central-1.amazonaws.com/201810161102_img_4010_jpeg_small.jpeg" class="rounded-circle form-table-image">
                                 </td>
                                 <td class="position-relative">
-                                    <input type="text" class="form-control form-control-sm w-100" placeholder="New variant name" v-model="variants.newVariants[index]['name']">
+                                    <input type="text" class="form-control form-control-sm w-100" placeholder="New variant name" :class="{'red-b': hasError(variant.id, 'name')}" v-model="variants.newVariants[index]['name']">
                                 </td>
                                 <td class="position-relative">
-                                    <input type="radio" :value="'new-variant-index-' + index" v-model="variants.main_variant">
+                                    <input type="radio" :value="variant.id" v-model="variants.main_variant">
                                 </td>
                                 <td class="position-relative">
-                                    <input type="number" min="0" step="1" class="form-control form-control-sm" v-model="variants.newVariants[index]['package_amount']">
+                                    <input type="number" min="0" step="1" class="form-control form-control-sm" :class="{'red-b': hasError(variant.id, 'package_amount')}" v-model="variants.newVariants[index]['package_amount']">
                                 </td>
                                 <td class="position-relative">
-                                    <input type="number" min="0" step="1" class="form-control form-control-sm input-stock-fields" v-model="variants.newVariants[index]['quantity']">
+                                    <input type="number" min="0" step="1" class="form-control form-control-sm" :class="{'red-b': hasError(variant.id, 'quantity') && !variants.shared_variant_quantity}" v-model="variants.newVariants[index]['quantity']" :disabled="variants.shared_variant_quantity">
                                 </td>
                                 <td class="position-relative">
-                                    <input type="number" min="0" step="1" class="form-control form-control-sm" v-model="variants.newVariants[index]['price']">
+                                    <input type="number" min="0" step="1" class="form-control form-control-sm" :class="{'red-b': hasError(variant.id, 'price')}" v-model="variants.newVariants[index]['price']" :disabled="variant.id === variants.main_variant">
                                 </td>
                                 <td></td>
                             </tr>
@@ -142,6 +145,7 @@
                 },
                 units: [],
                 variants: {
+                    errors: [],
                     main_variant: null,
                     shared_variant_quantity: false,
                     use_variants: false,
@@ -150,9 +154,6 @@
                     newVariants: [],
                 },
             }
-        },
-        updated() {
-            console.log(this.newVariants);
         },
         mounted() {
             axios.all([
@@ -168,7 +169,7 @@
                 this.units = packageUnits.data;
             }))
             .catch(error => {
-                console.log(error);
+                console.error(error);
             });
         },
         watch: {
@@ -182,7 +183,7 @@
                 set(value) {
                     this.stock.recurring = value;
                 }
-            }
+            },
         },
         methods: {
             saveStock() {
@@ -190,31 +191,38 @@
                     stock: this.stock
                 })
                 .catch(error => {
-                    console.error(error);
+                    console.error(error.response.data);
                 });
             },
 
             saveVariants() {
-                console.log('main variant is ', this.mainVariant);
                 axios.post('/' + this.lang + '/api/account/producers/' + this.producerId + '/products/' + this.productId + '/variants', {
                     variants: this.variants,
                 })
                 .then(variants => {
                     this.variants.variants = variants.data;
                     this.variants.newVariants = [];
+                    this.variants.errors = [];
                 })
                 .catch(error => {
-                    console.error(error);
+                    this.variants.errors = error.response.data.errors;
+                    this.variants.newVariants = error.response.data.newVariants;
+                    this.variants.variants = error.response.data.variants;
+                    console.error(error.response.data);
                 });
             },
 
             addNewVariantRow() {
-                axios.get('/' + this.lang + '/api/account/producers/' + this.producerId + '/products/' + this.productId + '/variant')
+                axios.get('/' + this.lang + '/api/account/producers/' + this.producerId + '/products/' + this.productId + '/variant', {
+                    params: {
+                        currentIndex: this.variants.newVariants.length - 1
+                    }
+                })
                 .then(newVariant => {
                     this.variants.newVariants.push(newVariant.data);
                 })
                 .catch(error => {
-                    console.error(error);
+                    console.error(error.response.data);
                 });
             },
 
@@ -224,8 +232,16 @@
                     this.variants.variants = variants.data;
                 })
                 .catch(error => {
-                    console.error(error);
+                    console.error(error.response.data);
                 });
+            },
+
+            hasError(variantId, field) {
+                if (this.variants.errors && this.variants.errors[variantId] && this.variants.errors[variantId][field]) {
+                    return true;
+                }
+
+                return false;
             }
         },
     }

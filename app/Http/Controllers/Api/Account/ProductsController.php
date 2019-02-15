@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Account;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use App\Http\Controllers\Api\ApiBaseController;
 
@@ -14,7 +15,13 @@ use App\Product\ProductVariant;
 
 class ProductsController extends ApiBaseController
 {
-    // GET /api/account/producer/{producerId}/products?nodeId={nodeId}&date={date}
+    /**
+     * Get all products for a producer.
+     *
+     * @param Request $request
+     * @param [type] $producerId
+     * @return void
+     */
     public function products(Request $request, $producerId)
     {
         // Filters
@@ -37,8 +44,6 @@ class ProductsController extends ApiBaseController
 
             $productIds = $linkQuery->get()->pluck('product_id')->unique();
 
-//            return $productIds;
-
             $products = Product::with([
                 'producerRelationship',
                 'productVariantsRelationship',
@@ -58,6 +63,14 @@ class ProductsController extends ApiBaseController
         return $products;
     }
 
+    /**
+     * Get product.
+     *
+     * @param Request $request
+     * @param [type] $producerId
+     * @param [type] $productId
+     * @return void
+     */
     public function product(Request $request, $producerId, $productId)
     {
         $user = Auth::user();
@@ -67,7 +80,14 @@ class ProductsController extends ApiBaseController
         return $product;
     }
 
-    // POST /api/account/producer/{producerId}/products/{productId}
+    /**
+     * Update product.
+     *
+     * @param Request $request
+     * @param [type] $producerId
+     * @param [type] $productId
+     * @return void
+     */
     public function updateProduct(Request $request, $producerId, $productId)
     {
         if (!$request->has('data')) {
@@ -89,7 +109,14 @@ class ProductsController extends ApiBaseController
         return $product;
     }
 
-    // POST /api/account/producer/{producerId}/products/toggle-visibility
+    /**
+     * Toggle all products visibility
+     *
+     * @param Request $request
+     * @param [type] $producerId
+     * @param [type] $productId
+     * @return void
+     */
     public function setAllProductsVisibilityToggle(Request $request, $producerId, $productId)
     {
         $user = Auth::user();
@@ -103,7 +130,14 @@ class ProductsController extends ApiBaseController
         });
     }
 
-    // POST /api/account/producer/{producerId}/products/{productId}/toggle-visibility
+    /**
+     * Toggle specific product visibility.
+     *
+     * @param Request $request
+     * @param [type] $producerId
+     * @param [type] $productId
+     * @return void
+     */
     public function setProductVisibilityToggle(Request $request, $producerId, $productId)
     {
         $user = Auth::user();
@@ -115,28 +149,60 @@ class ProductsController extends ApiBaseController
         return $product;
     }
 
+    /**
+     * Get new empty variant.
+     *
+     * @param Request $request
+     * @param [type] $producerId
+     * @param [type] $productId
+     * @return void
+     */
     public function getNewVariant(Request $request, $producerId, $productId)
     {
         $variant = new ProductVariant();
+        $variant = array_fill_keys($variant->getFillable(), null);
+        $index = (int) $request->input('currentIndex');
 
-        return array_fill_keys($variant->getFillable(), null);
+        $variant['main_variant'] = false;
+        $variant['id'] = 'new-variant-index-' . ($index++);
+
+        return $variant;
     }
 
+    /**
+     * Get variants.
+     *
+     * @param Request $request
+     * @param [type] $producerId
+     * @param [type] $productId
+     * @return void
+     */
     public function variants(Request $request, $producerId, $productId)
     {
         $user = Auth::user();
         $producer = $user->producerAdminLink($producerId)->getProducer();
         $product = $producer->product($productId);
+        $mainVariant = $product->mainVariant();
 
-        $variants = ProductVariant::where('product_id', $product->id)->orderBy('main_variant', 'desc')->orderBy('id', 'desc')->get();
+        $variants = ProductVariant::where('product_id', $product->id)->orderBy('main_variant', 'desc')->orderBy('id', 'asc')->get();
         $variant = new ProductVariant();
 
+        // Recalculate quantity for shared variant quantity
+        // Todo: private reusable method
+        if ($product->shared_variant_quantity) {
+            $variants = $variants->map(function($variant) use ($product, $mainVariant) {
+                $variant->quantity = floor(($mainVariant->quantity * $mainVariant->package_amount) / $variant->package_amount);
+                return $variant;
+            });
+        }
+
         $response = [
+            'errors' => [],
             'main_variant' => $product->mainVariant()->id,
             'use_variants' => $product->variants()->count() > 0 ? true : false,
             'shared_variant_quantity' => $product->shared_variant_quantity,
             'package_unit' => $product->package_unit,
-            'variants' => $variants,
+            'variants' => $variants->toArray(),
             'newVariants' => [],
         ];
 
@@ -149,73 +215,97 @@ class ProductsController extends ApiBaseController
         return $response;
     }
 
+    /**
+     * Update variants.
+     *
+     * @param Request $request
+     * @param [type] $producerId
+     * @param [type] $productId
+     * @return void
+     */
     public function updateVariants(Request $request, $producerId, $productId)
     {
         $user = Auth::user();
         $producer = $user->producerAdminLink($producerId)->getProducer();
         $product = $producer->product($productId);
+        $mainVariant = $product->mainVariant();
 
-        $variants = $request->input('variants');
+        $variantsData = $request->input('variants');
 
-        $product->shared_variant_quantity = $variants['shared_variant_quantity'];
-        $product->package_unit = $variants['package_unit'];
+        $product->shared_variant_quantity = $variantsData['shared_variant_quantity'];
+        $product->package_unit = $variantsData['package_unit'];
+        $product->save();
 
-        $mainVariant = $variants['main_variant'];
-        $newVariantIsMain = false;
-        if (strpos($variants['main_variant'], 'new-variant-index-') !== false) {
-             // Set flag to check if created variant is main
-            $newVariantIsMain = true;
-            // Set index of new variant to main variant for now. This will change when we loop and create the new variants
-            // and will be assigned a variant id instead.
-            $mainVariant = (int) str_replace('new-variant-index-', '', $variants['main_variant']);
-        }
+        // Reset main variant, will be set later
+        DB::table('product_variants')->where('product_id', $product->id)->update(['main_variant' => false]);
 
-        // Create new
-        foreach ($variants['newVariants'] as $index => $data) {
+        $allErrors = [];
+
+        // Create new variants
+        foreach ($variantsData['newVariants'] as $index => $data) {
             $data['product_id'] = $productId;
-            $data['main_variant'] = false;
+            $data['main_variant'] = $variantsData['main_variant'] == $data['id'] ? true : false;
+
+            if ($data['main_variant']) {
+                $data['quantity'] = $product->stock_quantity;
+                $data['price'] = $product->price;
+            }
+
+            if ($variantsData['shared_variant_quantity'] && $data['package_amount']) {
+                $data['quantity'] = floor(($mainVariant->quantity * $mainVariant->package_amount) / $data['package_amount']);
+            }
 
             $variant = new ProductVariant();
+
             $errors = $variant->validate($data);
             if ($errors->isEmpty()) {
                 $variant->fill($data);
                 $variant->save();
-
-                if ($newVariantIsMain && $mainVariant === $index) {
-                    $mainVariant = $variant->id;
-                }
+                unset($variantsData['newVariants'][$index]);
             } else {
-                error_log(var_export($errors, true));
-                // Set error on field an return to frontend
+                $allErrors[$data['id']] = $errors->toArray();
             }
         }
 
         // Update
-        foreach ($variants['variants'] as $data) {
+        foreach ($variantsData['variants'] as $data) {
             $variant = ProductVariant::find($data['id']);
+            $data['main_variant'] = $variantsData['main_variant'] == $data['id'] ? true : false;
             $variant->fill($data);
+
             $errors = $variant->validate($data);
             if ($errors->isEmpty()) {
                 $variant->save();
             } else {
-                error_log(var_export($errors, true));
-                // Set error on field an return to frontend
+                $allErrors[$index] = $errors->toArray();
             }
         }
 
-        $product->save();
+        $variants = ProductVariant::where('product_id', $product->id)->orderBy('main_variant', 'desc')->orderBy('id', 'asc')->get()->toArray();
 
-        // Set main variant
-        $variants = ProductVariant::where('product_id', $productId)->orderBy('main_variant', 'desc')->orderBy('id', 'desc')->get();
-        $variants = $variants->map(function($variant) use ($mainVariant) {
-            $variant->main_variant = $variant->id === $mainVariant ? true : false;
-            $variant->save();
-            return $variant;
-        });
+        if (!empty($allErrors)) {
+            return response([
+                'variants' => $variants,
+                'newVariants' => $variantsData['newVariants'],
+                'errors' => $allErrors
+            ], 400);
+        } else {
+            return $variants;
+        }
 
-        return $variants;
+        // Return variants with correct sort order
+        // return ProductVariant::where('product_id', $product->id)->orderBy('main_variant', 'desc')->orderBy('id', 'desc')->get()->toArray();
     }
 
+    /**
+     * Delete variant.
+     *
+     * @param Request $request
+     * @param [type] $producerId
+     * @param [type] $productId
+     * @param [type] $variantId
+     * @return void
+     */
     public function deleteVariant(Request $request, $producerId, $productId, $variantId)
     {
         $user = Auth::user();
@@ -223,11 +313,24 @@ class ProductsController extends ApiBaseController
         $product = $producer->product($productId);
         $variant = $product->variant($variantId);
 
+        // If deleting main variant - set new...
+        if ($variant->main_variant) {
+
+        }
+
         $variant->delete();
 
-        return ProductVariant::where('product_id', $productId)->orderBy('main_variant', 'desc')->orderBy('id', 'desc')->get();
+        return ProductVariant::where('product_id', $productId)->orderBy('main_variant', 'desc')->orderBy('id', 'asc')->get()->toArray();
     }
 
+    /**
+     * Get stock.
+     *
+     * @param Request $request
+     * @param [type] $producerId
+     * @param [type] $productId
+     * @return void
+     */
     public function stock(Request $request, $producerId, $productId)
     {
         $user = Auth::user();
@@ -242,6 +345,14 @@ class ProductsController extends ApiBaseController
         ];
     }
 
+    /**
+     * Update stock.
+     *
+     * @param Request $request
+     * @param [type] $producerId
+     * @param [type] $productId
+     * @return void
+     */
     public function updateStock(Request $request, $producerId, $productId)
     {
         $user = Auth::user();
