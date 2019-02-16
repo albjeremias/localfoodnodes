@@ -1,11 +1,11 @@
 @extends('new.account.layout',
 [
-    'bread_type'   => trans('public/nav.admin'),
-    'bread_result' => trans('public/nav.create_producer'),
+    'bread_type'   => __('Producer'),
+    'bread_result' => $producer->name,
     'nav_active'   => 1
 ])
 
-@section('title', trans('public/register.title_producer'))
+@section('title', __('Edit Producer'))
 
 @section('content')
     <div class="nms">

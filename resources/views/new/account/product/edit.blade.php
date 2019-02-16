@@ -1,19 +1,19 @@
 @extends('new.account.layout',
 [
-    'nav_title' => __('Product'),
+    'bread_type'   => __('Products'),
+    'bread_result' => $product->name,
     'sub_nav' => 'producer',
     'nav_active' => 1,
     'sub_nav_active' => 1,
 ])
 
-@section('title', trans('public/register.title_producer'))
+@section('title', $product->name)
 
 @section('content')
     <div class="nms">
         <div class="container py-5">
-            <h2>{{ __('Product') }}</h2>
-
-            <form action="{{ route('account_product_insert', ['producerId' => $producer->id ]) }}" method="post" enctype="multipart/form-data">
+            <h2>{{ $product->name ?? __('Product') }}</h2>
+            <form action="{{ route('account_product_update', ['producerId' => $producer->id, 'productId' => $product->id]) }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <input type="hidden" name="type" value="basic"/>
                 <div class="row">

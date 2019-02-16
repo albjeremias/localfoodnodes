@@ -6,8 +6,8 @@
         @php
             $items = array(
                 'Stock'     => $product->stock_quantity ?? '-',
-                'Reccuring' => $product->stock_type === 'recurring' ? 'Yes' : 'No',
-                'CSA'       => $product->productionType === 'csa' ? 'Yes' : 'No',
+                'Reccuring' => $product->stock_type === 'recurring' || $product->stock_type === 'csa' ? 'Yes' : 'No',
+                'CSA'       => $product->stock_type === 'csa' ? 'Yes' : 'No',
                 'Variants'  => $product->variantCount() > 0 ? $product->variantCount() : 'None',
             );
         @endphp

@@ -1,6 +1,6 @@
     @extends('new.account.layout',
 [
-    'bread_type'     => __('Product'),
+    'bread_type'     => __('Products'),
     'bread_result'   => $product->name,
     'sub_nav'        => 'producer',
     'sub_nav_active' => 1,
@@ -19,7 +19,9 @@
             @endphp
         @endforeach
 
-        <div class="image product-background" style="background-image: url('{{ $product->images()[0]->url('large') }}')"></div>
+        @if (!$product->images()->isEmpty())
+            <div class="image product-background" style="background-image: url('{{ $product->images()->first()->url('large') }}')"></div>
+        @endif
 
         <div class="product-info container wc nm">
             <div class="row">
@@ -32,8 +34,8 @@
                         </li>
 
                         <li class="list-inline-item mr-4 btn btn-white box-shadow">
-                                <i class="fa fa-share-alt mr-2" aria-hidden="true"></i>
-                                Share product
+                            <i class="fa fa-share-alt mr-2" aria-hidden="true"></i>
+                            Share product
                         </li>
                     </ul>
                 </div>

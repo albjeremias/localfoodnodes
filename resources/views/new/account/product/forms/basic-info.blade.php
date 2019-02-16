@@ -25,22 +25,35 @@
 
     {{-- Price --}}
     <div class="form-group">
-        <div class="{{ $product->variants()->count() > 0 ? 'disabled' : '' }}">
-            @include('new.components.forms.input', [
-                'label'       => __('Enter price for one product'),
-                'name'        => 'price',
-                'type'        => 'number',
-                'class'       => 'form-control',
-                'placeholder' => 'Price',
-                'min'         => 0,
-                'm_value' => $product->price,
-            ])
-        </div>
+        @include('new.components.forms.input', [
+            'label'       => __('Enter price for one product'),
+            'name'        => 'price',
+            'type'        => 'number',
+            'class'       => 'form-control',
+            'placeholder' => 'Price',
+            'min'         => 0,
+            'm_value'     => $product->price,
+            'disabled'    => $product->variants()->count() > 0,
+        ])
+
         @if ($product->variants()->count() > 0)
             <div class="form-text">
-                {{ __('Variant price') }}
+                {{ __('Your products are using variants') }}
             </div>
         @endif
+    </div>
+
+    {{-- VAT --}}
+    <div class="form-group">
+        @include('new.components.forms.input', [
+            'label'       => __('VAT') . ' (%)',
+            'name'        => 'vat',
+            'type'        => 'number',
+            'class'       => 'form-control',
+            'placeholder' => '10%',
+            'min'         => 0,
+            'm_value'     => $product->vat,
+        ])
     </div>
 
     {{-- Price Unit --}}
@@ -87,33 +100,6 @@
         </script>
     </div>
 
-    {{-- Tags --}}
-    <div class="form-group">
-        <label class="form-control-label">
-            {{ __('Select tags') }}
-        </label>
-
-        <div class="tags">
-            @foreach ($tags as $key => $tag)
-                <div class="tag d-inline">
-                    <input class="d-none" id="label-{{ $key }}" type="checkbox" name="tags[]"
-                           value="{{ $key }}" {{ $product->tag($key) ? 'checked' : '' }}>
-                    <label class="tag-label badge badge-light" for="label-{{ $key }}">{{ ucfirst($tag) }}</label>
-                </div>
-            @endforeach
-        </div>
-    </div>
-
-    {{-- Images --}}
-    <div class="my-4">
-        @include('new.components.upload.images', [
-            'entityType' => 'product',
-            'entityId' => $product->id ?: null,
-            'images' => $product->images(),
-            'limit' => 4,
-        ])
-    </div>
-
     {{-- Payment Info --}}
     <div class="form-group">
         @include('new.components.forms.textarea', [
@@ -123,6 +109,51 @@
             'rows'        => 3,
             'placeholder' => __('Product specific information about payment and pickup'),
         ])
+    </div>
+
+    {{-- Payment Deadline --}}
+    <div class="form-group">
+        @include('new.components.forms.input', [
+        'label'       => __('Booking deadline'),
+        'name'        => 'deadline',
+        'type'        => 'number',
+        'class'       => 'form-control',
+        'append'      => __('days'),
+        'placeholder' => '0',
+        'min'         => 0
+    ])
+    </div>
+
+    <button type="submit" class="btn btn-secondary mt-3 float-right">{{ _('Save product') }}</button>
+</div>
+
+{{-- Right Section --}}
+<div class="col-md-6">
+    {{-- Images --}}
+    <div class="form-group">
+        <label class="form-control-label">{{ __('Images') }}</label>
+        @include('new.components.upload.images', [
+            'entityType' => 'product',
+            'entityId' => $product->id ?: null,
+            'images' => $product->images(),
+            'limit' => 4,
+        ])
+    </div>
+
+     {{-- Tags --}}
+    <div class="form-group">
+        <label class="form-control-label">
+            {{ __('Select tags') }}
+        </label>
+
+        <div class="tags">
+            @foreach ($tags as $key => $tag)
+                <div class="tag d-inline">
+                    <input class="d-none" id="label-{{ $key }}" type="checkbox" name="tags[]" value="{{ $key }}" {{ $product->tag($key) ? 'checked' : '' }}>
+                    <label class="tag-label badge badge-light" for="label-{{ $key }}">{{ $tag }}</label>
+                </div>
+            @endforeach
+        </div>
     </div>
 
     {{-- Public --}}
@@ -146,25 +177,5 @@
             </label>
         </div>
     </div>
-
-    {{-- Payment Deadline --}}
-    <div class="form-group">
-        @include('new.components.forms.input', [
-        'label'       => __('Booking deadline'),
-        'name'        => 'deadline',
-        'type'        => 'number',
-        'class'       => 'form-control',
-        'append'      => __('days'),
-        'placeholder' => '0',
-        'min'         => 0
-    ])
-    </div>
-
-    <button type="submit" class="btn btn-secondary mt-3 float-right">{{ _('Create product') }}</button>
-</div>
-
-{{-- Right Section --}}
-<div class="col-md-6">
-    @include('new.account.product.how-does-it-work')
 </div>
 

@@ -7,21 +7,14 @@
             $tags_html = '';
         @endphp
 
-        @foreach($product->tags() as $tag)
-            @php
-                $tags_html .= ucfirst($tag->tag);
-                $tags_html .= $loop->index+1 == count($product->tags()) ? '' : ', ';
-            @endphp
-        @endforeach
-
         @php
             $items = array(
-                'Name'        => $product->name,
+                'Name' => $product->name,
                 'Description' => substr(strip_tags($product->info), 0, 50) . '...',
                 'Price' => $product->getPriceWithUnit(),
-                'Tax'   => $product->vat ? $product->vat : '0%',
-                'Unit' => $product->price_unit,
-                'Tags' => $tags_html,
+                'Tax' => $product->vat ? $product->vat : '0%',
+                'Price is per' => $product->price_unit,
+                'Tags' => implode(', ', $tags),
                 'Images' => count($product->images()),
                 'Payment info' => substr($product->payment_info, 0, 50) . '...',
                 'Booking deadline' => $product->deadline . ' days',
@@ -31,9 +24,9 @@
         @endphp
 
         @include('new.components.simple-table', [
-            'items'         => $items,
+            'items' => $items,
             'table_classes' => 'mt-3',
-            'bold'          => true
+            'bold' => true
         ])
     </div>
 </div>

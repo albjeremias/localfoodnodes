@@ -22,9 +22,9 @@
     <label for="form-dropwdown-{{ $name }}">{{ $label }}</label>
 @endif
 
-<select class="form-control {{ isset($class) ? $class : '' }}" name="{{ $name }}">
+<select class="form-control {{ isset($class) ? $class : '' }}" name="{{ $name }}" autocomplete="off">
     @if(isset($placeholder))
-        <option>{{ $placeholder }}</option>
+        <option value="">{{ $placeholder }}</option>
     @endif
 
     @if(!$value)

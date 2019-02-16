@@ -12,6 +12,7 @@
     label_cap    | boolean
     min          | integer
     append       | string
+    disabled     | boolean
 
     *Required
 --}}
@@ -41,7 +42,8 @@
        class="{{ $class }} {{ $errors->has($name) ? 'placeholder-error red-b' : '' }}"
        id="form-input-{{ $name }}"
        value="{{ isset($m_value) ? $m_value : '' }}"
-       placeholder="{{ isset($placeholder) ? $placeholder : '' }}">
+       placeholder="{{ isset($placeholder) ? $placeholder : '' }}"
+       {{ isset($disabled) ? 'disabled' : '' }}>
 
 @if(isset($append))
     <div class="input-group-append">

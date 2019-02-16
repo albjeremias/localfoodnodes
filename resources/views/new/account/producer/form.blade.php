@@ -99,9 +99,9 @@
                         'name'        => 'currency',
                         'class'       => 'bb-38 form-control',
                         'placeholder' => __('Choose currency'),
-                        'options'     => $currencies, // Todo: use correct currency source
-                        'value'       => false
-                        // Add set value
+                        'options'     => $currencies,
+                        'value'       => false,
+                        'selected'    => $producer->currency,
                     ])
                 </div>
 
@@ -121,7 +121,7 @@
 
         <div class="col-md-6 offset-md-1">
             <div class="form-group mb-5">
-            <h4>{{ __('Images') }}</h4>
+                <h4>{{ __('Images') }}</h4>
                 @include('new.components.upload.images', [
                     'entityType' => 'producer',
                     'entityId' => $producer->id ?: null,

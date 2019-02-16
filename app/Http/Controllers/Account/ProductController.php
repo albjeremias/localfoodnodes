@@ -98,6 +98,7 @@ class ProductController extends Controller
             'producer' => $producer,
             'product' => $product,
             'orderQuantity' => $orderQuantity,
+            'tags' => ProductFilter::getTagsByKeys($product->tags()->pluck('tag')),
             'breadcrumbs' => [
                 $producer->name => 'producer/' . $producer->id,
                 trans('admin/user-nav.products') => 'producer/' . $producer->id . '/products',
@@ -193,7 +194,7 @@ class ProductController extends Controller
             return $nodeLink->getNode();
         });
 
-        return view('new.account.product.create', [
+        return view('new.account.product.edit', [
             'producer' => $producer,
             'product' => $product,
             'nodes' => $nodes,
@@ -218,6 +219,10 @@ class ProductController extends Controller
         $user = Auth::user();
         $producer = $user->producerAdminLink($producerId)->getProducer();
         $product = $producer->product($productId);
+
+        if (!$product->variants()->isEmpty()) {
+            $request->request->add(['price' => $product->price]);
+        }
 
         $errors = $this->validateProduct($request, $producer);
 

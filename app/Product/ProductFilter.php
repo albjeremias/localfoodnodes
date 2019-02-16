@@ -73,6 +73,26 @@ class ProductFilter
     }
 
     /**
+     * Get tags by keys.
+     *
+     * @param Collection $keys
+     * @return array
+     */
+    public static function getTagsByKeys(Collection $keys)
+    {
+        $tags = self::tags();
+
+        $return = [];
+        foreach ($keys as $key) {
+            if (isset($tags[$key])) {
+                $return[] = $tags[$key];
+            }
+        }
+
+        return $return;
+    }
+
+    /**
      * Filter products on date.
      *
      * @return ProductFilter

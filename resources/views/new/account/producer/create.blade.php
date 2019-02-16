@@ -5,7 +5,7 @@
     'nav_active'   => 1
 ])
 
-@section('title', trans('public/register.title_producer'))
+@section('title', __('Create producer'))
 
 @section('content')
 
