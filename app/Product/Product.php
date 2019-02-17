@@ -6,7 +6,7 @@ use Illuminate\Support\Collection;
 
 class Product extends \App\BaseModel
 {
-    protected $appends = ['productionType', 'infoRaw'];
+    protected $appends = ['productionType', 'infoRaw', 'url'];
 
     /**
      * Validation rules.
@@ -560,6 +560,11 @@ class Product extends \App\BaseModel
         $infoRaw = html_entity_decode($infoRaw);
 
         return $infoRaw;
+    }
+
+    public function getUrlAttribute()
+    {
+        return route('account_product', ['producerId' => $this->producer_id, 'productId' => $this->id]);
     }
 
     /**

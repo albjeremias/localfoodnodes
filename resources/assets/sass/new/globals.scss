@@ -22,10 +22,6 @@ b {
   background: #ff9d0da8;
 }
 
-small {
-  color: $dark-54;
-}
-
 section {
   position: relative;
 }
@@ -542,16 +538,20 @@ option:checked {
   bottom: 9px;
 }
 
+.custom-control {
+  padding-left: 2rem;
+}
+
 .custom-checkbox-lg {
   .custom-control-label::before {
-    top: 0rem;
+    top: 0.2rem;
     left: -2rem;
     width: 1.55rem;
     height: 1.65rem;
   }
 
   .custom-control-label::after {
-    top: 0.2rem;
+    top: 0.4rem;
     left: -1.8rem;
     width: 1.2rem;
     height: 1.2rem;
@@ -618,4 +618,20 @@ option:checked {
 
 .dashboard-upcoming-deliveries {
   height: 360px;
+}
+
+// -------------
+// DAVIDS STYLE
+// Feel free to move elsewhere
+// -------------
+.list-group {
+  .list-group-item {
+    background: #fff;
+
+    &.active {
+      background: #fafafa;
+      border-color: #dadada;
+      color: inherit;
+    }
+  }
 }

@@ -1,111 +1,117 @@
 <template>
-    <div class="row">
-        <div class="col-md-16 d-flex pb-4">
-            <h2 class="d-inline h1 mb-0 bc">Products administration</h2>
-            <a :href="'/account/producer/'+producer.id+'/product/create'" class="btn btn-primary ml-auto d-inline-flex box-shadow">Create new product</a>
+    <div>
+        <div class="row">
+            <div class="col-md-16 d-flex pb-4">
+                <h2 class="d-inline h1 mb-0 bc">Products administration</h2>
+                <a :href="'/account/producer/'+producer.id+'/product/create'" class="btn btn-primary ml-auto d-inline-flex box-shadow">Create new product</a>
+            </div>
         </div>
 
+        <div class="row">
+            <div class="col-md-8">
+                <div class="white-box little-min">
+                    <h4 class="position-absolute">Deliveries</h4>
+                    <info :text="info.deliveries.text" :placement="info.deliveries.placement" :icon-class="info.deliveries.class"></info>
 
-        <div class="col-md-8">
-            <div class="white-box little-min">
-                <h4 class="position-absolute">Deliveries</h4>
-                <info :text="info.deliveries.text" :placement="info.deliveries.placement" :icon-class="info.deliveries.class"></info>
+                    <div class="d-flex h-100">
+                        <div class="my-auto w-100">
+                            <div class="dropdown show dropdown-form d-inline-flex mb-3">
 
-                <div class="d-flex h-100">
-                    <div class="my-auto w-100">
-                        <div class="dropdown show dropdown-form d-inline-flex mb-3">
+                                <!--Select location-->
+                                <span class="dropdown-toggle w-100 select-location" href="#" role="button" id="select-location" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ selectLocationLabel }}
+                                </span>
 
-                            <!--Select location-->
-                            <span class="dropdown-toggle w-100 select-location" href="#" role="button" id="select-location" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ selectLocationLabel }}
-                            </span>
+                                <div class="dropdown-menu dropdown-form-menu" aria-labelledby="select-location">
+                                    <a class="dropdown-item" href="#">Nodes</a>
+                                    <a v-for="node in nodes" :key="node.id" @click="selectedNode = node" class="dropdown-item" href="#"><small>- {{ node.name }}</small></a>
 
-                            <div class="dropdown-menu dropdown-form-menu" aria-labelledby="select-location">
-                                <a class="dropdown-item" href="#">Nodes</a>
-                                <a v-for="node in nodes" @click="selectedNode = node" class="dropdown-item" href="#"><small>-{{ node.name }}</small></a>
+                                    <a class="dropdown-item" href="#">Ad Hocs</a>
+                                    <a class="dropdown-item" href="#"><small class="rc text-uppercase font-weight-bold">- Add new</small></a>
 
-                                <a class="dropdown-item" href="#">Ad Hocs</a>
-                                <a class="dropdown-item" href="#"><small class="rc text-uppercase font-weight-bold">-Add new</small></a>
-
-                                <a class="dropdown-item" href="#">Home deliveries</a>
-                                <a class="dropdown-item" href="#"><small class="font-italic">-Not yet available</small></a>
+                                    <a class="dropdown-item" href="#">Home deliveries</a>
+                                    <a class="dropdown-item" href="#"><small class="font-italic">- Not yet available</small></a>
+                                </div>
                             </div>
-                        </div>
 
-                        <span>and</span>
+                            <span>and</span>
 
-                        <!-- Select date -->
-                        <div class="dropdown show dropdown-form d-inline-flex mt-3">
-                            <span class="dropdown-toggle w-100 select-location" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ selectDateLabel }}
-                            </span>
+                            <!-- Select date -->
+                            <div class="dropdown show dropdown-form d-inline-flex mt-3">
+                                <span class="dropdown-toggle w-100 select-location" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ selectDateLabel }}
+                                </span>
 
-                            <div class="dropdown-menu dropdown-form-menu" aria-labelledby="dropdownMenuLink">
-                                <a v-for="date in nodeDeliveryDates" @click="selectedDate = date" class="dropdown-item" href="#">{{ date }}</a>
+                                <div class="dropdown-menu dropdown-form-menu" aria-labelledby="dropdownMenuLink">
+                                    <a v-for="date in nodeDeliveryDates" :key="date" @click="selectedDate = date" class="dropdown-item" href="#">{{ date }}</a>
 
-                                <a class="dropdown-item" href="#"><small class="rc text-uppercase font-weight-bold">-Add new date</small></a>
+                                    <a class="dropdown-item" href="#"><small class="rc text-uppercase font-weight-bold">- Add new date</small></a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-8">
-            <div class="white-box little-min">
-                <h4>Product list</h4>
-                <small class="pt-3">Till utlämningen "<strong>Nodens namn</strong>" "<strong>datum</strong>" har "<strong>gårdens namn</strong>" följande produkter till salu.</small>
+            <div class="col-md-8">
+                <div class="white-box little-min">
+                    <h4>Product list</h4>
+                    <small class="pt-3">Till utlämningen "<strong>Nodens namn</strong>" "<strong>datum</strong>" har "<strong>gårdens namn</strong>" följande produkter till salu.</small>
 
-                <!-- Slick -->
-                <div class="slick-container">
-                    <div class="">
-                        <div class="slick-image mx-auto">
-                            <img class="rounded-circle w-100 h-100" src="/images/shutterstock_436974091.jpg">
-                            <small class="d-block text-center pt-1">Test 1</small>
+                    <!-- Slick -->
+                    <div class="slick-container">
+                        <div class="">
+                            <div class="slick-image mx-auto">
+                                <img class="rounded-circle w-100 h-100" src="/images/shutterstock_436974091.jpg">
+                                <small class="d-block text-center pt-1">Test 1</small>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!--<a href="#" class="bottom-link text-uppercase rc">Copy link</a>-->
-                <a class="list-inline-item btn btn-white bb bottom-link-right">
-                    <i class="fa fa-share-alt mr-2" aria-hidden="true"></i>
-                    Share product list
-                </a>
+                    <!--<a href="#" class="bottom-link text-uppercase rc">Copy link</a>-->
+                    <a class="list-inline-item btn btn-white bb bottom-link-right">
+                        <i class="fa fa-share-alt mr-2" aria-hidden="true"></i>
+                        Share product list
+                    </a>
+                </div>
             </div>
         </div>
 
-        <div class="row justify-content-center">
+        <div class="row">
             <div class="col-16">
                 <div class="custom-control custom-checkbox custom-checkbox-lg products-active-all">
                     <input type="checkbox" v-model="allProductActive" name="" class="custom-control-input" id="activate-all">
                     <label class="custom-control-label" for="activate-all">Make all products available</label>
+                    <!-- Todo: method. With delivery date to controller... -->
                 </div>
-            </div>
-
-            <div v-for="product in products" v-bind:key="product.id" class="col-16 col-lg-8 col-xl-4 mb-3">
-                <card-product-edit
-                        :product="product"
-                        :producer="producer"
-                        :tag="'CSA'"
-                        :variants="{}"
-                ></card-product-edit>
             </div>
         </div>
 
+        <div class="row">
+            <div v-for="product in products" v-bind:key="product.id" class="col-16 col-lg-8 col-xl-4 mb-3">
+                <card-product-edit
+                    :producer="producer"
+                    :product="product"
+                    :node="selectedNode"
+                    :date="selectedDate"
+                    :active="isActive(product)"
+                    :lang="lang"
+                    @changed="fetchProductNodeDeliveryLinksByDate">
+                </card-product-edit>
+            </div>
+        </div>
     </div>
 </template>
-
-<style scoped>
-</style>
 
 <script>
     import ProductEdit from './../../cards/ProductEdit';
     import Info from './../../components/info';
 
     export default {
-        props: ['producer', 'products'],
+        props: ['producer', 'products', 'lang'],
         data: function() {
             return {
+                activeProductIds: [],
                 allProductActive: false,
                 info: {},
                 nodes: [],
@@ -119,7 +125,7 @@
             this.fetchNodes()
         },
         mounted() {
-          // console.log(this.producer);
+            console.log(this.products);
         },
         computed: {
             selectLocationLabel() {
@@ -143,7 +149,7 @@
                 this.fetchDeliveryDates();
             },
             selectedDate: function () {
-                this.fetchProductsByDate();
+                this.fetchProductNodeDeliveryLinksByDate();
             }
         },
         methods: {
@@ -164,11 +170,14 @@
                     console.log(error);
                 });
             },
-            fetchProductsByDate() {
-                axios.get('/api/account/producers/' + this.producer.id +'/products?nodeId=' + this.selectedNode.id +'&date=' + this.selectedDate).then((response) => {
-                    console.log(response.data);
+            fetchProductNodeDeliveryLinksByDate() {
+                axios.get('/api/account/nodes/' + this.selectedNode.id + '/products/' + this.selectedDate)
+                .then((response) => {
+                    this.activeProductIds = response.data.map(productNodeDeliveryLink => {
+                        return productNodeDeliveryLink.product_id;
+                    });
                 }).catch((error) => {
-                    console.log(error);
+                    console.error(error);
                 });
             },
             infoSort() {
@@ -176,6 +185,13 @@
                     placement: 'right',
                     text: 'Select delivery location then delivery date for which you will administer your products.',
                     class: '',
+                }
+            },
+            isActive(product) {
+                if (this.selectedNode && this.selectedDate) {
+                    return this.activeProductIds.indexOf(product.id) !== -1;
+                } else {
+                    return true;
                 }
             }
         },

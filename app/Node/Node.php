@@ -258,6 +258,16 @@ class Node extends BaseModel
     }
 
     /**
+     * Get product node delivery links.
+     *
+     * @return Collection
+     */
+    public function productNodeDeliveryLinksByDate($date) {
+        return $this->productNodeDeliveryLinksRelationship()->where('date', $date)->get();
+    }
+
+
+    /**
      * Get products.
      *
      * @return Collection

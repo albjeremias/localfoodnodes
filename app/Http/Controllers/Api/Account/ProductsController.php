@@ -109,44 +109,82 @@ class ProductsController extends ApiBaseController
         return $product;
     }
 
+    // /**
+    //  * Toggle all products visibility
+    //  *
+    //  * @param Request $request
+    //  * @param [type] $producerId
+    //  * @param [type] $productId
+    //  * @return void
+    //  */
+    // public function toggleAllProductNodeDeliveryDateActive(Request $request, $producerId, $productId, $date)
+    // {
+    //     $user = Auth::user();
+    //     $producer = $user->producerAdminLink($producerId)->getProducer();
+
+    //     // Load product node delivery link and set active
+
+    //     // return $producer->products->map(function($product) {
+    //     //     $product->is_hidden = !$product->is_hidden;
+    //     //     $product->save();
+
+    //     //     return $product;
+    //     // });
+    // }
+
     /**
-     * Toggle all products visibility
+     * Add product node delivery link.
      *
      * @param Request $request
-     * @param [type] $producerId
-     * @param [type] $productId
+     * @param int $producerId
+     * @param int $productId
      * @return void
      */
-    public function setAllProductsVisibilityToggle(Request $request, $producerId, $productId)
-    {
-        $user = Auth::user();
-        $producer = $user->producerAdminLink($producerId)->getProducer();
-
-        return $producer->products->map(function($product) {
-            $product->is_hidden = !$product->is_hidden;
-            $product->save();
-
-            return $product;
-        });
-    }
-
-    /**
-     * Toggle specific product visibility.
-     *
-     * @param Request $request
-     * @param [type] $producerId
-     * @param [type] $productId
-     * @return void
-     */
-    public function setProductVisibilityToggle(Request $request, $producerId, $productId)
+    public function addProductNodeDeliveryLink(Request $request, $producerId, $productId, $nodeId, $date)
     {
         $user = Auth::user();
         $producer = $user->producerAdminLink($producerId)->getProducer();
         $product = $producer->product($productId);
-        $product->is_hidden = !$product->is_hidden;
-        $product->save();
 
-        return $product;
+        ProductNodeDeliveryLink::create([
+            'product_id' => $product->id,
+            'node_id' => $nodeId,
+            'date' => $date,
+            // 'active' => isset($data['active']),
+            'quantity' => null,
+            'price' => null,
+            'deadline' => null,
+        ]);
+
+        return ProductNodeDeliveryLink::where('product_id', $product->id)
+        ->where('node_id', $nodeId)
+        ->where('date', $date)
+        ->get();
+    }
+
+    /**
+     * Add product node delivery link.
+     *
+     * @param Request $request
+     * @param int $producerId
+     * @param int $productId
+     * @return void
+     */
+    public function deleteProductNodeDeliveryLink(Request $request, $producerId, $productId, $nodeId, $date)
+    {
+        $user = Auth::user();
+        $producer = $user->producerAdminLink($producerId)->getProducer();
+        $product = $producer->product($productId);
+
+        ProductNodeDeliveryLink::where('product_id', $product->id)
+        ->where('node_id', $nodeId)
+        ->where('date', $date)
+        ->delete();
+
+        return ProductNodeDeliveryLink::where('product_id', $product->id)
+        ->where('node_id', $nodeId)
+        ->where('date', $date)
+        ->get();
     }
 
     /**
@@ -198,8 +236,8 @@ class ProductsController extends ApiBaseController
 
         $response = [
             'errors' => [],
-            'main_variant' => $product->mainVariant()->id,
-            'use_variants' => $product->variants()->count() > 0 ? true : false,
+            'main_variant' => !$product->variants()->isEmpty() ? $product->mainVariant()->id : null,
+            'use_variants' => !$product->variants()->isEmpty(),
             'shared_variant_quantity' => $product->shared_variant_quantity,
             'package_unit' => $product->package_unit,
             'variants' => $variants->toArray(),

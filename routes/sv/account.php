@@ -10,6 +10,7 @@ Route::group(['prefix' => '/anvandare'], function () {
     Route::get('/ta-bort', 'Account\UserController@delete')->name('sv_account_user_delete');
     Route::get('/losenord/redigera', 'Account\UserController@editPassword')->name('sv_account_user_password_edit');
     Route::post('/losenord/uppdatera', 'Account\UserController@updatePassword')->name('sv_account_user_password_update');
+    Route::get('/noder', 'Account\UserController@pickups')->name('sv_account_user_nodes');
     Route::get('/utlamning', 'Account\UserController@pickups')->name('sv_account_user_pickups');
     Route::get('/bestallning/producent/{producerId}', 'Account\UserController@producerOrders')->name('sv_account_user_orders_producer');
     Route::get('/bestallning/produkt/{productId}', 'Account\UserController@productOrders')->name('sv_account_user_orders_product');
@@ -57,7 +58,8 @@ Route::group(['prefix' => '/producent'], function () {
     Route::get('/{producerId}/lamna', 'Account\ProducerController@leave')->name('sv_account_producer_lesve');
     Route::get('/{producerId}/produkter', 'Account\ProducerController@products')->name('sv_account_producer_products');
 
-	Route::get('/{producerId}/kanaler', 'Account\ProducerController@channels')->name('sv_account_producer_channels');
+    Route::get('/{producerId}/kanaler', 'Account\ProducerController@channels')->name('sv_account_producer_channels');
+    Route::post('/{producerId}/channels', 'Account\ProducerController@saveChannels')->name('sv_account_producer_channels_save');
 	Route::get('/{producerId}/slutfor', 'Account\ProducerController@finish')->name('sv_account_producer_finish');
 
 	Route::get('/{producerId}/utlamning', 'Account\ProducerController@deliveries')->name('sv_account_producer_deliveries');

@@ -1,13 +1,14 @@
 <?php
 
 // Activate all products
-Route::post('/producers/{producerId}/products/toggle-visibility', 'Api\Account\ProductsController@setAllProductsVisibilityToggle');
+// Route::post('/producers/{producerId}/products/toggle-activat', 'Api\Account\ProductsController@toggleAllProductNodeDeliveryDateActive');
 
 Route::group(['prefix' => '/producers/{producerId}/products/{productId}'], function() {
     Route::get('/', 'Api\Account\ProductsController@product');
     Route::post('/', 'Api\Account\ProductsController@updateProduct');
 
-    Route::post('/toggle-visibility', 'Api\Account\ProductsController@setProductVisibilityToggle');
+    Route::post('/deliveries/{nodeId}/{date}/add', 'Api\Account\ProductsController@addProductNodeDeliveryLink');
+    Route::delete('/deliveries/{nodeId}/{date}/delete', 'Api\Account\ProductsController@deleteProductNodeDeliveryLink');
 
     Route::get('/variant', 'Api\Account\ProductsController@getNewVariant');
     Route::get('/variants', 'Api\Account\ProductsController@variants');

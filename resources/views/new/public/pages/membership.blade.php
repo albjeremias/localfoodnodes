@@ -1,11 +1,11 @@
 @extends('new.layouts.simple-page', [
     'header'     => __('Support the future of food'),
     'sub_header' => __('Donate what\'s right for you'),
-    'title'      => trans('public/pages/membership.title'),
+    'title'      => __('Membership'),
     'bg' => 'bg-accent-light-24'
 ])
 
-@section('title', trans('public/pages/membership.title'))
+@section('title', __('Membership'))
 
 @section('page-content')
 

@@ -10,6 +10,7 @@ Route::group(['prefix' => '/user'], function () {
     Route::get('/delete', 'Account\UserController@delete')->name('en_account_user_delete');
     Route::get('/password/edit', 'Account\UserController@editPassword')->name('en_account_user_password_edit');
     Route::post('/password/update', 'Account\UserController@updatePassword')->name('en_account_user_password_update');
+    Route::get('/nodes', 'Account\UserController@pickups')->name('en_account_user_nodes');
     Route::get('/pickups', 'Account\UserController@pickups')->name('en_account_user_pickups');
     Route::get('/orders/producer/{producerId}', 'Account\UserController@producerOrders')->name('en_account_user_orders_producer');
     Route::get('/orders/product/{productId}', 'Account\UserController@productOrders')->name('en_account_user_orders_product');
@@ -57,7 +58,8 @@ Route::group(['prefix' => '/producer'], function () {
     Route::get('/{producerId}/leave', 'Account\ProducerController@leave')->name('en_account_producer_lesve');
     Route::get('/{producerId}/products', 'Account\ProducerController@products')->name('en_account_producer_products');
 
-	Route::get('/{producerId}/channels', 'Account\ProducerController@channels')->name('en_account_producer_channels');
+    Route::get('/{producerId}/channels', 'Account\ProducerController@channels')->name('en_account_producer_channels');
+    Route::post('/{producerId}/channels', 'Account\ProducerController@saveChannels')->name('en_account_producer_channels_save');
 	Route::get('/{producerId}/finish', 'Account\ProducerController@finish')->name('en_account_producer_finish');
 
     Route::get('/{producerId}/deliveries', 'Account\ProducerController@deliveries')->name('en_account_producer_deliveries');

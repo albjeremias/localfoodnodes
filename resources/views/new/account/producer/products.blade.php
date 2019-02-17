@@ -16,10 +16,10 @@
             <section class="py-5" id="products-administration">
                 @if ($products->count() > 0)
                     <div class="container">
-
                         <products-administration-index
                             :producer="{{ $producer }}"
                             :products="{{ $products->sortBy('name') }}"
+                            lang="{{ app()->getLocale() }}"
                         ></products-administration-index>
                     </div>
                 @endif
@@ -42,4 +42,3 @@
         });
     </script>
 @endsection
-

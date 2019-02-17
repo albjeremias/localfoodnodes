@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col-lg-9">
                             <div class="white-box little-min">
-                                <a href="#" class="rc"><h4>{{ $producer->name }}</h4></a>
+                                <h4>{{ $producer->name }}</h4>
                                 <ul class="list-unstyled list-p">
                                     <li>{{ Auth::user()->name }}</li>
                                     <li class="black-54">{{ Auth::user()->email }}</li>
@@ -52,7 +52,7 @@
 
                         <div class="col-lg-7">
                             <div class="white-box little-min">
-                                <a href="{{ route('membership') }}" class="rc"><h4>{{ __('Still not a member?') }}</h4></a>
+                                <h4>{{ __('Still not a member?') }}</h4>
                                 <small>{{ _('Local Food Nodes is built on a gift based economy. By donating a supporting membership fee, free of choice, you are part of financing the development of open digital tools, that supports enabling local and independent peoples driven food markets.') }}</small>
                                 <a class="bottom-link text-uppercase rc" href="{{ route('membership') }}">{{ __('Membership') }}</a>
                             </div>

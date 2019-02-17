@@ -136,10 +136,10 @@ class ProducerController extends Controller
             ProducerAdminLink::create(['producer_id' => $producer->id, 'user_id' => $user->id, 'active' => 1]);
 
             $request->session()->flash('message', [trans('admin/messages.producer_created')]);
-            return redirect('/account/producer/' . $producer->id . '/channels');
+            return redirect()->route('account_producer_channels');
         }
 
-        return redirect('/account/producer/create?terms=approved')->withInput()->withErrors($errors);
+        return redirect()->back()->withInput()->withErrors($errors);
     }
 
     /**
@@ -183,7 +183,7 @@ class ProducerController extends Controller
 
             $request->session()->flash('message', [trans('admin/messages.producer_updated')]);
 
-            return redirect()->route('account_producer_edit', [
+            return redirect()->route('account_producer_channels', [
                 'producerId' => $producer->id,
             ]);
         }
@@ -196,6 +196,43 @@ class ProducerController extends Controller
 
         return redirect()->back()->withInput(['images' => $images])->withErrors($errors);
     }
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $producer_id
+     * @return void
+     */
+    public function channels($producer_id) {
+    	return view('new.account.producer.channels', ['producer' => Producer::find($producer_id)]);
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $producer_id
+     * @return void
+     */
+    public function saveChannels(Request $request, $producerId) {
+        $user = Auth::user();
+        $producer = $user->producerAdminLink($producerId)->getProducer();
+
+    	return redirect()->route('account_producer_finish', [
+            'producerId' => $producer->id,
+        ]);
+    }
+
+    /**
+     *
+     */
+	public function finish(Request $request, $producerId) {
+        $user = Auth::user();
+        $producer = $user->producerAdminLink($producerId)->getProducer();
+
+		return view('new.account.producer.finish', [
+            'producer' => $producer
+        ]);
+	}
 
     /**
      * Confirm delete action.
@@ -241,15 +278,6 @@ class ProducerController extends Controller
         ]);
         return redirect('/account/user');
     }
-
-    public function channels($producer_id) {
-    	return view('new.account.producer.channels', ['producer' => Producer::find($producer_id)]);
-    }
-
-	public function finish($producer_id) {
-		return view('new.account.producer.create.finish', ['producer' => Producer::find($producer_id)]);
-	}
-
 
 	/**
      * Upload image.
@@ -303,7 +331,7 @@ class ProducerController extends Controller
     {
         $user = Auth::user();
         $producer = $user->producerAdminLink($producerId)->getProducer();
-        $products = Product::where('producer_id', $producer->id)->get();
+        $products = Product::where('producer_id', $producer->id)->with('productVariantsRelationship')->get();
 
         return view('new.account.producer.products', [
             'producer' => $producer,

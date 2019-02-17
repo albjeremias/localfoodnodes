@@ -22,4 +22,18 @@ class NodesController extends ApiBaseController
         return $node->getDeliveryDates();
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @param [type] $nodeId
+     * @param [type] $date
+     * @return void
+     */
+    public function productNodeDeliveryLinks(Request $request, $nodeId, $date)
+    {
+        $node = Node::find($nodeId);
+        return $node->productNodeDeliveryLinksByDate($date);
+    }
+
 }

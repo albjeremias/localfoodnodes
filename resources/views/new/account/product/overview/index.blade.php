@@ -23,7 +23,7 @@
             <div class="image product-background" style="background-image: url('{{ $product->images()->first()->url('large') }}')"></div>
         @endif
 
-        <div class="product-info container wc nm">
+        <div class="product-info container nm">
             <div class="row">
                 <div class="col-16">
                     <h1 class="d-inline-block">{{ $product->name }}</h1>
@@ -48,10 +48,10 @@
                     <div class="col-16 col-xl-10">
                         <div class="overview-box">
                             <h4>{{ __('Overview') }}</h4>
-                            {{ __('Here you can make more detailed customizations to best suit this specific product.
-                                You can always reach this view at any time from your product administration view.') }}
+                            <p>{{ __('Here you can make more detailed customizations to best suit this specific product.
+                                You can always reach this view at any time from your product administration view.') }}</p>
 
-                            <a class="bottom-left-link" href="{{ route('account_producer_products', ['producerId' => $producer->id]) }}">
+                            <a class="text-uppercase rc" href="{{ route('account_producer_products', ['producerId' => $producer->id]) }}">
                                 {{ __('Back to products') }}
                             </a>
                         </div>
