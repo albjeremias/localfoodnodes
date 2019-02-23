@@ -1,6 +1,5 @@
 @extends('new.account.layout',
 [
-    'nav_title'      => trans('admin/user.nav_title'),
     'sub_nav'        => 'producer',
     'sub_nav_active' => 2,
     'nav_active'     => 1
@@ -10,7 +9,6 @@
 @section('content')
     <div class="nm bg-shell">
         <div class="container pt-2">
-            @include('new.components.breadcrumbs', ['crumbs' => $breadcrumbs])
             {{-- Nodes --}}
             <div class="white-box">
                 <div id="accordion">

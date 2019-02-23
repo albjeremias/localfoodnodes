@@ -14,8 +14,12 @@ class BaseModel extends Model
      * @param array $data
      * @return array|bool validation result
      */
-    public function validate($data, $rules = [], $messages = [])
+    public function validate($data = null, $rules = [], $messages = [])
     {
+        if (empty($data)) {
+            $data = $this->toArray();
+        }
+
         if (empty($rules)) {
             $rules = $this->validationRules;
         }
@@ -24,16 +28,18 @@ class BaseModel extends Model
             $messages = array_merge($this->validationMessages, $messages);
         }
 
-        $validation = Validator::make($data, $rules, $messages);
-        $errors = new MessageBag();
+        $validation = Validator::make($this->sanitize($data), $rules, $messages);
+        $validationErrors = new MessageBag();
 
         if ($validation->fails()) {
-            foreach ($validation->errors()->messages() as $field => $error) {
-                $errors->add($field, $error[0]);
+            foreach ($validation->errors()->messages() as $field => $errors) {
+                foreach ($errors as $error) {
+                    $validationErrors->add($field, $error);
+                }
             }
         }
 
-        return $errors;
+        return $validationErrors;
     }
 
     /**
@@ -58,6 +64,11 @@ class BaseModel extends Model
 
             // If field is not requred and $value is empty, ignore and let db handle default values
             if (strpos($rule, 'required') === false && $value === '') {
+                continue;
+            }
+
+            if (strpos($rule, 'date') !== false) {
+                $sanitizedFields[$key] = $value;
                 continue;
             }
 
@@ -88,35 +99,4 @@ class BaseModel extends Model
     private function removeEmoji($string) {
         return preg_replace('/([0-9|#][\x{20E3}])|[\x{00ae}|\x{00a9}|\x{203C}|\x{2047}|\x{2048}|\x{2049}|\x{3030}|\x{303D}|\x{2139}|\x{2122}|\x{3297}|\x{3299}][\x{FE00}-\x{FEFF}]?|[\x{2190}-\x{21FF}][\x{FE00}-\x{FEFF}]?|[\x{2300}-\x{23FF}][\x{FE00}-\x{FEFF}]?|[\x{2460}-\x{24FF}][\x{FE00}-\x{FEFF}]?|[\x{25A0}-\x{25FF}][\x{FE00}-\x{FEFF}]?|[\x{2600}-\x{27BF}][\x{FE00}-\x{FEFF}]?|[\x{2900}-\x{297F}][\x{FE00}-\x{FEFF}]?|[\x{2B00}-\x{2BF0}][\x{FE00}-\x{FEFF}]?|[\x{1F000}-\x{1F6FF}][\x{FE00}-\x{FEFF}]?/u', '', $string);
     }
-
-    // /**
-    //  * Make error messages translatable.
-    //  *
-    //  * @return array
-    //  */
-    // public function messages()
-    // {
-    //     $messages = [];
-
-    //     foreach ($this->validationRules as $field => $rule) {
-    //         // Get type of validation
-
-    //         // Get field nice name
-    //         if ($this->fieldName[$field]) {
-    //             $messages[$field] = $this->fieldName[$field];
-    //         } else {
-    //             $messages[$field] = str_replace('_', ' ', $field);
-    //             // Use field machine name
-    //         }
-
-    //         // Build string
-    //         // $messages[$field . '.required'] = $
-    //     }
-    //     // return [
-    //     //     'title.required' => 'A title is required',
-    //     //     'body.required'  => 'A message is required',
-    //     // ];
-
-    //     return $messages;
-    // }
 }

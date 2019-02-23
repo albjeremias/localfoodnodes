@@ -33,7 +33,7 @@
             'placeholder' => 'Price',
             'min'         => 0,
             'm_value'     => $product->price,
-            'disabled'    => $product->variants()->count() > 0,
+            'disabled'    => $product->variants()->count() > 0 ? true : false,
         ])
 
         @if ($product->variants()->count() > 0)
@@ -63,6 +63,7 @@
             'name'        => 'price_unit',
             'class'       => 'bb-38 form-control',
             'options'     => UnitsHelper::getPriceUnits(),
+            'selected'    => $product->price_unit,
             'value'       => true,
             'val_key'     => true,
         ])
@@ -73,7 +74,8 @@
         @include('new.components.forms.input', [
             'label'       => __('Estimate package amount'),
             'name'        => 'package_amount',
-            'type'        => 'text',
+            'm_value'     => $product->package_amount,
+            'type'        => 'number',
             'class'       => 'form-control',
             'placeholder' => __('Estimate package amount'),
         ])
@@ -123,8 +125,6 @@
         'min'         => 0
     ])
     </div>
-
-    <button type="submit" class="btn btn-secondary mt-3 float-right">{{ _('Save product') }}</button>
 </div>
 
 {{-- Right Section --}}
@@ -178,4 +178,3 @@
         </div>
     </div>
 </div>
-

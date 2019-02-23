@@ -126,7 +126,7 @@ class IndexController extends Controller
             'shareImage' => $producer->images()->count() > 0 ? $producer->images()->first()->url('small') : null
         ];
 
-        return view('public.producer.producer', [
+        return view('new.public.producer.producer', [
             'producer' => $producer,
         ] + $shareMeta);
     }

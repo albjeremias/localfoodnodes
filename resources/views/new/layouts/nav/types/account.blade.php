@@ -14,7 +14,7 @@
         <a class="nav-link black-54 dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{ $active_producer_name }}
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu box-shadow" aria-labelledby="navbarDropdown">
 
             @foreach ($user->producerAdminLinks() as $producerAdminLink)
                 <a class="dropdown-item" href="{{ route('account_producer', ['producerId' => $producerAdminLink->getProducer()->id ]) }}">{{ $producerAdminLink->getProducer()->name }}</a>
@@ -28,7 +28,7 @@
         <a class="nav-link black-54 dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Producent
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu box-shadow" aria-labelledby="navbarDropdown">
 
             @foreach ($user->producerAdminLinks() as $producerAdminLink)
                 <a class="dropdown-item" href="{{ route('account_producer', ['producerId' => $producerAdminLink->getProducer()->id ]) }}">{{ $producerAdminLink->getProducer()->name }}</a>
@@ -52,7 +52,7 @@
         <a class="nav-link black-54 dropdown-toggle" href="#" id="navbarDropdownNodes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{ __('Node administration') }}
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownNodes">
+        <div class="dropdown-menu box-shadow" aria-labelledby="navbarDropdownNodes">
             @foreach ($user->nodeAdminLinks() as $nodeAdminLink)
                 <a class="dropdown-item {{ Request::is('account/node/' . $nodeAdminLink->getNode()->id) ? 'active' : '' }}" href="/account/node/{{ $nodeAdminLink->getNode()->id }}">{{ $nodeAdminLink->getNode()->name }}</a>
             @endforeach
@@ -65,7 +65,7 @@
         <a class="nav-link black-54 dropdown-toggle" href="#" id="navbarDropdownNodes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{ __('Node administration') }}
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownNodes">
+        <div class="dropdown-menu box-shadow" aria-labelledby="navbarDropdownNodes">
             @foreach ($user->nodeAdminLinks() as $nodeAdminLink)
                 <a class="dropdown-item {{ Request::is('account/node/' . $nodeAdminLink->getNode()->id) ? 'active' : '' }}" href="{{ route('account_node', ['nodeId' => $nodeAdminLink->getNode()->id]) }}">{{ $nodeAdminLink->getNode()->name }}</a>
             @endforeach

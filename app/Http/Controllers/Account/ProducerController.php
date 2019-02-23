@@ -88,7 +88,7 @@ class ProducerController extends Controller
             'orderItems' => $orderItems,
             'breadcrumbs' => [
                 $producer->name => '',
-                trans('admin/user-nav.dashboard') => ''
+                __('Dashboard') => ''
             ]
         ]);
     }
@@ -136,6 +136,7 @@ class ProducerController extends Controller
             ProducerAdminLink::create(['producer_id' => $producer->id, 'user_id' => $user->id, 'active' => 1]);
 
             $request->session()->flash('message', [trans('admin/messages.producer_created')]);
+
             return redirect()->route('account_producer_channels');
         }
 
@@ -156,7 +157,7 @@ class ProducerController extends Controller
             'producer' => $producer,
             'currencies' => $currencies,
             'breadcrumbs' => [
-                $producer->name => 'producer/' . $producer->id,
+                $producer->name => route('account_producer', ['producerId' => $producer->id]),
                 __('Edit') => ''
             ]
         ]);
@@ -183,7 +184,7 @@ class ProducerController extends Controller
 
             $request->session()->flash('message', [trans('admin/messages.producer_updated')]);
 
-            return redirect()->route('account_producer_channels', [
+            return redirect()->route('account_producer', [
                 'producerId' => $producer->id,
             ]);
         }
@@ -245,8 +246,8 @@ class ProducerController extends Controller
         return view('account.producer.confirm-delete', [
             'producer' => $producer,
             'breadcrumbs' => [
-                $producer->name => 'producer/' . $producer->id,
-                trans('admin/user-nav.delete') => ''
+                $producer->name => route('account_producer', ['producerId' => $producer->id]),
+                __('Delete') => ''
             ]
         ]);
     }
@@ -318,8 +319,8 @@ class ProducerController extends Controller
         return view('account.producer.nodes', [
             'producer' => $producer,
             'breadcrumbs' => [
-                $producer->name => 'producer/' . $producer->id,
-                trans('admin/user-nav.nodes') => ''
+                $producer->name => route('account_producer', ['producerId' => $producer->id]),
+                __('Nodes') => ''
             ]
         ]);
     }
@@ -331,14 +332,12 @@ class ProducerController extends Controller
     {
         $user = Auth::user();
         $producer = $user->producerAdminLink($producerId)->getProducer();
-        $products = Product::where('producer_id', $producer->id)->with('productVariantsRelationship')->get();
 
         return view('new.account.producer.products', [
             'producer' => $producer,
-            'products' => $products,
             'breadcrumbs' => [
                 $producer->name => 'producer/' . $producer->id,
-                trans('admin/user-nav.products') => ''
+                __('Products') => ''
             ]
         ]);
     }

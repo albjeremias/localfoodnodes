@@ -152,7 +152,7 @@ class UserController extends Controller
         return view('new.account.user.index', [
             'breadcrumbs' => [
                 $user->name => '',
-                trans('admin/user-nav.dashboard') => ''
+                __('Dashboard') => ''
             ]
         ]);
     }
@@ -166,19 +166,9 @@ class UserController extends Controller
             return redirect('/account/user');
         }
 
-        $header = trans('public/create-account.user_header');
-        $content = '';
-
-        if ($type) {
-            $header = trans('public/create-account.' . $type . '_header');
-            $content = trans('public/create-account.' . $type);
-        }
-
         return view('new.public.register', [
-            'header' => $header,
-            'content' => $content,
             'breadcrumbs' => [
-                trans('admin/user-nav.create_account') => ''
+                __('Create account') => ''
             ]
         ]);
     }
@@ -238,7 +228,7 @@ class UserController extends Controller
             'currencies' => $currencies,
             'breadcrumbs' => [
                 $user->name => 'user',
-                trans('admin/user-nav.edit') => ''
+                __('My profile') => ''
             ]
         ]);
     }
@@ -286,7 +276,7 @@ class UserController extends Controller
             return view('new.account.user.delete', [
                 'breadcrumbs' => [
                     $user->name => 'user',
-                    trans('admin/user-nav.delete') => ''
+                    __('Delete') => ''
                 ]
             ]);
         }
@@ -299,7 +289,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
         return view('new.account.user.gdpr', [
-            'uswer' => $user,
+            'user' => $user,
         ]);
     }
     /**
@@ -351,7 +341,7 @@ class UserController extends Controller
         return view('account.user.edit-password', [
             'breadcrumbs' => [
                 $user->name => 'user/' . $user->id,
-                trans('admin/user-nav.change_password') => ''
+                __('Change password') => ''
             ]
         ]);
     }
@@ -394,7 +384,7 @@ class UserController extends Controller
             'user' => $user,
             'breadcrumbs' => [
                 $user->name => 'user',
-                trans('admin/user-nav.pickups') => ''
+                __('Pickups') => ''
             ]
         ]);
     }

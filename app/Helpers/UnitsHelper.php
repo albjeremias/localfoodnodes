@@ -38,6 +38,17 @@ class UnitsHelper
     }
 
     /**
+     * Get variant units.
+     *
+     * @return Collection
+     */
+    public static function getVariantUnit($unit)
+    {
+        $units = self::getVariantUnits();
+        return collect([$unit => $units[$unit]]);
+    }
+
+    /**
      * Get price units.
      *
      * @return Collection

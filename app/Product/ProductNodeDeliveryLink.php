@@ -23,10 +23,10 @@ class ProductNodeDeliveryLink extends \App\BaseModel
      */
     protected $fillable = [
         'product_id',
+        'product_variant_id',
         'node_id',
         'date',
-        'active',
-        'stock',
+        'quantity',
         'price',
         'deadline',
     ];
@@ -38,12 +38,12 @@ class ProductNodeDeliveryLink extends \App\BaseModel
      */
     protected $validationRules = [
         'product_id' => 'required|integer',
+        'product_variant_id' => 'integer',
         'node_id' => 'required|integer',
-        'date' => 'date',
-        'active',
-        'stock',
-        'price',
-        'deadline',
+        'date' => 'required|date',
+        'quantity' => 'required|integer',
+        'price' => 'required|numeric',
+        'deadline' => 'required|integer',
     ];
 
     /**

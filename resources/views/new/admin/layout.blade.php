@@ -21,7 +21,7 @@
         @include('new.layouts.nav.base')
     @endif
     <div class="content {{ isset($hideMenu) ? 'no-menu' : '' }}">
-        @include('shared.errors')
+        @include('shared.system-messages')
         @yield('content')
     </div>
 </div>

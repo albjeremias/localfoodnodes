@@ -1,10 +1,5 @@
 {{-- EXTEND NAVBAR TO SHOW ACCOUNT NAVBAR --}}
 
-{{-- PLACEHOLDER - Will be replaced when we store selected producer in session. @NOTE David --}}
-@php
-    $active_producer_id = $user->producerAdminLinks()[0]->getProducer()->id;
-@endphp
-
 @php
     $node_navbar = [
         ['name' => __('Products'),  'link' => '/node/' . (isset($node_slug) ? $node_slug : ''), 'icon' => 'shopping-basket'],
@@ -20,23 +15,23 @@
         ['name' => __('My profile'), 'link' => route('account_user_edit'),    'icon' => 'user'],
     ];
 
-    if(isset($active_producer_id)) :
+    if (isset($producer)):
         $producer_navbar = [
-            ['name' => __('Dashboard'),  'link' => route('account_producer', ['producerId' => $active_producer_id]),            'icon' => 'th-large'],
-            ['name' => __('Products'),   'link' => route('account_producer_products', ['producerId' => $active_producer_id]),            'icon' => 'home'],
-            ['name' => __('Deliveries'), 'link' => route('account_producer_deliveries', ['producerId' => $active_producer_id]), 'icon' => 'user'],
+            ['name' => __('Dashboard'),  'link' => route('account_producer', ['producerId' => $producer->id]),            'icon' => 'th-large'],
+            ['name' => __('Products'),   'link' => route('account_producer_products', ['producerId' => $producer->id]),   'icon' => 'home'],
+            ['name' => __('Deliveries'), 'link' => route('account_producer_deliveries', ['producerId' => $producer->id]), 'icon' => 'user'],
         ];
     endif;
 
-    if (isset($sub_nav)) :
-        switch ($sub_nav) :
+    if (isset($sub_nav)):
+        switch ($sub_nav):
             case 'account':
                 $active_navbar = $account_navbar;
                 break;
-            case 'node' :
+            case 'node':
                 $active_navbar = $node_navbar;
                 break;
-            case 'producer' :
+            case 'producer':
                 $active_navbar = $producer_navbar;
                 break;
         endswitch;

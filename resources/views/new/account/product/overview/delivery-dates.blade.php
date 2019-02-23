@@ -2,7 +2,7 @@
     <div class="col-16">
         <div class="white-box">
             <h4 class="d-inline-block rc">Delivery dates</h4>
-            <a class="btn btn-secondary float-right" href="{{ '/account/producer/' . $active_producer_id . '/product/' . $product->id . '/deliveries' }}">Edit</a>
+            <a class="btn btn-secondary float-right" href="{{ '/account/producer/' . $producer->id . '/product/' . $product->id . '/deliveries' }}">Edit</a>
 
             @php
                 $farms = [];

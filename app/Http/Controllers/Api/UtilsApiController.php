@@ -108,9 +108,13 @@ class UtilsApiController extends ApiBaseController
         ];
     }
 
-    public function packageUnits()
+    public function packageUnits(Request $request)
     {
-        return UnitsHelper::getVariantUnits();
+        if ($request->has('product_price_unit') && UnitsHelper::isStandardUnit($request->input('product_price_unit'))) {
+            return UnitsHelper::getVariantUnit($request->input('product_price_unit'))->toArray();
+        } else {
+            return UnitsHelper::getVariantUnits();
+        }
     }
 
     /**

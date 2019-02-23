@@ -1,7 +1,5 @@
 @extends('new.account.layout',
 [
-    'bread_type'   => __('Admin'),
-    'bread_result' => __('Create node'),
     'nav_active'   => 1
 ])
 

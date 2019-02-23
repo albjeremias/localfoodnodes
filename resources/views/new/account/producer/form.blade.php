@@ -1,22 +1,22 @@
-@include('new.components.progress',
-[
-    'active' => 1,
-    'steps'  =>
-        [
-            __('Terms'),
-            __('Create producer'),
-            __('Sales channels'),
-            __('Finish')
-        ]
-])
+@if (!isset($progress) || $progress !== false)
+    @include('new.components.progress',
+    [
+        'active' => 1,
+        'steps'  =>
+            [
+                __('Terms'),
+                __('Create producer'),
+                __('Sales channels'),
+                __('Finish')
+            ]
+    ])
+@endif
 
 <div class="container my-5">
     <h2>{{ __('Producer info') }}</h2>
 
     <div class="row mt-4">
         <div class="col-md-9">
-            <h4>{{ __('Producer info') }}<span class="rc">*</span></h4>
-
             {{-- Farm/Business name --}}
             <div class="form-row mt-4">
                 <div class="form-group col-md-8">
@@ -107,10 +107,10 @@
 
                 {{-- Payment Info --}}
                 <div class="form-group col-16">
-                    @include('new.components.forms.input', [
+                    @include('new.components.forms.textarea', [
                         'label' => __('Payment info'),
                         'name'  => 'payment_info',
-                        'type'  => 'text',
+                        'rows'  => 3,
                         'class' => 'form-control',
                         'placeholder' => __('General payment info. (Can be specified for each product on product level)'),
                         'm_value' => $producer->payment_info ?? ''

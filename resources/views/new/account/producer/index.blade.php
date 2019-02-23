@@ -1,6 +1,5 @@
 @extends('new.account.layout',
 [
-    'nav_title' => __('Dashboard'),
     'sub_nav' => 'producer',
     'nav_active' => 1,
     'sub_nav_active' => 0,
@@ -16,7 +15,7 @@
                     <div class="row">
                         <div class="col-lg-9">
                             <div class="white-box little-min">
-                                <h4>{{ $producer->name }}</h4>
+                                <a class="rc" href="{{ $producer->permalink()->url }}"><h4>{{ $producer->name }}</h4></a>
                                 <ul class="list-unstyled list-p">
                                     <li>{{ Auth::user()->name }}</li>
                                     <li class="black-54">{{ Auth::user()->email }}</li>
@@ -42,26 +41,21 @@
                                 </div>
 
                                 <a class="bottom-link text-uppercase rc" href="{{ route('account_producer_edit', ['producerId' => $producer->id]) }}">{{ __('Edit profile') }}</a>
-                                <span class="bottom-link-right" href="#">
-                                    <small class="font-italic" data-toggle="tooltip" data-placement="bottom" title="Producer creation date">
-                                        {{ \Carbon\Carbon::parse($producer->created_at)->toFormattedDateString() }}
-                                    </small>
-                                </span>
                             </div>
                         </div>
 
                         <div class="col-lg-7">
                             <div class="white-box little-min">
-                                <h4>{{ __('Still not a member?') }}</h4>
+                                <a href="{{ route('membership') }}" class="rc"><h4>{{ __('Still not a member?') }}</h4></a>
                                 <small>{{ _('Local Food Nodes is built on a gift based economy. By donating a supporting membership fee, free of choice, you are part of financing the development of open digital tools, that supports enabling local and independent peoples driven food markets.') }}</small>
-                                <a class="bottom-link text-uppercase rc" href="{{ route('membership') }}">{{ __('Membership') }}</a>
+                                {{-- <a class="bottom-link text-uppercase rc" href="{{ route('membership') }}">{{ __('Membership') }}</a> --}}
                             </div>
                         </div>
 
                         <div class="col-16">
                             <div class="white-box medium-min">
                                 @if($producer->orderDates()->count() <= 0)
-                                    <a href="/account/producer/{{ $producer->id }}/deliveries" class="rc"><h4>{{ __('Deliveries') }}</h4></a>
+                                    <a href="{{ route('account_producer_deliveries', ['producerId' => $producer->id]) }}" class="rc"><h4>{{ __('Deliveries') }}</h4></a>
 
                                     <div class="row h-100">
                                         <div class="col-16 my-auto text-center">
@@ -132,9 +126,9 @@
                         <div class="col-16">
                             <div class="producer-products-list-container">
                                 <div class="d-flex">
-                                    <a href="/account/producer/{{ $producer->id }}/products" class="rc"><h4>{{ __('My products') }}</h4></a>
+                                    <a href="{{ route('account_producer_products', ['producerId' => $producer->id]) }}" class="rc"><h4>{{ __('My products') }}</h4></a>
 
-                                    <a href="/account/producer/{{ $producer->id }}/product/create" title="{{ __('Create new product') }}" class="rounded-circle box-shadow-square btn btn-sm btn-primary my-auto ml-auto">
+                                    <a href="{{ route('account_product_create', ['producerId' => $producer->id]) }}" title="{{ __('Create new product') }}" class="rounded-circle box-shadow-square btn btn-sm btn-primary my-auto mb-5 ml-auto">
                                         <i class="fa fa-plus black-54" aria-hidden="true"></i>
                                     </a>
                                 </div>
@@ -158,7 +152,7 @@
                 </div>
             </div>
             <div class="white-box">
-                <h4>{{ __('Delivery locations') }}</h4>
+                <a href="{{ route('account_producer_channels', ['producerId' => $producer->id]) }}" class="rc"><h4>{{ __('Sales channels') }}</h4></a>
                 <div id="producer-map">
                     <producer-map producer-id="{{ $producer->id}}"></producer-map>
                 </div>

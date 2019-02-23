@@ -1,7 +1,5 @@
 @extends('new.admin.layout',
 [
-    'bread_type'   => __('Admin'),
-    'bread_result' => __('Users'),
     'nav_active'   => 1
 ])
 

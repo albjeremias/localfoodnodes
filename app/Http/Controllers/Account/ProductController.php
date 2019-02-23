@@ -100,10 +100,9 @@ class ProductController extends Controller
             'orderQuantity' => $orderQuantity,
             'tags' => ProductFilter::getTagsByKeys($product->tags()->pluck('tag')),
             'breadcrumbs' => [
-                $producer->name => 'producer/' . $producer->id,
-                trans('admin/user-nav.products') => 'producer/' . $producer->id . '/products',
-                $product->name => 'producer/' . $producer->id . '/product/' . $product->id . '/edit',
-                trans('admin/user-nav.create_production') => ''
+                $producer->name => route('account_producer', ['producerId' => $producer->id]),
+                __('Products') => route('account_producer_products', ['producerId' => $producer->id]),
+                $product->name => '',
             ]
         ]);
     }
@@ -164,7 +163,7 @@ class ProductController extends Controller
                 }
             }
 
-            return redirect()->route('account_product_edit', [
+            return redirect()->route('account_product', [
                 'producerId' => $producer->id,
                 'productId' => $product->id
             ]);
@@ -201,8 +200,9 @@ class ProductController extends Controller
             'tags' => ProductFilter::tags(),
             'breadcrumbs' => [
                 $producer->name => 'producer/' . $producer->id,
-                trans('admin/user-nav.products') => 'producer/' . $producer->id . '/products',
-                $product->name => ''
+                __('Products') => route('account_producer_products', ['producerId' => $producer->id]),
+                $product->name => route('account_product', ['producerId' => $producer->id, 'productId' => $product->id]),
+                __('Edit') => ''
             ]
         ]);
     }
@@ -231,9 +231,14 @@ class ProductController extends Controller
             $this->createTags($request, $product);
             $this->uploadImage($request, $product);
 
-            $request->session()->flash('message', [trans('admin/messages.product_updated')]);
-        }
+            $request->session()->flash('message', [__('Product has been updated')]);
 
+            return redirect()->route('account_product', [
+                'producerId' => $producer->id,
+                'productId' => $product->id,
+            ]);
+        }
+        $request->session()->flash('error', $errors);
         return redirect()->back()->withInput()->withErrors($errors);
     }
 

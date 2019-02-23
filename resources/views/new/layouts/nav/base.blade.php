@@ -30,7 +30,7 @@
                     @if (Auth::user() && !isset($transparent_nav))
                         <li class="d-none d-lg-block my-auto px-0">
                             <a href="{{ route('account_user_edit') }}" class="wc nav-link text-transform-none px-0">
-                                <i class="fa fa-user-circle icon-38 icon-14em" aria-hidden="true"></i>
+                                <i class="fa fa-user-circle icon-38" aria-hidden="true"></i>
                             </a>
                         </li>
 
@@ -120,9 +120,6 @@
 
         {{-- Extend navbar - Breadcrumbs --}}
         @include('new.layouts.nav.partials.breadcrumbs')
-
-        {{-- Extend navbar - Page title --}}
-        @include('new.layouts.nav.partials.page-title')
 
         {{-- Extend navbar - Sub Menu --}}
         @include('new.layouts.nav.sub.sub-menu')

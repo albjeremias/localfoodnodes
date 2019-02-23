@@ -33,5 +33,6 @@ Route::get('/app', 'PageController@app')->name('sv_app');
 
 
 Route::get('/nod/{slug}', 'IndexController@node')->name('sv_node');
+Route::get('/producent/{slug}', 'IndexController@producer')->name('sv_producer');
 Route::get('/nod/{slug}/producent/{subSlug?}', 'IndexController@nodeProducer')->name('sv_node_producer');
 Route::get('/nod/{slug}/produkt/{subSlug?}', 'IndexController@nodeProduct')->name('sv_node_product');

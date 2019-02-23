@@ -1,7 +1,5 @@
 @extends('new.account.layout',
 [
-    'bread_type'   => __('User'),
-    'bread_result' => __('Approve privacy policy'),
     'nav_active'   => 0
 ])
 

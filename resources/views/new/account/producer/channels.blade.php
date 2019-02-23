@@ -1,7 +1,5 @@
 @extends('new.account.layout',
 [
-    'bread_type'   => __('Producer'),
-    'bread_result' => __('Sales channels'),
     'nav_active'   => 1
 ])
 
@@ -43,7 +41,7 @@
                 </label>
             </div>
             <div class="mt-2  mb-2 w-50 pl-4">
-                <small>Connect to any local food nodes on the map.</small>
+                <small>Connect to any local food node on the map.</small>
             </div>
 
             <div id="producer-map">
@@ -59,18 +57,6 @@
             </div>
             <div class="mt-2 w-50 pl-4">
                 <small>Use your farm as a pick up spot and set delivery dates that works with your schedule.</small>
-            </div>
-
-            {{-- Hide Farm from public --}}
-            <div class="form-check mt-4 custom-control custom-checkbox custom-checkbox pl-5">
-                <input name="farm-delivery" class="custom-control-input" type="checkbox" value="" id="checkbox-farm-delivery">
-                <label class="custom-control-label" for="checkbox-farm-delivery">
-                    <p class="d-inline-block mb-0">{{ __('Hide farm from map') }}</p>
-                </label>
-            </div>
-
-            <div class="mt-2 w-50 pl-5">
-                <small>You have not choosen farm delivery as a sale channel. Do you even want to hide yore farm to be shown on the map?</small>
             </div>
 
             {{-- Home delivery --}}

@@ -107,7 +107,10 @@ $input-btn-padding-x-lg:                 1rem;
 
 // ---BTN---
 
-.btn { text-transform: uppercase }
+.btn {
+  font-weight: 600 !important;
+  text-transform: uppercase;
+}
 
 .btn.btn-info { color: $dark-54; }
 

@@ -57,7 +57,7 @@ h4 {
 
 a {
   font-size: 0.933rem !important;
-  font-weight: 600 !important;
+  font-weight: 600;
   line-height: 1.2rem !important;
 }
 
@@ -595,7 +595,7 @@ option:checked {
 
 #products-administration .select-location:after {
   position: absolute;
-  right: 5px;
+  right: 10px;
   top: 47%;
   bottom: 50%;
 }
@@ -633,5 +633,24 @@ option:checked {
       border-color: #dadada;
       color: inherit;
     }
+  }
+}
+
+img.rounded-circle {
+  object-fit: cover;
+}
+
+.system-messages {
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  width: 100vw;
+
+  .alert {
+    background: #333;
+    border: 0;
+    border-radius: 0;
+    color: #fff;
+    margin: 0;
   }
 }

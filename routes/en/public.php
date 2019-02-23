@@ -32,6 +32,7 @@ Route::get('/gdpr', 'PageController@gdpr')->name('en_gdpr');
 Route::get('/app', 'PageController@app')->name('en_app');
 
 Route::get('/node/{slug}', 'IndexController@node')->name('en_node');
+Route::get('/producer/{slug}', 'IndexController@producer')->name('en_producer');
 Route::get('/node/{slug}/producer/{subSlug?}', 'IndexController@nodeProducer')->name('en_node_producer');
 Route::get('/node/{slug}/product/{subSlug?}', 'IndexController@nodeProduct')->name('en_node_product');
 

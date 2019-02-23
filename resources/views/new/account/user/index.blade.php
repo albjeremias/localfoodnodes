@@ -1,6 +1,5 @@
 @extends('new.account.layout',
 [
-    'nav_title' => __('Dashboard'),
     'sub_nav' => 'account',
     'nav_active' => 0,
     'sub_nav_active' => 0

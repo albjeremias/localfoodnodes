@@ -1,6 +1,5 @@
 @extends('new.account.layout',
 [
-    'nav_title'      => __('Products'),
     'sub_nav'        => 'producer',
     'sub_nav_active' => 1,
     'nav_active'     => 1
@@ -14,15 +13,10 @@
         <div class="container nm">
             <!-- PRODUCTS -->
             <section class="py-5" id="products-administration">
-                @if ($products->count() > 0)
-                    <div class="container">
-                        <products-administration-index
-                            :producer="{{ $producer }}"
-                            :products="{{ $products->sortBy('name') }}"
-                            lang="{{ app()->getLocale() }}"
-                        ></products-administration-index>
-                    </div>
-                @endif
+                <products-administration-index
+                    :producer="{{ $producer }}"
+                    lang="{{ app()->getLocale() }}"
+                ></products-administration-index>
             </section>
         </div>
     </div>

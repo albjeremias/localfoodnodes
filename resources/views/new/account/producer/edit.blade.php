@@ -1,7 +1,5 @@
 @extends('new.account.layout',
 [
-    'bread_type'   => __('Producer'),
-    'bread_result' => $producer->name,
     'nav_active'   => 1
 ])
 
@@ -19,8 +17,7 @@
                 'class'       => '',
                 'placeholder' => ''
             ])
-            @include('new.account.producer.form')
-
+            @include('new.account.producer.form', ['progress' => false])
 
             {{-- <div class="container mb-5">
             <button type="submit" class="btn btn-success">{{ __('Save producer') }}</button>

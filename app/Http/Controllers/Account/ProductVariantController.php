@@ -95,11 +95,10 @@ class ProductVariantController extends Controller
             'product' => $product,
             'producer' => $producer,
             'breadcrumbs' => [
-	            $product->name => [
-		            'link' => '/account/producer/' . $producer->id . '/product/' . $product->id . '/edit',
-		            'icon' => ''
-	            ],
-	            __('Stock and variants') => ['']
+                $producer->name => route('account_producer', ['producerId' => $producer->id]),
+                __('Products') => route('account_producer_products', ['producerId' => $producer->id]),
+	            $product->name => route('account_product', ['producerId' => $producer->id, 'productId' => $product->id]),
+	            __('Stock and variants') => ''
             ]
         ]);
     }

@@ -1,6 +1,5 @@
 @extends('new.account.layout',
 [
-    'nav_title' => trans('Node'),
     'sub_nav' => 'Node',
     'nav_active' => 2,
     'sub_nav_active' => 0,

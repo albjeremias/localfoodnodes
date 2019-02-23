@@ -14,10 +14,10 @@ class ProductVariant extends BaseModel
     protected $validationRules = [
         'product_id' => 'required',
         'name' => 'required|max:255',
-        'price' => 'required|numeric',
-        'package_amount' => 'required|numeric|min:0.01',
+        'price' => 'required|integer',
+        'package_amount' => 'required|integer|min:0.01',
         'main_variant' => 'boolean',
-        'quantity' => 'numeric'
+        'quantity' => 'nullable|integer'
     ];
 
     /**
@@ -53,6 +53,14 @@ class ProductVariant extends BaseModel
     public function getProduct()
     {
         return $this->hasOne('App\Product\Product', 'id', 'product_id')->first();
+    }
+
+    /**
+     * Define product relationship with node delivery links.
+     */
+    public function deliveryLinksRelationship()
+    {
+        return $this->hasMany('App\Product\ProductNodeDeliveryLink');
     }
 
     // /**

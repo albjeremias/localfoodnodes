@@ -1,16 +1,26 @@
-.footer {
-  min-height: 194px;
+footer {
   background-color: $primary-darken-20;
+  color: #fff;
+  min-height: 194px;
 
   a {
-    margin-right: 10px;
-    margin-left: 10px;
     color: #fff;
-    margin-top: auto;
-    margin-bottom: auto;
+
+    &:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
   }
 
   img {
     height: 40px;
+  }
+
+  ul {
+    li {
+      a.nav-link {
+        padding: 0;
+      }
+    }
   }
 }

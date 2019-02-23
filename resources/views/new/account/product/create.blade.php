@@ -1,6 +1,5 @@
 @extends('new.account.layout',
 [
-    'nav_title' => __('Product'),
     'sub_nav' => 'producer',
     'nav_active' => 1,
     'sub_nav_active' => 1,
@@ -18,6 +17,11 @@
                 <input type="hidden" name="type" value="basic"/>
                 <div class="row">
                     @include('new.account.product.forms.basic-info')
+                </div>
+
+                <div class="row">
+                    <a href="" type="submit" class="btn btn-primary">Back</a>
+                    <button type="submit" class="btn btn-secondary ml-auto">{{ _('Save product') }}</button>
                 </div>
             </form>
         </div>

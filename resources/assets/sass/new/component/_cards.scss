@@ -51,15 +51,25 @@
 .product.product-edit {
   display: flex;
   flex-direction: column;
-  height: 440px;
+  height: 470px;
 
   .visibility-overlay {
     position: absolute;
     height: 100%;
     width: 95%;
-    background-color: #000000c7;
+    background-color: #ffffff;
     z-index: 1;
     display: flex;
+  }
+
+  .product__img-container {
+    background: $dark-38;
+
+    > img {
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
   }
 
   .divider {

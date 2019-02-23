@@ -19,7 +19,6 @@
         @include('new.layouts.nav.base')
     @endif
     <div class="content {{ isset($hideMenu) ? 'no-menu' : '' }}">
-        @include('shared.errors')
         @yield('content')
     </div>
 </div>
@@ -27,6 +26,8 @@
 @yield('modal')
 
 @include('new.public.footer')
+
+@include('shared.system-messages')
 
 <!-- Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

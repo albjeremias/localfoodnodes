@@ -1,7 +1,5 @@
 @extends('new.account.layout',
 [
-    'bread_type'   => __('Producer'),
-    'bread_result' => $producer->name,
     'nav_active'   => 1
 ])
 
@@ -71,8 +69,8 @@
             </div>
 
             <h4 class="mt-5 mb-3">{{  __('Where do you want to go now?') }}</h4>
-            <a href="{{ route('account_producer', ['producerId' => $producer->id]) }}" class="btn btn-secondary">{{ __('Dashboard') }}</a>
-            <a href="{{ route('account_producer_channels', ['producerId' => $producer->id]) }}" class="btn btn-secondary">{{ __('Visit') }} {{ $producer->name }}</a>
+            <a href="{{ route('account_producer', ['producerId' => $producer->id]) }}" class="btn btn-secondary mr-2">{{ __('Dashboard') }}</a>
+            <a href="{{ route('account_producer_channels', ['producerId' => $producer->id]) }}" class="btn btn-secondary mr-2">{{ __('Visit') }} {{ $producer->name }}</a>
             <a href="{{ route('account_product_create', ['producerId' => $producer->id]) }}" class="btn btn-secondary">{{ __('Create a product') }}</a>
         </div>
     </div>

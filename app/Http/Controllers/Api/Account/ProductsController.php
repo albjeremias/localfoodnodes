@@ -25,8 +25,8 @@ class ProductsController extends ApiBaseController
     public function products(Request $request, $producerId)
     {
         // Filters
-        $date = $request->input('date');
         $nodeId = $request->input('nodeId');
+        $date = $request->input('date');
 
         $user = Auth::user();
         $producer = $user->producerAdminLink($producerId)->getProducer();
@@ -34,33 +34,50 @@ class ProductsController extends ApiBaseController
             return $product->id;
         });
 
-        // Get product ids matching node and date filter
-        if ($nodeId) {
-            $linkQuery = ProductNodeDeliveryLink::where('node_id', $nodeId)->whereIn('product_id', $productIds);
+        $withQuery = [
+            'imageRelationship',
+            'producerRelationship',
+            'productVariantsRelationship',
+        ];
 
-            if ($date) {
-                $linkQuery->where('date', $date);
+        if ($request->has('all')) {
+            // Get all products with a delivery link for the node and date
+            if ($nodeId && $date) {
+                $withQuery['deliveryLinksRelationship'] = function($query) use ($nodeId, $date) {
+                    $query->where('node_id', $nodeId)
+                    ->where('date', $date);
+                };
+
+                $withQuery['productVariantsRelationship.deliveryLinksRelationship'] = function($query) use ($nodeId, $date) {
+                    $query->where('node_id', $nodeId)
+                    ->where('date', $date);
+                };
             }
 
-            $productIds = $linkQuery->get()->pluck('product_id')->unique();
-
-            $products = Product::with([
-                'producerRelationship',
-                'productVariantsRelationship',
-                'imageRelationship'
-            ])->where('producer_id', $producer->id)
-            ->whereIn('id', $productIds)
+            return Product::with($withQuery)
+            ->where('producer_id', $producer->id)
             ->get();
         } else {
-            $products = Product::with([
-                'producerRelationship',
-                'productVariantsRelationship',
-                'imageRelationship'
-            ])->where('producer_id', $producerId)
-            ->get();
-        }
+            // Get products matching node and date
+            if ($nodeId) {
+                // Exclude products without any delivery links for specified node and date
+                $linkQuery = ProductNodeDeliveryLink::where('node_id', $nodeId)->whereIn('product_id', $productIds);
 
-        return $products;
+                if ($date) {
+                    $linkQuery->where('date', $date);
+                }
+
+                $productIds = $linkQuery->get()->pluck('product_id')->unique();
+                return Product::with($withQuery)->where('producer_id', $producer->id)
+                ->whereIn('id', $productIds)
+                ->get();
+            } else {
+                // All products for a producer
+                return Product::with($withQuery)
+                ->where('producer_id', $producer->id)
+                ->get();
+            }
+        }
     }
 
     /**
@@ -109,29 +126,6 @@ class ProductsController extends ApiBaseController
         return $product;
     }
 
-    // /**
-    //  * Toggle all products visibility
-    //  *
-    //  * @param Request $request
-    //  * @param [type] $producerId
-    //  * @param [type] $productId
-    //  * @return void
-    //  */
-    // public function toggleAllProductNodeDeliveryDateActive(Request $request, $producerId, $productId, $date)
-    // {
-    //     $user = Auth::user();
-    //     $producer = $user->producerAdminLink($producerId)->getProducer();
-
-    //     // Load product node delivery link and set active
-
-    //     // return $producer->products->map(function($product) {
-    //     //     $product->is_hidden = !$product->is_hidden;
-    //     //     $product->save();
-
-    //     //     return $product;
-    //     // });
-    // }
-
     /**
      * Add product node delivery link.
      *
@@ -146,20 +140,32 @@ class ProductsController extends ApiBaseController
         $producer = $user->producerAdminLink($producerId)->getProducer();
         $product = $producer->product($productId);
 
-        ProductNodeDeliveryLink::create([
-            'product_id' => $product->id,
-            'node_id' => $nodeId,
-            'date' => $date,
-            // 'active' => isset($data['active']),
-            'quantity' => null,
-            'price' => null,
-            'deadline' => null,
-        ]);
-
-        return ProductNodeDeliveryLink::where('product_id', $product->id)
-        ->where('node_id', $nodeId)
-        ->where('date', $date)
-        ->get();
+        try {
+            if (!$product->variants()->isEmpty()) {
+                foreach ($product->variants() as $variant) {
+                    $productNodeDeliveryLink = ProductNodeDeliveryLink::create([
+                        'product_id' => $product->id,
+                        'product_variant_id' => $variant->id,
+                        'node_id' => $nodeId,
+                        'date' => $date,
+                        'quantity' => null,
+                        'price' => null,
+                        'deadline' => null,
+                    ]);
+                }
+            } else {
+                $productNodeDeliveryLink = ProductNodeDeliveryLink::create([
+                    'product_id' => $product->id,
+                    'node_id' => $nodeId,
+                    'date' => $date,
+                    'quantity' => null,
+                    'price' => null,
+                    'deadline' => null,
+                ]);
+            }
+        } catch (\Illuminate\Database\QueryException $e) {
+            return response('Delivery link already exists', 400);
+        }
     }
 
     /**
@@ -180,11 +186,54 @@ class ProductsController extends ApiBaseController
         ->where('node_id', $nodeId)
         ->where('date', $date)
         ->delete();
+    }
 
-        return ProductNodeDeliveryLink::where('product_id', $product->id)
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @param [type] $nodeId
+     * @param [type] $date
+     * @return void
+     */
+    public function updateProductNodeDeliveryLink(Request $request, $producerId, $productId, $nodeId, $date)
+    {
+        $user = Auth::user();
+        $producer = $user->producerAdminLink($producerId)->getProducer();
+        $product = $producer->product($productId);
+
+        $productNodeDeliveryLink = ProductNodeDeliveryLink::where('product_id', $product->id)
+        ->where('product_variant_id', $request->input('product_variant_id'))
         ->where('node_id', $nodeId)
         ->where('date', $date)
-        ->get();
+        ->first();
+
+        // Create if deliery link doesn't exist
+        if (!$productNodeDeliveryLink) {
+            $productNodeDeliveryLink = new ProductNodeDeliveryLink();
+            $productNodeDeliveryLink->product_id = $product->id;
+            $productNodeDeliveryLink->date = new \DateTime($date);
+        }
+
+        $data = [
+            'quantity' => $request->input('quantity'),
+            'price' => $request->input('price'),
+            'deadline' => $request->input('deadline'),
+        ];
+
+        if ($request->has('product_variant_id')) {
+            $data['product_variant_id'] = $request->input('product_variant_id');
+        }
+
+        $productNodeDeliveryLink->fill($productNodeDeliveryLink->sanitize($data));
+        $errors = $productNodeDeliveryLink->validate();
+
+        if ($errors->isEmpty()) {
+            $productNodeDeliveryLink->save();
+            return $productNodeDeliveryLink;
+        } else {
+            return response($errors, 400);
+        }
     }
 
     /**
@@ -197,12 +246,21 @@ class ProductsController extends ApiBaseController
      */
     public function getNewVariant(Request $request, $producerId, $productId)
     {
-        $variant = new ProductVariant();
-        $variant = array_fill_keys($variant->getFillable(), null);
-        $index = (int) $request->input('currentIndex');
+        $user = Auth::user();
+        $producer = $user->producerAdminLink($producerId)->getProducer();
+        $product = $producer->product($productId);
+        $mainVariant = $product->mainVariant();
 
-        $variant['main_variant'] = false;
-        $variant['id'] = 'new-variant-index-' . ($index++);
+        $index = (int) $request->input('currentIndex');
+        $variant = new ProductVariant();
+        $variant->id = 'new-variant-index-' . ($index++);
+
+        if (!$mainVariant) {
+            $variant->price = $product->price;
+            $variant->package_amount = $product->package_amount;
+        }
+
+        $variant->main_variant = false;
 
         return $variant;
     }
@@ -223,10 +281,8 @@ class ProductsController extends ApiBaseController
         $mainVariant = $product->mainVariant();
 
         $variants = ProductVariant::where('product_id', $product->id)->orderBy('main_variant', 'desc')->orderBy('id', 'asc')->get();
-        $variant = new ProductVariant();
 
         // Recalculate quantity for shared variant quantity
-        // Todo: private reusable method
         if ($product->shared_variant_quantity) {
             $variants = $variants->map(function($variant) use ($product, $mainVariant) {
                 $variant->quantity = floor(($mainVariant->quantity * $mainVariant->package_amount) / $variant->package_amount);
@@ -234,7 +290,7 @@ class ProductsController extends ApiBaseController
             });
         }
 
-        $response = [
+        return [
             'errors' => [],
             'main_variant' => !$product->variants()->isEmpty() ? $product->mainVariant()->id : null,
             'use_variants' => !$product->variants()->isEmpty(),
@@ -243,14 +299,6 @@ class ProductsController extends ApiBaseController
             'variants' => $variants->toArray(),
             'newVariants' => [],
         ];
-
-        if ($product->variants()->count() === 0) {
-            $response['newVariants'] = [
-                array_fill_keys($variant->getFillable(), null)
-            ];
-        }
-
-        return $response;
     }
 
     /**
@@ -281,31 +329,39 @@ class ProductsController extends ApiBaseController
 
         // Create new variants
         foreach ($variantsData['newVariants'] as $index => $data) {
-            $data['product_id'] = $productId;
-            $data['main_variant'] = $variantsData['main_variant'] == $data['id'] ? true : false;
-
-            if ($data['main_variant']) {
-                $data['quantity'] = $product->stock_quantity;
-                $data['price'] = $product->price;
-            }
-
-            if ($variantsData['shared_variant_quantity'] && $data['package_amount']) {
-                $data['quantity'] = floor(($mainVariant->quantity * $mainVariant->package_amount) / $data['package_amount']);
-            }
-
             $variant = new ProductVariant();
+            $variant->product_id = $product->id;
+            $variant->name = $data['name'];
+            $variant->package_amount = $data['package_amount'];
 
-            $errors = $variant->validate($data);
+            // Set main variant
+            if (!$mainVariant || ($variantsData['main_variant'] == $data['id'])) {
+                $variant->main_variant = true;
+                $variant->price = $product->price;
+                $variant->package_amount = $product->package_amount;
+
+                $mainVariant = $variant;
+            } else {
+                $variant->price = $data['price'];
+            }
+
+            // Calculate quantity
+            if ($variantsData['shared_variant_quantity'] && $data['package_amount']) {
+                $variant->quantity = floor(($mainVariant->quantity * $mainVariant->package_amount) / $variant->package_amount);
+            }
+
+            $errors = $variant->validate($variant->toArray());
             if ($errors->isEmpty()) {
-                $variant->fill($data);
                 $variant->save();
+
+                // Remove from new variants array
                 unset($variantsData['newVariants'][$index]);
             } else {
                 $allErrors[$data['id']] = $errors->toArray();
             }
         }
 
-        // Update
+        // Update old variants
         foreach ($variantsData['variants'] as $data) {
             $variant = ProductVariant::find($data['id']);
             $data['main_variant'] = $variantsData['main_variant'] == $data['id'] ? true : false;
@@ -313,11 +369,21 @@ class ProductsController extends ApiBaseController
 
             $errors = $variant->validate($data);
             if ($errors->isEmpty()) {
+                // Set main variant
+                if (!$mainVariant || ($variantsData['main_variant'] == $data['id'])) {
+                    $variant->main_variant = true;
+
+                    $mainVariant = $variant;
+                }
+
                 $variant->save();
             } else {
                 $allErrors[$index] = $errors->toArray();
             }
         }
+
+        // If shared stock
+        // - Update product package amount to main variant...
 
         $variants = ProductVariant::where('product_id', $product->id)->orderBy('main_variant', 'desc')->orderBy('id', 'asc')->get()->toArray();
 
@@ -325,14 +391,15 @@ class ProductsController extends ApiBaseController
             return response([
                 'variants' => $variants,
                 'newVariants' => $variantsData['newVariants'],
-                'errors' => $allErrors
+                'errors' => $allErrors,
+                'main_variant' => $mainVariant->id
             ], 400);
         } else {
-            return $variants;
+            return [
+                'variants' => $variants,
+                'main_variant' => $mainVariant->id,
+            ];
         }
-
-        // Return variants with correct sort order
-        // return ProductVariant::where('product_id', $product->id)->orderBy('main_variant', 'desc')->orderBy('id', 'desc')->get()->toArray();
     }
 
     /**

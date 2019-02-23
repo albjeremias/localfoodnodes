@@ -35,5 +35,4 @@ class NodesController extends ApiBaseController
         $node = Node::find($nodeId);
         return $node->productNodeDeliveryLinksByDate($date);
     }
-
 }
