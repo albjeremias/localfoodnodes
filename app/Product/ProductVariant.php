@@ -15,9 +15,9 @@ class ProductVariant extends BaseModel
         'product_id' => 'required',
         'name' => 'required|max:255',
         'price' => 'required|integer',
-        'package_amount' => 'required|integer|min:0.01',
+        'package_amount' => 'required|numeric|min:0.01',
         'main_variant' => 'boolean',
-        'quantity' => 'nullable|integer'
+        'quantity' => 'nullable|integer', // Why nullable?
     ];
 
     /**
@@ -32,6 +32,13 @@ class ProductVariant extends BaseModel
         'package_amount',
         'main_variant',
         'quantity',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     */
+    protected $casts = [
+        'main_variant' => 'boolean',
     ];
 
     /**
@@ -154,8 +161,10 @@ class ProductVariant extends BaseModel
      */
     public function getQuantityAttribute($quantity)
     {
-        if ($this->main_variant) {
-            return $this->getProduct()->stock_quantity;
+        $product = $this->getProduct();
+
+        if ($product->has_stock && $this->main_variant) {
+            return $product->stock_quantity;
         }
 
         return $quantity;

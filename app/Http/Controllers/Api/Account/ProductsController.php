@@ -12,6 +12,7 @@ use App\Product\Product;
 use App\Product\ProductNodeDeliveryLink;
 use App\Product\ProductFilter;
 use App\Product\ProductVariant;
+use App\Helpers\UnitsHelper;
 
 class ProductsController extends ApiBaseController
 {
@@ -294,7 +295,7 @@ class ProductsController extends ApiBaseController
             'errors' => [],
             'main_variant' => !$product->variants()->isEmpty() ? $product->mainVariant()->id : null,
             'use_variants' => !$product->variants()->isEmpty(),
-            'shared_variant_quantity' => $product->shared_variant_quantity,
+            'shared_variant_quantity' => (bool) $product->shared_variant_quantity,
             'package_unit' => $product->package_unit,
             'variants' => $variants->toArray(),
             'newVariants' => [],
@@ -331,18 +332,21 @@ class ProductsController extends ApiBaseController
         foreach ($variantsData['newVariants'] as $index => $data) {
             $variant = new ProductVariant();
             $variant->product_id = $product->id;
-            $variant->name = $data['name'];
+            $variant->name = $data['name'] ?? null;
             $variant->package_amount = $data['package_amount'];
 
             // Set main variant
             if (!$mainVariant || ($variantsData['main_variant'] == $data['id'])) {
                 $variant->main_variant = true;
                 $variant->price = $product->price;
-                $variant->package_amount = $product->package_amount;
+
+                if (UnitsHelper::isStandardUnit($product->price_unit)) {
+                    $variant->package_amount = $product->package_amount; // Estimate exists
+                }
 
                 $mainVariant = $variant;
             } else {
-                $variant->price = $data['price'];
+                $variant->price = (int) $data['price'];
             }
 
             // Calculate quantity
@@ -350,35 +354,38 @@ class ProductsController extends ApiBaseController
                 $variant->quantity = floor(($mainVariant->quantity * $mainVariant->package_amount) / $variant->package_amount);
             }
 
-            $errors = $variant->validate($variant->toArray());
+            $errors = $variant->validate();
             if ($errors->isEmpty()) {
                 $variant->save();
 
                 // Remove from new variants array
                 unset($variantsData['newVariants'][$index]);
             } else {
-                $allErrors[$data['id']] = $errors->toArray();
+                $allErrors[$index] = $errors->toArray();
             }
         }
 
         // Update old variants
         foreach ($variantsData['variants'] as $data) {
             $variant = ProductVariant::find($data['id']);
-            $data['main_variant'] = $variantsData['main_variant'] == $data['id'] ? true : false;
-            $variant->fill($data);
+            $variant->main_variant = $variantsData['main_variant'] == $data['id'] ? true : false;
+            $variant->name = $data['name'] ?? null;
+            $variant->price = $data['price'] ?? null;
+            $variant->quantity = (float) $data['quantity'] ?? null;
+            $variant->package_amount = $data['package_amount'] ?? null;
 
-            $errors = $variant->validate($data);
+            $errors = $variant->validate();
+
             if ($errors->isEmpty()) {
                 // Set main variant
                 if (!$mainVariant || ($variantsData['main_variant'] == $data['id'])) {
                     $variant->main_variant = true;
-
                     $mainVariant = $variant;
                 }
 
                 $variant->save();
             } else {
-                $allErrors[$index] = $errors->toArray();
+                $allErrors[$variant->id] = $errors->toArray();
             }
         }
 

@@ -155,7 +155,7 @@
         },
         methods: {
             activateAllProducts() {
-                console.log(this.allProductActive);
+
             },
             fetchNodes() {
                 axios.get(`/${this.lang}/api/account/producers/${this.producer.id}/nodes`).then((response) => {
