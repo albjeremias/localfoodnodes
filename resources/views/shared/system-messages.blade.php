@@ -3,7 +3,7 @@
     @if (Session::has('message'))
         @foreach (Session::get('message') as $index => $message)
             <div class="alert alert-success" role="alert" data-dismiss="alert">
-                {{ $message }}
+                <i class="fa fa-check"></i> {{ $message }}
             </div>
         @endforeach
     @endif
@@ -11,7 +11,7 @@
     @if (Session::has('error'))
         @foreach (Session::get('error') as $index => $error)
             <div class="alert alert-danger" role="alert" data-dismiss="alert">
-                {{ $error }}
+                <i class="fa fa-exclamation-triangle"></i>  {{ $error }}
             </div>
         @endforeach
     @endif

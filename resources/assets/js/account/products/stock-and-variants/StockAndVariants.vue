@@ -109,7 +109,7 @@
                                 <input type="text" class="form-control form-control-sm w-100" placeholder="New variant name" :class="{'red-b': hasError(variant.id, 'name')}" v-model="variants.newVariants[index]['name']">
                             </td>
                             <td class="position-relative text-center">
-                                <input type="radio" disabled>
+                                <input type="radio" :value="variant.id" v-model="variants.main_variant" disabled>
                             </td>
                             <td class="position-relative">
                                 <input type="number" min="0" step="1" class="form-control form-control-sm" :class="{'red-b': hasError(variant.id, 'package_amount')}" v-model="variants.newVariants[index]['package_amount']">
@@ -232,6 +232,7 @@
                     this.getData();
                 })
                 .catch(error => {
+                    console.error(error.response.data);
                     this.variants.errors = error.response.data.errors;
                     this.variants.newVariants = error.response.data.newVariants;
                     this.variants.variants = error.response.data.variants;
@@ -266,11 +267,16 @@
             addNewVariantRow() {
                 axios.get('/' + this.lang + '/api/account/producers/' + this.producerId + '/products/' + this.productId + '/variant', {
                     params: {
-                        currentIndex: this.variants.newVariants.length - 1
+                        next_index: this.variants.newVariants.length
                     }
                 })
-                .then(newVariant => {
-                    this.variants.newVariants.push(newVariant.data);
+                .then(response => {
+                    this.variants.newVariants.push(response.data);
+
+                    // Set main
+                    if (this.variants.variants.length == 0 && this.variants.newVariants.length == 1) {
+                        this.variants.main_variant = this.variants.newVariants[0].id;
+                    }
                 })
                 .catch(error => {
                     console.error(error.response.data);

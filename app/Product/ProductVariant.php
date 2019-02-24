@@ -122,7 +122,9 @@ class ProductVariant extends BaseModel
      */
     public function getPriceAttribute($price)
     {
-        if ($this->main_variant) {
+        $product = $this->getProduct();
+
+        if ($product && $this->main_variant) {
             return $this->getProduct()->price;
         }
 
@@ -163,7 +165,7 @@ class ProductVariant extends BaseModel
     {
         $product = $this->getProduct();
 
-        if ($product->has_stock && $this->main_variant) {
+        if ($product && $product->has_stock && $this->main_variant) {
             return $product->stock_quantity;
         }
 
