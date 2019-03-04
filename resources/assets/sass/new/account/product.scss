@@ -2,7 +2,8 @@
   cursor: pointer;
 }
 
-.tag input[type=checkbox]:checked + label {
+.tag input[type=checkbox]:checked + label,
+.tag label.selected {
   @extend .badge-danger;
 }
 

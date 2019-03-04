@@ -5869,7 +5869,8 @@ a.badge-warning.focus {
 }
 
 .badge-danger,
-.tag input[type=checkbox]:checked + label {
+.tag input[type=checkbox]:checked + label,
+.tag label.selected {
   color: #212529;
   background-color: #efcec4;
 }
@@ -18099,7 +18100,11 @@ section.medium-gradient .inverted-accent {
 .product.product-edit {
   display: flex;
   flex-direction: column;
-  height: 470px;
+  height: 480px;
+}
+
+.product.product-edit.small {
+  height: 240px;
 }
 
 .product.product-edit .visibility-overlay {

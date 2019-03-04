@@ -51,7 +51,11 @@
 .product.product-edit {
   display: flex;
   flex-direction: column;
-  height: 470px;
+  height: 480px;
+
+  &.small {
+    height: 240px;
+  }
 
   .visibility-overlay {
     position: absolute;

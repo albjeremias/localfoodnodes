@@ -1,20 +1,22 @@
 <template>
-    <div class="product product-edit">
-        <div v-if="!active" class="visibility-overlay">
-            <div class="d-flex flex-column justify-content-center align-items-center">
-                <a :href="product.url">
-                    <h2 class="text-center mb-3 rc">{{ product.name }}</h2>
-                </a>
-                <p class="text-center">Make this product avaialble for purchases on "node" and "date"</p>
-                <button class="btn btn-outline-secondary" v-on:click="addDeliveryDate">Make available</button>
-            </div>
-        </div>
-
-        <div class="product__img-container image">
+    <div class="product product-edit" :class="{'small': !active}">
+        <div v-if="active" class="product__img-container image">
             <img v-if="image" :src="image">
         </div>
 
-        <div class="product-container px-3 py-1">
+        <div v-if="!active" class="product-container px-3 py-1">
+            <div class="flex-fill">
+                <div class="d-flex align-items-center justify-content-between">
+                    <a :href="product.url">
+                        <h5 class="rc h10 mt-3 line-clamp-1 d-inline-block">{{ product.name }}</h5>
+                    </a>
+                </div>
+                <p>Make this product avaialble for purchases on "node" and "date"</p>
+            </div>
+            <button class="btn btn-outline-secondary mb-2" v-on:click="addDeliveryDate">Make available</button>
+        </div>
+
+        <div v-if="active" class="product-container px-3 py-1">
             <div class="flex-fill">
                 <div class="d-flex align-items-center justify-content-between">
                     <a :href="product.url">
