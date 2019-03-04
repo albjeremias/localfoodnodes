@@ -11,7 +11,7 @@
                         <h5 class="rc h10 mt-3 line-clamp-1 d-inline-block">{{ product.name }}</h5>
                     </a>
                 </div>
-                <p>Make this product avaialble for purchases on "node" and "date"</p>
+                <p>Make this product avaialble for purchases at {{ node.name }} on {{ date }}.</p>
             </div>
             <button class="btn btn-outline-secondary mb-2" v-on:click="addDeliveryDate">Make available</button>
         </div>

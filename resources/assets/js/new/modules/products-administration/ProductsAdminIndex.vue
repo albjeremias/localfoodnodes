@@ -8,7 +8,7 @@
         </div>
 
         <div class="row mb-5">
-            <div class="col-16">
+            <div v-if="!adHocLocation" class="col-16">
                 <div class="white-box">
                     <!-- Filter location -->
                     <div class="dropdown dropdown-form">
@@ -32,79 +32,93 @@
                         <div v-for="date in nodeDeliveryDates" :key="date" @click="setSelectedDate(date)" class="tag d-inline">
                             <label class="tag-label badge badge-light" :class="{'selected': date == selectedDate}">{{ date }}</label>
                         </div>
-                        <a class="dropdown-item" href="#"><small class="rc text-uppercase font-weight-bold">- Add new date</small></a>
+
+                        <div class="tag d-inline" v-if="selectedNode">
+                            <label class="tag-label badge badge-light"><i class="fa fa-plus-circle"></i> Add date</label>
+                        </div>
                     </div>
+                </div>
+            </div>
+
+            <div v-if="adHocLocation" class="col-16">
+                <div class="white-box">
+                    <h4>Ad hoc location</h4>
+                    <p>En kort beskrivande text om vad ad hoc är</p>
+                    <div class="form-row">
+                        <div class="form-group col-16">
+                            <label for="">Location name</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Location name">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-8">
+                            <label for="">Address</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Address">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-8 col-md-4">
+                            <label for="">Zip</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Zip">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-8 col-md-4">
+                            <label for="">City</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="City">
+                            </div>
+                        </div>
+                    </div>
+
+                    <a class="rc" @click="adHocLocation = !adHocLocation">cancel</a>
+                    <button class="btn btn-secondary ml-auto">Save</button>
                 </div>
             </div>
         </div>
 
-        <div v-if="adHocLocation">
-            <h4>Ad hoc location</h4>
-            <p>En kort beskrivande text om vad ad hoc är</p>
-            <div class="form-row">
-                <div class="form-group col-16">
-                    <label for="">Location name</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Location name">
-                    </div>
+        <div class="row" v-if="selectedNode && selectedDate">
+            <div class="col-16">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Product list</h2>
+                    <div class="btn btn-sm btn-outline-secondary"><i class="fa fa-share-alt mr-2" aria-hidden="true"></i> Share product list</div>
                 </div>
+                <p>These are the products you've activated for <b>{{ selectedNode.name }}</b> on the <b>{{ selectedDate }}</b></p>
 
-                <div class="form-group col-md-8">
-                    <label for="">Address</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Address">
-                    </div>
-                </div>
-
-                <div class="form-group col-8 col-md-4">
-                    <label for="">Zip</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Zip">
-                    </div>
-                </div>
-
-                <div class="form-group col-8 col-md-4">
-                    <label for="">City</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="City">
+                <div class="row">
+                    <div v-for="product in activeProducts" v-bind:key="product.id" class="col-16 col-lg-8 col-xl-4 mb-3">
+                        <card-product-edit
+                            :producer="producer"
+                            :product="product"
+                            :node="selectedNode"
+                            :date="selectedDate"
+                            :lang="lang"
+                            loading="loading"
+                            @changed="fetchProducts">
+                        </card-product-edit>
                     </div>
                 </div>
             </div>
-
-            <a class="rc" @click="adHocLocation = !adHocLocation">cancel</a>
-            <button class="btn btn-secondary ml-auto">Save</button>
         </div>
 
         <div class="row">
-            <h2>Product list</h2>
-            <div class="row">
-                <div v-for="product in activeProducts" v-bind:key="product.id" class="col-16 col-lg-8 col-xl-4 mb-3">
-                    <card-product-edit
-                        :producer="producer"
-                        :product="product"
-                        :node="selectedNode"
-                        :date="selectedDate"
-                        :lang="lang"
-                        loading="loading"
-                        @changed="fetchProducts">
-                    </card-product-edit>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <h2>The other products...</h2>
-            <div class="row">
-                <div v-for="product in inactiveProducts" v-bind:key="product.id" class="col-16 col-lg-8 col-xl-4 mb-3">
-                    <card-product-edit
-                        :producer="producer"
-                        :product="product"
-                        :node="selectedNode"
-                        :date="selectedDate"
-                        :lang="lang"
-                        loading="loading"
-                        @changed="fetchProducts">
-                    </card-product-edit>
+            <div class="col-16">
+                <h2>Your products</h2>
+                <div class="row">
+                    <div v-for="product in inactiveProducts" v-bind:key="product.id" class="col-16 col-lg-8 col-xl-4 mb-3">
+                        <card-product-edit
+                            :producer="producer"
+                            :product="product"
+                            :node="selectedNode"
+                            :date="selectedDate"
+                            :lang="lang"
+                            loading="loading"
+                            @changed="fetchProducts">
+                        </card-product-edit>
+                    </div>
                 </div>
             </div>
         </div>

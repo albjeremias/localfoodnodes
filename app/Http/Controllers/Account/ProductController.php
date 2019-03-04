@@ -199,7 +199,7 @@ class ProductController extends Controller
             'nodes' => $nodes,
             'tags' => ProductFilter::tags(),
             'breadcrumbs' => [
-                $producer->name => 'producer/' . $producer->id,
+                $producer->name => route('account_producer', ['producerId' => $producer->id]),
                 __('Products') => route('account_producer_products', ['producerId' => $producer->id]),
                 $product->name => route('account_product', ['producerId' => $producer->id, 'productId' => $product->id]),
                 __('Edit') => ''
@@ -255,10 +255,10 @@ class ProductController extends Controller
             'producer' => $producer,
             'product' => $product,
             'breadcrumbs' => [
-                $producer->name => 'producer/' . $producer->id,
-                trans('admin/user-nav.products') => 'producer/' . $producer->id . '/products',
-                $product->name => 'producer/' . $producer->id . '/product/' . $product->id . '/edit',
-                trans('admin/user-nav.delete') => ''
+                $producer->name => route('account_producer', ['producerId' => $producer->id]),
+                __('Products') => route('account_producer_products', ['producerId' => $producer->id]),
+                $product->name => route('account_product', ['producerId' => $producer->id, 'productId' => $product->id]),
+                __('Delete') => ''
             ]
         ]);
     }
@@ -408,11 +408,10 @@ class ProductController extends Controller
             'product' => $product,
             'nodes' => $nodes,
             'breadcrumbs' => [
-	            $product->name => [
-		            'link' => '/account/producer/' . $producer->id . '/product/' . $product->id . '/edit',
-		            'icon' => ''
-	            ],
-	            __('Delivery dates') => ['']
+                $producer->name => route('account_producer', ['producerId' => $producer->id]),
+                __('Products') => route('account_producer_products', ['producerId' => $producer->id]),
+                $product->name => route('account_product', ['producerId' => $producer->id, 'productId' => $product->id]),
+                __('Deliveries') => ''
             ]
         ]);
     }

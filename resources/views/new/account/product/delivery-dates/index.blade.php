@@ -6,6 +6,7 @@
 ])
 
 @section('title', 'Dashboard')
+
 @section('content')
     <div class="nm bg-shell">
         <div class="container pt-2">
