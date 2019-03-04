@@ -50,7 +50,7 @@
                         </div>
                     </div>
 
-                    <!-- Product - should (only?) use deliveryLink first and fallback to product... -->
+                    <!-- Product - should use deliveryLink first and fallback to product... -->
                     <div v-if="!product.product_variants_relationship.length" class="product-edit-form form-row">
                         <div v-if="product.has_stock" class="col">
                             <label>Stock</label>
@@ -153,7 +153,7 @@
                 },
                 get() {
                     let fallback = this.selectedVariant ? this.selectedVariant.quantity : this.product.stock_quantity;
-                    return this.hasDeliveryLink() ? this.getDeliveryLink().quantity : fallback;
+                    return this.hasDeliveryLink() && this.getDeliveryLink().quantity ? this.getDeliveryLink().quantity : fallback;
                 }
             },
             price: {
@@ -167,7 +167,7 @@
                 },
                 get() {
                     let fallback = this.selectedVariant ? this.selectedVariant.price : this.product.price;
-                    return this.hasDeliveryLink() ? this.getDeliveryLink().price : fallback;
+                    return this.hasDeliveryLink() && this.getDeliveryLink().price ? this.getDeliveryLink().price : fallback;
                 }
             },
             deadline: {
@@ -180,7 +180,7 @@
                     this.disableSaveButton = false;
                 },
                 get() {
-                    return this.hasDeliveryLink() ? this.getDeliveryLink().deadline : this.product.deadline;
+                    return this.hasDeliveryLink() && this.getDeliveryLink().deadline ? this.getDeliveryLink().deadline : this.product.deadline;
                 }
             },
             image() {
