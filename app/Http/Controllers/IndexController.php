@@ -154,7 +154,11 @@ class IndexController extends Controller
 
     public function publicSpecificProduct($id)
     {
-    	$product = Product::where('id', $id)->first();
+        $eagerLoading = [
+            'producerRelationship.productsRelationship',
+            'imageRelationship'
+            ];
+    	$product = Product::with($eagerLoading)->where('id', $id)->first();
     	return view('new.public.product', ['product' => $product]);
     }
 

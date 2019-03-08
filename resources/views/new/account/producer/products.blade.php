@@ -21,18 +21,4 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css" />
-
-    <script>
-        $(document).ready(function(){
-            $('.slick-container').slick({
-                dots: true,
-                infinite: false,
-                speed: 300,
-                slidesToShow: 7,
-                slidesToScroll: 7,
-            });
-        });
-    </script>
 @endsection

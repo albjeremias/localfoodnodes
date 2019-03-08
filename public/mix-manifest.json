@@ -1,12 +1,13 @@
 {
-    "/js/admin-transaction-list.js": "/js/admin-transaction-list.js?id=cb0e04120b5d9cbfcda0",
-    "/css/public.css": "/css/public.css?id=c2fc09bc1f9380743f45",
-    "/js/economy-circulation.js": "/js/economy-circulation.js?id=e67beb37291dc2353530",
-    "/js/economy-in-out.js": "/js/economy-in-out.js?id=0150450b27475f82dcdf",
-    "/js/new.js": "/js/new.js?id=b237ada643713e672db3",
-    "/js/node-map.js": "/js/node-map.js?id=6ee46fbe61ac0569ce20",
-    "/js/payment-widget.js": "/js/payment-widget.js?id=2565f38302578db7cb61",
-    "/js/producer-map.js": "/js/producer-map.js?id=8558885d2b10f0f4bf2c",
-    "/js/stock-and-variants.js": "/js/stock-and-variants.js?id=e5f12e95121ed7564b47",
-    "/js/transactions.js": "/js/transactions.js?id=e66c10e0b6b961c3166d"
+    "/js/admin-transaction-list.js": "/js/admin-transaction-list.js?id=9b2f4a4fc971a12d47e1",
+    "/css/public.css": "/css/public.css?id=d3f9f8f2e43c078a15ce",
+    "/js/consumer-product.js": "/js/consumer-product.js?id=445a6c6b97d0505e74ea",
+    "/js/economy-circulation.js": "/js/economy-circulation.js?id=7359143df49331577d83",
+    "/js/economy-in-out.js": "/js/economy-in-out.js?id=922a49d5f64f5e95a1a9",
+    "/js/new.js": "/js/new.js?id=ba024f2816a2e59def67",
+    "/js/node-map.js": "/js/node-map.js?id=d3281932ec29cf07df96",
+    "/js/payment-widget.js": "/js/payment-widget.js?id=2fd5fff8b7319ae19c7c",
+    "/js/producer-map.js": "/js/producer-map.js?id=161b18146c965ec6c29f",
+    "/js/stock-and-variants.js": "/js/stock-and-variants.js?id=2464953354cbb435ba75",
+    "/js/transactions.js": "/js/transactions.js?id=271ad0c816cb58a37499"
 }

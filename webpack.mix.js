@@ -16,6 +16,9 @@ mix.js('resources/assets/js/node-map/node-map.js', 'public/js').version();
 mix.js('resources/assets/js/account/producers/producer-map/producer-map.js', 'public/js').version();
 mix.js('resources/assets/js/account/products/stock-and-variants/stock-and-variants.js', 'public/js').version();
 
+// Vue views
+mix.js('resources/assets/js/views/consumer-product/index.js', 'public/js/consumer-product.js').version();
+
 
 mix.js([
     'resources/assets/js/new/index.js',
