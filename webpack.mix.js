@@ -16,8 +16,12 @@ mix.js('resources/assets/js/node-map/node-map.js', 'public/js').version();
 mix.js('resources/assets/js/account/producers/producer-map/producer-map.js', 'public/js').version();
 mix.js('resources/assets/js/account/products/stock-and-variants/stock-and-variants.js', 'public/js').version();
 
-// Vue views
+// --- Vue views ---
+// Consumer product
 mix.js('resources/assets/js/views/consumer-product/index.js', 'public/js/consumer-product.js').version();
+// Pickup dates
+mix.js('resources/assets/js/views/account/node/create/pickup-dates/index.js', 'public/js/pickup-dates.js').version();
+    // .sass('resources/assets/sass/new/vue/modules/calendar.scss', 'public/css').version();
 
 
 mix.js([

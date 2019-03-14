@@ -28,6 +28,7 @@ Route::group(['prefix' => '/user'], function () {
 Route::group(['prefix' => '/node'], function () {
     Route::get('/create', 'Account\NodeController@create')->name('en_account_node_create');
     Route::post('/insert', 'Account\NodeController@insert')->name('en_account_node_insert');
+    Route::get('/{nodeId}/edit/pickup', 'Account\NodeController@editPickupDates')->name('en_account_node_edit_pickup');
     Route::get('/{nodeId}', 'Account\NodeController@index')->name('en_account_node');
     Route::get('/{nodeId}/edit', 'Account\NodeController@edit')->name('en_account_node_edit');
     Route::post('/{nodeId}/update', 'Account\NodeController@update')->name('en_account_node_update');

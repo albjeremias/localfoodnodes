@@ -50,7 +50,7 @@
 @if(isset($script))
     <script src="{{ mix('js/' . $script .'.js') }}"></script>
 @else
-    {{----}}
+    <script src="{{ mix('/js/new.js') }}"></script>
 @endif
 
 <script>

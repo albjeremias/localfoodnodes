@@ -13,7 +13,7 @@
 @endif
 
 <div class="container my-5">
-    <h2>{{ __('Producer info') }}</h2>
+    <h2>{{ __('Producer information') }}</h2>
 
     <div class="row mt-4">
         <div class="col-md-9">

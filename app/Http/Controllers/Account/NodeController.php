@@ -155,6 +155,24 @@ class NodeController extends Controller
         ]);
     }
 
+
+    /**
+     * Edit node pickups.
+     */
+    public function editPickupDates(Request $request, $nodeId)
+    {
+        $user = Auth::user();
+        $node = $user->nodeAdminLink($nodeId)->getNode();
+
+        return view('new.account.node.delivery-settings', [
+            'node' => $node,
+            'breadcrumbs' => [
+                $node->name => 'node/' . $node->id,
+                trans('admin/user-nav.edit') => ''
+            ]
+        ]);
+    }
+
     /**
      * Update node action.
      */
