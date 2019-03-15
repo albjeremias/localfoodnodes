@@ -18448,6 +18448,21 @@ footer ul li a.nav-link {
   width: 100px;
 }
 
+#products-administration .product-info {
+  max-height: 700px;
+  overflow: scroll;
+}
+
+#products-administration .producer-info {
+  overflow: hidden;
+  height: 200px;
+}
+
+#products-administration .producer-products {
+  max-height: 493px;
+  overflow: hidden;
+}
+
 @media (min-width: 1600px) {
   .normal-primary {
     background: linear-gradient(90deg, #bf360c 43%, rgba(9, 9, 121, 0) 60%) !important;

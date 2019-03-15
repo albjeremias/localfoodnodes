@@ -49,3 +49,21 @@
     width: 100px;
   }
 }
+
+#products-administration {
+
+  .product-info {
+    max-height: 700px;
+    overflow: scroll
+  }
+
+  .producer-info {
+    overflow: hidden;
+    height: 200px
+  }
+
+  .producer-products {
+    max-height: 493px;
+    overflow: hidden;
+  }
+}

@@ -13,17 +13,45 @@
             'active' => 1,
             'steps'  =>
                 [
-                    __('Approve terms'),
-                    __('Create node'),
-                    __('admin/node.n_hdiw_item_3'),
-                    __('admin/node.n_hdiw_item_4'),
+                    __('Terms'),
+                    __('Create'),
+                    __('Pickup dates'),
+                    __('Invite'),
+                    __('Finish'),
                 ]
         ])
 
-
         <div class="container mt-5">
-            <div class="row">
+            <h2>{{ __('Node information') }}</h2>
+
+            <div class="row my-4">
                 <div class="col-md-9">
+
+                    <div class="form-row mt-4">
+                        <div class="form-group col-md-8">
+                            @include('new.components.forms.input', [
+                                'label' => __('Node name'),
+                                'name'  => 'name',
+                                'type'  => 'text',
+                                'class' => 'form-control',
+                                'placeholder' => __('Name'),
+                                'm_value' => $node->name ?? ''
+                            ])
+                        </div>
+
+                        {{-- Email --}}
+                        <div class="form-group col-md-8">
+                            @include('new.components.forms.input', [
+                                'label' => __('Email'),
+                                'name'  => 'email',
+                                'type'  => 'email',
+                                'class' => 'form-control',
+                                'placeholder' => __('Email'),
+                                'm_value' => $node->email ?? ''
+                            ])
+                        </div>
+                    </div>
+
                     {{-- Address --}}
                     <div class="form-row">
                         <div class="form-group col-8">
@@ -60,55 +88,36 @@
                                 'm_value' => $node->city
                             ])
                         </div>
+
+                        {{-- Description --}}
+                        <div class="form-group mt-2 col-16">
+                            @include('new.components.forms.textarea', [
+                                'label'       => __('Information'),
+                                'name'        => 'info',
+                                'class'       => 'form-control bb-38 wysiwyg',
+                                'rows'        => 13,
+                                'placeholder' => __('Information'),
+                            ])
+                        </div>
+
                     </div>
-
-                    <div id="map" style="background-color: grey; height: 400px; width: 100%; margin-bottom: 2rem"></div>
-
-                    {{-- Name --}}
-                    <div class="form-group">
-                        @include('new.components.forms.input', [
-                            'label' => __('Node name'),
-                            'name'  => 'name',
-                            'type'  => 'text',
-                            'class' => 'form-control',
-                            'placeholder' => __('Node name'),
-                            'm_value' => $node->name
-                        ])
-                    </div>
-
-                    {{-- CALENDAR --}}
-                    @include('new.account.node.delivery-settings-form')
 
                 </div>
 
                 <div class="offset-1 col-md-6">
 
-                    <h5 class="mb-3">{{ __('Optional data') }}</h5>
-
-                    {{-- Email --}}
-                    <div class="form-group">
-                        @include('new.components.forms.input', [
-                            'label' => __('Email'),
-                            'name'  => 'email',
-                            'type'  => 'text',
-                            'class' => 'form-control',
-                            'placeholder' => __('Email'),
-                            'm_value' => $node->email
+                    {{-- Images --}}
+                    <div class="form-group my-4">
+                        <label>{{ __('Images') }}</label>
+                        @include('new.components.upload.images', [
+                            'entityType' => 'producer',
+                            'entityId' => $node->id ?: null,
+                            'images' => $node->images(),
+                            'limit' => 4,
                         ])
                     </div>
 
-                    {{-- Description --}}
-                    <div class="form-group">
-                        @include('new.components.forms.textarea', [
-                            'label'       => __('Information'),
-                            'name'        => 'info',
-                            'class'       => 'form-control bb-38 wysiwyg',
-                            'rows'        => 3,
-                            'placeholder' => __('Information'),
-                        ])
-                    </div>
-
-                    <div class="form-group">
+                    <div class="form-group mb-4">
                         <label class="form-check-label ml-4">
                             <input class="form-check-input" name="is_hidden" type="hidden" value="0" />
                             <input class="form-check-input" name="is_hidden" type="checkbox" value="1" {{ $node->is_hidden == 1 ? 'checked' : '' }} />
@@ -116,10 +125,13 @@
                         </label>
                     </div>
 
+                    <div id="map" style="background-color: grey; height: 250px; width: 100%; margin-bottom: 2rem"></div>
+
+
                     {{-- Communication Consumers Link --}}
                     <div class="form-group">
                         @include('new.components.forms.input', [
-                            'label' => __('Facebook page'),
+                            'label' => __('Communication link (e.g. Facebook, Slack)'),
                             'name'  => 'link_facebook',
                             'type'  => 'text',
                             'class' => 'form-control',
@@ -131,7 +143,7 @@
                     {{-- Communication Producers Link --}}
                     <div class="form-group">
                         @include('new.components.forms.input', [
-                            'label' => __('Facebook page for producers'),
+                            'label' => __('Producer communication link (e.g. Facebook, Slack)'),
                             'name'  => 'link_facebook_producers',
                             'type'  => 'text',
                             'class' => 'form-control',
@@ -139,7 +151,10 @@
                             'm_value' => $node->link_facebook_producers
                         ])
                     </div>
-
+                </div>
+                <div class="d-flex w-100">
+                    <button type="submit" class="btn btn-primary">{{  __('Back') }}</button>
+                    @include('new.components.forms.submit')
                 </div>
             </div>
         </div>

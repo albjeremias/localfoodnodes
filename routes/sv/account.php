@@ -28,6 +28,7 @@ Route::group(['prefix' => '/anvandare'], function() {
 Route::group(['prefix' => '/nod'], function() {
     Route::get('/skapa', 'Account\NodeController@create')->name('sv_account_node_create');
     Route::post('/insert', 'Account\NodeController@insert')->name('sv_account_node_insert');
+    Route::get('/{nodeId}/edit/pickup', 'Account\NodeController@editPickupDates')->name('sv_account_node_edit_pickup');
     Route::get('/{nodeId}', 'Account\NodeController@index')->name('sv_account_node');
     Route::get('/{nodeId}/redigera', 'Account\NodeController@edit')->name('sv_account_node_edit');
     Route::post('/{nodeId}/uppdatera', 'Account\NodeController@update')->name('sv_account_node_update');

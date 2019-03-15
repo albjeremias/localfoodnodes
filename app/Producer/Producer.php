@@ -310,7 +310,15 @@ class Producer extends BaseModel
      */
     public function products()
     {
-        return $this->hasMany('App\Product\Product')->get();
+        return $this->hasMany('App\Product\Product')->with('imageRelationship')->get();
+    }
+
+    /**
+     * Products.
+     */
+    public function productsRelationship()
+    {
+        return $this->hasMany('App\Product\Product');
     }
 
     /**

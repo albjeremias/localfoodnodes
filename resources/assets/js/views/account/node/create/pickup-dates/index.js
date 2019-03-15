@@ -7,7 +7,7 @@
 
 window.Vue = require('vue');
 window.moment = require('moment');
-require('moment-timezone');
+// window._ = require('lodash');
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -25,11 +25,13 @@ if (token) {
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Cards
-Vue.component('card-product-edit', require('./cards/ProductEdit').default);
+// View
+Vue.component('pickup-dates', require('./view').default);
 
-Vue.component('products-administration-index', require('./modules/products-administration/ProductsAdminIndex').default);
+// Modules
+
+// Components
 
 const app = new Vue({
-    el: '#products-administration',
+    el: '#pickup-dates',
 });
