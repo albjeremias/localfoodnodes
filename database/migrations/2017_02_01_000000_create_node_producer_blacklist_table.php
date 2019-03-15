@@ -13,7 +13,7 @@ class CreateNodeProducerBlacklistTable extends Migration
      */
     public function up()
     {
-        Schema::create('node_producer_blacklist', function (Blueprint $table) {
+        Schema::create('node_producer_blacklist', function(Blueprint $table) {
             $table->integer('node_id')->required();
             $table->string('producer_id')->required();
         });

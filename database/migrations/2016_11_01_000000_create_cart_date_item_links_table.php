@@ -13,7 +13,7 @@ class CreateCartDateItemLinksTable extends Migration
      */
     public function up()
     {
-        Schema::create('cart_date_item_links', function (Blueprint $table) {
+        Schema::create('cart_date_item_links', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->required();
             $table->integer('cart_item_id')->required();

@@ -13,7 +13,7 @@ class CreatePushTokensTable extends Migration
      */
     public function up()
     {
-        Schema::create('push_tokens', function (Blueprint $table) {
+        Schema::create('push_tokens', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->required();
             $table->string('token')->required();

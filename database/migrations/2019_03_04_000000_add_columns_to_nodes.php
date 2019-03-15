@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddNodeIntervalColumns extends Migration
+class AddColumnsToNodes extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class AddNodeIntervalColumns extends Migration
     public function up()
     {
         Schema::table('nodes', function(Blueprint $table) {
-            $table->string('delivery_interval')->nullable();
-            $table->datetime('delivery_startdate')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->boolean('is_farm')->nullable()->after('is_hidden');
+            $table->boolean('is_adhoc')->nullable()->after('is_hidden');
         });
     }
 
@@ -27,7 +27,8 @@ class AddNodeIntervalColumns extends Migration
     public function down()
     {
         Schema::table('nodes', function(Blueprint $table) {
-            $table->dropColumn(['delivery_interval', 'delivery_startdate']);
+            $table->dropColumn('is_farm');
+            $table->dropColumn('is_adhoc');
         });
     }
 }

@@ -203,7 +203,7 @@ class ProductFilter
 
             if ($selectedTags->contains($key)) {
                 $active = true;
-                $selectedTags = $selectedTags->reject(function ($selectedTag) use ($key) {
+                $selectedTags = $selectedTags->reject(function($selectedTag) use ($key) {
                     return $selectedTag === $key;
                 });
             } else {

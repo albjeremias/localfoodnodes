@@ -13,7 +13,7 @@ class CreateNotificationEventsTable extends Migration
      */
     public function up()
     {
-        Schema::create('notification_events', function (Blueprint $table) {
+        Schema::create('notification_events', function(Blueprint $table) {
             $table->increments('id');
             $table->string('context_id')->required();
             $table->string('context')->required();

@@ -35,7 +35,7 @@ class NodeController extends Controller
         /**
          * Check if requested producer account exist, or if user has permission.
          */
-        $this->middleware(function ($request, $next) {
+        $this->middleware(function($request, $next) {
             $user = Auth::user();
             $nodeId = $request->route('nodeId');
 

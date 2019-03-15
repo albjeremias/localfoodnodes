@@ -13,7 +13,7 @@ class CreateGdprConsentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('gdpr_consents', function (Blueprint $table) {
+        Schema::create('gdpr_consents', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->required();
             $table->string('name')->required();

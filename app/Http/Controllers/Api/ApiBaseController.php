@@ -14,7 +14,7 @@ class ApiBaseController extends BaseController
     public function __construct()
     {
         // Set language
-        $this->middleware(function ($request, $next) {
+        $this->middleware(function($request, $next) {
             $this->setLang($request, $next);
 
             return $next($request);

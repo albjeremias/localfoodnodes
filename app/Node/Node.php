@@ -16,6 +16,8 @@ class Node extends BaseModel
 
     protected $with = ['permalinkRelationship', 'imageRelationship'];
 
+    // With dates
+
     /**
      * Validation rules.
      *
@@ -23,18 +25,20 @@ class Node extends BaseModel
      */
     protected $validationRules = [
         'name' => 'required',
-        'info' => 'required',
+        'info' => '',
         'address' => 'required',
         'zip' => 'required',
         'city' => 'required',
         'email' => 'required',
-        'delivery_interval' => 'required|string',
-        'delivery_weekday' => 'required',
-        'delivery_startdate' => 'required',
-        'delivery_time' => 'required',
+        'delivery_interval' => 'string',
+        'delivery_weekday' => '',
+        'delivery_startdate' => '',
+        'delivery_time' => '',
         'link_facebook' => '',
         'link_facebook_producers' => '',
         'is_hidden' => '',
+        'is_farm' => '',
+        'is_adhoc' => '',
     ];
 
     /**
@@ -55,6 +59,8 @@ class Node extends BaseModel
         'link_facebook',
         'link_facebook_producers',
         'is_hidden',
+        'is_farm',
+        'is_adhoc',
     ];
 
     /**
@@ -321,7 +327,7 @@ class Node extends BaseModel
         $deliveryDates = new Collection();
         $nextDelivery = $this->getNextDelivery($product);
         $endDelivery = new \DateTime($nextDelivery->format('Y-m-d'));
-        $endDelivery->modify('+3 months');
+        $endDelivery->modify('+12 months');
         $deliveryInterval = $this->delivery_interval;
 
         // Month intervals needs some modification

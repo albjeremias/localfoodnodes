@@ -1,6 +1,6 @@
 <template>
     <div class="product product-edit" :class="{'small': !active}">
-        <div v-if="active" class="product__img-container image">
+        <div v-if="active" class="product__img-container image" :class="{'fallback': !image}">
             <img v-if="image" :src="image">
         </div>
 

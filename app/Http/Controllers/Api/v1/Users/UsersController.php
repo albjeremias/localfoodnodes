@@ -95,7 +95,7 @@ class UsersController extends BaseController
             $token = DB::table('user_activations')->select('token')->where('user_id', '=', $user->id)->value('token');
         }
 
-        Mail::send('email.activate-user', ['user' => $user, 'token' => $token], function ($message) use ($user) {
+        Mail::send('email.activate-user', ['user' => $user, 'token' => $token], function($message) use ($user) {
             $message->to($user->email, $user->name)->subject(trans('public/email.activate_your_account'));
         });
     }

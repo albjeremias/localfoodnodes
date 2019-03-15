@@ -13,7 +13,7 @@ class CreateNodesTable extends Migration
      */
     public function up()
     {
-        Schema::create('nodes', function (Blueprint $table) {
+        Schema::create('nodes', function(Blueprint $table) {
             $table->engine = 'MyISAM';
             $table->increments('id');
             $table->string('name');

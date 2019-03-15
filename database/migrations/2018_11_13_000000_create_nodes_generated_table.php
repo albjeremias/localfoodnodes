@@ -13,7 +13,7 @@ class CreateNodesGeneratedTable extends Migration
      */
     public function up()
     {
-        Schema::create('nodes_generated', function (Blueprint $table) {
+        Schema::create('nodes_generated', function(Blueprint $table) {
             $table->integer('node_id')->required();
             $table->mediumText('data')->required();
             $table->dateTime('updated')->required();

@@ -13,7 +13,7 @@ class CreateUserMembershipSubscriptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_membership_subscriptions', function (Blueprint $table) {
+        Schema::create('user_membership_subscriptions', function(Blueprint $table) {
             $table->integer('user_id')->required();
             $table->string('customer_id')->required();
             $table->string('product_id')->required();

@@ -1,5 +1,11 @@
 .tag-label {
   cursor: pointer;
+
+  .delete {
+    &:hover {
+      color: $warning;
+    }
+  }
 }
 
 .tag input[type=checkbox]:checked + label,

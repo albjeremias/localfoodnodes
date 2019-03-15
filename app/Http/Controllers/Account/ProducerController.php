@@ -14,6 +14,7 @@ use App\User\User;
 use App\Producer\Producer;
 use App\Producer\ProducerNodeLink;
 use App\Producer\ProducerAdminLink;
+use App\Producer\FarmDeliveryLink;
 use App\Product\Product;
 use App\Product\ProductNodeDeliveryLink;
 use App\Node\Node;
@@ -36,7 +37,7 @@ class ProducerController extends Controller
         /**
          * Check if requested producer account exist, or if user has permission.
          */
-        $this->middleware(function ($request, $next) {
+        $this->middleware(function($request, $next) {
             $user = Auth::user();
             $producerId = $request->route('producerId');
 
@@ -214,9 +215,36 @@ class ProducerController extends Controller
      * @param [type] $producer_id
      * @return void
      */
-    public function saveChannels(Request $request, $producerId) {
+    public function saveChannels(Request $request, GoogleMapsHelper $googleMapsHelper, $producerId) {
         $user = Auth::user();
         $producer = $user->producerAdminLink($producerId)->getProducer();
+        $farmDeliveryLink = $producer->farm_delivery_link;
+
+        if ($request->has('farm_delivery') && !$farmDeliveryLink) {
+            $node = new Node();
+            $node->name = $producer->name;
+            $node->email = $producer->email;
+            $node->address = $producer->address;
+            $node->zip = $producer->zip;
+            $node->city = $producer->city;
+            $node->is_farm = true;
+
+            $latLng = $googleMapsHelper->getLatLngForDb($node->getAddressFields());
+            $node->setLocation($latLng);
+
+            $errors = $node->validate();
+            if ($errors->isEmpty()) {
+                $node->save();
+                $farmDeliveryLink = new FarmDeliveryLink();
+                $farmDeliveryLink->node_id = $node->id;
+                $farmDeliveryLink->producer_id = $producer->id;
+                $farmDeliveryLink->save();
+            }
+        } else if (!$request->has('farm_delivery')) {
+            $node = Node::find($farmDeliveryLink->node_id);
+            $node->delete();
+            $farmDeliveryLink->delete();
+        }
 
     	return redirect()->route('account_producer_finish', [
             'producerId' => $producer->id,

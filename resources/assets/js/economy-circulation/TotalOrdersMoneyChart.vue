@@ -124,7 +124,7 @@
             }
         },
         computed: {
-            loading: function () {
+            loading: function() {
                 return (this.data.count && this.data.products && this.data.circulation) ? false : true;
             }
         }

@@ -127,7 +127,7 @@
 @endif
 
 <script>
-    $('.navbar-toggler').click(function () {
+    $('.navbar-toggler').click(function() {
         if (!$('#nav-container').hasClass('bg-main-primary')) {
             $('#nav-container').toggleClass('bg-black-87');
         }

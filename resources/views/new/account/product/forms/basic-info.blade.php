@@ -83,8 +83,8 @@
         {{--<span class="input-group-addon" id="package-amount-unit"></span>--}}
 
         <script>
-            jQuery(document).ready(function () {
-                var packageAmount = function (val) {
+            jQuery(document).ready(function() {
+                var packageAmount = function(val) {
                     if (val !== 'product') {
                         $('#package-amount').show();
                         $('#package-amount-unit').text(val);
@@ -93,7 +93,7 @@
                     }
                 };
 
-                $('#price-unit select').on('change', function (event) {
+                $('#price-unit select').on('change', function(event) {
                     packageAmount($(this).val());
                 });
 

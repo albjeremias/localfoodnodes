@@ -213,7 +213,7 @@
         }
 
         // Handles the navbar state when scrolling.
-        window.onscroll = function () {
+        window.onscroll = function() {
             if (window.scrollY <= scrollYPoint) {
                 $('#nav-container').removeClass('bg-black-54');
             } else {
@@ -221,11 +221,11 @@
             }
         };
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('body').scrollspy({target: '#nav-spy'})
 
             // Add smooth scrolling on all links inside the navbar
-            $(".smooth-scroll").on('click', function (event) {
+            $(".smooth-scroll").on('click', function(event) {
 
                 // Make sure this.hash has a value before overriding default behavior
                 if (this.hash !== "") {
@@ -240,7 +240,7 @@
                     // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
                     $('html, body').animate({
                         scrollTop: $(hash).offset().top - 63
-                    }, 800, function () {
+                    }, 800, function() {
 
                         // Add hash (#) to URL when done scrolling (default click behavior)
                         window.location.hash = hash;

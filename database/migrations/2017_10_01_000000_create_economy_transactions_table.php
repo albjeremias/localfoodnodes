@@ -13,7 +13,7 @@ class CreateEconomyTransactionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('economy_transactions', function (Blueprint $table) {
+        Schema::create('economy_transactions', function(Blueprint $table) {
             $table->increments('id');
             $table->string('hash')->required();
             $table->date('date')->required();

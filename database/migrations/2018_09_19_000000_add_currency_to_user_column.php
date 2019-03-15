@@ -13,7 +13,7 @@ class AddCurrencyToUserColumn extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('users', function(Blueprint $table) {
             $table->string('currency')->after('language')->nullable();
         });
     }
@@ -25,7 +25,7 @@ class AddCurrencyToUserColumn extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('users', function(Blueprint $table) {
             $table->dropColumn('currency');
         });
     }

@@ -13,7 +13,7 @@ class CreateCurrenciesTable extends Migration
      */
     public function up()
     {
-        Schema::create('currencies', function (Blueprint $table) {
+        Schema::create('currencies', function(Blueprint $table) {
             $table->string('currency')->required()->unique();
             $table->string('label')->required();
             $table->double('rate')->required();

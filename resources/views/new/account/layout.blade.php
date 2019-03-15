@@ -53,9 +53,10 @@
 <!-- Flatpickr -->
 <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
 <script src="https://unpkg.com/flatpickr"></script>
+<script src="https://unpkg.com/flatpickr/dist/plugins/confirmDate/confirmDate.js"></script>
 <script type="text/javascript">
-    $(function () {
-        var bindDatepicker = function () {
+    $(function() {
+        var bindDatepicker = function() {
             // Datetime picker
             $('.picker.datetime:not(.bound)').addClass('bound').flatpickr({
                 enableTime: true,
@@ -81,7 +82,7 @@
 
         bindDatepicker();
 
-        $(document).on('bindDatepicker', function (event) {
+        $(document).on('bindDatepicker', function(event) {
             bindDatepicker();
         });
 
@@ -92,10 +93,10 @@
 
 <!-- Hide card block on load if class is chevron-down -->
 <script>
-    jQuery(document).ready(function () {
+    jQuery(document).ready(function() {
         $('.card-header.toggle .fa-chevron-down').closest('.card').find('.card-body').hide();
 
-        $('.card-header.toggle').on('click', function () {
+        $('.card-header.toggle').on('click', function() {
             var cardBlock = $(this).closest('.card').find('.card-body');
             var toggleIcon = $(this).find('.fa.toggle');
 

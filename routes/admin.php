@@ -9,7 +9,7 @@ Route::put('/economy/transactions', 'Admin\AdminController@updateTransaction');
 // Route::get('/transactions/categories', 'Admin\AdminController@transactionCategories');
 
 // Email
-Route::group(['prefix' => '/email'], function () {
+Route::group(['prefix' => '/email'], function() {
     Route::get('/', 'Admin\EmailController@index');
     Route::get('/user/activation', 'Admin\EmailController@userActivation');
     Route::get('/user/reset-password', 'Admin\EmailController@resetPassword');

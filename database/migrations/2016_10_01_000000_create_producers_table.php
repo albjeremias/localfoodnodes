@@ -13,7 +13,7 @@ class CreateProducersTable extends Migration
      */
     public function up()
     {
-        Schema::create('producers', function (Blueprint $table) {
+        Schema::create('producers', function(Blueprint $table) {
             $table->engine = 'MyISAM';
             $table->increments('id');
             $table->string('name');

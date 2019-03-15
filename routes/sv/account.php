@@ -1,7 +1,7 @@
 <?php
 
 // User
-Route::group(['prefix' => '/anvandare'], function () {
+Route::group(['prefix' => '/anvandare'], function() {
     Route::get('/aktivera', 'Account\UserController@activate')->name('sv_account_user_activate');
     Route::get('/aktivera/resend', 'Account\UserController@activateResend')->name('sv_account_user_activate_resend');
     Route::get('/', 'Account\UserController@index')->name('sv_account_user');
@@ -25,7 +25,7 @@ Route::group(['prefix' => '/anvandare'], function () {
 });
 
 // Node
-Route::group(['prefix' => '/nod'], function () {
+Route::group(['prefix' => '/nod'], function() {
     Route::get('/skapa', 'Account\NodeController@create')->name('sv_account_node_create');
     Route::post('/insert', 'Account\NodeController@insert')->name('sv_account_node_insert');
     Route::get('/{nodeId}', 'Account\NodeController@index')->name('sv_account_node');
@@ -47,7 +47,7 @@ Route::group(['prefix' => '/nod'], function () {
 });
 
 // Producer
-Route::group(['prefix' => '/producent'], function () {
+Route::group(['prefix' => '/producent'], function() {
     Route::get('/skapa', 'Account\ProducerController@create')->name('sv_account_producer_create');
     Route::post('/insert', 'Account\ProducerController@insert')->name('sv_account_producer_insert');
     Route::get('/{producerId}', 'Account\ProducerController@index')->name('sv_account_producer');
@@ -76,7 +76,7 @@ Route::group(['prefix' => '/producent'], function () {
 });
 
 // Product
-Route::group(['prefix' => '/producent/{producerId}/produkt'], function () {
+Route::group(['prefix' => '/producent/{producerId}/produkt'], function() {
     Route::get('/skapa', 'Account\ProductController@create')->name('sv_account_product_create');
     Route::post('/insert', 'Account\ProductController@insert')->name('sv_account_product_insert');
     Route::get('/{productId}/redigera', 'Account\ProductController@edit')->name('sv_account_product_edit');
@@ -99,7 +99,7 @@ Route::group(['prefix' => '/producent/{producerId}/produkt'], function () {
 });
 
 // Image
-Route::group(['prefix' => '/image'], function () {
+Route::group(['prefix' => '/image'], function() {
     Route::post('/upload', 'Account\ImageController@upload')->name('sv_account_image_upload');
     Route::get('/{imageId}/delete', 'Account\ImageController@delete')->name('sv_account_image_delete');
 });

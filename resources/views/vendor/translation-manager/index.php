@@ -59,17 +59,17 @@
               } );
             });
 
-            $('.form-import').on('ajax:success', function (e, data) {
+            $('.form-import').on('ajax:success', function(e, data) {
                 $('div.success-import strong.counter').text(data.counter);
                 $('div.success-import').slideDown();
             });
 
-            $('.form-find').on('ajax:success', function (e, data) {
+            $('.form-find').on('ajax:success', function(e, data) {
                 $('div.success-find strong.counter').text(data.counter);
                 $('div.success-find').slideDown();
             });
 
-            $('.form-publish').on('ajax:success', function (e, data) {
+            $('.form-publish').on('ajax:success', function(e, data) {
                 $('div.success-publish').slideDown();
             });
 

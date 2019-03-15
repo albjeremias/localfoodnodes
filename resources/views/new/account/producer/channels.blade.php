@@ -50,7 +50,7 @@
 
             {{-- Farm delivery --}}
             <div class="form-check mt-4 custom-control custom-checkbox custom-checkbox-lg">
-                <input name="farm-delivery" class="custom-control-input" type="checkbox" value="" id="checkbox-farm-delivery">
+                <input name="farm_delivery" class="custom-control-input" type="checkbox" value="true" id="checkbox-farm-delivery" {{ $producer->farm_delivery_link ? 'checked' : '' }}>
                 <label class="custom-control-label" for="checkbox-farm-delivery">
                     <h4 class="d-inline-block mb-0">{{ __('Farm delivery') }}</h4>
                 </label>

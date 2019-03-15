@@ -13,7 +13,7 @@ class CreateOrderItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('order_items', function (Blueprint $table) {
+        Schema::create('order_items', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->required(); // For loading current data
             $table->text('user')->required();

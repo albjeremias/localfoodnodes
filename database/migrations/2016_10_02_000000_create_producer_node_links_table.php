@@ -13,7 +13,7 @@ class CreateProducerNodeLinksTable extends Migration
      */
     public function up()
     {
-        Schema::create('producer_node_links', function (Blueprint $table) {
+        Schema::create('producer_node_links', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('producer_id')->unsigned();
             $table->integer('node_id')->unsigned();

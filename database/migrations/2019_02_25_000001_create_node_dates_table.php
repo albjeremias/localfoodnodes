@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdhocLocationsTable extends Migration
+class CreateNodeDatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateAdhocLocationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('adhoc_locations', function(Blueprint $table) {
+        Schema::create('node_dates', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('address')->nullable();
-            $table->string('zip')->nullable();
-            $table->string('city')->nullable();
-            $table->timestamps();
+            $table->integer('node_id');
+            $table->dateTime('datetime');
+            $table->softDeletes();
+
+            $table->unique(['node_id', 'datetime']);
         });
     }
 
@@ -30,6 +30,6 @@ class CreateAdhocLocationsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('adhoc_locations');
+        Schema::drop('node_dates');
     }
 }

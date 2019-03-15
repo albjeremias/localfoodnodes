@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 
 use App\System\NodesGenerator;
+use App\System\NodeDatesGenerator;
 use App\System\Importers\CurrencyRateImporter;
 use App\System\NotificationGenerator\NotificationGenerator;
 use App\System\StatisticsGenerator\StatisticsGenerator;
@@ -56,5 +57,17 @@ class CronController extends BaseController
         // $notificationGenerator->generatePickupReminderHour();
 
         $notificationGenerator->sendUserNotifications();
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @param NodeDatesGenerator $nodeDatesGenerator
+     * @return void
+     */
+    public function nodeDates(Request $request, NodeDatesGenerator $nodeDatesGenerator)
+    {
+        $nodeDatesGenerator->generate();
     }
 }

@@ -642,15 +642,27 @@ img.rounded-circle {
 
 .system-messages {
   bottom: 0;
+  font-size: 14px;
   left: 0;
+  margin: 1rem;
   position: fixed;
-  width: 100vw;
+  width: calc(100vw - 2rem);
 
   .alert {
-    background: #333;
+    background: $main-accent;
     border: 0;
     border-radius: 0;
-    color: #fff;
     margin: 0;
   }
+}
+
+.vdatetime-popup__header {
+  background: $main-primary !important;
+}
+.vdatetime-calendar__month__day--selected > span > span,
+.vdatetime-calendar__month__day--selected:hover > span > span {
+  background: $main-primary !important;
+}
+.vdatetime-popup__actions__button {
+  color: $main-primary !important;
 }

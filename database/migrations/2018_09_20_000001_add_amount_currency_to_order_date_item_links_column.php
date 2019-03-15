@@ -13,7 +13,7 @@ class AddAmountCurrencyToOrderDateItemLinksColumn extends Migration
      */
     public function up()
     {
-        Schema::table('order_date_item_links', function (Blueprint $table) {
+        Schema::table('order_date_item_links', function(Blueprint $table) {
             $table->float('amount')->after('quantity')->nullable();
             $table->string('currency')->after('amount')->nullable();
         });
@@ -26,7 +26,7 @@ class AddAmountCurrencyToOrderDateItemLinksColumn extends Migration
      */
     public function down()
     {
-        Schema::table('order_date_item_links', function (Blueprint $table) {
+        Schema::table('order_date_item_links', function(Blueprint $table) {
             $table->dropColumn('amount');
             $table->dropColumn('currency');
         });

@@ -7,7 +7,7 @@
 
 window.Vue = require('vue');
 window.moment = require('moment');
-window._ = require('lodash');
+require('moment-timezone');
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';

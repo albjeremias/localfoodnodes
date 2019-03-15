@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdhocDatesTable extends Migration
+class CreateFarmDeliveryLinksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateAdhocDatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('adhoc_dates', function(Blueprint $table) {
+        Schema::create('farm_delivery_links', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('entity_id');
-            $table->string('entity_type'); // adhoc, node or farm
-            $table->dateTime('date');
-            $table->timestamps();
+            $table->integer('producer_id')->required();
+            $table->integer('node_id')->required();
         });
     }
 
@@ -29,6 +27,6 @@ class CreateAdhocDatesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('adhoc_dates');
+        Schema::drop('user_node_links');
     }
 }

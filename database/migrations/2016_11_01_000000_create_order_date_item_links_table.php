@@ -13,7 +13,7 @@ class CreateOrderDateItemLinksTable extends Migration
      */
     public function up()
     {
-        Schema::create('order_date_item_links', function (Blueprint $table) {
+        Schema::create('order_date_item_links', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->required(); // Enables easy access for users
             $table->integer('producer_id')->required(); // Enables easy access for producers

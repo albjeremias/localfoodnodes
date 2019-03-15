@@ -24,7 +24,7 @@ class Controller extends BaseController
         $this->setLang();
 
         // Check GDPR consent
-        $this->middleware(function ($request, $next) {
+        $this->middleware(function($request, $next) {
             $user = Auth::user();
 
             $validRouteNames = ['logout', 'account_user_delete', 'account_user_gdpr_delete_confirm', 'account_user_gdpr', 'account_user_gdpr_confirm'];
@@ -38,7 +38,7 @@ class Controller extends BaseController
         });
 
         // Add user object to all views
-        $this->middleware(function ($request, $next) {
+        $this->middleware(function($request, $next) {
             $user = Auth::user() ?: new User();
             View::share('user', $user);
 

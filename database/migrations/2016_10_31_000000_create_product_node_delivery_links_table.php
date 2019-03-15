@@ -13,7 +13,7 @@ class CreateProductNodeDeliveryLinksTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_node_delivery_links', function (Blueprint $table) {
+        Schema::create('product_node_delivery_links', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('product_id')->unsigned();
             $table->integer('node_id')->unsigned();

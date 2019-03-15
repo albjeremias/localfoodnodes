@@ -16,10 +16,15 @@
     "jquery": "^3.1.1",
     "laravel-mix": "^4.0.13",
     "lodash": "^4.17.11",
+    "luxon": "^1.11.4",
     "moment": "^2.22.2",
+    "moment-timezone": "^0.5.23",
     "slick-carousel": "^1.8.1",
     "vue": "^2.5.17",
-    "webpack": "^4.28.1"
+    "vue-datetime": "^1.0.0-beta.10",
+    "vue-flatpickr-component": "^8.1.1",
+    "webpack": "^4.28.1",
+    "weekstart": "^1.0.0"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.7.2",

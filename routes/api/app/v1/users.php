@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => '/users'], function () {
+Route::group(['prefix' => '/users'], function() {
     // Fetch data
     Route::get('/', 'Api\v1\Users\UsersController@users')->middleware(['scope:users-read-all']);
     Route::get('/self', 'Api\v1\Users\UsersController@self')->middleware(['scope:users-read-self']);

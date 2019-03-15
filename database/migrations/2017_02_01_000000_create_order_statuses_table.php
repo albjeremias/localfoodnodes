@@ -13,7 +13,7 @@ class CreateOrderStatusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('order_statuses', function (Blueprint $table) {
+        Schema::create('order_statuses', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('order_item_id')->required();
             $table->string('status')->required();

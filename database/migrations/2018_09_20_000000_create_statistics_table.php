@@ -13,7 +13,7 @@ class CreateStatisticsTable extends Migration
      */
     public function up()
     {
-        Schema::create('statistics', function (Blueprint $table) {
+        Schema::create('statistics', function(Blueprint $table) {
             $table->string('key')->required()->unique();
             $table->mediumText('data')->required();
             $table->dateTime('updated')->required();

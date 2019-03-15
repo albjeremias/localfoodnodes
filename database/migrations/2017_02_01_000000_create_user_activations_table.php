@@ -13,7 +13,7 @@ class CreateUserActivationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_activations', function (Blueprint $table) {
+        Schema::create('user_activations', function(Blueprint $table) {
             $table->string('user_id')->unique();
             $table->string('token')->unique();
         });

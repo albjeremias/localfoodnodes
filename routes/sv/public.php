@@ -10,7 +10,7 @@ Route::get('/konto/aktivera/token/{token}', 'Account\UserController@activateToke
 Route::post('/account/user/membership/callback', 'Account\UserController@membershipCallback')->name('sv_account_user_membership_callback'); // Need to be public with the new membership donation form
 
 // Cart - needs auth since cart only works for logged in users
-Route::group(['prefix' => '/checkout', 'middleware' => 'auth.account'], function () {
+Route::group(['prefix' => '/checkout', 'middleware' => 'auth.account'], function() {
     Route::get('/', 'CartController@index');
     Route::post('/item/add', 'CartController@addItem');
     Route::post('/items/add', 'CartController@addItems');

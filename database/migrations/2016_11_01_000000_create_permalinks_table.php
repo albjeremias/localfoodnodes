@@ -13,7 +13,7 @@ class CreatePermalinksTable extends Migration
      */
     public function up()
     {
-        Schema::create('permalinks', function (Blueprint $table) {
+        Schema::create('permalinks', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('entity_id')->required();
             $table->string('entity_type')->required();

@@ -64,7 +64,7 @@ class RouteServiceProvider extends ServiceProvider
                 'middleware' => ['web', 'auth.account'],
                 'namespace' => $this->namespace,
                 'prefix' => $prefix[$langCode],
-            ], function ($router) use ($langCode) {
+            ], function($router) use ($langCode) {
                 require base_path('routes/' . $langCode . '/account.php');
             });
         }
@@ -83,7 +83,7 @@ class RouteServiceProvider extends ServiceProvider
                 'middleware' => ['auth:api'],
                 'namespace' => $this->namespace,
                 'prefix' => $langCode . '/api/account',
-            ], function ($router) {
+            ], function($router) {
                 require base_path('routes/api/account/routes.php');
             });
 
@@ -92,7 +92,7 @@ class RouteServiceProvider extends ServiceProvider
                 'middleware' => ['api'],
                 'namespace' => $this->namespace,
                 'prefix' => $langCode . '/api',
-            ], function ($router) {
+            ], function($router) {
                 require base_path('routes/api/utils/routes.php');
             });
         }
@@ -102,7 +102,7 @@ class RouteServiceProvider extends ServiceProvider
             'middleware' => ['auth:api'], // Passport
             'namespace' => $this->namespace,
             'prefix' => 'api/v1',
-        ], function ($router) {
+        ], function($router) {
             require base_path('routes/api/app/v1/routes.php');
         });
     }
@@ -120,7 +120,7 @@ class RouteServiceProvider extends ServiceProvider
             'prefix' => 'admin',
         ];
 
-        Route::group($options, function ($router) {
+        Route::group($options, function($router) {
             require base_path('routes/admin.php');
         });
     }
@@ -139,7 +139,7 @@ class RouteServiceProvider extends ServiceProvider
                 'prefix' => $langCode,
             ];
 
-            Route::group($options, function ($router) use ($langCode) {
+            Route::group($options, function($router) use ($langCode) {
                 require base_path('routes/' . $langCode . '/auth.php');
             });
         }
@@ -158,7 +158,7 @@ class RouteServiceProvider extends ServiceProvider
             'prefix' => 'system',
         ];
 
-        Route::group($options, function ($router) {
+        Route::group($options, function($router) {
             require base_path('routes/system.php');
         });
     }
@@ -198,7 +198,7 @@ class RouteServiceProvider extends ServiceProvider
                 'middleware' => 'web',
                 'namespace' => $this->namespace,
                 'prefix' => $langCode,
-            ], function ($router) use ($langCode) {
+            ], function($router) use ($langCode) {
                 require base_path('routes/' . $langCode . '/public.php');
             });
         }

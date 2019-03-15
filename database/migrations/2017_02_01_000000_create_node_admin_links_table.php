@@ -13,7 +13,7 @@ class CreateNodeAdminLinksTable extends Migration
      */
     public function up()
     {
-        Schema::create('node_admin_links', function (Blueprint $table) {
+        Schema::create('node_admin_links', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('node_id');

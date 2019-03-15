@@ -12,7 +12,7 @@ use App\Helpers\DistanceHelper;
 
 class Producer extends BaseModel
 {
-    protected $appends = ['location'];
+    protected $appends = ['location', 'farm_delivery_link'];
 
     /**
      * Validation rules.
@@ -377,6 +377,14 @@ class Producer extends BaseModel
             + sin(deg2rad($this->location['lat']))
             * sin(deg2rad($lat))
         );
+    }
+
+    /**
+     * Check if producer is blacklisted at a specific node.
+     */
+    public function getFarmDeliveryLinkAttribute()
+    {
+        return $this->hasOne('App\Producer\FarmDeliveryLink')->first();
     }
 
     /**

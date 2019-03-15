@@ -1,7 +1,7 @@
 <?php
 
 // User
-Route::group(['prefix' => '/user'], function () {
+Route::group(['prefix' => '/user'], function() {
     Route::get('/activate', 'Account\UserController@activate')->name('en_account_user_activate');
     Route::get('/activate/resend', 'Account\UserController@activateResend')->name('en_account_user_activate_resend');
     Route::get('/', 'Account\UserController@index')->name('en_account_user');
@@ -25,7 +25,7 @@ Route::group(['prefix' => '/user'], function () {
 });
 
 // Node
-Route::group(['prefix' => '/node'], function () {
+Route::group(['prefix' => '/node'], function() {
     Route::get('/create', 'Account\NodeController@create')->name('en_account_node_create');
     Route::post('/insert', 'Account\NodeController@insert')->name('en_account_node_insert');
     Route::get('/{nodeId}', 'Account\NodeController@index')->name('en_account_node');
@@ -47,7 +47,7 @@ Route::group(['prefix' => '/node'], function () {
 });
 
 // Producer
-Route::group(['prefix' => '/producer'], function () {
+Route::group(['prefix' => '/producer'], function() {
     Route::get('/create', 'Account\ProducerController@create')->name('en_account_producer_create');
     Route::post('/insert', 'Account\ProducerController@insert')->name('en_account_producer_insert');
     Route::get('/{producerId}', 'Account\ProducerController@index')->name('en_account_producer');
@@ -76,7 +76,7 @@ Route::group(['prefix' => '/producer'], function () {
 });
 
 // Product
-Route::group(['prefix' => '/producer/{producerId}/product'], function () {
+Route::group(['prefix' => '/producer/{producerId}/product'], function() {
     Route::get('/create', 'Account\ProductController@create')->name('en_account_product_create');
     Route::post('/insert', 'Account\ProductController@insert')->name('en_account_product_insert');
     Route::get('/{productId}/edit', 'Account\ProductController@edit')->name('en_account_product_edit');
@@ -99,7 +99,7 @@ Route::group(['prefix' => '/producer/{producerId}/product'], function () {
 });
 
 // Image
-Route::group(['prefix' => '/image'], function () {
+Route::group(['prefix' => '/image'], function() {
     Route::post('/upload', 'Account\ImageController@upload')->name('en_account_image_upload');
     Route::get('/{imageId}/delete', 'Account\ImageController@delete')->name('en_account_image_delete');
 });

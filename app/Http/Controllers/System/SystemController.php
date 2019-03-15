@@ -45,7 +45,7 @@ class SystemController extends BaseController
     private function getUrlSegments($path) {
         $segments = explode('/', $path);
 
-        return array_values(array_filter($segments, function ($value) {
+        return array_values(array_filter($segments, function($value) {
             return $value != '';
         }));
     }

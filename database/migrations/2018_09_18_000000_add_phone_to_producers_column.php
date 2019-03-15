@@ -13,7 +13,7 @@ class AddPhoneToProducersColumn extends Migration
      */
     public function up()
     {
-        Schema::table('producers', function (Blueprint $table) {
+        Schema::table('producers', function(Blueprint $table) {
             $table->string('phone')->after('city')->nullable();
         });
     }
@@ -25,7 +25,7 @@ class AddPhoneToProducersColumn extends Migration
      */
     public function down()
     {
-        Schema::table('producers', function (Blueprint $table) {
+        Schema::table('producers', function(Blueprint $table) {
             $table->dropColumn('phone');
         });
     }

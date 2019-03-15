@@ -36,7 +36,7 @@ class UserController extends Controller
     {
         parent::__construct();
 
-        $this->middleware(function ($request, $next) {
+        $this->middleware(function($request, $next) {
             $user = Auth::user();
             $orderId = $request->route('orderId');
 
@@ -659,7 +659,7 @@ class UserController extends Controller
             $token = DB::table('user_activations')->select('token')->where('user_id', '=', $user->id)->value('token');
         }
 
-        Mail::send('email.activate-user', ['user' => $user, 'token' => $token], function ($message) use ($user) {
+        Mail::send('email.activate-user', ['user' => $user, 'token' => $token], function($message) use ($user) {
             $message->to($user->email, $user->name)->subject(trans('public/email.activate_your_account'));
         });
     }

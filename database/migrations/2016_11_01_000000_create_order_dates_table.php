@@ -13,7 +13,7 @@ class CreateOrderDatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('order_dates', function (Blueprint $table) {
+        Schema::create('order_dates', function(Blueprint $table) {
             $table->increments('id');
             $table->date('date')->required();
         });

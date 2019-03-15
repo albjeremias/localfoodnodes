@@ -19,7 +19,7 @@ class PageController extends Controller
     // {
     //     parent::__construct();
 
-    //     $this->middleware(function ($request, $next) {
+    //     $this->middleware(function($request, $next) {
     //         view()->composer('*', function($view) {
     //             $view_name =  'page ' . str_replace('.', '-', $view->getName());
     //             view()->share('viewName', $view_name);

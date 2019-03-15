@@ -13,7 +13,7 @@ class AddVatColumn extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
+        Schema::table('products', function(Blueprint $table) {
             $table->integer('vat')->after('price')->nullable();
         });
     }
@@ -25,7 +25,7 @@ class AddVatColumn extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
+        Schema::table('products', function(Blueprint $table) {
             $table->dropColumn('vat');
         });
     }

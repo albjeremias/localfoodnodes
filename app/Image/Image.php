@@ -80,12 +80,12 @@ class Image extends BaseModel
 
             if ($image->height() > $image->width()) {
                 // Portrait
-                $image->resize($width, null, function ($constraint) {
+                $image->resize($width, null, function($constraint) {
                     $constraint->aspectRatio();
                 });
             } else {
                 // Landscape
-                $image->resize(null, $width, function ($constraint) {
+                $image->resize(null, $width, function($constraint) {
                     $constraint->aspectRatio();
                 });
             }
