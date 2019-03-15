@@ -37,7 +37,7 @@
                     <div v-if="selectedNode" class="tags mt-3">
                         <div v-for="date in dates" :key="date.unix()" @click="setSelectedDate(date)" class="tag d-inline">
                             <label class="tag-label badge badge-light" :class="{'selected': date.format('YYYY-MM-DD') == selectedDate}">
-                                <i class="fa fa-times-circle delete" @click="deleteDate(date)"></i> {{ date.format('YYYY-MM-DD') }} <small>{{ date.format('HH:mm') }}</small>
+                                <i v-if="selectedNode.is_adhoc || selectedNode.is_farm" class="fa fa-times-circle delete" @click="deleteDate(date)"></i> {{ date.format('YYYY-MM-DD') }} <small>{{ date.format('HH:mm') }}</small>
                             </label>
                         </div>
 
