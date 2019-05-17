@@ -34,6 +34,10 @@ class CartController extends BaseController
     {
         $user = Auth::guard('api')->user();
 
+        if (!$user->isMember()) {
+            return response(['error' => 'You need to become a member to shop'], 400);
+        }
+
         $messages = new MessageBag();
         $product = Product::find($request->input('product_id'));
 
